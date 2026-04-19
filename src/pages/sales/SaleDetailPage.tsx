@@ -66,13 +66,13 @@ export const SaleDetailPage: React.FC = () => {
   const currentOutstanding = totalExpected - totalPaid;
 
   return (
-    <div className="flex flex-col h-full bg-[#F8FAFC]">
+    <div className="flex flex-col h-full bg-surface">
       <Topbar
         pageTitle={product?.name || "Sale Detail"}
         pageSubtitle={customer?.fullName || "Back to sales"}
         primaryAction={
           <Button
-            className="bg-[#4F46E5] hover:bg-primary-dark"
+            className="bg-primary hover:bg-primary-dark"
             onClick={() => {
               const pending = schedules.find((s) => s.status !== "PAID");
               if (pending) {
@@ -89,24 +89,24 @@ export const SaleDetailPage: React.FC = () => {
       <div className="p-6 overflow-y-auto">
         <button
           onClick={() => navigate("/sales")}
-          className="mb-4 text-xs font-bold text-[#4F46E5] flex items-center gap-1 hover:translate-x-[-4px] transition-transform"
+          className="mb-4 text-xs font-bold text-primary flex items-center gap-1 hover:translate-x-[-4px] transition-transform"
         >
           <ArrowLeft className="w-3 h-3" /> Back to list
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Customer Info */}
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 shadow-sm">
-            <h4 className="text-[10px] font-bold text-[#475569] uppercase tracking-widest mb-4">
+          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+            <h4 className="text-2xs font-bold text-body uppercase tracking-widest mb-4">
               Customer Information
             </h4>
             <div className="flex items-center gap-4 mb-6">
               <InitialsAvatar name={customer?.fullName || ""} size="md" />
               <div className="flex flex-col">
-                <span className="font-bold text-[#0F172A]">
+                <span className="font-bold text-heading">
                   {customer?.fullName}
                 </span>
-                <span className="text-xs text-[#475569]">
+                <span className="text-xs text-body">
                   {customer?.nic} · {customer?.phone}
                 </span>
               </div>
@@ -114,7 +114,7 @@ export const SaleDetailPage: React.FC = () => {
             <Button
               variant="outline"
               size="sm"
-              className="w-full h-10 border-slate-200 text-[#4F46E5] font-bold"
+              className="w-full h-10 border-slate-200 text-primary font-bold"
               onClick={() => navigate(`/customers/${customer?.id}`)}
             >
               View Full Profile
@@ -122,33 +122,33 @@ export const SaleDetailPage: React.FC = () => {
           </div>
 
           {/* Sale Summary */}
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 shadow-sm relative">
+          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm relative">
             <StatusBadge
               status={sale.status}
               className="absolute top-6 right-6"
             />
-            <h4 className="text-[10px] font-bold text-[#475569] uppercase tracking-widest mb-4">
+            <h4 className="text-2xs font-bold text-body uppercase tracking-widest mb-4">
               Sale Summary
             </h4>
             <div className="grid grid-cols-2 gap-y-4 gap-x-8">
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Product
                 </span>
-                <span className="text-sm font-bold text-[#0F172A]">
+                <span className="text-sm font-bold text-heading">
                   {product?.name}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Sold Price
                 </span>
-                <span className="text-sm font-bold text-[#0F172A]">
+                <span className="text-sm font-bold text-heading">
                   {formatCurrency(sale.soldPrice)}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Down Payment
                 </span>
                 <span className="text-sm font-bold text-green-600">
@@ -156,32 +156,32 @@ export const SaleDetailPage: React.FC = () => {
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Monthly Installment
                 </span>
-                <span className="text-sm font-bold text-[#0F172A]">
+                <span className="text-sm font-bold text-heading">
                   {formatCurrency(sale.monthlyAmount)}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Total Paid
                 </span>
-                <span className="text-sm font-bold text-[#0F172A]">
+                <span className="text-sm font-bold text-heading">
                   {formatCurrency(totalPaid)}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] text-[#94A3B8] font-medium">
+                <span className="text-xxs text-hint font-medium">
                   Outstanding
                 </span>
-                <span className="text-sm font-bold text-[#4F46E5]">
+                <span className="text-sm font-bold text-primary">
                   {formatCurrency(currentOutstanding)}
                 </span>
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
-              <span className="text-xs text-[#94A3B8] font-medium italic">
+              <span className="text-xs text-hint font-medium italic">
                 Sale Date: {formatDate(sale.saleDate)}
               </span>
             </div>
@@ -189,17 +189,17 @@ export const SaleDetailPage: React.FC = () => {
         </div>
 
         {/* Schedule Table */}
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm mb-8 overflow-hidden">
-          <div className="p-5 border-b border-[#E2E8F0] flex items-center justify-between">
-            <h3 className="font-bold text-[#0F172A]">Installment Schedule</h3>
-            <span className="bg-[#EEF2FF] text-[#4F46E5] text-xs font-bold px-4 py-1.5 rounded-full">
+        <div className="bg-white rounded-2xl border border-border shadow-sm mb-8 overflow-hidden">
+          <div className="p-5 border-b border-border flex items-center justify-between">
+            <h3 className="font-bold text-heading">Installment Schedule</h3>
+            <span className="bg-primary-light text-primary text-xs font-bold px-4 py-1.5 rounded-lg">
               {paidSchedules.length} of {sale.totalMonths} paid ·{" "}
               {formatCurrency(currentOutstanding)} remaining
             </span>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-[#F8FAFC] text-[10px] text-[#475569] uppercase tracking-wider font-bold">
+              <thead className="bg-surface text-2xs text-body uppercase tracking-wider font-bold">
                 <tr>
                   <th className="px-5 py-4 border-b">#</th>
                   <th className="px-5 py-4 border-b">Due Date</th>
@@ -210,7 +210,7 @@ export const SaleDetailPage: React.FC = () => {
                   <th className="px-5 py-4 border-b text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E2E8F0]">
+              <tbody className="divide-y divide-border">
                 {schedules.map((row) => (
                   <tr
                     key={row.id}
@@ -232,7 +232,7 @@ export const SaleDetailPage: React.FC = () => {
                         "px-5 py-4 text-sm font-medium",
                         row.status === "PAID"
                           ? "text-slate-400 line-through"
-                          : "text-[#0F172A]",
+                          : "text-heading",
                       )}
                     >
                       {formatDate(row.dueDate)}
@@ -242,7 +242,7 @@ export const SaleDetailPage: React.FC = () => {
                         "px-5 py-4 text-sm",
                         row.status === "PAID"
                           ? "text-slate-400"
-                          : "font-bold text-[#475569]",
+                          : "font-bold text-body",
                       )}
                     >
                       {formatCurrency(row.expectedAmount)}
@@ -257,7 +257,7 @@ export const SaleDetailPage: React.FC = () => {
                     >
                       {formatCurrency(row.paidAmount)}
                     </td>
-                    <td className="px-5 py-4 text-sm font-bold text-[#0F172A]">
+                    <td className="px-5 py-4 text-sm font-bold text-heading">
                       {formatCurrency(row.expectedAmount - row.paidAmount)}
                     </td>
                     <td className="px-5 py-4">
@@ -268,7 +268,7 @@ export const SaleDetailPage: React.FC = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="text-xs h-8 px-4 font-bold border-indigo-100 text-[#4F46E5] hover:bg-[#EEF2FF]"
+                          className="text-xs h-8 px-4 font-bold border-indigo-100 text-primary hover:bg-primary-light"
                           onClick={() => {
                             setSelectedInstallment(row.id);
                             openModal("recordPayment");
@@ -288,10 +288,10 @@ export const SaleDetailPage: React.FC = () => {
         </div>
 
         {/* Payment History Timeline */}
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-8 shadow-sm">
-          <h3 className="font-bold text-[#0F172A] mb-8">Payment History</h3>
+        <div className="bg-white rounded-2xl border border-border p-8 shadow-sm">
+          <h3 className="font-bold text-heading mb-8">Payment History</h3>
           <div className="relative ml-4">
-            <div className="absolute left-[-2px] top-0 bottom-0 w-1 bg-[#EEF2FF] rounded-full"></div>
+            <div className="absolute left-[-2px] top-0 bottom-0 w-1 bg-primary-light rounded-full"></div>
             <div className="space-y-10">
               {salePayments.length > 0 ? (
                 salePayments.map((p) => {
@@ -303,25 +303,25 @@ export const SaleDetailPage: React.FC = () => {
                       key={p.id}
                       className="relative pl-8 animate-in slide-in-from-left duration-300"
                     >
-                      <div className="absolute left-[-8px] top-1 w-4 h-4 rounded-full bg-white border-4 border-[#4F46E5] ring-4 ring-indigo-50"></div>
+                      <div className="absolute left-[-8px] top-1 w-4 h-4 rounded-full bg-white border-4 border-primary ring-4 ring-indigo-50"></div>
                       <div className="flex flex-col md:flex-row md:items-center gap-2">
-                        <span className="text-sm font-bold text-[#0F172A]">
+                        <span className="text-sm font-bold text-heading">
                           {formatDate(p.paidDate)}
                         </span>
                         <span className="hidden md:inline px-1 text-slate-300">
                           ·
                         </span>
-                        <span className="text-base font-black text-[#4F46E5]">
+                        <span className="text-base font-black text-primary">
                           {formatCurrency(p.paidAmount)}
                         </span>
                       </div>
                       <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <span className="text-[11px] font-bold text-[#475569] bg-slate-100 px-2 py-0.5 rounded uppercase">
+                        <span className="text-xxs font-bold text-body bg-slate-100 px-2 py-0.5 rounded uppercase">
                           Installment {schedule?.installmentNumber}
                         </span>
-                        <span className="text-[11px] text-[#94A3B8]">
+                        <span className="text-xxs text-hint">
                           Recorded by{" "}
-                          <span className="text-[#475569] font-bold">
+                          <span className="text-body font-bold">
                             {p.recordedBy}
                           </span>
                         </span>
@@ -329,7 +329,7 @@ export const SaleDetailPage: React.FC = () => {
                       {p.notes && (
                         <div className="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-100 max-w-sm flex gap-2 items-start">
                           <Info className="w-3.5 h-3.5 text-slate-400 mt-0.5 shrink-0" />
-                          <p className="text-xs text-[#475569] italic">
+                          <p className="text-xs text-body italic">
                             {p.notes}
                           </p>
                         </div>
@@ -352,7 +352,7 @@ export const SaleDetailPage: React.FC = () => {
         <DialogContent className="max-w-[480px] p-0 border-none rounded-3xl overflow-hidden animate-in zoom-in-95 duration-200">
           <div className="p-8 pb-0">
             <DialogHeader className="mb-6 flex flex-row items-center justify-between">
-              <DialogTitle className="text-xl font-bold text-[#0F172A]">
+              <DialogTitle className="text-xl font-bold text-heading">
                 Record Payment
               </DialogTitle>
             </DialogHeader>
@@ -363,21 +363,21 @@ export const SaleDetailPage: React.FC = () => {
               );
               return (
                 <>
-                  <div className="bg-[#EEF2FF] rounded-2xl p-5 mb-8 flex justify-between items-center ring-1 ring-indigo-100 shadow-sm">
+                  <div className="bg-primary-light rounded-2xl p-5 mb-8 flex justify-between items-center ring-1 ring-indigo-100 shadow-sm">
                     <div>
-                      <p className="text-[11px] font-bold text-[#4F46E5] uppercase tracking-wider mb-0.5">
+                      <p className="text-xxs font-bold text-primary uppercase tracking-wider mb-0.5">
                         INSTALLMENT {inst?.installmentNumber} OF{" "}
                         {sale.totalMonths}
                       </p>
-                      <p className="text-xs font-medium text-[#475569]">
+                      <p className="text-xs font-medium text-body">
                         Due: {inst ? formatDate(inst.dueDate) : "-"}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[10px] font-bold text-[#94A3B8] uppercase">
+                      <p className="text-2xs font-bold text-hint uppercase">
                         Remaining
                       </p>
-                      <p className="text-xl font-black text-[#4F46E5]">
+                      <p className="text-xl font-black text-primary">
                         {inst
                           ? formatCurrency(
                               inst.expectedAmount - inst.paidAmount,
@@ -399,7 +399,7 @@ export const SaleDetailPage: React.FC = () => {
                         }
                         className="h-12 text-lg font-black border-slate-200 focus:ring-primary focus:border-primary transition-all"
                       />
-                      <p className="text-[10px] text-[#94A3B8] font-semibold pl-1">
+                      <p className="text-2xs text-hint font-semibold pl-1">
                         Expected: {formatCurrency(inst?.expectedAmount || 0)} ·
                         Already paid: {formatCurrency(inst?.paidAmount || 0)}
                       </p>
@@ -435,7 +435,7 @@ export const SaleDetailPage: React.FC = () => {
                           <span className="text-sm font-bold text-slate-700">
                             Payment confirmation
                           </span>
-                          <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wide">
+                          <span className="text-2xs font-medium text-slate-400 uppercase tracking-wide">
                             {customer?.phone}
                           </span>
                         </div>
@@ -456,7 +456,7 @@ export const SaleDetailPage: React.FC = () => {
                 Cancel
               </Button>
               <Button
-                className="flex-[2] h-12 rounded-xl bg-[#4F46E5] hover:bg-primary-dark font-bold text-white shadow-lg shadow-indigo-100"
+                className="flex-[2] h-12 rounded-xl bg-primary hover:bg-primary-dark font-bold text-white shadow-lg shadow-indigo-100"
                 onClick={() => {
                   closeModal();
                   // In a real app we'd dispatch an update action

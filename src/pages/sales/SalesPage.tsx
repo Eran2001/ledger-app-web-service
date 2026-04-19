@@ -37,7 +37,6 @@ export const SalesPage: React.FC = () => {
         is.status === "OVERDUE",
     );
 
-    // Check if truly overdue based on dates
     const isActuallyOverdue = schedules.some((is) => is.status === "OVERDUE");
 
     return {
@@ -63,13 +62,13 @@ export const SalesPage: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-[#F8FAFC]">
+    <div className="flex flex-col h-full bg-surface">
       <Topbar
         pageTitle="Sales"
         pageSubtitle="All installment sales"
         primaryAction={
           <Button
-            className="bg-[#4F46E5] hover:bg-primary-dark"
+            className="bg-primary hover:bg-primary-dark"
             onClick={() => navigate("/sales/new")}
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -80,7 +79,7 @@ export const SalesPage: React.FC = () => {
 
       <div className="p-6 overflow-y-auto">
         {/* Filter Tabs */}
-        <div className="mb-6 flex gap-1 bg-slate-200/50 p-1 rounded-lg w-max">
+        <div className="mb-6 flex gap-1 bg-muted/50 p-1 global-rounded w-max">
           {(
             ["all", "ACTIVE", "OVERDUE", "COMPLETED", "WRITTEN_OFF"] as const
           ).map((tab) => (
@@ -88,10 +87,10 @@ export const SalesPage: React.FC = () => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={cn(
-                "px-4 py-1.5 rounded-md text-xs font-bold transition-all capitalize",
+                "px-4 py-1.5 global-rounded t-caption-bold transition-all capitalize",
                 activeTab === tab
-                  ? "bg-white text-[#0F172A] shadow-sm"
-                  : "text-[#475569] hover:text-[#0F172A]",
+                  ? "bg-card text-heading shadow-sm"
+                  : "text-body hover:text-heading",
               )}
             >
               {tab === "all"
@@ -104,28 +103,28 @@ export const SalesPage: React.FC = () => {
         {/* Search & Actions */}
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94A3B8]" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-hint" />
             <Input
               placeholder="Search by customer or product..."
-              className="pl-10 h-10 border-[#E2E8F0] bg-white"
+              className="pl-10 h-10 border-border bg-card"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <Input
               type="date"
-              className="h-10 w-40 border-[#E2E8F0] text-xs font-medium"
+              className="h-10 w-40 border-border t-caption fw-medium"
             />
-            <span className="text-slate-300 self-center">to</span>
+            <span className="t-body text-hint">to</span>
             <Input
               type="date"
-              className="h-10 w-40 border-[#E2E8F0] text-xs font-medium"
+              className="h-10 w-40 border-border t-caption fw-medium"
             />
           </div>
           <Button
             variant="outline"
-            className="ml-auto h-10 gap-2 border-[#E2E8F0] shadow-sm"
+            className="ml-auto h-10 gap-2 border-border shadow-sm"
           >
             <FileDown className="w-4 h-4" />
             Export
@@ -133,11 +132,11 @@ export const SalesPage: React.FC = () => {
         </div>
 
         {/* Table Content */}
-        <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-sm overflow-hidden">
+        <div className="bg-card card-rounded border border-border shadow-sm overflow-hidden">
           {filteredSales.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-[#F8FAFC] text-[10px] text-[#475569] uppercase tracking-wider font-bold">
+                <thead className="bg-surface t-micro-bold text-body uppercase tracking-wider">
                   <tr>
                     <th className="px-5 py-4 border-b">Customer</th>
                     <th className="px-5 py-4 border-b">Product</th>
@@ -149,56 +148,56 @@ export const SalesPage: React.FC = () => {
                     <th className="px-5 py-4 border-b text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E2E8F0]">
+                <tbody className="divide-y divide-border">
                   {filteredSales.map((s) => (
                     <tr
                       key={s.id}
                       className={cn(
-                        "hover:bg-slate-50 transition-colors group cursor-pointer",
+                        "hover:bg-surface transition-colors group cursor-pointer",
                         s.computedStatus === "OVERDUE" &&
-                          "bg-[#FFF8F8] border-l-2 border-l-red-500",
+                          "bg-overdue-row border-l-2 border-l-destructive",
                       )}
                       onClick={() => navigate(`/sales/${s.id}`)}
                     >
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3">
                           <InitialsAvatar name={s.customerName} size="sm" />
-                          <span className="text-sm font-semibold text-[#0F172A] group-hover:text-[#4F46E5]">
+                          <span className="t-body fw-semibold text-heading group-hover:text-primary">
                             {s.customerName}
                           </span>
                         </div>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex flex-col">
-                          <span className="text-sm font-semibold text-[#475569]">
+                          <span className="t-body fw-semibold text-body">
                             {s.productName}
                           </span>
                           <span
                             className={cn(
-                              "text-[10px] uppercase font-bold tracking-wider mt-0.5",
+                              "t-micro fw-bold uppercase tracking-wider mt-0.5",
                               s.category === "Electronics"
-                                ? "text-indigo-500"
+                                ? "text-primary"
                                 : s.category === "Appliances"
                                   ? "text-teal-500"
                                   : s.category === "Furniture"
-                                    ? "text-amber-500"
-                                    : "text-slate-400",
+                                    ? "text-warning"
+                                    : "text-hint",
                             )}
                           >
                             {s.category}
                           </span>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#475569]">
+                      <td className="px-5 py-4 t-body text-body">
                         {formatCurrency(s.soldPrice)}
                       </td>
-                      <td className="px-5 py-4 text-sm font-bold text-[#0F172A]">
+                      <td className="px-5 py-4 t-body fw-bold text-heading">
                         {formatCurrency(s.outstanding)}
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#475569] font-medium">
+                      <td className="px-5 py-4 t-body text-body fw-medium">
                         {formatCurrency(s.monthlyAmount)}
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#475569] whitespace-nowrap">
+                      <td className="px-5 py-4 t-body text-body whitespace-nowrap">
                         {s.nextDueDate ? formatDate(s.nextDueDate) : "—"}
                       </td>
                       <td className="px-5 py-4">
@@ -208,7 +207,7 @@ export const SalesPage: React.FC = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="text-xs h-7 border-slate-200"
+                          className="t-caption h-8 border-border"
                         >
                           View
                         </Button>

@@ -29,13 +29,13 @@ export const RegisterPage: React.FC = () => {
             <>
               <button 
                 onClick={() => navigate('/login')}
-                className="flex items-center gap-1 text-[#4F46E5] font-semibold text-sm mb-12 hover:translate-x-[-4px] transition-transform"
+                className="flex items-center gap-1 text-primary font-semibold text-sm mb-12 hover:translate-x-[-4px] transition-transform"
               >
                 <ChevronLeft className="w-4 h-4" />
                 Back to sign in
               </button>
 
-              <h2 className="text-3xl font-bold text-[#0F172A]">Request access</h2>
+              <h2 className="text-3xl font-bold text-heading">Request access</h2>
               <p className="text-slate-500 mt-2 mb-8">Submit your details. Admin will review and approve your account.</p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,7 +75,7 @@ export const RegisterPage: React.FC = () => {
                   />
                 </div>
 
-                <Button className="w-full h-12 bg-[#4F46E5] hover:bg-primary-dark mt-4">
+                <Button className="w-full h-12 bg-primary hover:bg-primary-dark mt-4">
                   Submit Request
                 </Button>
               </form>
@@ -85,7 +85,7 @@ export const RegisterPage: React.FC = () => {
               <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h2 className="text-2xl font-bold text-[#0F172A]">Request submitted!</h2>
+              <h2 className="text-2xl font-bold text-heading">Request submitted!</h2>
               <p className="text-slate-500 mt-3">
                 Your request has been sent for review. You'll receive a setup email once the admin approves your account.
               </p>
@@ -104,7 +104,7 @@ export const RegisterPage: React.FC = () => {
               Already have an account?{' '}
               <button 
                 onClick={() => navigate('/login')}
-                className="font-semibold text-[#4F46E5] hover:underline"
+                className="font-semibold text-primary hover:underline"
               >
                 Sign in
               </button>

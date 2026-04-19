@@ -17,17 +17,17 @@ export const Topbar: React.FC<TopbarProps> = ({
   const { user } = useAuthStore();
 
   return (
-    <header className="bg-white border-b border-[#E2E8F0] px-6 py-3 flex items-center justify-between h-16 shrink-0">
+    <header className="bg-card border-b border-border px-6 py-3 flex items-center justify-between h-16 shrink-0">
       <div className="flex items-center gap-2">
-        <h1 className="font-semibold text-[#0F172A]">{pageTitle}</h1>
-        <span className="text-[#94A3B8]">/</span>
-        <span className="text-[#475569] text-sm">{pageSubtitle}</span>
+        <h1 className="t-heading text-heading">{pageTitle}</h1>
+        <span className="text-hint">/</span>
+        <span className="t-body text-body">{pageSubtitle}</span>
       </div>
 
       <div className="flex items-center gap-4">
-        <button className="relative p-2 text-[#475569] hover:bg-[#F1F5F9] rounded-full transition-colors">
+        <button className="relative p-2 text-body hover:bg-surface rounded-full transition-colors">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+          <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-card"></span>
         </button>
 
         <div className="flex items-center gap-3 ml-2">

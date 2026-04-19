@@ -2,12 +2,13 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/plus-jakarta-sans";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: "Geist Variable", sans-serif;
+  --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Plus Jakarta Sans Variable", -apple-system, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -39,6 +40,23 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+
+  /* Semantic app tokens → generates text-*, bg-*, border-* utilities */
+  --color-heading: var(--text-primary);
+  --color-body: var(--text-secondary);
+  --color-hint: var(--text-muted);
+  --color-placeholder: var(--text-placeholder);
+  --color-surface: var(--page-bg);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-overdue-row: var(--status-overdue-row);
+  --color-on-dark: var(--on-dark);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-input-border: var(--input-border);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -72,24 +90,38 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.375rem;
   --sidebar: #0f172a;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #4f46e5;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(255, 255, 255, 0.08);
+  --sidebar-accent: rgb(255 255 255 / 0.08);
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-border: rgb(255 255 255 / 0.05);
   --sidebar-ring: #4f46e5;
 
-  /* Custom variables for retail store */
+  /* App brand colours */
   --primary-dark: #3730a3;
   --primary-light: #eef2ff;
   --page-bg: #f8fafc;
   --card-bg: #ffffff;
+
+  /* Semantic text colours */
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
+  --text-placeholder: #cbd5e1;
+  --on-dark: #ffffff;
+
+  /* Semantic state colours */
+  --success: #15803d;
+  --success-bg: #dcfce7;
+  --success-light: #f0fdf4;
+  --warning: #a16207;
+  --warning-bg: #fef9c3;
+  --input-border: #e2e8f0;
+
+  /* Status badge colours */
   --status-paid-bg: #dcfce7;
   --status-paid-text: #15803d;
   --status-partial-bg: #fef9c3;
@@ -104,13 +136,214 @@
   --status-completed-text: #15803d;
   --status-writtenoff-bg: #ede9fe;
   --status-writtenoff-text: #6d28d9;
+  --status-overdue-row: #fff8f8;
+
+  /* Typography scale */
+  --font-size-4xs: 9px;
+  --font-size-3xs: 10px;
+  --font-size-2xs: 11px;
+  --font-size-xxs: 12px;
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Letter spacing */
+  --tracking-label: 0.06em;
+  --tracking-label-wide: 0.1em;
+
+  /* Line heights */
+  --leading-base: 1.5;
+  --leading-tight: 1.25rem;
+  --leading-snug: 1.375;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-primary: 0 10px 15px -3px rgb(79 70 229 / 0.15);
+
+  /* Glass effect */
+  --glass-bg: rgb(255 255 255 / 0.06);
+  --glass-border: rgb(255 255 255 / 0.12);
+  --glass-blur: 12px;
 }
 
 @layer utilities {
+  /* ── Semantic typography system ──────────────────────────────────────────
+     RULE: Never write text-*, font-*, or rounded-* directly in components.
+     Use only the classes below. */
+
+  /* Sizes: 4xl → hero numbers */
+  .t-hero {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+  }
+  /* Sizes: 3xl → large KPI values */
+  .t-kpi-lg {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+  }
+  /* Sizes: 2xl → KPI numbers, page stats */
+  .t-kpi {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+  }
+  /* Sizes: xl → section titles */
+  .t-section {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+  /* Sizes: lg → card titles, modal headings */
+  .t-display {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+  }
+  .t-display-soft {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+  /* Sizes: sm (1rem) → primary content, page titles */
+  .t-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+  .t-heading {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+  .t-nav {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+  /* Sizes: xs (0.875rem) → table cells, body text, descriptions */
+  .t-body {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+  }
+  .t-meta {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+  .t-meta-bold {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+  }
+  /* Sizes: xxs (12px) → captions, timestamps, small labels */
+  .t-caption {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+  }
+  .t-caption-bold {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+  }
+  /* Sizes: 2xs (11px) → micro labels, role tags */
+  .t-micro {
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-medium);
+  }
+  .t-micro-bold {
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* ── Font-weight overrides ───────────────────────────────────────────────
+     Use only when weight needs to differ from a t-* class in the same element. */
+  .fw-normal   { font-weight: var(--font-weight-normal); }
+  .fw-medium   { font-weight: var(--font-weight-medium); }
+  .fw-semibold { font-weight: var(--font-weight-semibold); }
+  .fw-bold     { font-weight: var(--font-weight-bold); }
+  .fw-black    { font-weight: var(--font-weight-black); }
+
+  /* ── Semantic rounding ───────────────────────────────────────────────────
+     Never write rounded-* directly in components — use these instead. */
+  .global-rounded  { border-radius: var(--radius); }
+  .card-rounded    { border-radius: var(--radius-xl); }
+  .modal-rounded   { border-radius: var(--radius-2xl); }
+  .auth-rounded    { border-radius: var(--radius-3xl); }
+  .tab-rounded     { border-radius: var(--radius-md); }
+  .bar-rounded-t   { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+
+  /* ── Font sizes outside Tailwind's default scale ─────────────────────── */
+  .text-4xs { font-size: var(--font-size-4xs); line-height: var(--leading-base); }
+  .text-3xs { font-size: var(--font-size-3xs); line-height: var(--leading-base); }
+  .text-2xs  { font-size: var(--font-size-2xs); line-height: var(--leading-base); }
+  .text-xxs  { font-size: var(--font-size-xxs); line-height: var(--leading-base); }
+
+  /* ── UI primitive base styles ────────────────────────────────────────── */
+  .btn-base {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+  }
+  .badge-text {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-base);
+  }
+
+  /* ── Label / section-header combos ──────────────────────────────────── */
+  .label-caps {
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+  }
+  .label-caps-wide {
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label-wide);
+  }
+
+  /* ── Reusable card / table shells ────────────────────────────────────── */
+  .card-base {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+  }
+  .table-header {
+    background-color: var(--page-bg);
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+  }
+
+  /* ── Pill colour variants ─────────────────────────────────────────────── */
+  .pill-indigo { background-color: var(--primary-light);      color: var(--primary); }
+  .pill-amber  { background-color: var(--status-partial-bg);  color: var(--status-partial-text); }
+  .pill-gray   { background-color: var(--status-pending-bg);  color: var(--text-secondary); }
+  .pill-green  { background-color: var(--success-bg);         color: var(--success); }
+  .pill-red    { background-color: var(--status-overdue-bg);  color: var(--status-overdue-text); }
+
+  /* ── Form input base ─────────────────────────────────────────────────── */
+  .form-input {
+    border-color: var(--input-border);
+    border-radius: var(--radius);
+  }
+
+  /* ── Glass effect ─────────────────────────────────────────────────────── */
   .glass {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
   }
 }
 

@@ -12,19 +12,13 @@ import { formatCurrency, cn } from "@/lib/utils";
 
 export const CustomersPage: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [activeTab, setActiveTab] = useState<"all" | "active" | "overdue">(
-    "all",
-  );
+  const [activeTab, setActiveTab] = useState<"all" | "active" | "overdue">("all");
   const navigate = useNavigate();
 
-  // Computed data for each customer
   const enrichedCustomers = customers.map((c) => {
     const customerSales = sales.filter((s) => s.customerId === c.id);
-    const activeSalesCount = customerSales.filter(
-      (s) => s.status === "ACTIVE",
-    ).length;
+    const activeSalesCount = customerSales.filter((s) => s.status === "ACTIVE").length;
 
-    // Calculate total outstanding for this customer
     const customerSaleIds = customerSales.map((s) => s.id);
     const schedules = installmentSchedules.filter((is) =>
       customerSaleIds.includes(is.saleId),
@@ -40,8 +34,7 @@ export const CustomersPage: React.FC = () => {
       activeSalesCount,
       outstanding,
       hasOverdue,
-      status:
-        outstanding > 0 ? (hasOverdue ? "OVERDUE" : "ACTIVE") : "COMPLETED",
+      status: outstanding > 0 ? (hasOverdue ? "OVERDUE" : "ACTIVE") : "COMPLETED",
     };
   });
 
@@ -60,12 +53,12 @@ export const CustomersPage: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-[#F8FAFC]">
+    <div className="flex flex-col h-full bg-surface">
       <Topbar
         pageTitle="Customers"
         pageSubtitle="Manage customer records"
         primaryAction={
-          <Button className="bg-[#4F46E5] hover:bg-primary-dark">
+          <Button className="bg-primary hover:bg-primary-dark">
             <Plus className="w-4 h-4 mr-2" />
             New Customer
           </Button>
@@ -76,25 +69,25 @@ export const CustomersPage: React.FC = () => {
         {/* Filters Row */}
         <div className="mb-6 flex flex-wrap items-center gap-4">
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94A3B8]" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-hint" />
             <Input
               placeholder="Search by name, NIC or phone..."
-              className="pl-10 h-10 border-[#E2E8F0] bg-white"
+              className="pl-10 h-10 border-border bg-card"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          <div className="flex gap-1 bg-slate-200/50 p-1 rounded-lg">
+          <div className="flex gap-1 bg-muted/50 p-1 global-rounded">
             {(["all", "active", "overdue"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  "px-4 py-1.5 rounded-md text-xs font-bold transition-all capitalize",
+                  "px-4 py-1.5 global-rounded t-caption-bold transition-all capitalize",
                   activeTab === tab
-                    ? "bg-white text-[#0F172A] shadow-sm"
-                    : "text-[#475569] hover:text-[#0F172A]",
+                    ? "bg-card text-heading shadow-sm"
+                    : "text-body hover:text-heading",
                 )}
               >
                 {tab === "active"
@@ -108,7 +101,7 @@ export const CustomersPage: React.FC = () => {
 
           <Button
             variant="outline"
-            className="ml-auto h-10 gap-2 border-[#E2E8F0] shadow-sm"
+            className="ml-auto h-10 gap-2 border-border shadow-sm"
           >
             <FileDown className="w-4 h-4" />
             Export
@@ -116,11 +109,11 @@ export const CustomersPage: React.FC = () => {
         </div>
 
         {/* Table Content */}
-        <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-sm overflow-hidden">
+        <div className="bg-card card-rounded border border-border shadow-sm overflow-hidden">
           {filteredCustomers.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-[#F8FAFC] text-[10px] text-[#475569] uppercase tracking-wider font-bold">
+                <thead className="bg-surface t-micro-bold text-body uppercase tracking-wider">
                   <tr>
                     <th className="px-5 py-4 border-b">Customer</th>
                     <th className="px-5 py-4 border-b">NIC Number</th>
@@ -131,13 +124,13 @@ export const CustomersPage: React.FC = () => {
                     <th className="px-5 py-4 border-b text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E2E8F0]">
+                <tbody className="divide-y divide-border">
                   {filteredCustomers.map((c) => (
                     <tr
                       key={c.id}
                       className={cn(
-                        "hover:bg-slate-50 transition-colors group cursor-pointer",
-                        c.hasOverdue && "border-l-4 border-l-red-400",
+                        "hover:bg-surface transition-colors group cursor-pointer",
+                        c.hasOverdue && "border-l-4 border-l-destructive",
                       )}
                       onClick={() => navigate(`/customers/${c.id}`)}
                     >
@@ -145,37 +138,31 @@ export const CustomersPage: React.FC = () => {
                         <div className="flex items-center gap-3">
                           <InitialsAvatar name={c.fullName} size="sm" />
                           <div className="flex flex-col">
-                            <span className="text-sm font-semibold text-[#0F172A] group-hover:text-[#4F46E5]">
+                            <span className="t-body fw-semibold text-heading group-hover:text-primary">
                               {c.fullName}
                             </span>
-                            <span className="text-[11px] text-[#94A3B8] capitalize">
+                            <span className="t-micro text-hint capitalize">
                               {c.address.split(",")[1]?.trim() || "Colombo"}
                             </span>
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#475569] font-mono">
+                      <td className="px-5 py-4 t-body text-body font-mono">
                         {c.nic}
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#475569]">
+                      <td className="px-5 py-4 t-body text-body">
                         {c.phone}
                       </td>
-                      <td className="px-5 py-4 text-sm font-medium text-center">
-                        <span
-                          className={cn(
-                            c.activeSalesCount > 0
-                              ? "text-[#0F172A]"
-                              : "text-[#94A3B8]",
-                          )}
-                        >
+                      <td className="px-5 py-4 t-body fw-medium text-center">
+                        <span className={cn(c.activeSalesCount > 0 ? "text-heading" : "text-hint")}>
                           {c.activeSalesCount}
                         </span>
                       </td>
-                      <td className="px-5 py-4 text-sm font-bold text-[#0F172A]">
+                      <td className="px-5 py-4 t-body fw-bold text-heading">
                         {c.outstanding > 0 ? (
                           formatCurrency(c.outstanding)
                         ) : (
-                          <span className="text-[#94A3B8]">Paid</span>
+                          <span className="text-hint">Paid</span>
                         )}
                       </td>
                       <td className="px-5 py-4">
@@ -185,7 +172,7 @@ export const CustomersPage: React.FC = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="text-xs h-7 border-slate-200 h-8 font-semibold hover:bg-[#F1F5F9] hover:text-[#4F46E5]"
+                          className="t-caption h-8 border-border fw-semibold hover:bg-surface hover:text-primary"
                         >
                           View Profile
                         </Button>

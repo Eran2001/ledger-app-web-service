@@ -12,7 +12,7 @@ const FeatureCard: React.FC<{
   subtitle: string;
 }> = ({ icon: Icon, title, subtitle }) => (
   <div className="bg-white/8 backdrop-blur-md border border-white/10 rounded-xl p-4 flex items-start gap-4 transition-transform hover:translate-y-[-2px]">
-    <div className="w-10 h-10 rounded-lg bg-[#4F46E5]/30 flex items-center justify-center shrink-0">
+    <div className="w-10 h-10 rounded-lg bg-primary/30 flex items-center justify-center shrink-0">
       <Icon className="w-5 h-5 text-white" />
     </div>
     <div className="flex flex-col">
@@ -43,16 +43,16 @@ export const LoginPage: React.FC = () => {
       <div className="w-full lg:w-[45%] flex items-center justify-center p-8 bg-white">
         <div className="max-w-sm w-full">
           <div className="flex items-center gap-2 mb-12">
-            <div className="bg-[#4F46E5] text-white px-2 py-1 rounded-lg text-xs font-bold">
+            <div className="bg-primary text-white px-2 py-1 rounded-lg text-xs font-bold">
               ST
             </div>
-            <span className="text-xl font-bold text-[#0F172A]">
+            <span className="text-xl font-bold text-heading">
               Silva Traders
             </span>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-[#0F172A]">Welcome back</h2>
+            <h2 className="text-3xl font-bold text-heading">Welcome back</h2>
             <p className="text-slate-500 mt-2">
               Sign in to your admin panel to manage your business.
             </p>
@@ -100,7 +100,7 @@ export const LoginPage: React.FC = () => {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="text-xs font-semibold text-[#4F46E5] hover:underline"
+                className="text-xs font-semibold text-primary hover:underline"
               >
                 Forgot password?
               </button>
@@ -108,7 +108,7 @@ export const LoginPage: React.FC = () => {
 
             <Button
               type="submit"
-              className="w-full h-12 bg-[#4F46E5] hover:bg-primary-dark text-white rounded-lg font-semibold transition-all shadow-lg shadow-indigo-100"
+              className="w-full h-12 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-all shadow-lg shadow-indigo-100"
             >
               Sign in
             </Button>
@@ -119,7 +119,7 @@ export const LoginPage: React.FC = () => {
               Need access?{" "}
               <button
                 onClick={() => navigate("/register")}
-                className="font-semibold text-[#4F46E5] hover:underline"
+                className="font-semibold text-primary hover:underline"
               >
                 Request access →
               </button>
@@ -135,7 +135,7 @@ export const LoginPage: React.FC = () => {
         <div className="absolute bottom-[-100px] left-[-100px] w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 w-full max-w-lg">
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-[10px] font-bold tracking-wider text-white mb-8 border-white/20">
+          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-2xs font-bold tracking-wider text-white mb-8 border-white/20">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
             SYSTEM OPERATIONAL
           </div>

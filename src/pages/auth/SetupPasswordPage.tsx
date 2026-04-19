@@ -25,7 +25,7 @@ export const SetupPasswordPage: React.FC = () => {
     <div className="flex min-h-screen bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E3A5F] items-center justify-center p-6">
       <div className="bg-white w-full max-w-[440px] rounded-3xl shadow-2xl p-8 lg:p-12 animate-in fade-in zoom-in duration-500">
         <div className="flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-full bg-[#4F46E5] flex items-center justify-center mb-6 shadow-xl shadow-indigo-200">
+          <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-6 shadow-xl shadow-indigo-200">
             <ShieldCheck className="w-9 h-9 text-white" />
           </div>
 
@@ -34,7 +34,7 @@ export const SetupPasswordPage: React.FC = () => {
             Hi Nadeeka, create a secure password to activate your account and start managing the store.
           </p>
 
-          <div className="bg-indigo-50 text-[#4F46E5] px-4 py-1.5 rounded-full text-sm font-semibold mt-6 mb-8 border border-indigo-100">
+          <div className="bg-indigo-50 text-primary px-4 py-1.5 rounded-lg text-sm font-semibold mt-6 mb-8 border border-indigo-100">
             nadeeka@silvatraders.lk
           </div>
 
@@ -61,7 +61,7 @@ export const SetupPasswordPage: React.FC = () => {
                     ></div>
                   ))}
                 </div>
-                <p className={`text-[10px] font-bold uppercase tracking-wider mt-2 ${strength > 0 ? strengthColor.replace('bg-', 'text-') : 'text-slate-300'}`}>
+                <p className={`text-2xs font-bold uppercase tracking-wider mt-2 ${strength > 0 ? strengthColor.replace('bg-', 'text-') : 'text-slate-300'}`}>
                   {strengthText || 'Enter Password'}
                 </p>
               </div>
@@ -83,11 +83,11 @@ export const SetupPasswordPage: React.FC = () => {
               </div>
             </div>
 
-            <Button className="w-full h-12 bg-[#4F46E5] hover:bg-primary-dark mt-6 shadow-lg shadow-indigo-100">
+            <Button className="w-full h-12 bg-primary hover:bg-primary-dark mt-6 shadow-lg shadow-indigo-100">
               Activate Account
             </Button>
 
-            <p className="text-center text-[11px] text-slate-400 mt-4">
+            <p className="text-center text-xxs text-slate-400 mt-4">
               Password must be at least 8 characters long and include numbers.
             </p>
           </form>
