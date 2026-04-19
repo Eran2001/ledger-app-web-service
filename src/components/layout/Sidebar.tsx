@@ -1,47 +1,49 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { 
-  LayoutDashboard, 
-  Users, 
-  ShoppingBag, 
-  PlusCircle, 
-  Package, 
-  BarChart3, 
-  AlertTriangle, 
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard,
+  Users,
+  ShoppingBag,
+  PlusCircle,
+  Package,
+  BarChart3,
+  AlertTriangle,
   Settings,
-  LogOut
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { useAuthStore } from '@/store/useAuthStore'
-import { InitialsAvatar } from '../shared/InitialsAvatar'
+  LogOut,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/store/auth.store";
+import { InitialsAvatar } from "../shared/InitialsAvatar";
 
 const SidebarItem: React.FC<{
-  to: string
-  icon: React.ElementType
-  label: string
+  to: string;
+  icon: React.ElementType;
+  label: string;
 }> = ({ to, icon: Icon, label }) => (
   <NavLink
     to={to}
-    className={({ isActive }) => cn(
-      "flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all text-sm",
-      isActive 
-        ? "bg-white/8 backdrop-blur border-l-[3px] border-[#4F46E5] text-white pl-[9px]"
-        : "text-[#94A3B8] hover:bg-white/5 hover:text-white"
-    )}
+    className={({ isActive }) =>
+      cn(
+        "flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all text-sm",
+        isActive
+          ? "bg-white/8 backdrop-blur border-l-[3px] border-[#4F46E5] text-white pl-[9px]"
+          : "text-[#94A3B8] hover:bg-white/5 hover:text-white",
+      )
+    }
   >
     <Icon className="w-4 h-4" />
     <span>{label}</span>
   </NavLink>
-)
+);
 
 export const Sidebar: React.FC = () => {
-  const { user, logout } = useAuthStore()
-  const navigate = useNavigate()
+  const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <aside className="w-[220px] bg-[#0F172A] flex flex-col h-full shrink-0">
@@ -50,8 +52,12 @@ export const Sidebar: React.FC = () => {
           ST
         </div>
         <div className="flex flex-col overflow-hidden">
-          <span className="text-white text-sm font-semibold truncate leading-tight">Silva Traders</span>
-          <span className="text-[#94A3B8] text-[11px] truncate">Admin Panel</span>
+          <span className="text-white text-sm font-semibold truncate leading-tight">
+            Silva Traders
+          </span>
+          <span className="text-[#94A3B8] text-[11px] truncate">
+            Admin Panel
+          </span>
         </div>
       </div>
 
@@ -81,10 +87,14 @@ export const Sidebar: React.FC = () => {
         <div className="flex items-center gap-3 p-2 rounded-lg bg-white/5">
           <InitialsAvatar name={user?.name || ""} size="sm" />
           <div className="flex flex-col min-w-0 pr-2">
-            <span className="text-white text-[11px] font-medium truncate">{user?.name}</span>
-            <span className="text-[#94A3B8] text-[10px] truncate">{user?.role}</span>
+            <span className="text-white text-[11px] font-medium truncate">
+              {user?.name}
+            </span>
+            <span className="text-[#94A3B8] text-[10px] truncate">
+              {user?.role}
+            </span>
           </div>
-          <button 
+          <button
             onClick={handleLogout}
             className="ml-auto text-[#475569] hover:text-white transition-colors"
           >
@@ -93,5 +103,5 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
     </aside>
-  )
-}
+  );
+};

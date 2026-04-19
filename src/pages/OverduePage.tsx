@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { InitialsAvatar } from '@/components/shared/InitialsAvatar'
 import { Checkbox } from '@/components/ui/checkbox'
-import { customers, sales, products, installmentSchedules } from '@/data/dummy'
+import { customers, sales, products, installmentSchedules } from '@/constant/dummy'
 import { formatCurrency, cn, formatDate } from '@/lib/utils'
 import { differenceInDays } from 'date-fns'
 

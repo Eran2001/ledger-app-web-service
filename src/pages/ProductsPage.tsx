@@ -3,7 +3,7 @@ import { Search, Plus, Archive, Edit2, Check, X } from 'lucide-react'
 import { Topbar } from '@/components/layout/Topbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { products as dummyProducts } from '@/data/dummy'
+import { products as dummyProducts } from '@/constant/dummy'
 import { formatCurrency, cn, formatDate } from '@/lib/utils'
 import { 
   Select, 
