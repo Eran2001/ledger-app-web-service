@@ -7,7 +7,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans:
+    "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: "Plus Jakarta Sans Variable", -apple-system, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -169,7 +170,8 @@
 
   /* Shadows */
   --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-primary: 0 10px 15px -3px rgb(79 70 229 / 0.15);
 
   /* Glass effect */
@@ -262,26 +264,60 @@
 
   /* ── Font-weight overrides ───────────────────────────────────────────────
      Use only when weight needs to differ from a t-* class in the same element. */
-  .fw-normal   { font-weight: var(--font-weight-normal); }
-  .fw-medium   { font-weight: var(--font-weight-medium); }
-  .fw-semibold { font-weight: var(--font-weight-semibold); }
-  .fw-bold     { font-weight: var(--font-weight-bold); }
-  .fw-black    { font-weight: var(--font-weight-black); }
+  .fw-normal {
+    font-weight: var(--font-weight-normal);
+  }
+  .fw-medium {
+    font-weight: var(--font-weight-medium);
+  }
+  .fw-semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+  .fw-bold {
+    font-weight: var(--font-weight-bold);
+  }
+  .fw-black {
+    font-weight: var(--font-weight-black);
+  }
 
   /* ── Semantic rounding ───────────────────────────────────────────────────
      Never write rounded-* directly in components — use these instead. */
-  .global-rounded  { border-radius: var(--radius); }
-  .card-rounded    { border-radius: var(--radius-xl); }
-  .modal-rounded   { border-radius: var(--radius-2xl); }
-  .auth-rounded    { border-radius: var(--radius-3xl); }
-  .tab-rounded     { border-radius: var(--radius-md); }
-  .bar-rounded-t   { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .global-rounded {
+    border-radius: var(--radius);
+  }
+  .card-rounded {
+    border-radius: var(--radius-xl);
+  }
+  .modal-rounded {
+    border-radius: var(--radius-2xl);
+  }
+  .auth-rounded {
+    border-radius: var(--radius-3xl);
+  }
+  .tab-rounded {
+    border-radius: var(--radius-md);
+  }
+  .bar-rounded-t {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
 
   /* ── Font sizes outside Tailwind's default scale ─────────────────────── */
-  .text-4xs { font-size: var(--font-size-4xs); line-height: var(--leading-base); }
-  .text-3xs { font-size: var(--font-size-3xs); line-height: var(--leading-base); }
-  .text-2xs  { font-size: var(--font-size-2xs); line-height: var(--leading-base); }
-  .text-xxs  { font-size: var(--font-size-xxs); line-height: var(--leading-base); }
+  .text-4xs {
+    font-size: var(--font-size-4xs);
+    line-height: var(--leading-base);
+  }
+  .text-3xs {
+    font-size: var(--font-size-3xs);
+    line-height: var(--leading-base);
+  }
+  .text-2xs {
+    font-size: var(--font-size-2xs);
+    line-height: var(--leading-base);
+  }
+  .text-xxs {
+    font-size: var(--font-size-xxs);
+    line-height: var(--leading-base);
+  }
 
   /* ── UI primitive base styles ────────────────────────────────────────── */
   .btn-base {
@@ -327,11 +363,26 @@
   }
 
   /* ── Pill colour variants ─────────────────────────────────────────────── */
-  .pill-indigo { background-color: var(--primary-light);      color: var(--primary); }
-  .pill-amber  { background-color: var(--status-partial-bg);  color: var(--status-partial-text); }
-  .pill-gray   { background-color: var(--status-pending-bg);  color: var(--text-secondary); }
-  .pill-green  { background-color: var(--success-bg);         color: var(--success); }
-  .pill-red    { background-color: var(--status-overdue-bg);  color: var(--status-overdue-text); }
+  .pill-indigo {
+    background-color: var(--primary-light);
+    color: var(--primary);
+  }
+  .pill-amber {
+    background-color: var(--status-partial-bg);
+    color: var(--status-partial-text);
+  }
+  .pill-gray {
+    background-color: var(--status-pending-bg);
+    color: var(--text-secondary);
+  }
+  .pill-green {
+    background-color: var(--success-bg);
+    color: var(--success);
+  }
+  .pill-red {
+    background-color: var(--status-overdue-bg);
+    color: var(--status-overdue-text);
+  }
 
   /* ── Form input base ─────────────────────────────────────────────────── */
   .form-input {
