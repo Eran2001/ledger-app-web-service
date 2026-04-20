@@ -203,6 +203,34 @@
     display: none;
   }
 
+  /* ── Global scrollbar styling ─────────────────────────────────────────── */
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 0.15);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0 0 0 / 0.28);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+@layer utilities {
   /* ── Semantic typography system ──────────────────────────────────────────
      RULE: Never write text-*, font-*, or rounded-* directly in components.
      Use only the classes below. */
