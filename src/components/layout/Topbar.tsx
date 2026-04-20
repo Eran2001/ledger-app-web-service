@@ -26,12 +26,16 @@ export const Topbar: React.FC<TopbarProps> = ({
         <span className="t-body text-body">{pageSubtitle}</span>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <button
           onClick={toggle}
           className="p-2 text-body hover:bg-surface rounded-full transition-colors"
         >
-          {isDark ? <Icon.Sun className="w-5 h-5" /> : <Icon.Moon className="w-5 h-5" />}
+          {isDark ? (
+            <Icon.Sun className="w-5 h-5" />
+          ) : (
+            <Icon.Moon className="w-5 h-5" />
+          )}
         </button>
 
         <button className="relative p-2 text-body hover:bg-surface rounded-full transition-colors">
