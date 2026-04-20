@@ -1,25 +1,35 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { Toaster } from 'sonner'
-import { AppLayout } from './components/layout/AppLayout'
-import { LoginPage } from './pages/auth/LoginPage'
-import { RegisterPage } from './pages/auth/RegisterPage'
-import { SetupPasswordPage } from './pages/auth/SetupPasswordPage'
-import { DashboardPage } from './pages/DashboardPage'
-import { CustomersPage } from './pages/customers/CustomersPage'
-import { CustomerDetailPage } from './pages/customers/CustomerDetailPage'
-import { SalesPage } from './pages/sales/SalesPage'
-import { NewSalePage } from './pages/sales/NewSalePage'
-import { SaleDetailPage } from './pages/sales/SaleDetailPage'
-import { OverduePage } from './pages/OverduePage'
-import { ProductsPage } from './pages/ProductsPage'
-import { ReportsPage } from './pages/ReportsPage'
-import { SettingsPage } from './pages/settings/SettingsPage'
-import { UsersPage } from './pages/UsersPage'
-import { ButtonsPage } from './pages/ButtonsPage'
-import { TooltipProvider } from './components/ui/tooltip'
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "sonner";
+
+import { AppLayout } from "./components/layout/AppLayout";
+import { TooltipProvider } from "./components/ui/tooltip";
+
+import { LoginPage } from "./pages/auth/LoginPage";
+import { RegisterPage } from "./pages/auth/RegisterPage";
+import { SetupPasswordPage } from "./pages/auth/SetupPasswordPage";
+import { DashboardPage } from "./pages/DashboardPage";
+import { CustomersPage } from "./pages/customers/CustomersPage";
+import { CustomerDetailPage } from "./pages/customers/CustomerDetailPage";
+import { SalesPage } from "./pages/sales/SalesPage";
+import { NewSalePage } from "./pages/sales/NewSalePage";
+import { SaleDetailPage } from "./pages/sales/SaleDetailPage";
+import { OverduePage } from "./pages/OverduePage";
+import { ProductsPage } from "./pages/ProductsPage";
+import { ReportsPage } from "./pages/ReportsPage";
+import { SettingsPage } from "./pages/settings/SettingsPage";
+import { UsersPage } from "./pages/UsersPage";
+import { ButtonsPage } from "./pages/ButtonsPage";
+
+import { useThemeStore } from "./store/theme.store";
 
 export default function App() {
+  const { init } = useThemeStore();
+  useEffect(() => {
+    init();
+  }, [init]);
+
   return (
     <BrowserRouter>
       <TooltipProvider>
@@ -52,6 +62,5 @@ export default function App() {
         <Toaster position="top-right" richColors closeButton />
       </TooltipProvider>
     </BrowserRouter>
-  )
+  );
 }
-

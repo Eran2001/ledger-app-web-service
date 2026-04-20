@@ -490,37 +490,65 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Surfaces */
+  --background: #0d1117;
+  --foreground: #f1f5f9;
+  --card: #161b27;
+  --card-foreground: #f1f5f9;
+  --popover: #1e2535;
+  --popover-foreground: #f1f5f9;
+
+  /* Brand — keep blue, lighter for dark bg */
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --primary-dark: #2563eb;
+  --primary-light: #1e3a5f;
+  --secondary: #1e3a5f;
+  --secondary-foreground: #93c5fd;
+  --destructive-foreground: #ffffff;
+
+  /* UI chrome */
+  --muted: #1e2535;
+  --muted-foreground: #64748b;
+  --accent: #1d4ed8;
+  --accent-foreground: #ffffff;
+  --border: rgb(255 255 255 / 0.08);
+  --input: rgb(255 255 255 / 0.06);
+  --ring: #3b82f6;
+
+  /* Sidebar stays dark navy */
+  --sidebar: #0f1f3d;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(255 255 255 / 0.08);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgb(255 255 255 / 0.05);
+  --sidebar-ring: #3b82f6;
+
+  /* App semantic tokens */
+  --page-bg: #0d1117;
+  --card-bg: #161b27;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-placeholder: #475569;
+  --input-border: rgb(255 255 255 / 0.1);
+
+  /* Status badges — muted for dark */
+  --status-active-bg: #1e3a5f;
+  --status-active-text: #93c5fd;
+  --status-paid-bg: #14532d;
+  --status-paid-text: #86efac;
+  --status-partial-bg: #422006;
+  --status-partial-text: #fcd34d;
+  --status-overdue-bg: #450a0a;
+  --status-overdue-text: #fca5a5;
+  --status-pending-bg: #1e2535;
+  --status-pending-text: #94a3b8;
+  --status-writtenoff-bg: #1e3a5f;
+  --status-writtenoff-text: #93c5fd;
+  --status-overdue-row: #1f0f0f;
 }
 
 @layer base {
