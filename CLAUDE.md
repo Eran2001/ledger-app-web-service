@@ -495,6 +495,17 @@ slug always read from useTenantStore, never from URL directly
 CODE RULES — ENFORCE THESE ALWAYS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+- FRONTEND CSS RULE: The following must ALWAYS live in index.css as
+  semantic utility classes — never hardcoded in component JSX:
+    · font-size        → t-body, t-caption, t-micro, t-heading, etc.
+    · font-weight      → fw-bold, fw-semibold, fw-medium, etc.
+    · letter-spacing   → defined inside t-* or dedicated classes
+    · line-height      → defined inside t-* or dedicated classes
+    · color / bg-color → text-heading, text-hint, bg-card, bg-surface, etc.
+    · border-radius    → global-rounded, card-rounded, modal-rounded, etc.
+  The following use Tailwind utilities directly in component JSX:
+    · padding, margin, gap, flex, grid, width, height, shadow, border-width,
+      overflow, position, z-index, transition, cursor, opacity, display
 - Never use any — always type everything properly
 - Validate all request inputs with Zod before service layer
 - Never put business logic in controllers

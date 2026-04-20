@@ -52,16 +52,12 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className="w-55 bg-sidebar flex flex-col h-full shrink-0">
       <div className="p-4 border-b border-sidebar-border flex items-center gap-3">
-        <div className="bg-sidebar-primary text-sidebar-foreground w-8 h-8 flex items-center justify-center rounded-lg t-micro-bold shrink-0">
+        <div className="sidebar-brand-logo w-10 h-10 rounded-lg bg-sidebar-primary text-sidebar-foreground flex items-center justify-center shrink-0">
           ST
         </div>
         <div className="flex flex-col overflow-hidden">
-          <span className="t-heading text-sidebar-foreground truncate leading-tight">
-            Silva Traders
-          </span>
-          <span className="t-caption text-sidebar-foreground/50 truncate">
-            Admin Panel
-          </span>
+          <span className="sidebar-brand-name text-sidebar-foreground truncate">Silva Traders</span>
+          <span className="sidebar-brand-sub text-sidebar-foreground/50 truncate">Admin Panel</span>
         </div>
       </div>
 
@@ -93,10 +89,10 @@ export const Sidebar: React.FC = () => {
         <div className="flex items-center gap-3 p-2 rounded-lg bg-sidebar-accent">
           <InitialsAvatar name={user?.name || ""} size="sm" />
           <div className="flex flex-col min-w-0 pr-2">
-            <span className="t-caption text-sidebar-foreground truncate">
+            <span className="sidebar-user-name text-sidebar-foreground truncate">
               {user?.name}
             </span>
-            <span className="t-micro text-sidebar-foreground/50 truncate">
+            <span className="sidebar-user-role text-sidebar-foreground/50 truncate">
               {user?.role}
             </span>
           </div>
