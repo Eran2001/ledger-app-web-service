@@ -10,6 +10,8 @@ import {
   AlertTriangle,
   Settings,
   LogOut,
+  UserCog,
+  MousePointerClick,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth.store";
@@ -63,7 +65,7 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+      <nav className="flex-1 overflow-y-auto scrollbar-hidden p-3 space-y-1">
         <div className="label-caps-wide text-sidebar-foreground/30 px-3 py-2 mt-2">
           Main
         </div>
@@ -82,6 +84,8 @@ export const Sidebar: React.FC = () => {
         <div className="label-caps-wide text-sidebar-foreground/30 px-3 py-2 mt-4">
           System
         </div>
+        <SidebarItem to="/users" icon={UserCog} label="Users" />
+        <SidebarItem to="/buttons" icon={MousePointerClick} label="Buttons" />
         <SidebarItem to="/settings" icon={Settings} label="Settings" />
       </nav>
 

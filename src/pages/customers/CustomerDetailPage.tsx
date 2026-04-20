@@ -36,10 +36,7 @@ export const CustomerDetailPage: React.FC = () => {
         pageTitle={customer.fullName}
         pageSubtitle="Customer Profile"
         primaryAction={
-          <Button
-            className="bg-primary hover:bg-primary-dark"
-            onClick={() => navigate("/sales/new")}
-          >
+          <Button onClick={() => navigate("/sales/new")}>
             <Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>

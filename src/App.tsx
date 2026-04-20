@@ -15,6 +15,8 @@ import { OverduePage } from './pages/OverduePage'
 import { ProductsPage } from './pages/ProductsPage'
 import { ReportsPage } from './pages/ReportsPage'
 import { SettingsPage } from './pages/settings/SettingsPage'
+import { UsersPage } from './pages/UsersPage'
+import { ButtonsPage } from './pages/ButtonsPage'
 import { TooltipProvider } from './components/ui/tooltip'
 
 export default function App() {
@@ -39,6 +41,8 @@ export default function App() {
             <Route path="products" element={<ProductsPage />} />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="overdue" element={<OverduePage />} />
+            <Route path="users" element={<UsersPage />} />
+            <Route path="buttons" element={<ButtonsPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
 

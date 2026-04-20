@@ -4,6 +4,7 @@ import { Search, Plus, FileDown, FileX } from "lucide-react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { InitialsAvatar } from "@/components/shared/InitialsAvatar";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { EmptyState } from "@/components/shared/EmptyState";
@@ -17,6 +18,8 @@ import { formatCurrency, cn, formatDate } from "@/lib/utils";
 
 export const SalesPage: React.FC = () => {
   const [search, setSearch] = useState("");
+  const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
+  const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
   const [activeTab, setActiveTab] = useState<
     "all" | "ACTIVE" | "OVERDUE" | "COMPLETED" | "WRITTEN_OFF"
   >("all");
@@ -67,10 +70,7 @@ export const SalesPage: React.FC = () => {
         pageTitle="Sales"
         pageSubtitle="All installment sales"
         primaryAction={
-          <Button
-            className="bg-primary hover:bg-primary-dark"
-            onClick={() => navigate("/sales/new")}
-          >
+          <Button onClick={() => navigate("/sales/new")}>
             <Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>
@@ -112,14 +112,18 @@ export const SalesPage: React.FC = () => {
             />
           </div>
           <div className="flex gap-2 items-center">
-            <Input
-              type="date"
-              className="h-10 w-40 border-border t-caption fw-medium"
+            <DatePickerInput
+              placeholder="From date"
+              value={dateFrom}
+              onChange={setDateFrom}
+              className="w-44"
             />
             <span className="t-body text-hint">to</span>
-            <Input
-              type="date"
-              className="h-10 w-40 border-border t-caption fw-medium"
+            <DatePickerInput
+              placeholder="To date"
+              value={dateTo}
+              onChange={setDateTo}
+              className="w-44"
             />
           </div>
           <Button
@@ -178,7 +182,7 @@ export const SalesPage: React.FC = () => {
                               s.category === "Electronics"
                                 ? "text-primary"
                                 : s.category === "Appliances"
-                                  ? "text-teal-500"
+                                  ? "text-cat-teal"
                                   : s.category === "Furniture"
                                     ? "text-warning"
                                     : "text-hint",

@@ -27,6 +27,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -53,10 +54,16 @@
   --color-overdue-row: var(--status-overdue-row);
   --color-on-dark: var(--on-dark);
   --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-success-bg: var(--success-bg);
   --color-warning: var(--warning);
   --color-warning-bg: var(--warning-bg);
+  --color-warning-mid: var(--warning-mid);
   --color-input-border: var(--input-border);
+  --color-cat-teal: var(--cat-teal);
+  --color-cat-teal-bg: var(--cat-teal-bg);
+  --color-cat-purple: var(--cat-purple);
+  --color-cat-purple-bg: var(--cat-purple-bg);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -74,36 +81,42 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #4f46e5;
+  --primary: #2563eb;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary: #dbeafe;
+  --secondary-foreground: #1d4ed8;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #6d28d9;
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: #1d4ed8;
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: #e2e8f0;
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: #2563eb;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.375rem;
-  --sidebar: #0f172a;
+  --sidebar: #0f1f3d;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #4f46e5;
+  --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: rgb(255 255 255 / 0.08);
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgb(255 255 255 / 0.05);
-  --sidebar-ring: #4f46e5;
+  --sidebar-ring: #2563eb;
 
   /* App brand colours */
-  --primary-dark: #3730a3;
-  --primary-light: #eef2ff;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --cat-teal: #0f766e;
+  --cat-teal-bg: #f0fdfa;
+  --cat-purple: #7c3aed;
+  --cat-purple-bg: #f5f3ff;
+  --warning-mid: #ca8a04;
   --page-bg: #f8fafc;
   --card-bg: #ffffff;
 
@@ -116,6 +129,7 @@
 
   /* Semantic state colours */
   --success: #15803d;
+  --success-foreground: oklch(0.985 0 0);
   --success-bg: #dcfce7;
   --success-light: #f0fdf4;
   --warning: #a16207;
@@ -131,12 +145,12 @@
   --status-overdue-text: #b91c1c;
   --status-pending-bg: #f1f5f9;
   --status-pending-text: #475569;
-  --status-active-bg: #eef2ff;
-  --status-active-text: #4f46e5;
+  --status-active-bg: #eff6ff;
+  --status-active-text: #2563eb;
   --status-completed-bg: #f0fdf4;
   --status-completed-text: #15803d;
-  --status-writtenoff-bg: #ede9fe;
-  --status-writtenoff-text: #6d28d9;
+  --status-writtenoff-bg: #dbeafe;
+  --status-writtenoff-text: #1e40af;
   --status-overdue-row: #fff8f8;
 
   /* Typography scale */
@@ -181,6 +195,14 @@
 }
 
 @layer utilities {
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
   /* ── Semantic typography system ──────────────────────────────────────────
      RULE: Never write text-*, font-*, or rounded-* directly in components.
      Use only the classes below. */
@@ -223,7 +245,7 @@
     font-weight: var(--font-weight-bold);
   }
   .t-heading {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
   }
   .t-nav {
@@ -232,7 +254,7 @@
   }
   /* Sizes: xs (0.875rem) → table cells, body text, descriptions */
   .t-body {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-normal);
   }
   .t-meta {
@@ -382,6 +404,14 @@
   .pill-red {
     background-color: var(--status-overdue-bg);
     color: var(--status-overdue-text);
+  }
+  .pill-teal {
+    background-color: var(--cat-teal-bg);
+    color: var(--cat-teal);
+  }
+  .pill-purple {
+    background-color: var(--cat-purple-bg);
+    color: var(--cat-purple);
   }
 
   /* ── Form input base ─────────────────────────────────────────────────── */

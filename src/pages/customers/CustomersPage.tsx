@@ -58,7 +58,7 @@ export const CustomersPage: React.FC = () => {
         pageTitle="Customers"
         pageSubtitle="Manage customer records"
         primaryAction={
-          <Button className="bg-primary hover:bg-primary-dark">
+          <Button>
             <Plus className="w-4 h-4 mr-2" />
             New Customer
           </Button>

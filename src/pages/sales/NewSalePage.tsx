@@ -16,7 +16,8 @@ import {
 import { customers, products } from "@/constant/dummy";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
-import { addMonths, format } from "date-fns";
+import { addMonths } from "date-fns";
+import { DatePickerInput } from "@/components/ui/date-picker-input";
 
 export const NewSalePage: React.FC = () => {
   const navigate = useNavigate();
@@ -26,9 +27,7 @@ export const NewSalePage: React.FC = () => {
   const [soldPrice, setSoldPrice] = useState<number>(0);
   const [downPayment, setDownPayment] = useState<number>(0);
   const [months, setMonths] = useState<number>(10);
-  const [saleDate, setSaleDate] = useState<string>(
-    format(new Date(), "yyyy-MM-dd"),
-  );
+  const [saleDate, setSaleDate] = useState<Date>(new Date());
 
   const selectedProduct = products.find((p) => p.id === selectedProductId);
 
@@ -43,7 +42,7 @@ export const NewSalePage: React.FC = () => {
 
   const previewSchedule = useMemo(() => {
     const schedule = [];
-    const start = new Date(saleDate);
+    const start = saleDate;
     for (let i = 1; i <= months; i++) {
       schedule.push({
         num: i,
@@ -187,14 +186,10 @@ export const NewSalePage: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label className="t-body fw-semibold text-body">
-                      Sale Date
-                    </Label>
-                    <Input
-                      type="date"
+                    <DatePickerInput
+                      label="Sale Date"
                       value={saleDate}
-                      onChange={(e) => setSaleDate(e.target.value)}
-                      className="h-11 border-border"
+                      onChange={(d) => d && setSaleDate(d)}
                     />
                   </div>
                 </div>
@@ -205,7 +200,7 @@ export const NewSalePage: React.FC = () => {
                   </Label>
                   <Textarea
                     placeholder="Add any specific details about this sale..."
-                    className="min-h-[100px] border-border"
+                    className="min-h-25 border-border"
                   />
                 </div>
 
@@ -268,7 +263,7 @@ export const NewSalePage: React.FC = () => {
                 <h4 className="t-micro fw-bold text-hint uppercase tracking-widest pl-1">
                   Generated Schedule
                 </h4>
-                <div className="max-h-[300px] overflow-y-auto pr-1">
+                <div className="max-h-75 overflow-y-auto pr-1">
                   <table className="w-full t-micro fw-medium">
                     <thead className="text-hint uppercase tracking-tighter sticky top-0 bg-card">
                       <tr>

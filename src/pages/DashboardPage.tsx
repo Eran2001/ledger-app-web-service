@@ -95,10 +95,7 @@ export const DashboardPage: React.FC = () => {
         pageTitle="Dashboard"
         pageSubtitle="April 2026 overview"
         primaryAction={
-          <Button
-            className="bg-primary hover:bg-primary-dark"
-            onClick={() => navigate("/sales/new")}
-          >
+          <Button onClick={() => navigate("/sales/new")}>
             <Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>
@@ -173,12 +170,10 @@ export const DashboardPage: React.FC = () => {
                       <td className="px-5 py-3.5 t-body text-body">
                         {p.product}
                       </td>
-                      <td className="px-5 py-3.5 t-body fw-semibold text-heading">
+                      <td className="px-5 py-3.5 t-body fw-semibold text-heading whitespace-nowrap">
                         {formatCurrency(p.amount)}
                       </td>
-                      <td className="px-5 py-3.5 t-body text-body">
-                        {p.date}
-                      </td>
+                      <td className="px-5 py-3.5 t-body text-body">{p.date}</td>
                       <td className="px-5 py-3.5">
                         <StatusBadge status={p.status} />
                       </td>
@@ -192,9 +187,7 @@ export const DashboardPage: React.FC = () => {
           {/* Overdue List */}
           <div className="xl:col-span-2 bg-card card-rounded border border-border shadow-sm flex flex-col">
             <div className="p-5 border-b border-border flex items-center justify-between">
-              <h3 className="t-title text-heading">
-                Overdue Installments
-              </h3>
+              <h3 className="t-title text-heading">Overdue Installments</h3>
               <button
                 onClick={() => navigate("/overdue")}
                 className="text-destructive t-caption-bold flex items-center gap-1 hover:underline"
@@ -214,9 +207,7 @@ export const DashboardPage: React.FC = () => {
                       <span className="t-body fw-semibold text-heading group-hover:text-primary transition-colors">
                         {o.name}
                       </span>
-                      <span className="t-micro text-hint">
-                        {o.product}
-                      </span>
+                      <span className="t-micro text-hint">{o.product}</span>
                     </div>
                   </div>
                   <div className="text-right">

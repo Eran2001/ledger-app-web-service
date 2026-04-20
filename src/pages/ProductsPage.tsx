@@ -17,7 +17,7 @@ export const ProductsPage: React.FC = () => {
   const [search, setSearch] = useState('')
   const [activeTab, setActiveTab] = useState('All')
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [products, setProducts] = useState(dummyProducts)
+  const products = dummyProducts
 
   const categories = ['All', 'Electronics', 'Appliances', 'Furniture', 'Hardware', 'Other']
 
@@ -33,7 +33,7 @@ export const ProductsPage: React.FC = () => {
         pageTitle="Products"
         pageSubtitle="Manage product catalog"
         primaryAction={
-          <Button className="bg-primary hover:bg-primary-dark shadow-lg shadow-indigo-100">
+          <Button>
             <Plus className="w-4 h-4 mr-2" />
             Add Product
           </Button>
@@ -114,7 +114,7 @@ export const ProductsPage: React.FC = () => {
                                 <span className={cn(
                                     "px-2 py-0.5 global-rounded t-micro fw-bold uppercase tracking-wider",
                                     p.category === 'Electronics' ? "pill-indigo" :
-                                    p.category === 'Appliances' ? "bg-teal-50 text-teal-500" :
+                                    p.category === 'Appliances' ? "pill-teal" :
                                     p.category === 'Furniture' ? "pill-amber" : "pill-gray"
                                 )}>
                                     {p.category}
