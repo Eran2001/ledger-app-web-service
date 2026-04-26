@@ -483,6 +483,7 @@
   .text-inverse-faint {
     color: rgb(255 255 255 / 0.2);
   }
+
   .mono-text {
     font-family:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -789,7 +790,11 @@
     color: var(--status-overdue-text);
   }
   .text-danger-light {
-    color: color-mix(in srgb, var(--destructive-foreground) 90%, var(--destructive));
+    color: color-mix(
+      in srgb,
+      var(--destructive-foreground) 90%,
+      var(--destructive)
+    );
   }
   .text-faint-half {
     color: color-mix(in srgb, var(--text-muted) 50%, transparent);
@@ -990,7 +995,11 @@
     color: var(--destructive) !important;
   }
   .profile-logout:hover {
-    background-color: color-mix(in srgb, var(--destructive) 10%, transparent) !important;
+    background-color: color-mix(
+      in srgb,
+      var(--destructive) 10%,
+      transparent
+    ) !important;
     color: var(--destructive) !important;
   }
   .icon-class-global-margin {
@@ -1006,7 +1015,11 @@
     color: color-mix(in srgb, var(--sidebar-foreground) 50%, transparent);
   }
   .app-sidebar-link:hover {
-    background-color: color-mix(in srgb, var(--sidebar-accent) 60%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--sidebar-accent) 60%,
+      transparent
+    );
     color: var(--sidebar-foreground);
   }
   .app-sidebar-link-active {
