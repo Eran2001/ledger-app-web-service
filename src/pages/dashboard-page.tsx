@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, ArrowRight } from "lucide-react";
-import { Topbar } from "@/components/layout/Topbar";
+import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
-import { InitialsAvatar } from "@/components/shared/InitialsAvatar";
-import { StatusBadge } from "@/components/shared/StatusBadge";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { StatusBadge } from "@/components/shared/status-badge";
 import { formatCurrency, cn } from "@/lib/utils";
 
 interface KPICardProps {
@@ -15,18 +15,18 @@ interface KPICardProps {
 }
 
 const KPICard: React.FC<KPICardProps> = ({ label, value, subText, trend }) => (
-  <div className="bg-card card-rounded border border-border p-5 border-l-4 border-l-primary shadow-sm">
-    <div className="t-micro-bold text-body uppercase tracking-wider mb-2">
+  <div className="surface-card card-rounded border border-border p-5 border-l-4 border-start-brand shadow-sm">
+    <div className="t-micro-bold text-soft case-upper tracking-label mb-2">
       {label}
     </div>
-    <div className="t-kpi text-heading">{value}</div>
+    <div className="t-kpi text-main">{value}</div>
     <div className="flex items-center gap-1.5 mt-1">
       {trend && (
         <span className={cn("t-micro fw-bold", trend.color)}>
           {trend.value}
         </span>
       )}
-      <span className="t-micro text-hint">{subText}</span>
+      <span className="t-micro text-faint">{subText}</span>
     </div>
   </div>
 );
@@ -90,8 +90,8 @@ export const DashboardPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-surface">
-      <Topbar
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
         pageTitle="Dashboard"
         pageSubtitle="April 2026 overview"
         primaryAction={
@@ -114,13 +114,13 @@ export const DashboardPage: React.FC = () => {
             label="Collected this Month"
             value="LKR 48,200"
             subText="+12% vs last month"
-            trend={{ value: "↑ 12%", color: "text-success" }}
+            trend={{ value: "↑ 12%", color: "text-success-role" }}
           />
           <KPICard
             label="Overdue Installments"
             value="9"
             subText="3 over 60 days"
-            trend={{ value: "!!", color: "text-destructive" }}
+            trend={{ value: "!!", color: "text-danger" }}
           />
           <KPICard
             label="New Sales This Month"
@@ -132,19 +132,19 @@ export const DashboardPage: React.FC = () => {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
           {/* Recent Payments */}
-          <div className="xl:col-span-3 bg-card card-rounded border border-border shadow-sm flex flex-col">
+          <div className="xl:col-span-3 surface-card card-rounded border border-border shadow-sm flex flex-col">
             <div className="p-5 border-b border-border flex items-center justify-between">
-              <h3 className="t-title text-heading">Recent Payments</h3>
+              <h3 className="t-title text-main">Recent Payments</h3>
               <button
                 onClick={() => navigate("/sales")}
-                className="text-primary t-caption-bold flex items-center gap-1 hover:underline"
+                className="text-brand t-caption-bold flex items-center gap-1 hover:underline"
               >
                 View All <ArrowRight className="w-3 h-3" />
               </button>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left">
-                <thead className="bg-surface t-micro-bold text-body uppercase tracking-widest">
+              <table className="w-full align-text-left">
+                <thead className="surface-page t-micro-bold text-soft case-upper tracking-label-wide">
                   <tr>
                     <th className="px-5 py-3 border-b">Customer</th>
                     <th className="px-5 py-3 border-b">Product</th>
@@ -157,23 +157,23 @@ export const DashboardPage: React.FC = () => {
                   {recentPayments.map((p, idx) => (
                     <tr
                       key={idx}
-                      className="hover:bg-surface transition-colors group"
+                      className="surface-hover transition-colors group"
                     >
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
                           <InitialsAvatar name={p.name} size="sm" />
-                          <span className="t-body fw-semibold text-heading">
+                          <span className="t-body fw-semibold text-main">
                             {p.name}
                           </span>
                         </div>
                       </td>
-                      <td className="px-5 py-3.5 t-body text-body">
+                      <td className="px-5 py-3.5 t-body text-soft">
                         {p.product}
                       </td>
-                      <td className="px-5 py-3.5 t-body fw-semibold text-heading whitespace-nowrap">
+                      <td className="px-5 py-3.5 t-body fw-semibold text-main whitespace-nowrap">
                         {formatCurrency(p.amount)}
                       </td>
-                      <td className="px-5 py-3.5 t-body text-body">{p.date}</td>
+                      <td className="px-5 py-3.5 t-body text-soft">{p.date}</td>
                       <td className="px-5 py-3.5">
                         <StatusBadge status={p.status} />
                       </td>
@@ -185,12 +185,12 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Overdue List */}
-          <div className="xl:col-span-2 bg-card card-rounded border border-border shadow-sm flex flex-col">
+          <div className="xl:col-span-2 surface-card card-rounded border border-border shadow-sm flex flex-col">
             <div className="p-5 border-b border-border flex items-center justify-between">
-              <h3 className="t-title text-heading">Overdue Installments</h3>
+              <h3 className="t-title text-main">Overdue Installments</h3>
               <button
                 onClick={() => navigate("/overdue")}
-                className="text-destructive t-caption-bold flex items-center gap-1 hover:underline"
+                className="text-danger t-caption-bold flex items-center gap-1 hover:underline"
               >
                 Send Reminders <ArrowRight className="w-3 h-3" />
               </button>
@@ -199,30 +199,30 @@ export const DashboardPage: React.FC = () => {
               {overdueInstallments.map((o, idx) => (
                 <div
                   key={idx}
-                  className="p-4 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group"
+                  className="p-4 flex items-center justify-between surface-hover transition-colors cursor-pointer group"
                 >
                   <div className="flex items-center gap-3">
                     <InitialsAvatar name={o.name} size="sm" />
                     <div className="flex flex-col">
-                      <span className="t-body fw-semibold text-heading group-hover:text-primary transition-colors">
+                      <span className="t-body fw-semibold text-main group-hover:text-brand transition-colors">
                         {o.name}
                       </span>
-                      <span className="t-micro text-hint">{o.product}</span>
+                      <span className="t-micro text-faint">{o.product}</span>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="t-micro-bold text-destructive uppercase tracking-tighter">
+                  <div className="align-text-right">
+                    <div className="t-micro-bold text-danger case-upper tracking-label">
                       {o.days} DAYS OVERDUE
                     </div>
-                    <div className="t-body fw-bold text-heading">
+                    <div className="t-body fw-bold text-main">
                       {formatCurrency(o.amount)}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="p-4 bg-surface rounded-b-xl border-t">
-              <p className="t-micro text-center text-hint">
+            <div className="p-4 surface-page corner-rounded-bottom-xl border-t">
+              <p className="t-micro align-text-center text-faint">
                 Manual reminders recommended for 60+ days
               </p>
             </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, FileDown, MessageSquare } from "lucide-react";
-import { Topbar } from "@/components/layout/Topbar";
+import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { InitialsAvatar } from "@/components/shared/InitialsAvatar";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   customers,
@@ -67,8 +67,8 @@ export const OverduePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-surface">
-      <Topbar
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
         pageTitle="Overdue Installments"
         pageSubtitle="Requires attention"
         primaryAction={
@@ -77,7 +77,7 @@ export const OverduePage: React.FC = () => {
               <FileDown className="w-4 h-4 mr-2" />
               Export
             </Button>
-            <Button className="bg-primary hover:bg-primary-dark">
+            <Button className="surface-brand surface-brand-strong-hover">
               <MessageSquare className="w-4 h-4 mr-2" />
               Send All Reminders
             </Button>
@@ -88,19 +88,19 @@ export const OverduePage: React.FC = () => {
       <div className="p-6 overflow-y-auto">
         {/* KPI Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-card card-rounded border border-border border-l-4 border-l-destructive p-5 shadow-sm">
-            <p className="t-micro-bold text-body uppercase tracking-wider mb-1">
+          <div className="surface-card card-rounded border border-border border-l-4 border-start-danger p-5 shadow-sm">
+            <p className="t-micro-bold text-soft case-upper tracking-label mb-1">
               Overdue Customers
             </p>
-            <div className="t-kpi-lg fw-black text-heading">
+            <div className="t-kpi-lg fw-black text-main">
               {enrichedOverdue.length}
             </div>
           </div>
-          <div className="bg-card card-rounded border border-border border-l-4 border-l-destructive p-5 shadow-sm">
-            <p className="t-micro-bold text-body uppercase tracking-wider mb-1">
+          <div className="surface-card card-rounded border border-border border-l-4 border-start-danger p-5 shadow-sm">
+            <p className="t-micro-bold text-soft case-upper tracking-label mb-1">
               Total Overdue Amount
             </p>
-            <div className="t-kpi-lg fw-black text-destructive">
+            <div className="t-kpi-lg fw-black text-danger">
               {formatCurrency(
                 enrichedOverdue.reduce(
                   (acc, curr) => acc + (curr.expectedAmount - curr.paidAmount),
@@ -109,14 +109,14 @@ export const OverduePage: React.FC = () => {
               )}
             </div>
           </div>
-          <div className="bg-card card-rounded border border-border border-l-4 border-l-destructive p-5 shadow-sm">
-            <p className="t-micro-bold text-body uppercase tracking-wider mb-1">
+          <div className="surface-card card-rounded border border-border border-l-4 border-start-danger p-5 shadow-sm">
+            <p className="t-micro-bold text-soft case-upper tracking-label mb-1">
               Longest Overdue
             </p>
-            <div className="t-kpi-lg fw-black text-heading">
+            <div className="t-kpi-lg fw-black text-main">
               {Math.max(...enrichedOverdue.map((is) => is.daysOverdue), 0)} Days
             </div>
-            <p className="t-micro-bold text-hint mt-1">
+            <p className="t-micro-bold text-faint mt-1">
               {
                 enrichedOverdue.filter(
                   (is) =>
@@ -130,16 +130,16 @@ export const OverduePage: React.FC = () => {
 
         {/* Filters */}
         <div className="mb-6 space-y-4">
-          <div className="flex gap-1 bg-muted/50 p-1 global-rounded w-max">
+          <div className="flex gap-1 surface-muted-half p-1 global-rounded w-max">
             {(["all", "1-30", "31-60", "60+"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  "px-6 py-1.5 global-rounded t-caption-bold transition-all capitalize",
+                  "px-6 py-1.5 global-rounded t-caption-bold transition-all case-title",
                   activeTab === tab
-                    ? "bg-card text-heading shadow-sm"
-                    : "text-body hover:text-heading",
+                    ? "surface-card text-main shadow-sm"
+                    : "text-soft hover:text-main",
                 )}
               >
                 {tab === "all" ? "All" : `${tab} days`}
@@ -148,10 +148,10 @@ export const OverduePage: React.FC = () => {
           </div>
 
           <div className="relative max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-hint" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
             <Input
               placeholder="Search by name or product..."
-              className="pl-10 h-10 border-border bg-card"
+              className="pl-10 h-10 border-border surface-card"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -159,10 +159,10 @@ export const OverduePage: React.FC = () => {
         </div>
 
         {/* Table Content */}
-        <div className="bg-card card-rounded border border-border shadow-sm overflow-hidden mb-20">
+        <div className="surface-card card-rounded border border-border shadow-sm overflow-hidden mb-20">
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-surface t-micro-bold text-body uppercase tracking-wider">
+            <table className="w-full align-text-left">
+              <thead className="surface-page t-micro-bold text-soft case-upper tracking-label">
                 <tr>
                   <th className="px-5 py-4 border-b w-10">
                     <Checkbox
@@ -178,7 +178,9 @@ export const OverduePage: React.FC = () => {
                   <th className="px-5 py-4 border-b">Due Date</th>
                   <th className="px-5 py-4 border-b">Days Overdue</th>
                   <th className="px-5 py-4 border-b">Expected</th>
-                  <th className="px-5 py-4 border-b text-right">Actions</th>
+                  <th className="px-5 py-4 border-b align-text-right">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -187,9 +189,7 @@ export const OverduePage: React.FC = () => {
                     key={is.id}
                     className={cn(
                       "transition-colors group",
-                      is.daysOverdue > 60
-                        ? "bg-overdue-row"
-                        : "hover:bg-surface",
+                      is.daysOverdue > 60 ? "bg-overdue-row" : "surface-hover",
                     )}
                   >
                     <td className="px-5 py-4">
@@ -202,25 +202,25 @@ export const OverduePage: React.FC = () => {
                       <div className="flex items-center gap-3">
                         <InitialsAvatar name={is.customerName} size="sm" />
                         <div className="flex flex-col">
-                          <span className="t-body fw-semibold text-heading">
+                          <span className="t-body fw-semibold text-main">
                             {is.customerName}
                           </span>
-                          <span className="t-micro text-hint">{is.phone}</span>
+                          <span className="t-micro text-faint">{is.phone}</span>
                         </div>
                       </div>
                     </td>
-                    <td className="px-5 py-4 t-body text-body">
+                    <td className="px-5 py-4 t-body text-soft">
                       {is.productName}
                     </td>
-                    <td className="px-5 py-4 t-body text-body">
+                    <td className="px-5 py-4 t-body text-soft">
                       {formatDate(is.dueDate)}
                     </td>
                     <td className="px-5 py-4">
                       <span
                         className={cn(
-                          "t-caption fw-black uppercase tracking-tight",
+                          "t-caption fw-black case-upper tracking-label",
                           is.daysOverdue > 60
-                            ? "text-destructive"
+                            ? "text-danger"
                             : is.daysOverdue > 30
                               ? "text-warning"
                               : "text-warning",
@@ -229,15 +229,15 @@ export const OverduePage: React.FC = () => {
                         {is.daysOverdue} Days
                       </span>
                     </td>
-                    <td className="px-5 py-4 t-body fw-bold text-heading">
+                    <td className="px-5 py-4 t-body fw-bold text-main">
                       {formatCurrency(is.expectedAmount - is.paidAmount)}
                     </td>
-                    <td className="px-5 py-4 text-right">
+                    <td className="px-5 py-4 align-text-right">
                       <div className="flex gap-2 justify-end">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="t-caption h-8 border-border text-success hover:bg-success-bg"
+                          className="t-caption h-8 border-border text-success-role surface-success-soft-hover"
                         >
                           <MessageSquare className="w-3.5 h-3.5 mr-1" />
                           Remind
@@ -262,9 +262,9 @@ export const OverduePage: React.FC = () => {
         {/* Sticky Actions Bar */}
         {selectedIds.length > 0 && (
           <div className="fixed bottom-6 left-62.5 right-6 z-50 animate-in slide-in-from-bottom duration-300">
-            <div className="bg-sidebar text-on-dark p-4 modal-rounded shadow-2xl flex items-center justify-between border border-sidebar-border">
+            <div className="bg-sidebar text-inverse p-4 modal-rounded shadow-2xl flex items-center justify-between border border-sidebar-border">
               <div className="flex items-center gap-4 px-2">
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center t-body fw-bold">
+                <div className="w-8 h-8 circle-rounded surface-brand flex items-center justify-center t-body fw-bold">
                   {selectedIds.length}
                 </div>
                 <span className="t-body fw-semibold">
@@ -274,12 +274,12 @@ export const OverduePage: React.FC = () => {
               <div className="flex gap-2">
                 <Button
                   variant="ghost"
-                  className="text-on-dark hover:bg-sidebar-accent"
+                  className="text-inverse hover:bg-sidebar-accent"
                   onClick={() => setSelectedIds([])}
                 >
                   Cancel
                 </Button>
-                <Button className="bg-primary hover:bg-primary-dark">
+                <Button className="surface-brand surface-brand-strong-hover">
                   Send WhatsApp Reminders
                 </Button>
               </div>

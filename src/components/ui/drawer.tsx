@@ -37,7 +37,7 @@ const DrawerOverlay = React.forwardRef<
 DrawerOverlay.displayName = "DrawerOverlay";
 
 const drawerContentVariants = cva(
-  "fixed z-50 bg-background border flex flex-col max-w-[80%] select-text **:select-text",
+  "fixed z-50 surface-base border flex flex-col max-w-[80%] select-text **:select-text",
   {
     variants: {
       side: {
@@ -45,7 +45,7 @@ const drawerContentVariants = cva(
           "inset-y-0 right-0 h-full w-80 border-l animate-in slide-in-from-right",
         left: "inset-y-0 left-0 h-full w-80 border-r animate-in slide-in-from-left",
         bottom:
-          "inset-x-0 bottom-0 mt-24 rounded-t-sm animate-in slide-in-from-bottom",
+          "inset-x-0 bottom-0 mt-24 corner-rounded-top-sm animate-in slide-in-from-bottom",
       },
     },
     defaultVariants: {
@@ -94,8 +94,8 @@ const DrawerContent = React.forwardRef<
           size="icon"
           onClick={props.onClose}
           className={`absolute h-9 w-9 ${isMobile
-            ? "right-3 top-3 global-rounded p-2 hover:bg-muted"
-            : "-left-11 text-white top-1 group-data-[state=closed]:hidden"
+            ? "right-3 top-3 global-rounded p-2 hover:surface-muted"
+            : "-left-11 text-inverse top-1 group-data-[state=closed]:hidden"
             }`}
         >
           ✕
@@ -136,7 +136,7 @@ const DrawerDescription = React.forwardRef<
 >((props, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className="text-sm text-muted-foreground"
+    className="ui-sm text-faint"
     {...props}
   />
 ));

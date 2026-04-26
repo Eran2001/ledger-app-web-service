@@ -54,7 +54,7 @@ const ImageUpload = ({
       <div className="relative w-16 h-16 shrink-0">
 
         <div
-          className="w-full h-full global-rounded border-2 border-dashed border-border bg-muted flex items-center justify-center cursor-pointer overflow-hidden"
+          className="w-full h-full global-rounded border-2 border-dashed border-border surface-muted flex items-center justify-center cursor-pointer overflow-hidden"
           onClick={() => inputRef.current?.click()}
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
@@ -63,16 +63,16 @@ const ImageUpload = ({
           {value ? (
             <img src={value} alt="Logo preview" className="w-full h-full object-cover" />
           ) : (
-            <Icon.ImagePlus className="w-6 h-6 text-muted-foreground/50" />
+            <Icon.ImagePlus className="w-6 h-6 text-faint-half" />
           )}
 
           {dragOver && (
-            <div className="absolute inset-0 bg-primary/10 global-rounded" />
+            <div className="absolute inset-0 surface-brand-overlay global-rounded" />
           )}
         </div>
 
-        <div className="absolute bottom-0 right-0 w-5 h-5 global-rounded bg-primary flex items-center justify-center ring-2 ring-background pointer-events-none">
-          <Icon.Pencil className="w-2.5 h-2.5 text-primary-foreground" />
+        <div className="absolute bottom-0 right-0 w-5 h-5 global-rounded surface-brand flex items-center justify-center ring-2 ring-background pointer-events-none">
+          <Icon.Pencil className="w-2.5 h-2.5 text-brand-contrast" />
         </div>
 
       </div>

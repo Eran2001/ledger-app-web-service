@@ -12,7 +12,7 @@ const OrganizationPlaceholderLoading = () => (
   <Card>
     <CardContent className="p-6 space-y-6">
 
-      <div className="flex items-center gap-4 p-4 global-rounded bg-muted/40 border border-border">
+      <div className="flex items-center gap-4 p-4 global-rounded surface-muted-40 border border-border">
         <Skeleton className="h-16 w-16 global-rounded shrink-0" />
         <Skeleton className="h-9 w-28 global-rounded" />
       </div>

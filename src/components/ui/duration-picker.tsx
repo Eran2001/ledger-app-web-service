@@ -63,13 +63,13 @@ export function DurationPicker({ value, onChange, className, disabled, min = 1 }
           tabIndex={disabled ? -1 : 0}
           aria-disabled={disabled}
           className={cn(
-            "flex items-center justify-between w-full px-3 h-12 global-rounded border border-input bg-background text-sm cursor-pointer",
+            "flex items-center justify-between w-full px-3 h-12 global-rounded border border-input surface-base ui-sm cursor-pointer",
             disabled && "opacity-50 pointer-events-none",
             className
           )}
         >
           <span>{formatDisplay(safe.amount, safe.unit)}</span>
-          <Timer className="h-4 w-4 text-muted-foreground" />
+          <Timer className="h-4 w-4 text-faint" />
         </div>
       </PopoverTrigger>
 

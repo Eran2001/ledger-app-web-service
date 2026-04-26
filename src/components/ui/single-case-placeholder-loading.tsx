@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const ProfileSkeleton = () => (
-  <Card className="border-border/50 shadow-none">
+  <Card className="border-subtle shadow-none">
     <CardContent className="py-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -35,7 +35,7 @@ const ProfileSkeleton = () => (
 
 const CustomerBehaviorSkeleton = () => (
   <div className="space-y-4">
-    <Card className="border-border/50 shadow-none">
+    <Card className="border-subtle shadow-none">
       <CardHeader className="py-4">
         <div className="flex items-center gap-2">
           <Skeleton className="h-5 w-5 global-rounded" />
@@ -43,7 +43,7 @@ const CustomerBehaviorSkeleton = () => (
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="border-l-4 border-border/40 pl-3 space-y-1.5">
+        <div className="border-l-4 border-faint pl-3 space-y-1.5">
           <Skeleton className="h-3.5 w-full" />
           {/* <Skeleton className="h-3.5 w-5/6" /> */}
           {/* <Skeleton className="h-3.5 w-4/6" /> */}
@@ -53,7 +53,7 @@ const CustomerBehaviorSkeleton = () => (
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
       {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className="global-rounded px-4 py-3 flex items-center justify-between border bg-muted/30">
+        <div key={i} className="global-rounded px-4 py-3 flex items-center justify-between border surface-muted-30">
           <div className="flex items-center gap-2">
             <Skeleton className="h-4 w-4 global-rounded" />
             <Skeleton className="h-4 w-20" />
@@ -66,7 +66,7 @@ const CustomerBehaviorSkeleton = () => (
 );
 
 const TimelineSkeleton = () => (
-  <Card className="border-border/50 shadow-none">
+  <Card className="border-subtle shadow-none">
     <CardHeader className="py-3">
       <Skeleton className="h-4 w-28" />
     </CardHeader>
@@ -93,12 +93,12 @@ const TimelineSkeleton = () => (
 const RightSidebarSkeleton = () => (
   <div className="space-y-4">
     <Card className="border-border shadow-none overflow-hidden p-0">
-      <div className="bg-muted/20 px-4 pt-4 pb-5 space-y-3">
+      <div className="surface-muted-20 px-4 pt-4 pb-5 space-y-3">
         <div className="flex items-center gap-2">
           <Skeleton className="h-4 w-4 global-rounded" />
           <Skeleton className="h-4 w-28" />
         </div>
-        <div className="space-y-2 global-rounded p-3 bg-muted/20">
+        <div className="space-y-2 global-rounded p-3 surface-muted-20">
           <Skeleton className="h-3 w-36" />
           <Skeleton className="h-4 w-full" />
           <Skeleton className="h-4 w-4/5" />
@@ -108,12 +108,12 @@ const RightSidebarSkeleton = () => (
           </div>
         </div>
       </div>
-      <div className="bg-card px-4 py-3">
+      <div className="surface-card px-4 py-3">
         <Skeleton className="h-8 w-full global-rounded" />
       </div>
     </Card>
 
-    <Card className="border-border/50 shadow-none">
+    <Card className="border-subtle shadow-none">
       <CardHeader className="py-3">
         <Skeleton className="h-4 w-20" />
       </CardHeader>
@@ -137,7 +137,7 @@ const RightSidebarSkeleton = () => (
       </CardContent>
     </Card>
 
-    <Card className="border-border/50 shadow-none">
+    <Card className="border-subtle shadow-none">
       <CardHeader className="py-3">
         <div className="flex justify-between items-center">
           <Skeleton className="h-4 w-36" />
@@ -163,7 +163,7 @@ const RightSidebarSkeleton = () => (
       </CardContent>
     </Card>
 
-    <Card className="border-border/50 shadow-none">
+    <Card className="border-subtle shadow-none">
       <CardHeader className="py-3">
         <Skeleton className="h-4 w-32" />
       </CardHeader>
@@ -189,13 +189,13 @@ const RightSidebarSkeleton = () => (
 );
 
 const ManualCallSkeleton = () => (
-  <Card className="border-border/50 shadow-none">
+  <Card className="border-subtle shadow-none">
     <div className="w-full flex items-center justify-between px-4 py-3">
       <div className="space-y-1.5">
         <Skeleton className="h-4 w-36" />
         <Skeleton className="h-3 w-48" />
       </div>
-      <Skeleton className="h-5 w-5 rounded-sm" />
+      <Skeleton className="h-5 w-5 corner-rounded-sm" />
     </div>
   </Card>
 );

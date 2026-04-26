@@ -6,14 +6,14 @@ interface BellAlertBadgeProps {
 export function BellAlertBadge({ isPending, count }: BellAlertBadgeProps) {
   if (isPending) {
     return (
-      <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full border-2 border-card border-t-primary animate-spin" />
+      <span className="absolute -top-1 -right-1 h-3 w-3 circle-rounded border-2 bell-spinner animate-spin" />
     );
   }
 
   if (count === 0) return null;
 
   return (
-    <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-destructive text-2xs font-medium text-destructive-foreground flex items-center justify-center">
+    <span className="absolute -top-1 -right-1 h-4 w-4 circle-rounded surface-danger ui-xs fw-medium text-danger-contrast flex items-center justify-center">
       {count > 9 ? "9+" : count}
     </span>
   );

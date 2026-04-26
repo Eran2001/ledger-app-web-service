@@ -8,13 +8,13 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-transparent bg-primary text-primary-foreground",
-        secondary: "border-transparent bg-secondary text-secondary-foreground",
+        default: "border-transparent surface-brand text-brand-contrast",
+        secondary: "border-transparent surface-secondary text-secondary-contrast",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground",
-        outline: "text-foreground",
+          "border-transparent surface-danger text-danger-contrast",
+        outline: "text-main",
         interactive:
-          "cursor-pointer text-foreground border-border hover:bg-muted",
+          "cursor-pointer text-main border-border hover:surface-muted",
         approved: "status-success",
         pending: "status-warning",
         processing: "status-info",

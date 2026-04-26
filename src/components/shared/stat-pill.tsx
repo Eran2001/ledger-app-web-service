@@ -10,7 +10,7 @@ interface StatPillProps {
 export const StatPill: React.FC<StatPillProps> = ({ label, color = 'gray', className }) => {
   return (
     <span className={cn(
-      "badge-text px-3 py-1 rounded-lg whitespace-nowrap",
+      "badge-text px-3 py-1 global-rounded whitespace-nowrap",
       `pill-${color}`,
       className
     )}>

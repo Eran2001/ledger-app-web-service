@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, Plus, UserX, FileDown } from "lucide-react";
-import { Topbar } from "@/components/layout/Topbar";
+import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { InitialsAvatar } from "@/components/shared/InitialsAvatar";
-import { StatusBadge } from "@/components/shared/StatusBadge";
-import { EmptyState } from "@/components/shared/EmptyState";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { StatusBadge } from "@/components/shared/status-badge";
+import { EmptyState } from "@/components/shared/empty-state";
 import { customers, sales, installmentSchedules } from "@/constant/dummy";
 import { formatCurrency, cn } from "@/lib/utils";
 
 export const CustomersPage: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [activeTab, setActiveTab] = useState<"all" | "active" | "overdue">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "active" | "overdue">(
+    "all",
+  );
   const navigate = useNavigate();
 
   const enrichedCustomers = customers.map((c) => {
     const customerSales = sales.filter((s) => s.customerId === c.id);
-    const activeSalesCount = customerSales.filter((s) => s.status === "ACTIVE").length;
+    const activeSalesCount = customerSales.filter(
+      (s) => s.status === "ACTIVE",
+    ).length;
 
     const customerSaleIds = customerSales.map((s) => s.id);
     const schedules = installmentSchedules.filter((is) =>
@@ -34,7 +38,8 @@ export const CustomersPage: React.FC = () => {
       activeSalesCount,
       outstanding,
       hasOverdue,
-      status: outstanding > 0 ? (hasOverdue ? "OVERDUE" : "ACTIVE") : "COMPLETED",
+      status:
+        outstanding > 0 ? (hasOverdue ? "OVERDUE" : "ACTIVE") : "COMPLETED",
     };
   });
 
@@ -53,8 +58,8 @@ export const CustomersPage: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-surface">
-      <Topbar
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
         pageTitle="Customers"
         pageSubtitle="Manage customer records"
         primaryAction={
@@ -69,25 +74,25 @@ export const CustomersPage: React.FC = () => {
         {/* Filters Row */}
         <div className="mb-6 flex flex-wrap items-center gap-4">
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-hint" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
             <Input
               placeholder="Search by name, NIC or phone..."
-              className="pl-10 h-10 border-border bg-card"
+              className="pl-10 h-10 border-border surface-card"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          <div className="flex gap-1 bg-muted/50 p-1 global-rounded">
+          <div className="flex gap-1 surface-muted-half p-1 global-rounded">
             {(["all", "active", "overdue"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  "px-4 py-1.5 global-rounded t-caption-bold transition-all capitalize",
+                  "px-4 py-1.5 global-rounded t-caption-bold transition-all case-title",
                   activeTab === tab
-                    ? "bg-card text-heading shadow-sm"
-                    : "text-body hover:text-heading",
+                    ? "surface-card text-main shadow-sm"
+                    : "text-soft hover:text-main",
                 )}
               >
                 {tab === "active"
@@ -109,11 +114,11 @@ export const CustomersPage: React.FC = () => {
         </div>
 
         {/* Table Content */}
-        <div className="bg-card card-rounded border border-border shadow-sm overflow-hidden">
+        <div className="surface-card card-rounded border border-border shadow-sm overflow-hidden">
           {filteredCustomers.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full text-left">
-                <thead className="bg-surface t-micro-bold text-body uppercase tracking-wider">
+              <table className="w-full align-text-left">
+                <thead className="surface-page t-micro-bold text-soft case-upper tracking-label">
                   <tr>
                     <th className="px-5 py-4 border-b">Customer</th>
                     <th className="px-5 py-4 border-b">NIC Number</th>
@@ -121,7 +126,9 @@ export const CustomersPage: React.FC = () => {
                     <th className="px-5 py-4 border-b">Active Sales</th>
                     <th className="px-5 py-4 border-b">Outstanding</th>
                     <th className="px-5 py-4 border-b">Status</th>
-                    <th className="px-5 py-4 border-b text-right">Actions</th>
+                    <th className="px-5 py-4 border-b align-text-right">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -129,8 +136,8 @@ export const CustomersPage: React.FC = () => {
                     <tr
                       key={c.id}
                       className={cn(
-                        "hover:bg-surface transition-colors group cursor-pointer",
-                        c.hasOverdue && "border-l-4 border-l-destructive",
+                        "surface-hover transition-colors group cursor-pointer",
+                        c.hasOverdue && "border-l-4 border-start-danger",
                       )}
                       onClick={() => navigate(`/customers/${c.id}`)}
                     >
@@ -138,41 +145,43 @@ export const CustomersPage: React.FC = () => {
                         <div className="flex items-center gap-3">
                           <InitialsAvatar name={c.fullName} size="sm" />
                           <div className="flex flex-col">
-                            <span className="t-body fw-semibold text-heading group-hover:text-primary">
+                            <span className="t-body fw-semibold text-main group-hover:text-brand">
                               {c.fullName}
                             </span>
-                            <span className="t-micro text-hint capitalize">
+                            <span className="t-micro text-faint case-title">
                               {c.address.split(",")[1]?.trim() || "Colombo"}
                             </span>
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-4 t-body text-body font-mono">
+                      <td className="px-5 py-4 t-body text-soft mono-text">
                         {c.nic}
                       </td>
-                      <td className="px-5 py-4 t-body text-body">
-                        {c.phone}
-                      </td>
-                      <td className="px-5 py-4 t-body fw-medium text-center">
-                        <span className={cn(c.activeSalesCount > 0 ? "text-heading" : "text-hint")}>
+                      <td className="px-5 py-4 t-body text-soft">{c.phone}</td>
+                      <td className="px-5 py-4 t-body fw-medium align-text-center">
+                        <span
+                          className={cn(
+                            c.activeSalesCount > 0 ? "text-main" : "text-faint",
+                          )}
+                        >
                           {c.activeSalesCount}
                         </span>
                       </td>
-                      <td className="px-5 py-4 t-body fw-bold text-heading">
+                      <td className="px-5 py-4 t-body fw-bold text-main">
                         {c.outstanding > 0 ? (
                           formatCurrency(c.outstanding)
                         ) : (
-                          <span className="text-hint">Paid</span>
+                          <span className="text-faint">Paid</span>
                         )}
                       </td>
                       <td className="px-5 py-4">
                         <StatusBadge status={c.status} />
                       </td>
-                      <td className="px-5 py-4 text-right">
+                      <td className="px-5 py-4 align-text-right">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="t-caption h-8 border-border fw-semibold hover:bg-surface hover:text-primary"
+                          className="t-caption h-8 border-border fw-semibold surface-hover hover:text-brand"
                         >
                           View Profile
                         </Button>

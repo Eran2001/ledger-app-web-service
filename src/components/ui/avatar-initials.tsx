@@ -1,5 +1,5 @@
 const getCircleColor = (name = "") => {
-  if (!name) return "#3B82F6";
+  if (!name) return "var(--primary)";
 
   const hash = name
     .toLowerCase()
@@ -22,7 +22,7 @@ const AvatarInitials = ({ name = "", size = 24, className = "" }) => {
 
   return (
     <div
-      className={`global-rounded flex items-center justify-center text-on-dark fw-medium ${className}`}
+      className={`global-rounded flex items-center justify-center text-inverse fw-medium ${className}`}
       style={{
         backgroundColor: bg,
         width: size,

@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth.store";
-import { InitialsAvatar } from "../shared/InitialsAvatar";
+import { InitialsAvatar } from "../shared/initials-avatar";
 
 const SidebarItem: React.FC<{
   to: string;
@@ -28,10 +28,10 @@ const SidebarItem: React.FC<{
     end={end}
     className={({ isActive }) =>
       cn(
-        "flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all t-nav",
+        "flex items-center gap-3 px-3 py-2 global-rounded cursor-pointer transition-all t-nav",
         isActive
-          ? "bg-sidebar-accent backdrop-blur border-l-[3px] border-sidebar-primary text-sidebar-foreground pl-2.25"
-          : "text-sidebar-foreground/50 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+          ? "app-sidebar-link-active backdrop-blur border-l-[3px] border-sidebar-primary pl-2.25"
+          : "app-sidebar-link",
       )
     }
   >
@@ -50,19 +50,19 @@ export const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-55 bg-sidebar flex flex-col h-full shrink-0">
+    <aside className="w-55 app-sidebar flex flex-col h-full shrink-0">
       <div className="p-4 border-b border-sidebar-border flex items-center gap-3">
-        <div className="sidebar-brand-logo w-10 h-10 rounded-lg bg-sidebar-primary text-sidebar-foreground flex items-center justify-center shrink-0">
+        <div className="sidebar-brand-logo w-10 h-10 global-rounded app-sidebar-logo flex items-center justify-center shrink-0">
           ST
         </div>
         <div className="flex flex-col overflow-hidden">
-          <span className="sidebar-brand-name text-sidebar-foreground truncate">Silva Traders</span>
-          <span className="sidebar-brand-sub text-sidebar-foreground/50 truncate">Admin Panel</span>
+          <span className="sidebar-brand-name app-sidebar-text truncate">Silva Traders</span>
+          <span className="sidebar-brand-sub app-sidebar-text-muted truncate">Admin Panel</span>
         </div>
       </div>
 
       <nav className="flex-1 overflow-y-auto scrollbar-hidden p-3 space-y-1">
-        <div className="label-caps-wide text-sidebar-foreground/30 px-3 py-2 mt-2">
+        <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-2">
           Main
         </div>
         <SidebarItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
@@ -71,13 +71,13 @@ export const Sidebar: React.FC = () => {
         <SidebarItem to="/sales/new" icon={PlusCircle} label="New Sale" />
         <SidebarItem to="/products" icon={Package} label="Products" />
 
-        <div className="label-caps-wide text-sidebar-foreground/30 px-3 py-2 mt-4">
+        <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-4">
           Finance
         </div>
         <SidebarItem to="/reports" icon={BarChart3} label="Reports" />
         <SidebarItem to="/overdue" icon={AlertTriangle} label="Overdue" />
 
-        <div className="label-caps-wide text-sidebar-foreground/30 px-3 py-2 mt-4">
+        <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-4">
           System
         </div>
         <SidebarItem to="/users" icon={UserCog} label="Users" />
@@ -86,19 +86,19 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       <div className="p-3 border-t border-sidebar-border mt-auto">
-        <div className="flex items-center gap-3 p-2 rounded-lg bg-sidebar-accent">
+        <div className="flex items-center gap-3 p-2 global-rounded app-sidebar-panel">
           <InitialsAvatar name={user?.name || ""} size="sm" />
           <div className="flex flex-col min-w-0 pr-2">
-            <span className="sidebar-user-name text-sidebar-foreground truncate">
+            <span className="sidebar-user-name app-sidebar-text truncate">
               {user?.name}
             </span>
-            <span className="sidebar-user-role text-sidebar-foreground/50 truncate">
+            <span className="sidebar-user-role app-sidebar-text-muted truncate">
               {user?.role}
             </span>
           </div>
           <button
             onClick={handleLogout}
-            className="ml-auto text-sidebar-foreground/40 hover:text-sidebar-foreground transition-colors"
+            className="ml-auto app-sidebar-text-dim app-sidebar-text-hover transition-colors"
           >
             <LogOut className="w-4 h-4" />
           </button>

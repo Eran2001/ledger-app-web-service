@@ -49,7 +49,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
   return (
     <span
       className={cn(
-        "badge-text px-2.5 py-0.5 rounded-lg whitespace-nowrap",
+        "badge-text px-2.5 py-0.5 global-rounded whitespace-nowrap",
         className,
       )}
       style={{ backgroundColor: config.bg, color: config.text }}

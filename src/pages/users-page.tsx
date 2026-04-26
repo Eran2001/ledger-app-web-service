@@ -1,12 +1,12 @@
 import React from "react";
-import { Topbar } from "@/components/layout/Topbar";
+import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
 
 export const UsersPage: React.FC = () => {
   return (
-    <div className="flex flex-col h-full bg-surface">
-      <Topbar
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
         pageTitle="Users"
         pageSubtitle="Internal team members"
         primaryAction={
@@ -17,8 +17,8 @@ export const UsersPage: React.FC = () => {
         }
       />
       <div className="p-6 overflow-y-auto">
-        <div className="bg-card card-rounded border border-border shadow-sm p-8 flex items-center justify-center min-h-64">
-          <p className="t-body text-hint">Users management coming soon.</p>
+        <div className="surface-card card-rounded border border-border shadow-sm p-8 flex items-center justify-center min-h-64">
+          <p className="t-body text-faint">Users management coming soon.</p>
         </div>
       </div>
     </div>

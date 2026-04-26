@@ -27,7 +27,7 @@ const CustomerProfileSkeleton = () => (
       </div>
     </div>
 
-    <div className="hidden lg:block w-px self-stretch bg-border" />
+    <div className="hidden lg:block w-px self-stretch surface-border" />
 
     <div className="flex flex-col gap-2 flex-1 lg:px-6">
       {Array.from({ length: 2 }).map((_, i) => (
@@ -39,7 +39,7 @@ const CustomerProfileSkeleton = () => (
       ))}
     </div>
 
-    <div className="hidden lg:block w-px self-stretch bg-border" />
+    <div className="hidden lg:block w-px self-stretch surface-border" />
 
     <div className="flex lg:flex-col gap-3 lg:gap-2 lg:items-end lg:pl-6 shrink-0">
       {Array.from({ length: 2 }).map((_, i) => (
@@ -53,7 +53,7 @@ const CustomerProfileSkeleton = () => (
 );
 
 const CustomerAccountSkeleton = () => (
-  <Card className="border-border/50 shadow-none">
+  <Card className="border-subtle shadow-none">
     <CardContent className="py-4 px-5 space-y-3">
       <Skeleton className="h-4 w-32" />
       {Array.from({ length: 5 }).map((_, i) => (
@@ -92,7 +92,7 @@ const TableRowsSkeleton = ({ cols, rows = 4 }: { cols: number; rows?: number; })
 );
 
 const CustomerAttachmentsSkeleton = () => (
-  <Card className="border-border/50 shadow-none">
+  <Card className="border-subtle shadow-none">
     <CardContent className="py-2 px-6">
       <div className="flex gap-2 mb-4">
         <Skeleton className="h-8 w-16 global-rounded" />

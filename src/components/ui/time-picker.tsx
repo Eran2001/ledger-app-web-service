@@ -69,14 +69,14 @@ export function TimePicker({ value, onChange, className, disabled }: TimePickerP
           tabIndex={disabled ? -1 : 0}
           aria-disabled={disabled}
           className={cn(
-            "flex items-center justify-between w-full px-3 h-10 global-rounded border border-input bg-background text-sm cursor-pointer",
+            "flex items-center justify-between w-full px-3 h-10 global-rounded border border-input surface-base ui-sm cursor-pointer",
             disabled && "opacity-50 pointer-events-none",
-            !value && "text-muted-foreground",
+            !value && "text-faint",
             className
           )}
         >
           <span>{formatDisplay(hour, minute, period)}</span>
-          <Clock className="h-4 w-4 text-muted-foreground" />
+          <Clock className="h-4 w-4 text-faint" />
         </div>
       </PopoverTrigger>
 
@@ -94,7 +94,7 @@ export function TimePicker({ value, onChange, className, disabled }: TimePickerP
             </SelectContent>
           </Select>
 
-          <span className="text-muted-foreground font-medium">:</span>
+          <span className="text-faint fw-medium">:</span>
 
           <Select value={String(minute)} onValueChange={handleMinute}>
             <SelectTrigger className="w-16">

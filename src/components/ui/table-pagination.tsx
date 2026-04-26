@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { TableResultsInfo } from "@/components/ui/TableResultsInfo";
+import { TableResultsInfo } from "@/components/ui/table-results-info";
 
 type TablePaginationProps = {
   currentPage: number;

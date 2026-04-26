@@ -6,7 +6,7 @@ interface GridPlaceholderLoadingProps {
 }
 
 const GridCardSkeleton = () => (
-  <div className="border border-border global-rounded bg-card flex flex-col">
+  <div className="border border-border global-rounded surface-card flex flex-col">
     <div className="flex-1 p-4 space-y-2">
       <div className="flex justify-end">
         <Skeleton className="h-5 w-14 global-rounded" />

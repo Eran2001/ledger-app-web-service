@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <circle cx="256" cy="256" r="256" fill="#2563eb"/>
+  <circle cx="256" cy="256" r="256" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="12"/>
+  <!-- bar chart: 3 bars + baseline -->
+  <rect x="118" y="208" width="72" height="152" rx="16" fill="white" opacity="0.95"/>
+  <rect x="220" y="128" width="72" height="232" rx="16" fill="white" opacity="0.95"/>
+  <rect x="322" y="168" width="72" height="192" rx="16" fill="white" opacity="0.95"/>
+  <rect x="108" y="364" width="296" height="14" rx="7" fill="white" opacity="0.4"/>
+</svg>

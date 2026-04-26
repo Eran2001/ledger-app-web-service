@@ -49,15 +49,15 @@ export function DateTimePicker({
   return (
     <div className={cn("flex gap-2", className)}>
       <div className="flex-1 space-y-1">
-        <Label className="text-xs text-muted-foreground">Date</Label>
+        <Label className="ui-xs text-faint">Date</Label>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
               type="button"
               variant="outline"
               className={cn(
-                "w-full justify-between font-normal form-input",
-                !value && "text-muted-foreground",
+                "w-full justify-between ui-font-normal form-input",
+                !value && "text-faint",
                 error && "form-validation"
               )}
             >
@@ -79,7 +79,7 @@ export function DateTimePicker({
       </div>
 
       <div className="w-32 space-y-1">
-        <Label className="text-xs text-muted-foreground">Time</Label>
+        <Label className="ui-xs text-faint">Time</Label>
         <Input
           type="time"
           value={timeValue}

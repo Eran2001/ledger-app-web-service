@@ -12,7 +12,7 @@ import {
 const SummaryCardsSkeleton = () => (
   <div className="grid grid-cols-3 gap-3">
     {Array.from({ length: 3 }).map((_, i) => (
-      <div key={i} className="global-rounded border bg-muted/30 p-3 space-y-2">
+      <div key={i} className="global-rounded border surface-muted-30 p-3 space-y-2">
         <Skeleton className="h-3 w-24" />
         <Skeleton className="h-5 w-28" />
       </div>

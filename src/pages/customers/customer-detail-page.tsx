@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Plus, ArrowLeft } from "lucide-react";
-import { Topbar } from "@/components/layout/Topbar";
+import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
-import { InitialsAvatar } from "@/components/shared/InitialsAvatar";
-import { StatPill } from "@/components/shared/StatPill";
-import { StatusBadge } from "@/components/shared/StatusBadge";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { StatPill } from "@/components/shared/stat-pill";
+import { StatusBadge } from "@/components/shared/status-badge";
 import {
   customers,
   sales,
@@ -31,8 +31,8 @@ export const CustomerDetailPage: React.FC = () => {
     .reduce((acc, curr) => acc + (curr.expectedAmount - curr.paidAmount), 0);
 
   return (
-    <div className="flex flex-col h-full bg-surface">
-      <Topbar
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
         pageTitle={customer.fullName}
         pageSubtitle="Customer Profile"
         primaryAction={
@@ -46,35 +46,33 @@ export const CustomerDetailPage: React.FC = () => {
       <div className="p-6 overflow-y-auto">
         <button
           onClick={() => navigate("/customers")}
-          className="mb-4 t-caption fw-bold text-primary flex items-center gap-1 hover:-translate-x-1 transition-transform"
+          className="mb-4 t-caption fw-bold text-brand flex items-center gap-1 hover:-translate-x-1 transition-transform"
         >
           <ArrowLeft className="w-3 h-3" /> Back to list
         </button>
 
         {/* Profile Header Card */}
-        <div className="bg-card modal-rounded border border-border p-8 mb-8 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary-light rounded-bl-[100px] z-0"></div>
+        <div className="surface-card modal-rounded border border-border p-8 mb-8 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 surface-brand-soft brand-corner-accent z-0"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
             <InitialsAvatar
               name={customer.fullName}
               size="lg"
-              className="shadow-xl shadow-indigo-100 ring-4 ring-card"
+              className="shadow-xl shadow-brand-soft ring-4 ring-surface-card"
             />
 
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="t-section text-heading">
-                {customer.fullName}
-              </h2>
+            <div className="flex-1 align-text-center md:align-text-left">
+              <h2 className="t-section text-main">{customer.fullName}</h2>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 mt-1 fw-medium">
-                <span className="t-body font-mono text-body">
+                <span className="t-body mono-text text-soft">
                   NIC: {customer.nic}
                 </span>
-                <span className="t-body text-body">
+                <span className="t-body text-soft">
                   Phone: {customer.phone}
                 </span>
               </div>
-              <p className="t-body text-hint mt-2 max-w-md">
+              <p className="t-body text-faint mt-2 max-w-md">
                 {customer.address}
               </p>
             </div>
@@ -106,8 +104,8 @@ export const CustomerDetailPage: React.FC = () => {
             className={cn(
               "pb-3 t-body fw-bold border-b-2 transition-all",
               activeTab === "sales"
-                ? "border-primary text-primary"
-                : "border-transparent text-hint hover:text-body",
+                ? "border-brand text-brand"
+                : "border-transparent text-faint hover:text-soft",
             )}
           >
             Active Sales
@@ -117,8 +115,8 @@ export const CustomerDetailPage: React.FC = () => {
             className={cn(
               "pb-3 t-body fw-bold border-b-2 transition-all",
               activeTab === "history"
-                ? "border-primary text-primary"
-                : "border-transparent text-hint hover:text-body",
+                ? "border-brand text-brand"
+                : "border-transparent text-faint hover:text-soft",
             )}
           >
             Payment History
@@ -149,13 +147,11 @@ export const CustomerDetailPage: React.FC = () => {
                 return (
                   <div
                     key={sale.id}
-                    className="bg-card card-rounded border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
+                    className="surface-card card-rounded border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-6">
                       <div>
-                        <h4 className="t-section text-heading">
-                          {product?.name}
-                        </h4>
+                        <h4 className="t-section text-main">{product?.name}</h4>
                         <StatPill
                           label={product?.category || ""}
                           color="gray"
@@ -167,26 +163,26 @@ export const CustomerDetailPage: React.FC = () => {
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 t-body fw-medium mb-6">
                       <div className="flex flex-col">
-                        <span className="t-micro text-hint uppercase tracking-wider mb-0.5">
+                        <span className="t-micro text-faint case-upper tracking-label mb-0.5">
                           Sold Price
                         </span>
-                        <span className="text-body">
+                        <span className="text-soft">
                           {formatCurrency(sale.soldPrice)}
                         </span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="t-micro text-hint uppercase tracking-wider mb-0.5">
+                        <span className="t-micro text-faint case-upper tracking-label mb-0.5">
                           Down Payment
                         </span>
-                        <span className="text-body">
+                        <span className="text-soft">
                           {formatCurrency(sale.downPayment)}
                         </span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="t-micro text-hint uppercase tracking-wider mb-0.5">
+                        <span className="t-micro text-faint case-upper tracking-label mb-0.5">
                           Monthly Payment
                         </span>
-                        <span className="text-body">
+                        <span className="text-soft">
                           {formatCurrency(sale.monthlyAmount)}
                         </span>
                       </div>
@@ -194,30 +190,28 @@ export const CustomerDetailPage: React.FC = () => {
 
                     <div className="mb-6">
                       <div className="flex justify-between items-center t-caption mb-2">
-                        <span className="text-body fw-semibold">
+                        <span className="text-soft fw-semibold">
                           {paidCount} of {sale.totalMonths} installments paid
                         </span>
-                        <span className="text-primary fw-bold">
+                        <span className="text-brand fw-bold">
                           {formatCurrency(remaining)} remaining
                         </span>
                       </div>
                       <Progress
                         value={(paidCount / sale.totalMonths) * 100}
-                        className="h-2 bg-primary-light"
+                        className="h-2 surface-brand-soft"
                       />
                     </div>
 
                     <div className="pt-4 border-t border-border flex justify-between items-center">
-                      <span className="t-micro text-hint flex items-center gap-1 fw-medium">
+                      <span className="t-micro text-faint flex items-center gap-1 fw-medium">
                         Next due:{" "}
-                        <span className="text-body fw-bold">
-                          18 May 2026
-                        </span>{" "}
-                        · {formatCurrency(sale.monthlyAmount)}
+                        <span className="text-soft fw-bold">18 May 2026</span> ·{" "}
+                        {formatCurrency(sale.monthlyAmount)}
                       </span>
                       <button
                         onClick={() => navigate(`/sales/${sale.id}`)}
-                        className="t-body fw-bold text-primary hover:underline"
+                        className="t-body fw-bold text-brand hover:underline"
                       >
                         View Full Details →
                       </button>
@@ -226,8 +220,8 @@ export const CustomerDetailPage: React.FC = () => {
                 );
               })
             ) : (
-              <div className="text-center py-10 bg-card card-rounded border border-dashed border-border">
-                <p className="text-hint fw-medium t-body">
+              <div className="align-text-center py-10 surface-card card-rounded border border-dashed border-border">
+                <p className="text-faint fw-medium t-body">
                   No active sales for this customer.
                 </p>
               </div>
@@ -236,9 +230,9 @@ export const CustomerDetailPage: React.FC = () => {
         )}
 
         {activeTab === "history" && (
-          <div className="bg-card card-rounded border border-border shadow-sm overflow-hidden">
-            <table className="w-full text-left">
-              <thead className="bg-surface t-micro-bold text-body uppercase tracking-wider">
+          <div className="surface-card card-rounded border border-border shadow-sm overflow-hidden">
+            <table className="w-full align-text-left">
+              <thead className="surface-page t-micro-bold text-soft case-upper tracking-label">
                 <tr>
                   <th className="px-5 py-4 border-b">Date</th>
                   <th className="px-5 py-4 border-b">Product</th>
@@ -248,19 +242,29 @@ export const CustomerDetailPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                <tr className="hover:bg-surface">
-                  <td className="px-5 py-4 t-body text-body">18 Apr 2026</td>
-                  <td className="px-5 py-4 t-body fw-semibold text-heading">Samsung TV 43"</td>
-                  <td className="px-5 py-4 t-body fw-bold text-primary">LKR 3,500</td>
-                  <td className="px-5 py-4 t-body text-body">Kamal Silva</td>
-                  <td className="px-5 py-4 t-caption text-hint">Customer paid partial</td>
+                <tr className="surface-hover">
+                  <td className="px-5 py-4 t-body text-soft">18 Apr 2026</td>
+                  <td className="px-5 py-4 t-body fw-semibold text-main">
+                    Samsung TV 43"
+                  </td>
+                  <td className="px-5 py-4 t-body fw-bold text-brand">
+                    LKR 3,500
+                  </td>
+                  <td className="px-5 py-4 t-body text-soft">Kamal Silva</td>
+                  <td className="px-5 py-4 t-caption text-faint">
+                    Customer paid partial
+                  </td>
                 </tr>
-                <tr className="hover:bg-surface">
-                  <td className="px-5 py-4 t-body text-body">12 Mar 2026</td>
-                  <td className="px-5 py-4 t-body fw-semibold text-heading">Samsung TV 43"</td>
-                  <td className="px-5 py-4 t-body fw-bold text-primary">LKR 5,000</td>
-                  <td className="px-5 py-4 t-body text-body">Kamal Silva</td>
-                  <td className="px-5 py-4 t-caption text-hint">-</td>
+                <tr className="surface-hover">
+                  <td className="px-5 py-4 t-body text-soft">12 Mar 2026</td>
+                  <td className="px-5 py-4 t-body fw-semibold text-main">
+                    Samsung TV 43"
+                  </td>
+                  <td className="px-5 py-4 t-body fw-bold text-brand">
+                    LKR 5,000
+                  </td>
+                  <td className="px-5 py-4 t-body text-soft">Kamal Silva</td>
+                  <td className="px-5 py-4 t-caption text-faint">-</td>
                 </tr>
               </tbody>
             </table>

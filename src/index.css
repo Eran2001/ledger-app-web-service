@@ -192,6 +192,20 @@
   --glass-bg: rgb(255 255 255 / 0.06);
   --glass-border: rgb(255 255 255 / 0.12);
   --glass-blur: 12px;
+  --auth-gradient-start: #1e1b4b;
+  --auth-gradient-mid: #312e81;
+  --auth-gradient-end: #1e3a5f;
+  --auth-glass-bg: rgb(255 255 255 / 0.08);
+  --auth-glass-soft-bg: rgb(255 255 255 / 0.05);
+  --auth-glass-border: rgb(255 255 255 / 0.1);
+  --auth-glass-strong-border: rgb(255 255 255 / 0.2);
+  --auth-brand-glow: rgb(59 130 246 / 0.1);
+  --auth-brand-glow-alt: rgb(99 102 241 / 0.1);
+  --brand-shadow-soft: rgb(79 70 229 / 0.1);
+  --brand-shadow: rgb(79 70 229 / 0.18);
+  --brand-shadow-faint: rgb(79 70 229 / 0.08);
+  --age-danger-rgb: 241 89 92;
+  --age-danger-on: #ffffff;
 }
 
 @layer utilities {
@@ -383,6 +397,403 @@
   .bar-rounded-t {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
+  .circle-rounded {
+    border-radius: 999px;
+  }
+  .control-rounded {
+    border-radius: var(--radius);
+  }
+  .panel-rounded {
+    border-radius: var(--radius-xl);
+  }
+  .corner-rounded-sm {
+    border-radius: var(--radius-sm);
+  }
+  .corner-rounded-start-sm {
+    border-bottom-left-radius: var(--radius-sm);
+    border-top-left-radius: var(--radius-sm);
+  }
+  .corner-rounded-end-sm {
+    border-bottom-right-radius: var(--radius-sm);
+    border-top-right-radius: var(--radius-sm);
+  }
+  .corner-rounded-top-sm {
+    border-top-left-radius: var(--radius-sm);
+    border-top-right-radius: var(--radius-sm);
+  }
+  .corner-rounded-bottom-sm {
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+  }
+  .corner-rounded-top-start-sm {
+    border-top-left-radius: var(--radius-sm);
+  }
+  .inherit-rounded {
+    border-radius: inherit;
+  }
+
+  .text-main {
+    color: var(--text-primary);
+  }
+  .text-soft {
+    color: var(--text-secondary);
+  }
+  .text-faint {
+    color: var(--text-muted);
+  }
+  .text-placeholder-role {
+    color: var(--text-placeholder);
+  }
+  .text-brand {
+    color: var(--primary);
+  }
+  .text-brand-strong {
+    color: var(--primary-dark);
+  }
+  .text-brand-contrast {
+    color: var(--primary-foreground);
+  }
+  .text-card {
+    color: var(--card-foreground);
+  }
+  .text-popover {
+    color: var(--popover-foreground);
+  }
+  .text-danger {
+    color: var(--destructive);
+  }
+  .text-warning-role {
+    color: var(--warning);
+  }
+  .text-success-role {
+    color: var(--success);
+  }
+  .text-success-contrast {
+    color: var(--success-foreground);
+  }
+  .text-inverse {
+    color: var(--on-dark);
+  }
+  .text-inverse-muted {
+    color: rgb(255 255 255 / 0.6);
+  }
+  .text-inverse-subtle {
+    color: rgb(255 255 255 / 0.4);
+  }
+  .text-inverse-faint {
+    color: rgb(255 255 255 / 0.2);
+  }
+  .mono-text {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+  }
+
+  .surface-page {
+    background-color: var(--page-bg);
+  }
+  .surface-card {
+    background-color: var(--card-bg);
+  }
+  .surface-base {
+    background-color: var(--background);
+  }
+  .surface-popover {
+    background-color: var(--popover);
+  }
+  .surface-transparent {
+    background-color: transparent;
+  }
+  .surface-overlay-strong {
+    background-color: rgb(0 0 0 / 0.8);
+  }
+  .surface-border {
+    background-color: var(--border);
+  }
+  .surface-muted-half {
+    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  }
+  .surface-input {
+    background-color: var(--input);
+  }
+  .surface-muted {
+    background-color: var(--muted);
+  }
+  .surface-muted-soft {
+    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  }
+  .surface-muted-30 {
+    background-color: color-mix(in srgb, var(--muted) 30%, transparent);
+  }
+  .surface-muted-20 {
+    background-color: color-mix(in srgb, var(--muted) 20%, transparent);
+  }
+  .surface-muted-40 {
+    background-color: color-mix(in srgb, var(--muted) 40%, transparent);
+  }
+  .surface-secondary {
+    background-color: var(--secondary);
+  }
+  .surface-secondary-80 {
+    background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+  }
+  .surface-accent {
+    background-color: var(--accent);
+  }
+  .surface-accent-50 {
+    background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+  .surface-brand {
+    background-color: var(--primary);
+  }
+  .surface-brand-translucent {
+    background-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+  .surface-brand-overlay {
+    background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+  .surface-brand-soft {
+    background-color: var(--primary-light);
+  }
+  .surface-brand-soft-10 {
+    background-color: color-mix(in srgb, var(--primary-light) 10%, transparent);
+  }
+  .surface-brand-soft-30 {
+    background-color: color-mix(in srgb, var(--primary-light) 30%, transparent);
+  }
+  .surface-brand-soft-50 {
+    background-color: color-mix(in srgb, var(--primary-light) 50%, transparent);
+  }
+  .surface-brand-soft-80 {
+    background-color: color-mix(in srgb, var(--primary-light) 80%, transparent);
+  }
+  .surface-page-soft {
+    background-color: color-mix(in srgb, var(--page-bg) 50%, transparent);
+  }
+  .surface-danger {
+    background-color: var(--destructive);
+  }
+  .surface-danger-soft-hover:hover {
+    background-color: color-mix(in srgb, var(--destructive) 5%, transparent);
+  }
+  .surface-success {
+    background-color: var(--success);
+  }
+  .surface-warning {
+    background-color: var(--warning);
+  }
+  .surface-warning-mid {
+    background-color: var(--warning-mid);
+  }
+  .surface-success-soft {
+    background-color: var(--success-bg);
+  }
+  .surface-brand-soft-hover:hover {
+    background-color: var(--primary-light);
+  }
+  .surface-brand-soft-10-hover:hover {
+    background-color: color-mix(in srgb, var(--primary-light) 10%, transparent);
+  }
+  .surface-brand-soft-80-hover:hover {
+    background-color: color-mix(in srgb, var(--primary-light) 80%, transparent);
+  }
+  .surface-brand-strong-hover:hover {
+    background-color: var(--primary-dark);
+  }
+  .surface-success-soft-hover:hover {
+    background-color: var(--success-bg);
+  }
+  .align-text-left {
+    text-align: left;
+  }
+  .align-text-center {
+    text-align: center;
+  }
+  .align-text-right {
+    text-align: right;
+  }
+  .auth-gradient {
+    background-image: linear-gradient(
+      to bottom right,
+      var(--auth-gradient-start),
+      var(--auth-gradient-mid),
+      var(--auth-gradient-end)
+    );
+  }
+  .auth-glass-panel {
+    background-color: var(--auth-glass-bg);
+    border-color: var(--auth-glass-border);
+  }
+  .auth-glass-card {
+    background-color: var(--auth-glass-soft-bg);
+    border-color: var(--auth-glass-border);
+  }
+  .auth-brand-glow {
+    background-color: var(--auth-brand-glow-alt);
+  }
+  .auth-brand-glow-alt {
+    background-color: var(--auth-brand-glow);
+  }
+  .border-brand {
+    border-color: var(--primary);
+  }
+  .border-start-brand {
+    border-left-color: var(--primary);
+  }
+  .border-start-danger {
+    border-left-color: var(--destructive);
+  }
+  .border-brand-soft {
+    border-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  }
+  .border-brand-muted {
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  }
+  .border-danger-soft {
+    border-color: color-mix(in srgb, var(--destructive) 20%, transparent);
+  }
+  .border-danger-muted {
+    border-color: color-mix(in srgb, var(--destructive) 30%, transparent);
+  }
+  .border-warning-soft {
+    border-color: color-mix(in srgb, var(--warning) 20%, transparent);
+  }
+  .border-success-soft {
+    border-color: color-mix(in srgb, var(--success) 20%, transparent);
+  }
+  .border-success-muted {
+    border-color: color-mix(in srgb, var(--success) 30%, transparent);
+  }
+  .border-subtle {
+    border-color: color-mix(in srgb, var(--border) 50%, transparent);
+  }
+  .border-faint {
+    border-color: color-mix(in srgb, var(--border) 40%, transparent);
+  }
+  .border-card-surface {
+    border-color: var(--card-bg);
+  }
+  .corner-rounded-bottom-xl {
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+  }
+  .brand-corner-accent {
+    border-bottom-left-radius: 100px;
+  }
+  .border-glass {
+    border-color: var(--auth-glass-border);
+  }
+  .border-glass-strong {
+    border-color: var(--auth-glass-strong-border);
+  }
+  .ring-brand-soft {
+    --tw-ring-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  }
+  .ring-brand-light {
+    --tw-ring-color: var(--primary-light);
+  }
+  .ring-surface-card {
+    --tw-ring-color: var(--card-bg);
+  }
+  .focus-brand-field:focus,
+  .focus-brand-field:focus-visible {
+    border-color: var(--primary);
+    --tw-ring-color: var(--primary);
+  }
+  .surface-warning-soft {
+    background-color: color-mix(in srgb, var(--warning-bg) 20%, transparent);
+  }
+  .toast-action-danger-border {
+    border-color: color-mix(in srgb, var(--muted) 40%, transparent);
+  }
+  .toast-action-danger-border-hover:hover {
+    border-color: color-mix(in srgb, var(--destructive) 30%, transparent);
+  }
+  .destructive .toast-action {
+    border-color: color-mix(in srgb, var(--muted) 40%, transparent);
+  }
+  .destructive .toast-action:hover {
+    border-color: color-mix(in srgb, var(--destructive) 30%, transparent);
+  }
+  .destructive .toast-action:focus {
+    --tw-ring-color: var(--destructive);
+  }
+  .destructive .toast-close:focus {
+    --tw-ring-color: var(--destructive);
+    --tw-ring-offset-color: var(--destructive);
+  }
+  .chart-frame {
+    color: var(--text-muted);
+  }
+  .chart-indicator {
+    background-color: var(--color-bg);
+    border-color: var(--color-border);
+  }
+  .chart-indicator-dashed {
+    border-width: 1.5px;
+  }
+  .chart-frame .recharts-cartesian-axis-tick text {
+    fill: var(--text-muted);
+  }
+  .chart-frame .recharts-cartesian-grid line[stroke="#ccc"],
+  .chart-frame .recharts-polar-grid [stroke="#ccc"],
+  .chart-frame .recharts-reference-line [stroke="#ccc"] {
+    stroke: color-mix(in srgb, var(--border) 50%, transparent);
+  }
+  .chart-frame .recharts-curve.recharts-tooltip-cursor {
+    stroke: var(--border);
+  }
+  .chart-frame .recharts-dot[stroke="#fff"],
+  .chart-frame .recharts-sector[stroke="#fff"] {
+    stroke: transparent;
+  }
+  .chart-frame .recharts-radial-bar-background-sector,
+  .chart-frame .recharts-rectangle.recharts-tooltip-cursor {
+    fill: var(--muted);
+  }
+  .chart-frame .recharts-layer,
+  .chart-frame .recharts-sector,
+  .chart-frame .recharts-surface {
+    outline: none;
+  }
+  .shadow-brand-soft {
+    box-shadow: 0 10px 15px -3px var(--brand-shadow-soft);
+  }
+  .shadow-brand {
+    box-shadow: 0 10px 15px -3px var(--brand-shadow);
+  }
+  .shadow-brand-faint {
+    box-shadow: 0 10px 15px -3px var(--brand-shadow-faint);
+  }
+  .bell-spinner {
+    border-color: var(--card-bg);
+    border-top-color: var(--primary);
+  }
+  .surface-hover:hover {
+    background-color: var(--page-bg);
+  }
+  .surface-accent-hover:hover {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+  .text-accent-contrast {
+    color: var(--accent-foreground);
+  }
+  .text-secondary-contrast {
+    color: var(--secondary-foreground);
+  }
+  .text-danger-contrast {
+    color: var(--destructive-foreground);
+  }
+  .text-danger-muted {
+    color: var(--status-overdue-text);
+  }
+  .text-danger-light {
+    color: color-mix(in srgb, var(--destructive-foreground) 90%, var(--destructive));
+  }
+  .text-faint-half {
+    color: color-mix(in srgb, var(--text-muted) 50%, transparent);
+  }
 
   /* ── Font sizes outside Tailwind's default scale ─────────────────────── */
   .text-4xs {
@@ -413,6 +824,36 @@
     font-weight: var(--font-weight-medium);
     line-height: var(--leading-base);
   }
+  .field-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--leading-base);
+  }
+  .menu-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-tight);
+  }
+  .toast-title-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+  .toast-description-text {
+    font-size: var(--font-size-sm);
+  }
+  .ui-xs {
+    font-size: var(--font-size-xs);
+  }
+  .ui-sm {
+    font-size: var(--font-size-sm);
+  }
+  .ui-font-normal {
+    font-weight: var(--font-weight-normal);
+  }
+  .calendar-weekday-text {
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-normal);
+  }
 
   /* ── Label / section-header combos ──────────────────────────────────── */
   .label-caps {
@@ -427,6 +868,33 @@
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     letter-spacing: var(--tracking-label-wide);
+  }
+  .label-caps-tight {
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .case-title {
+    text-transform: capitalize;
+  }
+  .case-upper {
+    text-transform: uppercase;
+  }
+  .tracking-label {
+    letter-spacing: var(--tracking-label);
+  }
+  .tracking-label-wide {
+    letter-spacing: var(--tracking-label-wide);
+  }
+  .leading-copy {
+    line-height: var(--leading-base);
+  }
+  .leading-title {
+    line-height: var(--leading-tight);
+  }
+  .leading-compact {
+    line-height: var(--leading-snug);
   }
 
   /* ── Reusable card / table shells ────────────────────────────────────── */
@@ -443,6 +911,16 @@
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
+  }
+  .table-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-secondary);
+  }
+  .table-title-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
   }
 
   /* ── Pill colour variants ─────────────────────────────────────────────── */
@@ -479,6 +957,86 @@
   .form-input {
     border-color: var(--input-border);
     border-radius: var(--radius);
+  }
+  .icon-button {
+    border-radius: 999px;
+    color: var(--text-secondary);
+    transition-property: color, background-color, border-color;
+    transition-duration: 150ms;
+  }
+  .icon-button:hover {
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+  }
+  .notification-dot {
+    border-radius: 999px;
+    background-color: var(--destructive);
+    border: 2px solid var(--card-bg);
+  }
+
+  .profile-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-main);
+    line-height: 1.3;
+  }
+  .profile-email {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-faint);
+    line-height: 1.3;
+  }
+  .profile-logout {
+    color: var(--destructive) !important;
+  }
+  .profile-logout:hover {
+    background-color: color-mix(in srgb, var(--destructive) 10%, transparent) !important;
+    color: var(--destructive) !important;
+  }
+  .icon-class-global-margin {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .app-sidebar {
+    background-color: var(--sidebar);
+  }
+  .app-sidebar-link {
+    color: color-mix(in srgb, var(--sidebar-foreground) 50%, transparent);
+  }
+  .app-sidebar-link:hover {
+    background-color: color-mix(in srgb, var(--sidebar-accent) 60%, transparent);
+    color: var(--sidebar-foreground);
+  }
+  .app-sidebar-link-active {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-foreground);
+  }
+  .app-sidebar-logo {
+    background-color: var(--sidebar-primary);
+    color: var(--sidebar-foreground);
+  }
+  .app-sidebar-text {
+    color: var(--sidebar-foreground);
+  }
+  .app-sidebar-text-muted {
+    color: color-mix(in srgb, var(--sidebar-foreground) 50%, transparent);
+  }
+  .app-sidebar-text-soft {
+    color: color-mix(in srgb, var(--sidebar-foreground) 70%, transparent);
+  }
+  .app-sidebar-text-faint {
+    color: color-mix(in srgb, var(--sidebar-foreground) 30%, transparent);
+  }
+  .app-sidebar-text-dim {
+    color: color-mix(in srgb, var(--sidebar-foreground) 40%, transparent);
+  }
+  .app-sidebar-text-hover:hover {
+    color: var(--sidebar-foreground);
+  }
+  .app-sidebar-panel {
+    background-color: var(--sidebar-accent);
   }
 
   /* ── Glass effect ─────────────────────────────────────────────────────── */

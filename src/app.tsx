@@ -3,24 +3,25 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
 
-import { AppLayout } from "./components/layout/AppLayout";
+import { AppLayout } from "./components/layout/app-layout";
 import { TooltipProvider } from "./components/ui/tooltip";
 
-import { LoginPage } from "./pages/auth/LoginPage";
-import { RegisterPage } from "./pages/auth/RegisterPage";
-import { SetupPasswordPage } from "./pages/auth/SetupPasswordPage";
-import { DashboardPage } from "./pages/DashboardPage";
-import { CustomersPage } from "./pages/customers/CustomersPage";
-import { CustomerDetailPage } from "./pages/customers/CustomerDetailPage";
-import { SalesPage } from "./pages/sales/SalesPage";
-import { NewSalePage } from "./pages/sales/NewSalePage";
-import { SaleDetailPage } from "./pages/sales/SaleDetailPage";
-import { OverduePage } from "./pages/OverduePage";
-import { ProductsPage } from "./pages/ProductsPage";
-import { ReportsPage } from "./pages/ReportsPage";
-import { SettingsPage } from "./pages/settings/SettingsPage";
-import { UsersPage } from "./pages/UsersPage";
-import { ButtonsPage } from "./pages/ButtonsPage";
+import { LoginPage } from "./pages/auth/login-page";
+import { RegisterPage } from "./pages/auth/register-page";
+import { SetupPasswordPage } from "./pages/auth/setup-password-page";
+import { DashboardPage } from "./pages/dashboard-page";
+import { CustomersPage } from "./pages/customers/customers-page";
+import { CustomerDetailPage } from "./pages/customers/customer-detail-page";
+import { SalesPage } from "./pages/sales/sales-page";
+import { NewSalePage } from "./pages/sales/new-sale-page";
+import { SaleDetailPage } from "./pages/sales/sale-detail-page";
+import { OverduePage } from "./pages/overdue-page";
+import { ProductsPage } from "./pages/products-page";
+import { ReportsPage } from "./pages/reports-page";
+import { SettingsPage } from "./pages/settings/settings-page";
+import { ProfilePage } from "./pages/settings/profile-page";
+import { UsersPage } from "./pages/users-page";
+import { ButtonsPage } from "./pages/buttons-page";
 
 import { useThemeStore } from "./store/theme.store";
 
@@ -54,12 +55,13 @@ export default function App() {
             <Route path="users" element={<UsersPage />} />
             <Route path="buttons" element={<ButtonsPage />} />
             <Route path="settings" element={<SettingsPage />} />
+            <Route path="settings/profile" element={<ProfilePage />} />
           </Route>
 
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        <Toaster position="top-right" richColors closeButton />
+        <Toaster position="top-center" richColors closeButton />
       </TooltipProvider>
     </BrowserRouter>
   );

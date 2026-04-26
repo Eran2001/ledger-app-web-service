@@ -16,7 +16,7 @@ export const InitialsAvatar: React.FC<InitialsAvatarProps> = ({ name, size = 'md
 
   return (
     <div className={cn(
-      "flex items-center justify-center rounded-full bg-primary text-primary-foreground shrink-0",
+      "flex items-center justify-center circle-rounded surface-brand text-brand-contrast shrink-0",
       sizeClasses[size],
       className
     )}>

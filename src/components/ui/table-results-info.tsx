@@ -15,7 +15,7 @@ export function TableResultsInfo({
   const end = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <p className="text-sm text-muted-foreground whitespace-nowrap">
+    <p className="ui-sm text-faint whitespace-nowrap">
       Showing {start} to {end} of {totalItems} results
     </p>
   );

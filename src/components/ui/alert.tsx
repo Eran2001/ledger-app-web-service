@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const alertVariants = cva("relative w-full global-rounded border p-4", {
   variants: {
     variant: {
-      default: "bg-card text-card-foreground border-border",
+      default: "surface-card text-card border-border",
       error: "status-error",
       success: "status-success",
       warning: "status-warning",
@@ -14,8 +14,8 @@ const alertVariants = cva("relative w-full global-rounded border p-4", {
       destructive: "",
     },
     size: {
-      sm: "text-xs",
-      md: "text-sm",
+      sm: "ui-xs",
+      md: "ui-sm",
     },
   },
   defaultVariants: {
@@ -59,7 +59,7 @@ const AlertDescription = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "alert-description [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:leading-relaxed",
+      "alert-description [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:leading-copy",
       className,
     )}
     {...props}

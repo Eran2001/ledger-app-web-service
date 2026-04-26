@@ -54,7 +54,7 @@ const PaginationLink = ({
         size,
       }),
       "global-rounded h-9 w-9",
-      isActive && "text-primary-foreground",
+      isActive && "text-brand-contrast",
       className,
     )}
     {...props}

@@ -52,8 +52,8 @@ export function DatePickerInput({
             variant="outline"
             disabled={disabled}
             className={cn(
-              "w-full justify-between text-left font-normal",
-              !value && "text-muted-foreground",
+              "w-full justify-between align-text-left ui-font-normal",
+              !value && "text-faint",
             )}
           >
             {value ? formatDate(value) : placeholder}

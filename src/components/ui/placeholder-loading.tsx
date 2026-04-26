@@ -18,7 +18,7 @@ interface PlaceHolderLoadingProps {
 }
 
 const StatCardSkeleton = () => (
-  <Card className="border-l-4 border-l-muted shadow-card">
+  <Card className="border-l-4 border-faint shadow-card">
     <CardContent className="py-4 px-4 flex flex-row items-center justify-between gap-4">
       <div className="flex flex-col gap-2 flex-1">
         <Skeleton className="h-3 w-24" />

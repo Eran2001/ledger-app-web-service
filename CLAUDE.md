@@ -515,6 +515,9 @@ CODE RULES — ENFORCE THESE ALWAYS
 - tenant_id is NEVER trusted from req.body or req.params —
   always from req.tenantId (set by auth middleware from JWT)
 - Never commit secrets — all config via .env
+- Do not run npm run build unless explicitly requested by the user.
+- Do not keep generated build output folders in the repo. Remove dist after
+  accidental/local build runs.
 - Prefer explicit over clever — no magic
 - LKR amounts stored as integers, formatted at display layer only
 - Permissions checked in middleware, never in service functions
