@@ -11,8 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import * as Icon from "@/components/icons";
 import { Input } from "@/components/ui/input";
-import { Timer } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type DurationUnit = "hours" | "days" | "weeks";
@@ -69,7 +69,7 @@ export function DurationPicker({ value, onChange, className, disabled, min = 1 }
           )}
         >
           <span>{formatDisplay(safe.amount, safe.unit)}</span>
-          <Timer className="h-4 w-4 text-faint" />
+          <Icon.Timer className="h-4 w-4 text-faint" />
         </div>
       </PopoverTrigger>
 

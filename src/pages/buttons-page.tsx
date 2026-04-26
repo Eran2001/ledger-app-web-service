@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Plus,
-  ArrowRight,
-  Download,
-  Trash2,
-  Send,
-  Settings,
-  ChevronRight,
-  Mail,
-} from "lucide-react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 
@@ -112,16 +103,16 @@ export const ButtonsPage: React.FC = () => {
               <div className="mt-3">
                 <BtnRow label="Icon">
                   <Button size="icon">
-                    <Settings />
+                    <Icon.Settings />
                   </Button>
                   <Button size="icon" variant="outline">
-                    <Download />
+                    <Icon.Download />
                   </Button>
                   <Button size="icon" variant="ghost">
-                    <Trash2 />
+                    <Icon.Trash2 />
                   </Button>
                   <Button size="icon" variant="destructive">
-                    <Trash2 />
+                    <Icon.Trash2 />
                   </Button>
                 </BtnRow>
               </div>
@@ -134,32 +125,32 @@ export const ButtonsPage: React.FC = () => {
               </p>
               <BtnRow label="Leading icon">
                 <Button>
-                  <Plus /> New Sale
+                  <Icon.Plus /> New Sale
                 </Button>
                 <Button variant="outline">
-                  <Download /> Export
+                  <Icon.Download /> Export
                 </Button>
                 <Button variant="secondary">
-                  <Mail /> Send Email
+                  <Icon.Mail /> Send Email
                 </Button>
               </BtnRow>
               <div className="mt-3">
                 <BtnRow label="Trailing icon">
                   <Button>
-                    Continue <ChevronRight />
+                    Continue <Icon.ChevronRight />
                   </Button>
                   <Button variant="outline">
-                    View All <ArrowRight />
+                    View All <Icon.ArrowRight />
                   </Button>
                 </BtnRow>
               </div>
               <div className="mt-3">
                 <BtnRow label="Both icons">
                   <Button>
-                    <Send /> Send <ChevronRight />
+                    <Icon.Send /> Send <Icon.ChevronRight />
                   </Button>
                   <Button variant="destructive">
-                    <Trash2 /> Delete <ChevronRight />
+                    <Icon.Trash2 /> Delete <Icon.ChevronRight />
                   </Button>
                 </BtnRow>
               </div>
@@ -191,14 +182,14 @@ export const ButtonsPage: React.FC = () => {
               <div className="mt-3">
                 <BtnRow label="Toggle demo">
                   <Button loading={loading} onClick={triggerLoad}>
-                    <Send /> {loading ? "Sending…" : "Click to Load"}
+                    <Icon.Send /> {loading ? "Sending…" : "Click to Load"}
                   </Button>
                   <Button
                     loading={loading}
                     variant="outline"
                     onClick={triggerLoad}
                   >
-                    <Download /> {loading ? "Exporting…" : "Export"}
+                    <Icon.Download /> {loading ? "Exporting…" : "Export"}
                   </Button>
                 </BtnRow>
               </div>
@@ -236,17 +227,17 @@ export const ButtonsPage: React.FC = () => {
               </p>
               <div className="max-w-sm space-y-3">
                 <Button className="w-full">
-                  <Plus /> Create New Sale
+                  <Icon.Plus /> Create New Sale
                 </Button>
                 <Button className="w-full" variant="outline">
-                  <Download /> Export Report
+                  <Icon.Download /> Export Report
                 </Button>
                 <Button
                   className="w-full"
                   loading={loading}
                   onClick={triggerLoad}
                 >
-                  <Send /> {loading ? "Processing…" : "Submit & Send"}
+                  <Icon.Send /> {loading ? "Processing…" : "Submit & Send"}
                 </Button>
               </div>
             </div>

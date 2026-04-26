@@ -1,7 +1,7 @@
 import React from "react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
-import { UserPlus } from "lucide-react";
 
 export const UsersPage: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ export const UsersPage: React.FC = () => {
         pageSubtitle="Internal team members"
         primaryAction={
           <Button>
-            <UserPlus className="w-4 h-4 mr-2" />
+            <Icon.UserPlus className="w-4 h-4 mr-2" />
             Invite User
           </Button>
         }

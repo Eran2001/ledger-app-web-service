@@ -1,19 +1,5 @@
 import React, { useState } from "react";
-import {
-  Users,
-  MessageCircle,
-  Building2,
-  Plus,
-  Edit2,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-  Upload,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-} from "lucide-react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,9 +21,9 @@ export const SettingsPage: React.FC = () => {
         {/* Sub-tabs */}
         <div className="border-b border-border mb-8 flex gap-10 px-2 overflow-x-auto no-scrollbar">
           {[
-            { id: "users", label: "Users & Roles", icon: Users },
-            { id: "whatsapp", label: "WhatsApp API", icon: MessageCircle },
-            { id: "business", label: "Business Info", icon: Building2 },
+            { id: "users", label: "Users & Roles", icon: Icon.Users },
+            { id: "whatsapp", label: "WhatsApp API", icon: Icon.MessageCircle },
+            { id: "business", label: "Business Info", icon: Icon.Building2 },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -68,7 +54,7 @@ export const SettingsPage: React.FC = () => {
                     variant="outline"
                     className="h-9 border-brand text-brand fw-bold t-caption surface-brand-soft-hover"
                   >
-                    <Plus className="w-3.5 h-3.5 mr-1" />
+                    <Icon.Plus className="w-3.5 h-3.5 mr-1" />
                     Invite User
                   </Button>
                 </div>
@@ -129,7 +115,7 @@ export const SettingsPage: React.FC = () => {
                           </td>
                           <td className="px-5 py-4 align-text-right">
                             <button className="text-faint hover:text-brand transition-colors p-1">
-                              <Edit2 className="w-4 h-4" />
+                              <Icon.Edit2 className="w-4 h-4" />
                             </button>
                           </td>
                         </tr>
@@ -144,7 +130,7 @@ export const SettingsPage: React.FC = () => {
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="t-title text-main">Pending Approvals</h3>
                   <div className="pill-amber t-micro fw-bold px-3 py-1 global-rounded flex items-center gap-1.5 border border-warning-soft shadow-sm animate-pulse">
-                    <AlertCircle className="w-3 h-3" />
+                    <Icon.AlertCircle className="w-3 h-3" />
                     {pendingRegistrations.length} Requests Pending
                   </div>
                 </div>
@@ -170,10 +156,10 @@ export const SettingsPage: React.FC = () => {
                           </div>
                           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-0.5">
                             <span className="t-micro text-soft flex items-center gap-1 fw-medium">
-                              <Mail className="w-3 h-3 text-faint" /> {p.email}
+                              <Icon.Mail className="w-3 h-3 text-faint" /> {p.email}
                             </span>
                             <span className="t-micro text-soft flex items-center gap-1 fw-medium">
-                              <Clock className="w-3 h-3 text-faint" />{" "}
+                              <Icon.Clock className="w-3 h-3 text-faint" />{" "}
                               {p.requestedAt}
                             </span>
                           </div>
@@ -238,23 +224,23 @@ export const SettingsPage: React.FC = () => {
                           </td>
                           <td className="py-3 px-2 align-text-center surface-brand-soft-10">
                             {perm.a ? (
-                              <CheckCircle className="w-4 h-4 text-success-role mx-auto" />
+                              <Icon.CheckCircle className="w-4 h-4 text-success-role mx-auto" />
                             ) : (
-                              <XCircle className="w-4 h-4 text-faint mx-auto" />
+                              <Icon.XCircle className="w-4 h-4 text-faint mx-auto" />
                             )}
                           </td>
                           <td className="py-3 px-2 align-text-center">
                             {perm.s ? (
-                              <CheckCircle className="w-4 h-4 text-success-role mx-auto" />
+                              <Icon.CheckCircle className="w-4 h-4 text-success-role mx-auto" />
                             ) : (
-                              <XCircle className="w-4 h-4 text-faint mx-auto" />
+                              <Icon.XCircle className="w-4 h-4 text-faint mx-auto" />
                             )}
                           </td>
                           <td className="py-3 px-2 align-text-center">
                             {perm.v ? (
-                              <CheckCircle className="w-4 h-4 text-success-role mx-auto" />
+                              <Icon.CheckCircle className="w-4 h-4 text-success-role mx-auto" />
                             ) : (
-                              <XCircle className="w-4 h-4 text-faint mx-auto" />
+                              <Icon.XCircle className="w-4 h-4 text-faint mx-auto" />
                             )}
                           </td>
                         </tr>
@@ -274,7 +260,7 @@ export const SettingsPage: React.FC = () => {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 modal-rounded surface-success-soft flex items-center justify-center text-success-role group relative shadow-inner overflow-hidden">
-                    <MessageCircle className="w-8 h-8 relative z-10" />
+                    <Icon.MessageCircle className="w-8 h-8 relative z-10" />
                     <div className="absolute inset-0 surface-success-soft scale-0 group-hover:scale-100 transition-transform duration-500"></div>
                   </div>
                   <div className="flex flex-col">
@@ -349,7 +335,7 @@ export const SettingsPage: React.FC = () => {
               <h3 className="t-title text-main mb-4">Send Test Message</h3>
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-1">
-                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+                  <Icon.Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
                   <Input
                     placeholder="+94 77 XXX XXXX"
                     className="pl-10 h-12 border-border"
@@ -375,7 +361,7 @@ export const SettingsPage: React.FC = () => {
                 <div className="relative w-24 h-24 auth-rounded surface-brand-soft border-2 border-dashed border-brand-muted flex flex-col items-center justify-center cursor-pointer group surface-brand-soft-80-hover transition-all shadow-xl shadow-brand-faint">
                   <span className="t-hero fw-black text-brand italic">ST</span>
                   <div className="absolute inset-0 flex items-center justify-center surface-brand-overlay auth-rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Upload className="w-6 h-6 text-brand" />
+                    <Icon.Upload className="w-6 h-6 text-brand" />
                   </div>
                 </div>
                 <h4 className="mt-4 t-body fw-bold text-soft">Logo Upload</h4>
@@ -391,7 +377,7 @@ export const SettingsPage: React.FC = () => {
                       Store Name
                     </label>
                     <div className="relative">
-                      <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+                      <Icon.Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
                       <Input
                         defaultValue="Silva Traders"
                         className="h-11 pl-10 border-border"
@@ -419,7 +405,7 @@ export const SettingsPage: React.FC = () => {
                       Email Address
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+                      <Icon.Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
                       <Input
                         defaultValue="info@silvatraders.lk"
                         className="h-11 pl-10 border-border"
@@ -431,7 +417,7 @@ export const SettingsPage: React.FC = () => {
                       Phone Number
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+                      <Icon.Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
                       <Input
                         defaultValue="+94 37 222 3456"
                         className="h-11 pl-10 border-border"
@@ -443,7 +429,7 @@ export const SettingsPage: React.FC = () => {
                       Store Address
                     </label>
                     <div className="relative">
-                      <MapPin className="absolute left-3 top-3 w-4 h-4 text-faint" />
+                      <Icon.MapPin className="absolute left-3 top-3 w-4 h-4 text-faint" />
                       <Textarea
                         defaultValue="45 Kandy Road, Kurunegala"
                         className="min-h-20 pl-10 border-border resize-none pt-2.5"

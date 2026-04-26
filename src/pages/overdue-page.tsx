@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Search, FileDown, MessageSquare } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,11 +74,11 @@ export const OverduePage: React.FC = () => {
         primaryAction={
           <div className="flex gap-2">
             <Button variant="outline" className="h-10 border-border">
-              <FileDown className="w-4 h-4 mr-2" />
+              <Icon.FileDown className="w-4 h-4 mr-2" />
               Export
             </Button>
             <Button className="surface-brand surface-brand-strong-hover">
-              <MessageSquare className="w-4 h-4 mr-2" />
+              <Icon.MessageSquare className="w-4 h-4 mr-2" />
               Send All Reminders
             </Button>
           </div>
@@ -148,7 +148,7 @@ export const OverduePage: React.FC = () => {
           </div>
 
           <div className="relative max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
             <Input
               placeholder="Search by name or product..."
               className="pl-10 h-10 border-border surface-card"
@@ -239,7 +239,7 @@ export const OverduePage: React.FC = () => {
                           size="sm"
                           className="t-caption h-8 border-border text-success-role surface-success-soft-hover"
                         >
-                          <MessageSquare className="w-3.5 h-3.5 mr-1" />
+                          <Icon.MessageSquare className="w-3.5 h-3.5 mr-1" />
                           Remind
                         </Button>
                         <Button

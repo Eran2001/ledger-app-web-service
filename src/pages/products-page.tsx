@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, Plus, Archive, Edit2, Check, X } from "lucide-react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,7 +41,7 @@ export const ProductsPage: React.FC = () => {
         pageSubtitle="Manage product catalog"
         primaryAction={
           <Button>
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon.Plus className="w-4 h-4 mr-2" />
             Add Product
           </Button>
         }
@@ -68,7 +68,7 @@ export const ProductsPage: React.FC = () => {
 
         {/* Search */}
         <div className="mb-4 relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+          <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
           <Input
             placeholder="Search products..."
             className="pl-10 h-10 border-border surface-card"
@@ -186,7 +186,7 @@ export const ProductsPage: React.FC = () => {
                               className="h-8 w-8 p-0 surface-success hover:surface-success"
                               onClick={() => setEditingId(null)}
                             >
-                              <Check className="w-4 h-4" />
+                              <Icon.Check className="w-4 h-4" />
                             </Button>
                             <Button
                               variant="outline"
@@ -194,7 +194,7 @@ export const ProductsPage: React.FC = () => {
                               className="h-8 w-8 p-0 border-border"
                               onClick={() => setEditingId(null)}
                             >
-                              <X className="w-4 h-4" />
+                              <Icon.X className="w-4 h-4" />
                             </Button>
                           </>
                         ) : (
@@ -205,7 +205,7 @@ export const ProductsPage: React.FC = () => {
                               className="h-8 border-border text-faint hover:text-brand"
                               onClick={() => setEditingId(p.id)}
                             >
-                              <Edit2 className="w-3.5 h-3.5 mr-1" />
+                              <Icon.Edit2 className="w-3.5 h-3.5 mr-1" />
                               Edit
                             </Button>
                             <Button
@@ -213,7 +213,7 @@ export const ProductsPage: React.FC = () => {
                               size="sm"
                               className="h-8 border-border text-danger-muted hover:text-danger hover:border-danger-muted"
                             >
-                              <Archive className="w-3.5 h-3.5" />
+                              <Icon.Archive className="w-3.5 h-3.5" />
                             </Button>
                           </>
                         )}

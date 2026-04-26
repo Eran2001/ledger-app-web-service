@@ -1,6 +1,6 @@
 import React from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Plus, ArrowRight } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
@@ -96,7 +96,7 @@ export const DashboardPage: React.FC = () => {
         pageSubtitle="April 2026 overview"
         primaryAction={
           <Button onClick={() => navigate("/sales/new")}>
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon.Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>
         }
@@ -139,7 +139,7 @@ export const DashboardPage: React.FC = () => {
                 onClick={() => navigate("/sales")}
                 className="text-brand t-caption-bold flex items-center gap-1 hover:underline"
               >
-                View All <ArrowRight className="w-3 h-3" />
+                View All <Icon.ArrowRight className="w-3 h-3" />
               </button>
             </div>
             <div className="overflow-x-auto">
@@ -192,7 +192,7 @@ export const DashboardPage: React.FC = () => {
                 onClick={() => navigate("/overdue")}
                 className="text-danger t-caption-bold flex items-center gap-1 hover:underline"
               >
-                Send Reminders <ArrowRight className="w-3 h-3" />
+                Send Reminders <Icon.ArrowRight className="w-3 h-3" />
               </button>
             </div>
             <div className="flex-1 divide-y divide-border">

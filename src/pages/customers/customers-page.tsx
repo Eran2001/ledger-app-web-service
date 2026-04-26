@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Search, Plus, UserX, FileDown } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,7 +64,7 @@ export const CustomersPage: React.FC = () => {
         pageSubtitle="Manage customer records"
         primaryAction={
           <Button>
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon.Plus className="w-4 h-4 mr-2" />
             New Customer
           </Button>
         }
@@ -74,7 +74,7 @@ export const CustomersPage: React.FC = () => {
         {/* Filters Row */}
         <div className="mb-6 flex flex-wrap items-center gap-4">
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
             <Input
               placeholder="Search by name, NIC or phone..."
               className="pl-10 h-10 border-border surface-card"
@@ -108,7 +108,7 @@ export const CustomersPage: React.FC = () => {
             variant="outline"
             className="ml-auto h-10 gap-2 border-border shadow-sm"
           >
-            <FileDown className="w-4 h-4" />
+            <Icon.FileDown className="w-4 h-4" />
             Export
           </Button>
         </div>
@@ -193,7 +193,7 @@ export const CustomersPage: React.FC = () => {
             </div>
           ) : (
             <EmptyState
-              icon={UserX}
+              icon={Icon.UserX}
               title={search ? "No matches found" : "No customers yet"}
               subtitle={
                 search

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle, MessageCircle, Info } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
@@ -81,7 +81,7 @@ export const SaleDetailPage: React.FC = () => {
           onClick={() => navigate("/sales")}
           className="mb-4 t-caption fw-bold text-brand flex items-center gap-1 hover:-translate-x-1 transition-transform"
         >
-          <ArrowLeft className="w-3 h-3" /> Back to list
+          <Icon.ArrowLeft className="w-3 h-3" /> Back to list
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -263,7 +263,7 @@ export const SaleDetailPage: React.FC = () => {
                           Record Payment
                         </Button>
                       ) : (
-                        <CheckCircle className="w-5 h-5 text-success-role ml-auto" />
+                        <Icon.CheckCircle className="w-5 h-5 text-success-role ml-auto" />
                       )}
                     </td>
                   </tr>
@@ -314,7 +314,7 @@ export const SaleDetailPage: React.FC = () => {
                       </div>
                       {p.notes && (
                         <div className="mt-3 p-3 surface-page global-rounded border border-border max-w-sm flex gap-2 items-start">
-                          <Info className="w-3.5 h-3.5 text-faint mt-0.5 shrink-0" />
+                          <Icon.Info className="w-3.5 h-3.5 text-faint mt-0.5 shrink-0" />
                           <p className="t-caption text-soft italic">
                             {p.notes}
                           </p>
@@ -412,7 +412,7 @@ export const SaleDetailPage: React.FC = () => {
                     <div className="surface-page modal-rounded p-5 flex items-center justify-between border border-border mt-4">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 card-rounded surface-success-soft flex items-center justify-center text-success-role">
-                          <MessageCircle className="w-5 h-5" />
+                          <Icon.MessageCircle className="w-5 h-5" />
                         </div>
                         <div className="flex flex-col">
                           <span className="t-body fw-bold text-main">

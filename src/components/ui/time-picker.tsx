@@ -11,9 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Clock } from "lucide-react";
 
 interface TimePickerProps {
   value: string; // "HH:mm" 24h
@@ -76,7 +76,7 @@ export function TimePicker({ value, onChange, className, disabled }: TimePickerP
           )}
         >
           <span>{formatDisplay(hour, minute, period)}</span>
-          <Clock className="h-4 w-4 text-faint" />
+          <Icon.Clock className="h-4 w-4 text-faint" />
         </div>
       </PopoverTrigger>
 

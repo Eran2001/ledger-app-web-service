@@ -1,18 +1,6 @@
 import React from "react";
+import * as Icon from "@/components/icons";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  LayoutDashboard,
-  Users,
-  ShoppingBag,
-  PlusCircle,
-  Package,
-  BarChart3,
-  AlertTriangle,
-  Settings,
-  LogOut,
-  UserCog,
-  MousePointerClick,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth.store";
 import { InitialsAvatar } from "../shared/initials-avatar";
@@ -65,24 +53,24 @@ export const Sidebar: React.FC = () => {
         <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-2">
           Main
         </div>
-        <SidebarItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
-        <SidebarItem to="/customers" icon={Users} label="Customers" />
-        <SidebarItem to="/sales" icon={ShoppingBag} label="Sales" end />
-        <SidebarItem to="/sales/new" icon={PlusCircle} label="New Sale" />
-        <SidebarItem to="/products" icon={Package} label="Products" />
+        <SidebarItem to="/dashboard" icon={Icon.LayoutDashboard} label="Dashboard" />
+        <SidebarItem to="/customers" icon={Icon.Users} label="Customers" />
+        <SidebarItem to="/sales" icon={Icon.ShoppingBag} label="Sales" end />
+        <SidebarItem to="/sales/new" icon={Icon.PlusCircle} label="New Sale" />
+        <SidebarItem to="/products" icon={Icon.Package} label="Products" />
 
         <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-4">
           Finance
         </div>
-        <SidebarItem to="/reports" icon={BarChart3} label="Reports" />
-        <SidebarItem to="/overdue" icon={AlertTriangle} label="Overdue" />
+        <SidebarItem to="/reports" icon={Icon.BarChart3} label="Reports" />
+        <SidebarItem to="/overdue" icon={Icon.AlertTriangle} label="Overdue" />
 
         <div className="label-caps-wide app-sidebar-text-faint px-3 py-2 mt-4">
           System
         </div>
-        <SidebarItem to="/users" icon={UserCog} label="Users" />
-        <SidebarItem to="/buttons" icon={MousePointerClick} label="Buttons" />
-        <SidebarItem to="/settings" icon={Settings} label="Settings" />
+        <SidebarItem to="/users" icon={Icon.UserCog} label="Users" />
+        <SidebarItem to="/buttons" icon={Icon.MousePointerClick} label="Buttons" />
+        <SidebarItem to="/settings" icon={Icon.Settings} label="Settings" />
       </nav>
 
       <div className="p-3 border-t border-sidebar-border mt-auto">
@@ -100,7 +88,7 @@ export const Sidebar: React.FC = () => {
             onClick={handleLogout}
             className="ml-auto app-sidebar-text-dim app-sidebar-text-hover transition-colors"
           >
-            <LogOut className="w-4 h-4" />
+            <Icon.LogOut className="w-4 h-4" />
           </button>
         </div>
       </div>

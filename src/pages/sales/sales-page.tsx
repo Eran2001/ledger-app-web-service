@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Search, Plus, FileDown, FileX } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -71,7 +71,7 @@ export const SalesPage: React.FC = () => {
         pageSubtitle="All installment sales"
         primaryAction={
           <Button onClick={() => navigate("/sales/new")}>
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon.Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>
         }
@@ -103,7 +103,7 @@ export const SalesPage: React.FC = () => {
         {/* Search & Actions */}
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
+            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-faint" />
             <Input
               placeholder="Search by customer or product..."
               className="pl-10 h-10 border-border surface-card"
@@ -130,7 +130,7 @@ export const SalesPage: React.FC = () => {
             variant="outline"
             className="ml-auto h-10 gap-2 border-border shadow-sm"
           >
-            <FileDown className="w-4 h-4" />
+            <Icon.FileDown className="w-4 h-4" />
             Export
           </Button>
         </div>
@@ -225,7 +225,7 @@ export const SalesPage: React.FC = () => {
             </div>
           ) : (
             <EmptyState
-              icon={FileX}
+              icon={Icon.FileX}
               title={search ? "No matches found" : "No sales recorded"}
               subtitle={
                 search

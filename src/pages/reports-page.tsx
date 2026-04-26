@@ -1,5 +1,5 @@
 import React from "react";
-import { FileDown, TrendingUp, TrendingDown } from "lucide-react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
@@ -42,7 +42,7 @@ export const ReportsPage: React.FC = () => {
             variant="outline"
             className="border-border gap-2 fw-bold shadow-sm h-10"
           >
-            <FileDown className="w-4 h-4" />
+            <Icon.FileDown className="w-4 h-4" />
             Export PDF
           </Button>
         }
@@ -56,7 +56,7 @@ export const ReportsPage: React.FC = () => {
             value="LKR 248,500"
             sub={
               <div className="flex items-center gap-1 t-micro fw-bold text-success-role">
-                <TrendingUp className="w-3 h-3" /> +8.4% vs prev 6m
+                <Icon.TrendingUp className="w-3 h-3" /> +8.4% vs prev 6m
               </div>
             }
           />
@@ -86,7 +86,7 @@ export const ReportsPage: React.FC = () => {
             value="LKR 8,200"
             sub={
               <div className="flex items-center gap-1 t-micro fw-bold text-danger">
-                <TrendingDown className="w-3 h-3" /> 2.6% of total book
+                <Icon.TrendingDown className="w-3 h-3" /> 2.6% of total book
               </div>
             }
           />

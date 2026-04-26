@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Plus, Calculator, Minus, ArrowLeft } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,7 +65,7 @@ export const NewSalePage: React.FC = () => {
           onClick={() => navigate("/sales")}
           className="mb-4 t-caption fw-bold text-brand flex items-center gap-1 hover:-translate-x-1 transition-transform"
         >
-          <ArrowLeft className="w-3 h-3" /> Back to sales
+          <Icon.ArrowLeft className="w-3 h-3" /> Back to sales
         </button>
 
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-8">
@@ -164,7 +164,7 @@ export const NewSalePage: React.FC = () => {
                         className="w-11 h-11 border-border shrink-0"
                         onClick={() => setMonths(Math.max(1, months - 1))}
                       >
-                        <Minus className="w-4 h-4" />
+                        <Icon.Minus className="w-4 h-4" />
                       </Button>
                       <Input
                         type="number"
@@ -177,7 +177,7 @@ export const NewSalePage: React.FC = () => {
                         className="w-11 h-11 border-border shrink-0"
                         onClick={() => setMonths(months + 1)}
                       >
-                        <Plus className="w-4 h-4" />
+                        <Icon.Plus className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
@@ -214,7 +214,7 @@ export const NewSalePage: React.FC = () => {
           <div className="xl:col-span-2 space-y-6">
             <div className="surface-card modal-rounded border border-border p-6 shadow-sm sticky top-6">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border">
-                <Calculator className="w-5 h-5 text-brand" />
+                <Icon.Calculator className="w-5 h-5 text-brand" />
                 <h3 className="t-title text-main">Installment Preview</h3>
               </div>
 

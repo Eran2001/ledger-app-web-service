@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { Plus, ArrowLeft } from "lucide-react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
@@ -37,7 +37,7 @@ export const CustomerDetailPage: React.FC = () => {
         pageSubtitle="Customer Profile"
         primaryAction={
           <Button onClick={() => navigate("/sales/new")}>
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon.Plus className="w-4 h-4 mr-2" />
             New Sale
           </Button>
         }
@@ -48,7 +48,7 @@ export const CustomerDetailPage: React.FC = () => {
           onClick={() => navigate("/customers")}
           className="mb-4 t-caption fw-bold text-brand flex items-center gap-1 hover:-translate-x-1 transition-transform"
         >
-          <ArrowLeft className="w-3 h-3" /> Back to list
+          <Icon.ArrowLeft className="w-3 h-3" /> Back to list
         </button>
 
         {/* Profile Header Card */}

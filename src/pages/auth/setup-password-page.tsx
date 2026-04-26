@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import * as Icon from "@/components/icons";
 import { useNavigate } from 'react-router-dom'
-import { ShieldCheck, CheckCircle } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -28,7 +28,7 @@ export const SetupPasswordPage: React.FC = () => {
       <div className="surface-card w-full max-w-110 auth-rounded shadow-2xl p-8 lg:p-12 animate-in fade-in zoom-in duration-500">
         <div className="flex flex-col items-center align-text-center">
           <div className="w-16 h-16 circle-rounded surface-brand flex items-center justify-center mb-6 shadow-xl shadow-brand">
-            <ShieldCheck className="w-9 h-9 text-inverse" />
+            <Icon.ShieldCheck className="w-9 h-9 text-inverse" />
           </div>
 
           <h2 className="t-kpi text-main">Set up your password</h2>
@@ -85,7 +85,7 @@ export const SetupPasswordPage: React.FC = () => {
                 />
                 {password.length >= 8 && (
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <CheckCircle className="w-5 h-5 text-success-role" />
+                    <Icon.CheckCircle className="w-5 h-5 text-success-role" />
                   </div>
                 )}
               </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import * as Icon from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff, BarChart3, Bell, FileText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/auth.store";
@@ -79,7 +79,7 @@ export const LoginPage: React.FC = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-faint hover:text-soft"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? <Icon.EyeOff className="w-5 h-5" /> : <Icon.Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
@@ -129,17 +129,17 @@ export const LoginPage: React.FC = () => {
 
           <div className="space-y-4 pr-12">
             <FeatureCard
-              icon={BarChart3}
+              icon={Icon.BarChart3}
               title="Real-time Tracking"
               subtitle="Monitor installments and payments instantly across your entire customer base."
             />
             <FeatureCard
-              icon={Bell}
+              icon={Icon.Bell}
               title="Smart Notifications"
               subtitle="Automated WhatsApp alerts sent on every payment and upcoming due date."
             />
             <FeatureCard
-              icon={FileText}
+              icon={Icon.FileText}
               title="Complete Reports"
               subtitle="Detailed monthly collection rates and overdue analysis for better financial planning."
             />

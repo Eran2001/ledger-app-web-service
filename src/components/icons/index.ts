@@ -163,4 +163,15 @@ export {
   Mail,
   Star,
   ScanText,
+  ShoppingBag,
+  UserCog,
+  FileDown,
+  Edit2,
+  MessageCircle,
+  UserX,
+  Calculator,
+  Minus,
+  Timer,
 } from "lucide-react";
+
+export type { LucideIcon } from "lucide-react";

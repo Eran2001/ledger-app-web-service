@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import * as Icon from "@/components/icons";
 import { useNavigate } from 'react-router-dom'
-import { ChevronLeft, CheckCircle, Clock } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
@@ -31,7 +31,7 @@ export const RegisterPage: React.FC = () => {
                 onClick={() => navigate('/login')}
                 className="flex items-center gap-1 text-brand fw-semibold t-body mb-12 hover:-translate-x-1 transition-transform"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <Icon.ChevronLeft className="w-4 h-4" />
                 Back to sign in
               </button>
 
@@ -85,7 +85,7 @@ export const RegisterPage: React.FC = () => {
           ) : (
             <div className="flex flex-col items-center align-text-center animate-in fade-in zoom-in duration-500">
               <div className="w-20 h-20 circle-rounded surface-success-soft flex items-center justify-center mb-6">
-                <CheckCircle className="w-10 h-10 text-success-role" />
+                <Icon.CheckCircle className="w-10 h-10 text-success-role" />
               </div>
               <h2 className="t-kpi text-main">Request submitted!</h2>
               <p className="t-body text-faint mt-3">
@@ -144,7 +144,7 @@ export const RegisterPage: React.FC = () => {
           </div>
 
           <div className="glass global-rounded p-4 flex items-center gap-3">
-            <Clock className="w-5 h-5 text-inverse-subtle" />
+            <Icon.Clock className="w-5 h-5 text-inverse-subtle" />
             <p className="text-inverse-subtle t-caption">Approval usually takes less than 24 hours.</p>
           </div>
         </div>

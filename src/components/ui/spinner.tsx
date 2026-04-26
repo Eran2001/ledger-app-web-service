@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import * as Icon from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface SpinnerProps {
@@ -11,11 +11,11 @@ function Spinner({ variant = "default", className = "", size }: SpinnerProps) {
   const sizeClass = size === "sm" ? "h-4 w-4" : size === "lg" ? "h-12 w-12" : "h-6 w-6";
 
   if (className || size) {
-    return <Loader2 className={cn("animate-spin text-brand", sizeClass, className)} />;
+    return <Icon.Loader2 className={cn("animate-spin text-brand", sizeClass, className)} />;
   }
 
   if (variant === "inline") {
-    return <Loader2 className="animate-spin h-4 w-4 text-brand" />;
+    return <Icon.Loader2 className="animate-spin h-4 w-4 text-brand" />;
   }
 
   const wrapperClass =
@@ -25,7 +25,7 @@ function Spinner({ variant = "default", className = "", size }: SpinnerProps) {
 
   return (
     <div className={wrapperClass}>
-      <Loader2 className="animate-spin h-9 w-9 text-brand" />
+      <Icon.Loader2 className="animate-spin h-9 w-9 text-brand" />
     </div>
   );
 }
