@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useMemo, useState } from "react"
 import { differenceInDays } from "date-fns"
 import { Bell, Download, Eye, Search, Send } from "lucide-react"
+import { TopBar } from "@/components/layout/top-bar"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -110,29 +111,27 @@ export default function OverduePage() {
   const longest = allRows[0]
 
   return (
-    <div className="space-y-6 pb-32">
-      <div className="flex items-center justify-between gap-4 flex-wrap">
-        <div>
-          <h1 className="t-section text-main">Overdue Payments</h1>
-          <p className="t-meta text-soft mt-1">
-            Track and follow up on customers who have missed installment due dates.
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" className="gap-2 bg-transparent">
-            <Download className="h-4 w-4" />
-            Export
-          </Button>
-          <Button
-            onClick={() => toast.success("Reminders queued for all overdue customers")}
-            className="surface-brand text-inverse surface-brand-strong-hover gap-2"
-          >
-            <Send className="h-4 w-4" />
-            Send All Reminders
-          </Button>
-        </div>
-      </div>
-
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
+        pageTitle="Overdue Payments"
+        pageSubtitle="Track and follow up on customers who have missed installment due dates"
+        primaryAction={
+          <div className="flex items-center gap-2">
+            <Button variant="outline" className="gap-2 bg-transparent">
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+            <Button
+              onClick={() => toast.success("Reminders queued for all overdue customers")}
+              className="surface-brand text-inverse surface-brand-strong-hover gap-2"
+            >
+              <Send className="h-4 w-4" />
+              Send All Reminders
+            </Button>
+          </div>
+        }
+      />
+      <div className="p-6 overflow-y-auto space-y-6 pb-32">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="card-base p-5 border-l-4 border-start-danger">
           <p className="label-caps">Overdue Customers</p>
@@ -309,6 +308,7 @@ export default function OverduePage() {
 
       {/* Customer count for the count summary uses customers length only when needed */}
       <span className="sr-only">{customers.length} customers in system</span>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Save, Trash2 } from "lucide-react"
+import { TopBar } from "@/components/layout/top-bar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -22,7 +23,9 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="flex flex-col h-full surface-page">
+      <TopBar pageTitle="Profile" pageSubtitle="Manage your account details" />
+      <div className="p-6 overflow-y-auto space-y-6 max-w-3xl">
       <div className="card-base p-6 flex items-center gap-5">
         <InitialsAvatar name={form.name} size="lg" />
         <div className="min-w-0 flex-1">
@@ -83,6 +86,7 @@ export default function ProfilePage() {
           <Trash2 className="h-4 w-4" />
           Delete Account
         </Button>
+      </div>
       </div>
     </div>
   )

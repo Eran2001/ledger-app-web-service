@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { CheckCircle2, MessageCircle, Save, Shield } from "lucide-react"
+import { TopBar } from "@/components/layout/top-bar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -50,12 +51,12 @@ export default function SettingsPage() {
   const [twoFA, setTwoFA] = useState(false)
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="t-section text-main">Settings</h1>
-        <p className="t-meta text-soft mt-1">Manage your business, integrations, and security.</p>
-      </div>
-
+    <div className="flex flex-col h-full surface-page">
+      <TopBar
+        pageTitle="Settings"
+        pageSubtitle="Manage your business, integrations, and security"
+      />
+      <div className="p-6 overflow-y-auto space-y-6">
       <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
         {TABS.map((t) => {
           const active = tab === t
@@ -80,6 +81,7 @@ export default function SettingsPage() {
         <WhatsAppPanel templates={templates} setTemplates={setTemplates} />
       ) : null}
       {tab === "Security" ? <SecurityPanel twoFA={twoFA} setTwoFA={setTwoFA} /> : null}
+      </div>
     </div>
   )
 }

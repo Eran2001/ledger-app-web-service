@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useMemo } from "react"
 import { differenceInDays, format, subMonths } from "date-fns"
 import { Download, Eye } from "lucide-react"
+import { TopBar } from "@/components/layout/top-bar"
 import {
   Bar,
   BarChart,
@@ -114,23 +115,21 @@ export default function ReportsPage() {
   }, [])
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4 flex-wrap">
-        <div>
-          <h1 className="t-section text-main">Reports</h1>
-          <p className="t-meta text-soft mt-1">
-            Financial performance, collections, and overdue analytics.
-          </p>
-        </div>
-        <Button
-          onClick={() => toast.success("Report exported as PDF")}
-          className="surface-brand text-inverse surface-brand-strong-hover gap-2"
-        >
-          <Download className="h-4 w-4" />
-          Export PDF
-        </Button>
-      </div>
-
+    <div className="flex min-h-screen flex-col surface-page">
+      <TopBar
+        pageTitle="Reports"
+        pageSubtitle="Financial performance, collections, and overdue analytics"
+        primaryAction={
+          <Button
+            onClick={() => toast.success("Report exported as PDF")}
+            className="surface-brand text-inverse surface-brand-strong-hover gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Export PDF
+          </Button>
+        }
+      />
+      <div className="flex-1 space-y-6 p-6 pb-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="card-base p-5">
           <p className="label-caps">Total Outstanding</p>
@@ -297,6 +296,7 @@ export default function ReportsPage() {
       </div>
 
       <p className="sr-only">{formatDate(new Date())}</p>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,33 @@
+
+import { cn, getAvatarColors, getInitials } from "@/lib/utils"
+
+interface InitialsAvatarProps {
+  name: string
+  size?: "sm" | "md" | "lg"
+  className?: string
+}
+
+const SIZE_MAP = {
+  sm: { box: "h-8 w-8", text: "t-caption-bold" },
+  md: { box: "h-10 w-10", text: "t-meta-bold" },
+  lg: { box: "h-14 w-14", text: "t-display" },
+}
+
+export function InitialsAvatar({ name, size = "md", className }: InitialsAvatarProps) {
+  const colors = getAvatarColors(name)
+  const sizing = SIZE_MAP[size]
+  return (
+    <div
+      className={cn(
+        "circle-rounded flex items-center justify-center shrink-0 select-none",
+        sizing.box,
+        sizing.text,
+        className,
+      )}
+      style={{ backgroundColor: colors.bg, color: colors.fg }}
+      aria-label={name}
+    >
+      {getInitials(name)}
+    </div>
+  )
+}

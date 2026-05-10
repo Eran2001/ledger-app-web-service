@@ -205,10 +205,17 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
   * {
     border-color: var(--border);
   }
   body {
+    margin: 0;
     background-color: var(--page-bg);
     color: var(--text-primary);
     font-family: var(--font-sans);
