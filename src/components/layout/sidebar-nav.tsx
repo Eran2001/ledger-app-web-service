@@ -91,7 +91,7 @@ export function SidebarNav({
   return (
     <aside
       className={cn(
-        "app-sidebar min-h-screen h-full flex flex-col transition-[width] duration-300 overflow-hidden border-r",
+        "app-sidebar h-full min-h-0 flex flex-col transition-[width] duration-300 overflow-hidden border-r",
         collapsed ? "w-16" : "w-55",
       )}
       style={{ borderColor: "var(--sidebar-border)" }}
@@ -121,7 +121,7 @@ export function SidebarNav({
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-4 scrollbar-hidden">
+      <nav className="flex-1 min-h-0 overflow-y-auto py-4 scrollbar-hidden">
         <TooltipProvider delayDuration={0}>
           {SECTIONS.map((section, i) => (
             <div

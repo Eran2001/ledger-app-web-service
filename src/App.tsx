@@ -8,6 +8,7 @@ import {
 import { Toaster } from "sonner";
 import { ThemeInit } from "@/components/theme-init";
 import { Sidebar, MobileSidebar } from "@/components/layout/sidebar";
+import { AppFooter } from "@/components/layout/app-footer";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import SetupPasswordPage from "./pages/SetupPasswordPage";
@@ -29,8 +30,11 @@ function AppShell() {
     <div className="flex min-h-screen w-full surface-page">
       <Sidebar />
       <MobileSidebar />
-      <main className="flex-1 min-w-0 flex flex-col">
-        <Outlet />
+      <main className="flex-1 min-w-0 min-h-screen flex flex-col">
+        <div className="flex-1 min-h-0 flex flex-col">
+          <Outlet />
+        </div>
+        <AppFooter />
       </main>
     </div>
   );

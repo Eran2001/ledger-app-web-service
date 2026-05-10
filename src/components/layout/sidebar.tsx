@@ -7,7 +7,7 @@ export function Sidebar() {
   const collapsed = useUIStore((s) => s.sidebarCollapsed)
   const toggle = useUIStore((s) => s.toggleSidebar)
   return (
-    <div className="hidden lg:block shrink-0 self-stretch">
+    <div className="hidden lg:block shrink-0 h-screen sticky top-0">
       <SidebarNav collapsed={collapsed} onToggleCollapse={toggle} />
     </div>
   )
