@@ -22,7 +22,8 @@ export function MobileSidebar() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side="left"
-        className="p-0 w-72 border-0 app-sidebar"
+        className="p-0 w-72 app-sidebar"
+        style={{ borderColor: "var(--sidebar-border)" }}
         aria-label="Mobile navigation"
       >
         <SidebarNav collapsed={false} onItemClick={() => setOpen(false)} showToggle={false} />

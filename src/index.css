@@ -26,14 +26,27 @@
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --sidebar: #0f1f3d;
-  --sidebar-foreground: #ffffff;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
   --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(255, 255, 255, 0.08);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-accent: rgba(0, 0, 0, 0.04);
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
   --sidebar-ring: #2563eb;
+  --sidebar-link: #475569;
+  --sidebar-link-hover-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-link-active-bg: rgba(37, 99, 235, 0.08);
+  --sidebar-link-active-color: #2563eb;
+  --sidebar-link-active-border: rgba(0, 0, 0, 0.06);
+  --sidebar-text-muted: rgba(15, 23, 42, 0.5);
+  --sidebar-text-soft: rgba(15, 23, 42, 0.7);
+  --sidebar-text-faint: rgba(15, 23, 42, 0.3);
+  --sidebar-text-dim: rgba(15, 23, 42, 0.4);
+  --sidebar-panel-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-avatar-bg: rgba(37, 99, 235, 0.1);
+  --sidebar-avatar-color: #2563eb;
+  --sidebar-icon-hover-bg: rgba(0, 0, 0, 0.06);
   --page-bg: #f8fafc;
   --card-bg: #ffffff;
   --tab-list-bg: #e2e8f0;
@@ -75,20 +88,20 @@
 }
 
 .dark {
-  --background: #0d1117;
-  --foreground: #f1f5f9;
-  --card: #161b27;
-  --card-foreground: #f1f5f9;
-  --popover: #1e2535;
-  --popover-foreground: #f1f5f9;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --popover: #334155;
+  --popover-foreground: #f8fafc;
   --primary: #3b82f6;
   --primary-dark: #2563eb;
   --primary-light: #1e3a5f;
   --primary-foreground: #ffffff;
   --secondary: #1e3a5f;
   --secondary-foreground: #93c5fd;
-  --muted: #1e2535;
-  --muted-foreground: #64748b;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
   --accent: #1e3a5f;
   --accent-foreground: #93c5fd;
   --destructive: #ef4444;
@@ -96,13 +109,31 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.06);
   --ring: #3b82f6;
-  --sidebar: #0f1f3d;
+  --sidebar: #1e293b;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #3b82f6;
-  --page-bg: #0d1117;
-  --card-bg: #161b27;
-  --tab-list-bg: #1e2535;
-  --text-primary: #f1f5f9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.08);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-ring: #3b82f6;
+  --sidebar-link: rgba(255, 255, 255, 0.5);
+  --sidebar-link-hover-bg: rgba(255, 255, 255, 0.05);
+  --sidebar-link-active-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-link-active-color: #ffffff;
+  --sidebar-link-active-border: rgba(255, 255, 255, 0.04);
+  --sidebar-text-muted: rgba(255, 255, 255, 0.5);
+  --sidebar-text-soft: rgba(255, 255, 255, 0.7);
+  --sidebar-text-faint: rgba(255, 255, 255, 0.3);
+  --sidebar-text-dim: rgba(255, 255, 255, 0.4);
+  --sidebar-panel-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-avatar-bg: rgba(255, 255, 255, 0.16);
+  --sidebar-avatar-color: #ffffff;
+  --sidebar-icon-hover-bg: rgba(255, 255, 255, 0.1);
+  --page-bg: #0f172a;
+  --card-bg: #1e293b;
+  --tab-list-bg: #334155;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --text-placeholder: #475569;
@@ -119,7 +150,7 @@
   --status-partial-text: #fcd34d;
   --status-overdue-bg: #450a0a;
   --status-overdue-text: #fca5a5;
-  --status-pending-bg: #1e2535;
+  --status-pending-bg: #1e293b;
   --status-pending-text: #94a3b8;
   --status-completed-bg: #14532d;
   --status-completed-text: #86efac;
@@ -303,17 +334,20 @@
 
   /* SIDEBAR */
   .app-sidebar { background-color: var(--sidebar); color: var(--sidebar-foreground); }
-  .app-sidebar-link { color: rgba(255, 255, 255, 0.5); }
-  .app-sidebar-link:hover { background-color: rgba(255, 255, 255, 0.05); color: white; }
-  .app-sidebar-link-active { background-color: rgba(255, 255, 255, 0.08); color: white; }
+  .app-sidebar-link { color: var(--sidebar-link); }
+  .app-sidebar-link:hover { background-color: var(--sidebar-link-hover-bg); color: var(--sidebar-foreground); }
+  .app-sidebar-link-active { background-color: var(--sidebar-link-active-bg); color: var(--sidebar-link-active-color); }
   .app-sidebar-text { color: var(--sidebar-foreground); }
-  .app-sidebar-text-muted { color: rgba(255, 255, 255, 0.5); }
-  .app-sidebar-text-soft { color: rgba(255, 255, 255, 0.7); }
-  .app-sidebar-text-faint { color: rgba(255, 255, 255, 0.3); }
-  .app-sidebar-text-dim { color: rgba(255, 255, 255, 0.4); }
+  .app-sidebar-text-muted { color: var(--sidebar-text-muted); }
+  .app-sidebar-text-soft { color: var(--sidebar-text-soft); }
+  .app-sidebar-text-faint { color: var(--sidebar-text-faint); }
+  .app-sidebar-text-dim { color: var(--sidebar-text-dim); }
   .app-sidebar-text-hover:hover { color: var(--sidebar-foreground); }
-  .app-sidebar-panel { background-color: rgba(255, 255, 255, 0.08); }
+  .app-sidebar-panel { background-color: var(--sidebar-panel-bg); }
   .app-sidebar-logo { background-color: var(--sidebar-primary); color: white; }
+  .app-sidebar-avatar { background-color: var(--sidebar-avatar-bg); color: var(--sidebar-avatar-color); }
+  .app-sidebar-icon-btn { color: var(--sidebar-text-muted); }
+  .app-sidebar-icon-btn:hover { background-color: var(--sidebar-icon-hover-bg); color: var(--sidebar-foreground); }
 
   .app-sidebar-collapsed-link {
     display: flex;
@@ -326,11 +360,11 @@
     border-radius: 0.5rem;
     background: transparent;
   }
-  .app-sidebar-collapsed-link:hover { background-color: rgba(255, 255, 255, 0.06); }
+  .app-sidebar-collapsed-link:hover { background-color: var(--sidebar-link-hover-bg); }
   .app-sidebar-collapsed-link.app-sidebar-link-active {
-    background-color: #30303b;
-    border-color: rgba(255, 255, 255, 0.04);
-    color: var(--sidebar-primary);
+    background-color: var(--sidebar-link-active-bg);
+    border-color: var(--sidebar-link-active-border);
+    color: var(--sidebar-link-active-color);
   }
 
   .app-sidebar-tooltip {
