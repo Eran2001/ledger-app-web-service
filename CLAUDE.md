@@ -6,6 +6,26 @@ Never run build commands (`npm run build`, `vite build`, `tsc`, etc.). Only run 
 
 ---
 
+## 🔔 Notifications
+
+Always use the `Notification` utility from `@/utils/notification`. Never import `toast` directly from `"sonner"`, and never use the shadcn `useToast` hook.
+
+```tsx
+// ✅ Correct
+import { Notification } from "@/utils/notification";
+Notification.success("Sale created.");
+Notification.error("Something went wrong.");
+
+// ❌ Wrong — direct sonner import
+import { toast } from "sonner";
+toast.success("Sale created.");
+
+// ❌ Wrong — shadcn hook
+import { useToast } from "@/hooks/use-toast";
+```
+
+---
+
 ## 📦 Stack
 
 | Concern                 | Library         |
@@ -23,6 +43,26 @@ Never run build commands (`npm run build`, `vite build`, `tsc`, etc.). Only run 
 ## 📐 Component Size Limit
 
 **One component must never exceed 200 lines.** Split into smaller sub-components if needed.
+
+---
+
+## 📤 Export Rules
+
+- **Pages** (`src/pages/`) → always `export default`
+- **Local components** (`src/components/layout/`, `src/components/sales/`, `src/components/shared/`) → always `export default`
+- **Global/shared UI primitives** (`src/components/ui/` — shadcn and any reusable design-system pieces) → always named exports (`export function`, `export const`)
+
+```tsx
+// ✅ Page — default export
+export default function DashboardPage() { ... }
+
+// ✅ Local component — default export
+export default function RecordPaymentModal() { ... }
+
+// ✅ shadcn / UI primitive — named export
+export function Button() { ... }
+export const Card = React.forwardRef(...);
+```
 
 ---
 
@@ -175,3 +215,38 @@ The following Tailwind classes **must only appear inside `index.css`**, never in
 ### Content
 
 `content-none`
+
+---
+
+## 🔒 TypeScript Strictness
+
+**Never use `any` or `unknown` as a type.** Always use the exact, correct type.
+
+```tsx
+// ✅ Correct
+function handleChange(e: React.ChangeEvent<HTMLInputElement>) { ... }
+const items: Product[] = []
+const id: string = params.id
+
+// ❌ Wrong
+function handleChange(e: any) { ... }
+const items: unknown[] = []
+```
+
+If you don't know the type, derive it from the source — use `typeof`, `ReturnType<>`, `Parameters<>`, or define a proper interface. `any` is never acceptable, even temporarily.
+
+---
+
+## 🔡 Naming Conventions
+
+- **File names** → `kebab-case` (e.g. `tab-select.tsx`, `sale-card.tsx`)
+- **Component names inside the file** → `PascalCase` (e.g. `function TabSelect`, `function SaleCard`)
+
+```tsx
+// ✅ File: sale-card.tsx
+export default function SaleCard() { ... }
+
+// ✅ File: tab-select.tsx
+export function TabSelect() { ... }
+export function TabPanel() { ... }
+```
