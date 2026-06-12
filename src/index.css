@@ -318,6 +318,11 @@
   .tracking-label { letter-spacing: 0.06em; }
   .tracking-label-wide { letter-spacing: 0.1em; }
   .mono-text { font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  .text-italic { font-style: italic; }
+  .text-strike { text-decoration: line-through; }
+  .link-hover:hover { text-decoration: underline; }
+  .text-balanced { text-wrap: balance; }
+  .lh-tight { line-height: 1.25; }
   .align-text-left { text-align: left; }
   .align-text-center { text-align: center; }
   .align-text-right { text-align: right; }

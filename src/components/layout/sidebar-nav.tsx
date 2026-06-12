@@ -161,7 +161,7 @@ export function SidebarNav({
                           </TooltipTrigger>
                           <TooltipContent
                             side="right"
-                            className="text-sm font-semibold px-3.5 py-2.5"
+                            className="t-meta fw-semibold px-3.5 py-2.5"
                           >
                             {item.label}
                           </TooltipContent>

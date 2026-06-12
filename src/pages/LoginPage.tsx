@@ -63,7 +63,7 @@ export default function LoginPage() {
                 <Label htmlFor="password" className="t-meta-bold text-main">
                   Password
                 </Label>
-                <Link to="/setup-password" className="t-caption-bold text-brand hover:underline">
+                <Link to="/setup-password" className="t-caption-bold text-brand link-hover">
                   Forgot password?
                 </Link>
               </div>
@@ -99,7 +99,7 @@ export default function LoginPage() {
 
           <p className="mt-8 t-meta text-soft text-center">
             Need access?{" "}
-            <Link to="/register" className="text-brand fw-bold hover:underline">
+            <Link to="/register" className="text-brand fw-bold link-hover">
               Request access →
             </Link>
           </p>
@@ -130,7 +130,7 @@ export default function LoginPage() {
             <span className="t-micro-bold text-inverse case-upper tracking-label">System Operational</span>
           </div>
 
-          <h2 className="t-hero text-inverse text-balance mb-10 leading-tight">
+          <h2 className="t-hero text-inverse text-balanced mb-10 lh-tight">
             Manage your store&apos;s installment plans with confidence
           </h2>
 

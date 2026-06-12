@@ -59,7 +59,7 @@ export default function NewSalePage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 hover:underline group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to sales
@@ -87,7 +87,7 @@ export default function NewSalePage() {
                 </Select>
                 <button
                   type="button"
-                  className="t-caption-bold text-brand inline-flex items-center gap-1 self-start hover:underline mt-1"
+                  className="t-caption-bold text-brand inline-flex items-center gap-1 self-start link-hover mt-1"
                 >
                   <UserPlus className="h-3.5 w-3.5" />
                   Add New Customer

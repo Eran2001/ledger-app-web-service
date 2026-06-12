@@ -110,7 +110,7 @@ export default function DashboardPage() {
           <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-3 overflow-hidden">
             <div className="flex items-center justify-between px-6 h-14 border-b border-default">
               <h2 className="t-title text-main">Recent Payments</h2>
-              <Link to="/sales" className="t-meta-bold text-brand inline-flex items-center gap-1 hover:underline">
+              <Link to="/sales" className="t-meta-bold text-brand inline-flex items-center gap-1 link-hover">
                 View All <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
           <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-2 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-6 h-14 border-b border-default">
               <h2 className="t-title text-main">Overdue Installments</h2>
-              <button className="t-meta-bold text-danger inline-flex items-center gap-1 hover:underline">
+              <button className="t-meta-bold text-danger inline-flex items-center gap-1 link-hover">
                 Send Reminders <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>

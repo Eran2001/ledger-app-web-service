@@ -52,7 +52,7 @@ export default function SaleDetailPage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 hover:underline group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to list
@@ -80,7 +80,7 @@ export default function SaleDetailPage() {
                 {customer && (
                   <Link
                     to={`/customers/${customer.id}`}
-                    className="t-caption-bold text-brand inline-flex items-center gap-1 hover:underline mt-3"
+                    className="t-caption-bold text-brand inline-flex items-center gap-1 link-hover mt-3"
                   >
                     View Full Profile →
                   </Link>
@@ -103,7 +103,7 @@ export default function SaleDetailPage() {
               <KV label="Total Paid" value={formatCurrency(stat.totalPaid)} />
               <KV label="Outstanding" value={formatCurrency(stat.outstanding)} highlight />
             </div>
-            <p className="t-caption text-faint italic mt-4 pt-4 border-t border-default">
+            <p className="t-caption text-faint text-italic mt-4 pt-4 border-t border-default">
               Sold on {formatDate(sale.saleDate)}
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function SaleDetailPage() {
                       <td className={`px-6 py-3 t-meta-bold ${isPaid ? "text-faint" : "text-main"}`}>
                         {s.installmentNumber}
                       </td>
-                      <td className={`px-6 py-3 table-text ${isPaid ? "line-through text-faint" : ""}`}>
+                      <td className={`px-6 py-3 table-text ${isPaid ? "text-strike text-faint" : ""}`}>
                         {formatDate(s.dueDate)}
                       </td>
                       <td className="px-6 py-3 align-text-right table-text">{formatCurrency(s.expectedAmount)}</td>

@@ -63,7 +63,7 @@ export default function CustomerDetailPage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/customers"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 hover:underline group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to list
@@ -171,7 +171,7 @@ export default function CustomerDetailPage() {
                         </p>
                         <Link
                           to={`/sales/${sale.id}`}
-                          className="t-caption-bold text-brand inline-flex items-center gap-1 hover:underline"
+                          className="t-caption-bold text-brand inline-flex items-center gap-1 link-hover"
                         >
                           View Full Details <ArrowRight className="h-3 w-3" />
                         </Link>
