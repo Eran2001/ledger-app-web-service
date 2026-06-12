@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { differenceInDays, format, subMonths } from "date-fns";
 import { Download, Eye } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import {
   Bar,
   BarChart,

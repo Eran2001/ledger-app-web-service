@@ -1,7 +1,7 @@
 import { Outlet } from "@tanstack/react-router";
 
-import { Sidebar, MobileSidebar } from "@/components/layout/sidebar";
-import { AppFooter } from "@/components/layout/app-footer";
+import { Sidebar, MobileSidebar } from "@/components/shared/sidebar";
+import { AppFooter } from "@/components/shared/app-footer";
 
 export default function DefaultLayout() {
   return (

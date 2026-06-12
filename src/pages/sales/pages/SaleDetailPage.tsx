@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "@tanstack/react-router";
 import { ArrowLeft, Wallet } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
@@ -14,7 +14,8 @@ import {
   schedulesForSale,
 } from "@/lib/dummy-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
-import { RecordPaymentModal } from "@/components/sales/record-payment-modal";
+
+import { RecordPaymentModal } from "@/pages/sales/components/record-payment-modal";
 
 export default function SaleDetailPage() {
   const { id } = useParams({ strict: false });

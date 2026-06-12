@@ -24,7 +24,9 @@ const EmployeePage = lazy(() => import("./pages/employees"));
 const OverduePage = lazy(() => import("./pages/overdue"));
 const ReportsPage = lazy(() => import("./pages/reports"));
 const SettingsPage = lazy(() => import("./pages/settings"));
-const ProfilePage = lazy(() => import("./pages/settings/profile"));
+const ProfilePage = lazy(
+  () => import("./pages/settings/components/account-information"),
+);
 
 const rootRoute = createRootRoute({
   component: () => (

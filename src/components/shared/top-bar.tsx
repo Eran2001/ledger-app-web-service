@@ -75,20 +75,15 @@ export function TopBar({
           <div className="ml-1 hidden sm:block">
             {primaryAction.to ? (
               <Button
-                asChild
-                className="surface-brand text-inverse btn-base h-10 px-4 control-rounded surface-brand-strong-hover gap-2"
+                type="button"
+                onClick={() => navigate({ to: primaryAction.to })}
               >
-                <Link to={primaryAction.to}>
-                  <primaryAction.icon className="h-4 w-4" />
-                  {primaryAction.label}
-                </Link>
+                <primaryAction.icon />
+                {primaryAction.label}
               </Button>
             ) : (
-              <Button
-                onClick={primaryAction.onClick}
-                className="surface-brand text-inverse btn-base h-10 px-4 control-rounded surface-brand-strong-hover gap-2"
-              >
-                <primaryAction.icon className="h-4 w-4" />
+              <Button type="button" onClick={primaryAction.onClick}>
+                <primaryAction.icon />
                 {primaryAction.label}
               </Button>
             )}

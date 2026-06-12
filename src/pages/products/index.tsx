@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Archive, Check, Edit2, Plus, Search, X } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

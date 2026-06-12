@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import { installmentSchedules, saleStats, sales } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
 import KpiCard from "./components/KpiCard";
@@ -7,12 +7,19 @@ import RecentPayments from "./components/RecentPayments";
 import OverdueList from "./components/OverdueList";
 
 export default function DashboardPage() {
-  const totalOutstanding = sales.reduce((sum, s) => sum + saleStats(s.id).outstanding, 0);
-  const overdueInstallments = installmentSchedules.filter((i) => i.status === "OVERDUE");
+  const totalOutstanding = sales.reduce(
+    (sum, s) => sum + saleStats(s.id).outstanding,
+    0,
+  );
+  const overdueInstallments = installmentSchedules.filter(
+    (i) => i.status === "OVERDUE",
+  );
   const monthlyCollected = 48200;
   const newSalesThisMonth = 7;
   const overdueOver60 = overdueInstallments.filter((i) => {
-    const days = Math.floor((Date.now() - new Date(i.dueDate).getTime()) / 86400000);
+    const days = Math.floor(
+      (Date.now() - new Date(i.dueDate).getTime()) / 86400000,
+    );
     return days >= 60;
   }).length;
 

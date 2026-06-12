@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Save, Trash2 } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,7 +8,7 @@ import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { useAuthStore } from "@/stores/auth-store";
 import { Notification } from "@/utils/notification";
 
-export default function ProfilePage() {
+export default function AccountInfoPage() {
   const user = useAuthStore((s) => s.user);
 
   const [form, setForm] = useState({
@@ -24,8 +24,7 @@ export default function ProfilePage() {
 
   return (
     <div className="flex flex-col h-full surface-page">
-      <TopBar pageTitle="Profile" pageSubtitle="Manage your account details" />
-      <div className="p-6 overflow-y-auto space-y-6 max-w-3xl">
+      <div className="space-y-6">
         <div className="card-base p-6 flex items-center gap-5">
           <InitialsAvatar name={form.name} size="lg" />
           <div className="min-w-0 flex-1">

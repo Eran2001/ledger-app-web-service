@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Link, useParams, Navigate } from "@tanstack/react-router";
 import { ArrowLeft, Plus } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
+import { TopBar } from "@/components/shared/top-bar";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
-import { customerById, customerStats, paymentsForSale, sales } from "@/lib/dummy-data";
+import {
+  customerById,
+  customerStats,
+  paymentsForSale,
+  sales,
+} from "@/lib/dummy-data";
 import CustomerProfileHeader from "../components/CustomerProfileHeader";
 import SaleCard from "../components/SaleCard";
 import PaymentHistoryTable from "../components/PaymentHistoryTable";
@@ -25,7 +30,9 @@ export default function CustomerDetailPage() {
   const activeSales = customerSales.filter((s) => s.status === "ACTIVE");
   const allPayments = customerSales
     .flatMap((s) => paymentsForSale(s.id).map((p) => ({ ...p, saleId: s.id })))
-    .sort((a, b) => new Date(b.paidDate).getTime() - new Date(a.paidDate).getTime());
+    .sort(
+      (a, b) => new Date(b.paidDate).getTime() - new Date(a.paidDate).getTime(),
+    );
 
   return (
     <div className="flex flex-col h-full surface-page">

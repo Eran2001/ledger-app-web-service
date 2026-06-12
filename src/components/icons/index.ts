@@ -179,4 +179,5 @@ export {
   Zap,
   Tag,
   MoreVertical,
+  MessageCircle,
 } from "lucide-react";
