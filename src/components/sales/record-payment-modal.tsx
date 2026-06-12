@@ -1,55 +1,72 @@
-
-import { useEffect, useState } from "react"
-import { format } from "date-fns"
-import { MessageCircle } from "lucide-react"
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
-import { installmentSchedules, schedulesForSale } from "@/lib/dummy-data"
-import { formatCurrency, formatDate } from "@/lib/utils"
-import { toast } from "sonner"
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
+import { MessageCircle } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import { installmentSchedules, schedulesForSale } from "@/lib/dummy-data";
+import { formatCurrency, formatDate } from "@/lib/utils";
+import { Notification } from "@/utils/notification";
 
 interface Props {
-  open: boolean
-  onClose: () => void
-  installmentId: string | null
-  customerPhone?: string
+  open: boolean;
+  onClose: () => void;
+  installmentId: string | null;
+  customerPhone?: string;
 }
 
-export function RecordPaymentModal({ open, onClose, installmentId, customerPhone }: Props) {
-  const installment = installmentId ? installmentSchedules.find((s) => s.id === installmentId) : undefined
-  const total = installment ? schedulesForSale(installment.saleId).length : 0
-  const remaining = installment ? installment.expectedAmount - installment.paidAmount : 0
+export function RecordPaymentModal({
+  open,
+  onClose,
+  installmentId,
+  customerPhone,
+}: Props) {
+  const installment = installmentId
+    ? installmentSchedules.find((s) => s.id === installmentId)
+    : undefined;
+  const total = installment ? schedulesForSale(installment.saleId).length : 0;
+  const remaining = installment
+    ? installment.expectedAmount - installment.paidAmount
+    : 0;
 
-  const [paidAmount, setPaidAmount] = useState<number>(remaining)
-  const [paidDate, setPaidDate] = useState<string>(format(new Date(), "yyyy-MM-dd"))
-  const [notes, setNotes] = useState("")
-  const [sendWa, setSendWa] = useState(true)
+  const [paidAmount, setPaidAmount] = useState<number>(remaining);
+  const [paidDate, setPaidDate] = useState<string>(
+    format(new Date(), "yyyy-MM-dd"),
+  );
+  const [notes, setNotes] = useState("");
+  const [sendWa, setSendWa] = useState(true);
 
   useEffect(() => {
     if (installment) {
-      setPaidAmount(installment.expectedAmount - installment.paidAmount)
-      setPaidDate(format(new Date(), "yyyy-MM-dd"))
-      setNotes("")
-      setSendWa(true)
+      setPaidAmount(installment.expectedAmount - installment.paidAmount);
+      setPaidDate(format(new Date(), "yyyy-MM-dd"));
+      setNotes("");
+      setSendWa(true);
     }
-  }, [installmentId, installment])
+  }, [installmentId, installment]);
 
   function submit(e: React.FormEvent) {
-    e.preventDefault()
-    toast.success(`Payment of ${formatCurrency(paidAmount)} recorded.`)
-    onClose()
+    e.preventDefault();
+    Notification.success(`Payment of ${formatCurrency(paidAmount)} recorded.`);
+    onClose();
   }
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-[480px] auth-rounded border-0 p-0 surface-card data-[state=open]:zoom-in-95">
+      <DialogContent className="max-w-120 auth-rounded border-0 p-0 surface-card data-[state=open]:zoom-in-95">
         {installment && (
           <form onSubmit={submit} className="p-8 pb-0">
-            <DialogTitle className="t-section text-main fw-bold mb-1">Record Payment</DialogTitle>
+            <DialogTitle className="t-section text-main fw-bold mb-1">
+              Record Payment
+            </DialogTitle>
             <DialogDescription className="t-caption text-soft mb-5">
               Confirm the amount received from your customer.
             </DialogDescription>
@@ -59,17 +76,25 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
                 <p className="t-micro-bold text-brand case-upper tracking-label">
                   Installment {installment.installmentNumber} of {total}
                 </p>
-                <p className="t-caption text-soft mt-1">Due: {formatDate(installment.dueDate)}</p>
+                <p className="t-caption text-soft mt-1">
+                  Due: {formatDate(installment.dueDate)}
+                </p>
               </div>
               <div className="align-text-right">
-                <p className="t-micro-bold text-faint case-upper tracking-label">Remaining</p>
-                <p className="t-section fw-black text-brand">{formatCurrency(remaining)}</p>
+                <p className="t-micro-bold text-faint case-upper tracking-label">
+                  Remaining
+                </p>
+                <p className="t-section fw-black text-brand">
+                  {formatCurrency(remaining)}
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">Paid amount (LKR)</Label>
+                <Label className="t-meta-bold text-main">
+                  Paid amount (LKR)
+                </Label>
                 <Input
                   type="number"
                   value={paidAmount || ""}
@@ -77,8 +102,8 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
                   className="h-12 control-rounded border-default t-section fw-black text-main"
                 />
                 <p className="t-caption text-faint">
-                  Expected {formatCurrency(installment.expectedAmount)} · Already paid{" "}
-                  {formatCurrency(installment.paidAmount)}
+                  Expected {formatCurrency(installment.expectedAmount)} ·
+                  Already paid {formatCurrency(installment.paidAmount)}
                 </p>
               </div>
 
@@ -93,11 +118,13 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">Notes (optional)</Label>
+                <Label className="t-meta-bold text-main">
+                  Notes (optional)
+                </Label>
                 <Textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="control-rounded border-default min-h-[100px]"
+                  className="control-rounded border-default min-h-25"
                   placeholder="Customer comments…"
                 />
               </div>
@@ -108,7 +135,9 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
                     <MessageCircle className="h-5 w-5 text-success-role" />
                   </div>
                   <div className="min-w-0">
-                    <p className="t-meta-bold text-main">Payment confirmation</p>
+                    <p className="t-meta-bold text-main">
+                      Payment confirmation
+                    </p>
                     <p className="t-micro text-faint case-upper tracking-label truncate">
                       Send to {customerPhone ?? "customer"}
                     </p>
@@ -129,7 +158,7 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
               </Button>
               <Button
                 type="submit"
-                className="flex-[2] h-12 surface-brand text-inverse btn-base control-rounded surface-brand-strong-hover shadow-brand-soft"
+                className="flex-2 h-12 surface-brand text-inverse btn-base control-rounded surface-brand-strong-hover shadow-brand-soft"
               >
                 Confirm Payment
               </Button>
@@ -138,5 +167,5 @@ export function RecordPaymentModal({ open, onClose, installmentId, customerPhone
         )}
       </DialogContent>
     </Dialog>
-  )
+  );
 }

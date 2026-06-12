@@ -1,11 +1,19 @@
-
-import type { ReactNode } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { Bell, Menu, Moon, Sun, User as UserIcon, Settings as SettingsIcon, LogOut } from "lucide-react"
-import { useUIStore } from "@/store/ui-store"
-import { useThemeStore } from "@/store/theme-store"
-import { useAuthStore } from "@/store/auth-store"
-import { InitialsAvatar } from "@/components/shared/initials-avatar"
+import type { ComponentType } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import {
+  Bell,
+  Menu,
+  Moon,
+  Sun,
+  User as UserIcon,
+  Settings as SettingsIcon,
+  LogOut,
+} from "lucide-react";
+import { useUIStore } from "@/stores/ui-store";
+import { useThemeStore } from "@/stores/theme-store";
+import { useAuthStore } from "@/stores/auth-store";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,21 +21,32 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-interface TopBarProps {
-  pageTitle: string
-  pageSubtitle?: string
-  primaryAction?: ReactNode
+interface PrimaryAction {
+  to?: string;
+  onClick?: () => void;
+  icon: ComponentType<{ className?: string }>;
+  label: string;
 }
 
-export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) {
-  const setMobileOpen = useUIStore((s) => s.setMobileSidebarOpen)
-  const isDark = useThemeStore((s) => s.isDark)
-  const toggleTheme = useThemeStore((s) => s.toggle)
-  const user = useAuthStore((s) => s.user)
-  const logout = useAuthStore((s) => s.logout)
-  const navigate = useNavigate()
+interface TopBarProps {
+  pageTitle: string;
+  pageSubtitle?: string;
+  primaryAction?: PrimaryAction;
+}
+
+export function TopBar({
+  pageTitle,
+  pageSubtitle,
+  primaryAction,
+}: TopBarProps) {
+  const setMobileOpen = useUIStore((s) => s.setMobileSidebarOpen);
+  const isDark = useThemeStore((s) => s.isDark);
+  const toggleTheme = useThemeStore((s) => s.toggle);
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
 
   return (
     <header className="surface-card border-b border-default h-16 shrink-0 px-4 sm:px-6 flex items-center gap-3 sticky top-0 z-30">
@@ -44,12 +63,37 @@ export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) 
         {pageSubtitle && (
           <>
             <span className="text-faint t-body hidden sm:inline">/</span>
-            <span className="t-body text-soft truncate hidden sm:inline">{pageSubtitle}</span>
+            <span className="t-body text-soft truncate hidden sm:inline">
+              {pageSubtitle}
+            </span>
           </>
         )}
       </div>
 
       <div className="flex items-center gap-2">
+        {primaryAction && (
+          <div className="ml-1 hidden sm:block">
+            {primaryAction.to ? (
+              <Button
+                asChild
+                className="surface-brand text-inverse btn-base h-10 px-4 control-rounded surface-brand-strong-hover gap-2"
+              >
+                <Link to={primaryAction.to}>
+                  <primaryAction.icon className="h-4 w-4" />
+                  {primaryAction.label}
+                </Link>
+              </Button>
+            ) : (
+              <Button
+                onClick={primaryAction.onClick}
+                className="surface-brand text-inverse btn-base h-10 px-4 control-rounded surface-brand-strong-hover gap-2"
+              >
+                <primaryAction.icon className="h-4 w-4" />
+                {primaryAction.label}
+              </Button>
+            )}
+          </div>
+        )}
         <button
           onClick={toggleTheme}
           className="icon-button h-9 w-9 flex items-center justify-center"
@@ -72,7 +116,10 @@ export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) 
               <InitialsAvatar name={user?.name ?? "User"} size="sm" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-60 surface-popover border border-default modal-rounded">
+          <DropdownMenuContent
+            align="end"
+            className="w-60 surface-popover border border-default modal-rounded"
+          >
             <DropdownMenuLabel>
               <div className="flex flex-col">
                 <span className="t-meta-bold text-main">{user?.name}</span>
@@ -81,7 +128,10 @@ export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) 
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link to="/settings/profile" className="flex items-center gap-2 t-meta">
+              <Link
+                to="/settings/profile"
+                className="flex items-center gap-2 t-meta"
+              >
                 <UserIcon className="h-4 w-4" /> Profile
               </Link>
             </DropdownMenuItem>
@@ -93,8 +143,8 @@ export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) 
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => {
-                logout()
-                navigate("/login")
+                logout();
+                navigate({ to: "/login" });
               }}
               className="text-danger flex items-center gap-2 t-meta"
             >
@@ -102,9 +152,7 @@ export function TopBar({ pageTitle, pageSubtitle, primaryAction }: TopBarProps) 
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        {primaryAction && <div className="ml-1 hidden sm:block">{primaryAction}</div>}
       </div>
     </header>
-  )
+  );
 }

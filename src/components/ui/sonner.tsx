@@ -1,23 +1,23 @@
-import { useThemeStore } from '@/store/theme-store'
-import { Toaster as Sonner, ToasterProps } from 'sonner'
+import { useThemeStore } from "@/stores/theme-store";
+import { Toaster as Sonner, ToasterProps } from "sonner";
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const isDark = useThemeStore((s) => s.isDark)
+  const isDark = useThemeStore((s) => s.isDark);
 
   return (
     <Sonner
-      theme={isDark ? 'dark' : 'light'}
+      theme={isDark ? "dark" : "light"}
       className="toaster group"
       style={
         {
-          '--normal-bg': 'var(--popover)',
-          '--normal-text': 'var(--popover-foreground)',
-          '--normal-border': 'var(--border)',
+          "--normal-bg": "var(--popover)",
+          "--normal-text": "var(--popover-foreground)",
+          "--normal-border": "var(--border)",
         } as React.CSSProperties
       }
       {...props}
     />
-  )
-}
+  );
+};
 
-export { Toaster }
+export { Toaster };

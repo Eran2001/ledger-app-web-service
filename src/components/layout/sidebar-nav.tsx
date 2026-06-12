@@ -1,5 +1,4 @@
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Users,
@@ -15,8 +14,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
-import { useUIStore } from "@/store/ui-store";
-import { useAuthStore } from "@/store/auth-store";
+import { useUIStore } from "@/stores/ui-store";
+import { useAuthStore } from "@/stores/auth-store";
 import {
   Tooltip,
   TooltipContent,
@@ -85,7 +84,9 @@ export function SidebarNav({
   const isActive = (href: string) => {
     if (pathname === href) return true;
     if (!pathname.startsWith(href + "/")) return false;
-    return !allHrefs.some((h) => h !== href && h.startsWith(href + "/") && pathname === h);
+    return !allHrefs.some(
+      (h) => h !== href && h.startsWith(href + "/") && pathname === h,
+    );
   };
 
   return (
@@ -213,7 +214,7 @@ export function SidebarNav({
             <button
               onClick={() => {
                 logout();
-                navigate("/login");
+                navigate({ to: "/login" });
               }}
               className="h-8 w-8 flex items-center justify-center global-rounded app-sidebar-icon-btn"
               aria-label="Log out"

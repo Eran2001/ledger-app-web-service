@@ -389,6 +389,11 @@
     box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.18);
   }
 
+  /* TAB TRIGGER (underline style) */
+  .tab-trigger { color: var(--text-secondary); cursor: pointer; transition: color 150ms; }
+  .tab-trigger:hover { color: var(--text-primary); }
+  .tab-trigger[aria-selected=true] { color: var(--text-primary); }
+
   /* ICON BUTTON */
   .icon-button { border-radius: 999px; color: var(--text-secondary); transition: color 150ms, background-color 150ms; }
   .icon-button:hover { background-color: var(--page-bg); color: var(--text-primary); }

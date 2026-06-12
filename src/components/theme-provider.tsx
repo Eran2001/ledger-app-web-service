@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { useThemeStore } from '@/store/theme-store'
+import * as React from "react";
+import { useThemeStore } from "@/stores/theme-store";
 
 interface ThemeProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  return <>{children}</>
+  return <>{children}</>;
 }
 
-export { useThemeStore }
+export { useThemeStore };
