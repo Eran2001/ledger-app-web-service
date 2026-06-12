@@ -66,6 +66,14 @@ export const Card = React.forwardRef(...);
 
 ---
 
+## ➡️ Arrow Function Rule
+
+- Use arrow functions for React components, helpers, and methods by default.
+- Avoid `function` declarations unless there is a specific technical reason to use them.
+- Keep new code consistent with arrow-function style across the codebase.
+
+---
+
 ## 🔤 Typography Rules
 
 ### The Golden Rule
