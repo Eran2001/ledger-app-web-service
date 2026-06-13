@@ -1548,14 +1548,14 @@
     border-color: hsl(199 89% 48% / 0.2);
   }
   .status-pending {
-    background-color: var(--muted);
+    background-color: hsl(215 20% 65% / 0.1);
     color: var(--muted-foreground);
-    border-color: var(--border);
+    border-color: hsl(215 20% 65% / 0.2);
   }
   .status-neutral {
-    background-color: var(--muted);
+    background-color: hsl(215 20% 65% / 0.1);
     color: var(--muted-foreground);
-    border-color: var(--border);
+    border-color: hsl(215 20% 65% / 0.2);
   }
   .status-processing {
     background-color: hsl(271 91% 65% / 0.1);
