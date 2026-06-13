@@ -192,6 +192,10 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
 
   /* Font weights */
   --font-weight-normal: 400;
@@ -378,108 +382,710 @@
 @layer utilities {
   /* TYPOGRAPHY SCALE */
   .t-hero {
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--leading-snug);
-  }
-  .t-kpi-lg {
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--leading-snug);
-  }
-  .t-kpi {
+    /* max-xs  < 480px  */
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     line-height: var(--leading-snug);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-3xl);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-4xl);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-5xl);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-5xl);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-8xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-8xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-9xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-9xl);
+    } /* 10000px */
   }
-  .t-section {
+  .t-kpi-lg {
+    /* max-xs  < 480px  */
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
-  }
-  .t-display {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-  }
-  .t-display-soft {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-  }
-  .t-heading {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-  }
-  .t-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-  }
-  .t-nav {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-  }
-  .t-body {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-normal);
-    line-height: var(--leading-base);
-  }
-  .t-meta {
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-  }
-  .t-meta-bold {
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-  }
-  .t-caption {
-    font-size: var(--font-size-xxs);
-    font-weight: var(--font-weight-medium);
-  }
-  .t-caption-bold {
-    font-size: var(--font-size-xxs);
-    font-weight: var(--font-weight-bold);
-  }
-  .t-micro {
-    font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-medium);
-  }
-  .t-micro-bold {
-    font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-2xl);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-2xl);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-3xl);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-3xl);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 10000px */
   }
 
-  /* FONT WEIGHTS */
-  .fw-normal {
-    font-weight: var(--font-weight-normal);
-  }
-  .fw-medium {
-    font-weight: var(--font-weight-medium);
-  }
-  .fw-semibold {
-    font-weight: var(--font-weight-semibold);
-  }
-  .fw-bold {
+  .t-kpi {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xl);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xl);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-2xl);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-2xl);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 10000px */
   }
-  .fw-black {
-    font-weight: var(--font-weight-black);
+
+  .t-section {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-lg);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-lg);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xl);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xl);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-5xl);
+    } /* 10000px */
+  }
+
+  .t-display {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-sm);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-lg);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-lg);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 10000px */
+  }
+
+  .t-display-soft {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-sm);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-lg);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-lg);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 10000px */
+  }
+
+  .t-heading {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-sm);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-lg);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-lg);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-4xl);
+    } /* 10000px */
+  }
+
+  .t-title {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  .t-nav {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  .t-body {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--leading-base);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  .t-meta {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xxs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  .t-meta-bold {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xxs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  .t-caption {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-medium);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-2xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xxs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xxs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-lg);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  .t-caption-bold {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-2xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xxs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xxs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-lg);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  .t-micro {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-3xs);
+    font-weight: var(--font-weight-medium);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-3xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-2xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-2xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xxs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xxs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-sm);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-sm);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-lg);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-lg);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-xl);
+    } /* 10000px */
+  }
+
+  .t-micro-bold {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-3xs);
+    font-weight: var(--font-weight-bold);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-3xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-2xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-2xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xxs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xxs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-sm);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-sm);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-lg);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-lg);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-xl);
+    } /* 10000px */
   }
 
   /* SEMANTIC ROUNDING */
-  .global-rounded {
-    border-radius: var(--radius-md);
-  }
-  .card-rounded {
-    border-radius: var(--radius-lg);
-  }
-  .modal-rounded {
-    border-radius: var(--radius-xl);
-  }
-  .auth-rounded {
-    border-radius: calc(var(--radius-xl) + 2px);
-  }
-  .tab-rounded {
+  .sm-rounded {
     border-radius: var(--radius-sm);
   }
-  .circle-rounded {
+  .md-rounded {
+    border-radius: var(--radius-md);
+  }
+  .lg-rounded {
+    border-radius: var(--radius-lg);
+  }
+  .xl-rounded {
+    border-radius: var(--radius-xl);
+  }
+  .full-rounded {
     border-radius: 999px;
   }
 
@@ -515,13 +1121,13 @@
     color: var(--cat-purple);
   }
   .text-inverse {
-    color: #ffffff;
+    color: var(--primary-foreground);
   }
   .text-inverse-muted {
-    color: rgba(255, 255, 255, 0.6);
+    color: hsl(0 0% 100% / 0.6);
   }
   .text-inverse-faint {
-    color: rgba(255, 255, 255, 0.2);
+    color: hsl(0 0% 100% / 0.2);
   }
   .text-danger-muted {
     color: var(--status-overdue-text);
@@ -699,8 +1305,8 @@
   .card-base {
     background-color: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 0.525rem;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
   }
 
   /* PILL VARIANTS */
@@ -772,7 +1378,7 @@
   }
   .app-sidebar-logo {
     background-color: var(--sidebar-primary);
-    color: white;
+    color: var(--sidebar-primary-foreground);
   }
   .app-sidebar-avatar {
     background-color: var(--sidebar-avatar-bg);
@@ -807,13 +1413,13 @@
   }
 
   .app-sidebar-tooltip {
-    background: #ffffff;
-    color: #1f2937;
+    background: var(--background);
+    color: var(--foreground);
     padding: 0.625rem 0.875rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border-radius: 0.375rem;
-    box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.18);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 15px -3px hsl(222 47% 11% / 0.18);
   }
 
   /* TAB TRIGGER (underline style) */
@@ -841,15 +1447,8 @@
     background-color: var(--page-bg);
     color: var(--text-primary);
   }
-  .icon-xs {
-    @apply size-3.5;
-  }
 
   /* BUTTON MOTION — vertical roll (default variant only) */
-  .btn-roll {
-    /* marker class; scopes everything below to the default variant */
-  }
-
   .btn-roll .btn-roll-clip {
     display: inline-flex;
     flex-direction: column;
