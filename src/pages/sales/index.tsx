@@ -139,14 +139,14 @@ export default function SalesPage() {
             <table className="w-full">
               <thead>
                 <tr className="table-header">
-                  <th className="px-6 py-3 align-text-left">Customer</th>
-                  <th className="px-6 py-3 align-text-left">Product</th>
-                  <th className="px-6 py-3 align-text-right">Sold Price</th>
-                  <th className="px-6 py-3 align-text-right">Outstanding</th>
-                  <th className="px-6 py-3 align-text-right">Monthly</th>
-                  <th className="px-6 py-3 align-text-left">Next Due</th>
-                  <th className="px-6 py-3 align-text-left">Status</th>
-                  <th className="px-6 py-3 align-text-right">Actions</th>
+                  <th className="px-6 py-3 text-left">Customer</th>
+                  <th className="px-6 py-3 text-left">Product</th>
+                  <th className="px-6 py-3 text-right">Sold Price</th>
+                  <th className="px-6 py-3 text-right">Outstanding</th>
+                  <th className="px-6 py-3 text-right">Monthly</th>
+                  <th className="px-6 py-3 text-left">Next Due</th>
+                  <th className="px-6 py-3 text-left">Status</th>
+                  <th className="px-6 py-3 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -179,19 +179,19 @@ export default function SalesPage() {
                           {product?.name}
                         </span>
                         <span
-                          className={`t-micro-bold case-upper tracking-label ${product ? CATEGORY_TEXT[product.category] : "text-faint"}`}
+                          className={`t-micro-bold text-uppercase tracking-label ${product ? CATEGORY_TEXT[product.category] : "text-faint"}`}
                         >
                           {product?.category}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-3 align-text-right table-text">
+                    <td className="px-6 py-3 text-right table-text">
                       {formatCurrency(sale.soldPrice)}
                     </td>
-                    <td className="px-6 py-3 align-text-right t-meta-bold text-main fw-bold">
+                    <td className="px-6 py-3 text-right t-meta-bold text-main fw-bold">
                       {formatCurrency(stat.outstanding)}
                     </td>
-                    <td className="px-6 py-3 align-text-right table-text">
+                    <td className="px-6 py-3 text-right table-text">
                       {formatCurrency(sale.monthlyAmount)}
                     </td>
                     <td className="px-6 py-3 table-text">
@@ -202,7 +202,7 @@ export default function SalesPage() {
                         status={stat.hasOverdue ? "OVERDUE" : sale.status}
                       />
                     </td>
-                    <td className="px-6 py-3 align-text-right">
+                    <td className="px-6 py-3 text-right">
                       <Button
                         variant="outline"
                         size="sm"
@@ -224,7 +224,7 @@ export default function SalesPage() {
                   <tr>
                     <td
                       colSpan={8}
-                      className="px-6 py-16 align-text-center t-body text-faint"
+                      className="px-6 py-16 text-center t-body text-faint"
                     >
                       No sales match your filters.
                     </td>

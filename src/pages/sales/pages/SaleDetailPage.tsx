@@ -58,7 +58,7 @@ export default function SaleDetailPage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to list
@@ -67,7 +67,7 @@ export default function SaleDetailPage() {
         <div className="grid gap-6 lg:grid-cols-2 mb-6">
           {/* Customer */}
           <div className="surface-card card-rounded border border-default p-6 shadow-sm">
-            <p className="t-micro-bold text-soft case-upper tracking-label mb-4">
+            <p className="t-micro-bold text-soft text-uppercase tracking-label mb-4">
               Customer
             </p>
             <div className="flex items-start gap-4">
@@ -79,7 +79,7 @@ export default function SaleDetailPage() {
                 <div className="flex flex-wrap gap-x-4 gap-y-0.5 t-meta text-soft">
                   <span>
                     <span className="text-faint mr-1">NIC</span>
-                    <span className="mono-text">{customer?.nic}</span>
+                    <span className="font-mono">{customer?.nic}</span>
                   </span>
                   <span>
                     <span className="text-faint mr-1">Phone</span>
@@ -91,7 +91,7 @@ export default function SaleDetailPage() {
                   <Link
                     to="/customers/$id"
                     params={{ id: customer.id }}
-                    className="t-caption-bold text-brand inline-flex items-center gap-1 link-hover mt-3"
+                    className="t-caption-bold text-brand inline-flex items-center gap-1 mt-3"
                   >
                     View Full Profile →
                   </Link>
@@ -103,7 +103,7 @@ export default function SaleDetailPage() {
           {/* Sale summary */}
           <div className="surface-card card-rounded border border-default p-6 shadow-sm relative">
             <div className="flex items-start justify-between mb-4">
-              <p className="t-micro-bold text-soft case-upper tracking-label">
+              <p className="t-micro-bold text-soft text-uppercase tracking-label">
                 Sale Summary
               </p>
               <StatusBadge status={stat.hasOverdue ? "OVERDUE" : sale.status} />
@@ -123,7 +123,7 @@ export default function SaleDetailPage() {
                 highlight
               />
             </div>
-            <p className="t-caption text-faint text-italic mt-4 pt-4 border-t border-default">
+            <p className="t-caption text-faint italic mt-4 pt-4 border-t border-default">
               Sold on {formatDate(sale.saleDate)}
             </p>
           </div>
@@ -142,13 +142,13 @@ export default function SaleDetailPage() {
             <table className="w-full">
               <thead>
                 <tr className="table-header">
-                  <th className="px-6 py-3 align-text-left">#</th>
-                  <th className="px-6 py-3 align-text-left">Due Date</th>
-                  <th className="px-6 py-3 align-text-right">Expected</th>
-                  <th className="px-6 py-3 align-text-right">Paid</th>
-                  <th className="px-6 py-3 align-text-right">Balance</th>
-                  <th className="px-6 py-3 align-text-left">Status</th>
-                  <th className="px-6 py-3 align-text-right">Action</th>
+                  <th className="px-6 py-3 text-left">#</th>
+                  <th className="px-6 py-3 text-left">Due Date</th>
+                  <th className="px-6 py-3 text-right">Expected</th>
+                  <th className="px-6 py-3 text-right">Paid</th>
+                  <th className="px-6 py-3 text-right">Balance</th>
+                  <th className="px-6 py-3 text-left">Status</th>
+                  <th className="px-6 py-3 text-right">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -174,23 +174,23 @@ export default function SaleDetailPage() {
                         {s.installmentNumber}
                       </td>
                       <td
-                        className={`px-6 py-3 table-text ${isPaid ? "text-strike text-faint" : ""}`}
+                        className={`px-6 py-3 table-text ${isPaid ? "line-through text-faint" : ""}`}
                       >
                         {formatDate(s.dueDate)}
                       </td>
-                      <td className="px-6 py-3 align-text-right table-text">
+                      <td className="px-6 py-3 text-right table-text">
                         {formatCurrency(s.expectedAmount)}
                       </td>
-                      <td className="px-6 py-3 align-text-right table-text">
+                      <td className="px-6 py-3 text-right table-text">
                         {formatCurrency(s.paidAmount)}
                       </td>
-                      <td className="px-6 py-3 align-text-right t-meta-bold text-main">
+                      <td className="px-6 py-3 text-right t-meta-bold text-main">
                         {balance > 0 ? formatCurrency(balance) : "—"}
                       </td>
                       <td className="px-6 py-3">
                         <StatusBadge status={s.status} />
                       </td>
-                      <td className="px-6 py-3 align-text-right">
+                      <td className="px-6 py-3 text-right">
                         {!isPaid ? (
                           <Button
                             variant="outline"
@@ -244,7 +244,7 @@ export default function SaleDetailPage() {
                           {formatCurrency(p.paidAmount)}
                         </span>
                         {sched && (
-                          <span className="surface-brand-soft text-brand t-micro-bold case-upper tracking-label px-2 py-0.5 global-rounded">
+                          <span className="surface-brand-soft text-brand t-micro-bold text-uppercase tracking-label px-2 py-0.5 global-rounded">
                             Installment {sched.installmentNumber}
                           </span>
                         )}
@@ -287,7 +287,7 @@ function KV({
 }) {
   return (
     <div>
-      <p className="t-micro-bold text-soft case-upper tracking-label mb-1">
+      <p className="t-micro-bold text-soft text-uppercase tracking-label mb-1">
         {label}
       </p>
       <p className={`t-meta-bold ${highlight ? "text-brand" : "text-main"}`}>

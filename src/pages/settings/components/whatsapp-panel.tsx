@@ -39,7 +39,7 @@ export default function WhatsAppPanel({
             <Icon.CheckCircle2 className="h-4 w-4 text-success-role" />
           </h2>
           <p className="t-caption text-soft">
-            Connected to <span className="mono-text">+94 77 123 4567</span> ·
+            Connected to <span className="font-mono">+94 77 123 4567</span> ·
             Active templates will be used for reminders.
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function WhatsAppPanel({
                 style={{ borderColor: "var(--border)" }}
               >
                 <td className="px-4 py-3 table-title-text">{t.name}</td>
-                <td className="px-4 py-3 t-meta text-soft mono-text">
+                <td className="px-4 py-3 t-meta text-soft font-mono">
                   {t.preview}
                 </td>
                 <td className="px-4 py-3">

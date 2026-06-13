@@ -71,7 +71,7 @@ export default function NewSalePage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to sales
@@ -99,7 +99,7 @@ export default function NewSalePage() {
                 </Select>
                 <button
                   type="button"
-                  className="t-caption-bold text-brand inline-flex items-center gap-1 self-start link-hover mt-1"
+                  className="t-caption-bold text-brand inline-flex items-center gap-1 self-start mt-1"
                 >
                   <UserPlus className="h-3.5 w-3.5" />
                   Add New Customer
@@ -256,18 +256,16 @@ export default function NewSalePage() {
               </div>
 
               <div className="mt-5 pt-5 border-t border-default">
-                <p className="t-micro-bold text-soft case-upper tracking-label mb-2">
+                <p className="t-micro-bold text-soft text-uppercase tracking-label mb-2">
                   Generated Schedule
                 </p>
                 <div className="max-h-75 overflow-y-auto -mx-2">
                   <table className="w-full">
                     <thead>
-                      <tr className="t-micro text-faint case-upper tracking-label">
-                        <th className="px-2 py-1.5 align-text-left">#</th>
-                        <th className="px-2 py-1.5 align-text-left">
-                          Due Date
-                        </th>
-                        <th className="px-2 py-1.5 align-text-right">Amount</th>
+                      <tr className="t-micro text-faint text-uppercase tracking-label">
+                        <th className="px-2 py-1.5 text-left">#</th>
+                        <th className="px-2 py-1.5 text-left">Due Date</th>
+                        <th className="px-2 py-1.5 text-right">Amount</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -275,7 +273,7 @@ export default function NewSalePage() {
                         <tr>
                           <td
                             colSpan={3}
-                            className="px-2 py-6 align-text-center t-caption text-faint"
+                            className="px-2 py-6 text-center t-caption text-faint"
                           >
                             Enter sale details to preview schedule
                           </td>
@@ -289,7 +287,7 @@ export default function NewSalePage() {
                             <td className="px-2 py-2 t-caption text-soft">
                               {formatDate(s.due)}
                             </td>
-                            <td className="px-2 py-2 align-text-right t-caption-bold text-main">
+                            <td className="px-2 py-2 text-right t-caption-bold text-main">
                               {formatCurrency(s.amount)}
                             </td>
                           </tr>

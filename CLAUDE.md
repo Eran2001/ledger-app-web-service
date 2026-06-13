@@ -30,19 +30,18 @@
 
 ### Forbidden in Component JSX
 
-| Category         | Forbidden pattern            | Use instead                        |
-| ---------------- | ---------------------------- | ---------------------------------- |
-| Font size        | `text-{xs/sm/base/lg/xl…}`   | `fs-*`                             |
-| Font weight      | `font-{thin/light/bold…}`    | `fw-*`                             |
-| Letter spacing   | `tracking-{tight/wide…}`     | `ls-*`                             |
-| Line height      | `leading-{tight/relaxed…}`   | `lh-*`                             |
-| Text transform   | `uppercase` `capitalize` …   | `text-uppercase` `text-capitalize` |
-| Color / bg-color | `text-gray-*` `bg-slate-*` … | semantic token classes             |
-| Border color     | `border-gray-*` …            | `border-border` `border-primary`   |
-| Border radius    | `rounded-*`                  | `global-rounded` `card-rounded` …  |
-| Interactive      | inline `hover:` / `focus:`   | `btn-brand` `sidebar-nav-*`        |
-| Font style       | `italic` `not-italic`        | `style-*`                          |
-| Text decoration  | `underline` `line-through` … | `decoration-*`                     |
+| Category         | Forbidden pattern            | Use instead                                  |
+| ---------------- | ---------------------------- | -------------------------------------------- |
+| Font size        | `text-{xs/sm/base/lg/xl…}`   | `t-*` (size + weight bundled)                |
+| Font weight      | `font-{thin/light/bold…}`    | `fw-*`                                       |
+| Letter spacing   | `tracking-{tight/wide…}`     | `[letter-spacing:var(--tracking-*)]`         |
+| Line height      | `leading-{tight/relaxed…}`   | `[line-height:var(--leading-*)]`             |
+| Text transform   | `uppercase` `capitalize` …   | `text-uppercase` `text-capitalize`           |
+| Color / bg-color | `text-gray-*` `bg-slate-*` … | semantic token classes                       |
+| Border color     | `border-gray-*` …            | `border-default` `border-brand` …            |
+| Border radius    | `rounded-*`                  | `md-rounded` `lg-rounded` `full-rounded` …   |
+| Interactive      | inline `hover:` / `focus:`   | `btn-brand` `sidebar-nav-*`                  |
+| Text decoration  | `underline` `line-through` … | `decoration-*`                               |
 
 ### Allowed in Component JSX
 
@@ -93,47 +92,9 @@
 | `fw-bold`     | bold     |
 | `fw-black`    | black    |
 
-### Line height overrides (`lh-*`)
-
-| Class        | Value |
-| ------------ | ----- |
-| `lh-none`    | 1     |
-| `lh-tight`   | 1.25  |
-| `lh-snug`    | 1.375 |
-| `lh-relaxed` | 1.625 |
-
-### Letter spacing overrides (`ls-*`)
-
-| Class       | Value   |
-| ----------- | ------- |
-| `ls-normal` | 0       |
-| `ls-wide`   | 0.025em |
-| `ls-wider`  | 0.05em  |
-| `ls-widest` | 0.1em   |
-
 ### Text transform
 
 `text-uppercase` · `text-lowercase` · `text-capitalize`
-
-### Font size (`fs-*`)
-
-| Class     | Size     |
-| --------- | -------- |
-| `fs-xs`   | 0.75rem  |
-| `fs-sm`   | 0.875rem |
-| `fs-base` | 1rem     |
-| `fs-lg`   | 1.125rem |
-| `fs-xl`   | 1.25rem  |
-| `fs-2xl`  | 1.5rem   |
-| `fs-3xl`  | 1.875rem |
-| `fs-4xl`  | 2.25rem  |
-
-### Font style (`style-*`)
-
-| Class          | Effect     |
-| -------------- | ---------- |
-| `style-italic` | italic     |
-| `style-normal` | not-italic |
 
 ### Text decoration (`decoration-*`)
 

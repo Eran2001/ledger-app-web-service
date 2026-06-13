@@ -137,14 +137,14 @@ export default function ReportsPage() {
       <div className="flex-1 space-y-6 p-6 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="card-base p-5">
-            <p className="label-caps">Total Outstanding</p>
+            <p className="text-uppercase">Total Outstanding</p>
             <p className="t-kpi-lg text-main mt-2">
               {formatCurrency(stats.totalOutstanding)}
             </p>
             <p className="t-caption text-soft mt-1">All active sales</p>
           </div>
           <div className="card-base p-5">
-            <p className="label-caps">Collected This Month</p>
+            <p className="text-uppercase">Collected This Month</p>
             <p className="t-kpi-lg text-success-role mt-2">
               {formatCurrency(stats.collectedThisMonth)}
             </p>
@@ -153,12 +153,12 @@ export default function ReportsPage() {
             </p>
           </div>
           <div className="card-base p-5">
-            <p className="label-caps">Collection Rate</p>
+            <p className="text-uppercase">Collection Rate</p>
             <p className="t-kpi-lg text-main mt-2">{stats.collectionRate}%</p>
             <p className="t-caption text-soft mt-1">This month</p>
           </div>
           <div className="card-base p-5">
-            <p className="label-caps">Active Sales</p>
+            <p className="text-uppercase">Active Sales</p>
             <p className="t-kpi-lg text-main mt-2">{stats.activeSalesCount}</p>
             <p className="t-caption text-soft mt-1">In progress</p>
           </div>
@@ -290,7 +290,7 @@ export default function ReportsPage() {
                   <tr>
                     <td
                       colSpan={5}
-                      className="px-4 py-12 align-text-center t-meta text-faint"
+                      className="px-4 py-12 text-center t-meta text-faint"
                     >
                       No overdue installments.
                     </td>
@@ -321,7 +321,7 @@ export default function ReportsPage() {
                         <td className="px-4 py-3 table-title-text fw-bold">
                           {formatCurrency(r.amount)}
                         </td>
-                        <td className="px-4 py-3 align-text-right">
+                        <td className="px-4 py-3 text-right">
                           <Button
                             asChild
                             size="sm"

@@ -34,7 +34,7 @@ export default function OverdueList() {
     <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-2 flex flex-col overflow-hidden">
       <div className="flex items-center justify-between px-6 h-14 border-b border-default">
         <h2 className="t-title text-main">Overdue Installments</h2>
-        <button className="t-meta-bold text-danger inline-flex items-center gap-1 link-hover">
+        <button className="t-meta-bold text-danger inline-flex items-center gap-1">
           Send Reminders <ArrowRight className="h-3.5 w-3.5" />
         </button>
       </div>
@@ -42,7 +42,10 @@ export default function OverdueList() {
         {overdueRows.map((r) => (
           <li
             key={r.id}
-            onClick={() => r.customerId && navigate({ to: "/customers/$id", params: { id: r.customerId } })}
+            onClick={() =>
+              r.customerId &&
+              navigate({ to: "/customers/$id", params: { id: r.customerId } })
+            }
             className="surface-hover cursor-pointer flex items-center justify-between gap-3 px-6 py-3"
           >
             <div className="flex items-center gap-3 min-w-0">
@@ -53,15 +56,17 @@ export default function OverdueList() {
               </div>
             </div>
             <div className="text-right shrink-0">
-              <p className="t-micro-bold text-danger case-upper tracking-label">
+              <p className="t-micro-bold text-danger text-uppercase tracking-label">
                 {r.days} days late
               </p>
-              <p className="t-meta-bold text-main">{formatCurrency(r.amount)}</p>
+              <p className="t-meta-bold text-main">
+                {formatCurrency(r.amount)}
+              </p>
             </div>
           </li>
         ))}
       </ul>
-      <div className="surface-page px-6 py-3 align-text-center t-micro text-faint">
+      <div className="surface-page px-6 py-3 text-center t-micro text-faint">
         Manual reminders recommended for 60+ days
       </div>
     </section>

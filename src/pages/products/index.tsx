@@ -183,7 +183,7 @@ export default function ProductsPage() {
                   <tr>
                     <td
                       colSpan={6}
-                      className="px-4 py-12 align-text-center text-faint t-meta"
+                      className="px-4 py-12 text-center text-faint t-meta"
                     >
                       No products found.
                     </td>
@@ -261,7 +261,7 @@ export default function ProductsPage() {
                             </span>
                           )}
                         </td>
-                        <td className="px-4 py-3 align-top align-text-center">
+                        <td className="px-4 py-3 align-top text-center">
                           <span className="table-text fw-semibold text-main">
                             {p.activeSales}
                           </span>

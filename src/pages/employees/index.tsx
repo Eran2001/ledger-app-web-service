@@ -113,7 +113,7 @@ export default function UsersPage() {
                           <span className="table-title-text">{u.name}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 table-text mono-text t-meta">
+                      <td className="px-4 py-3 table-text font-mono t-meta">
                         {u.email}
                       </td>
                       <td className="px-4 py-3">
@@ -178,7 +178,7 @@ export default function UsersPage() {
                     <tr>
                       <td
                         colSpan={7}
-                        className="px-4 py-12 align-text-center t-meta text-faint"
+                        className="px-4 py-12 text-center t-meta text-faint"
                       >
                         No pending requests.
                       </td>
@@ -191,10 +191,10 @@ export default function UsersPage() {
                         style={{ borderColor: "var(--border)" }}
                       >
                         <td className="px-4 py-3 table-title-text">{r.name}</td>
-                        <td className="px-4 py-3 table-text mono-text t-meta">
+                        <td className="px-4 py-3 table-text font-mono t-meta">
                           {r.email}
                         </td>
-                        <td className="px-4 py-3 table-text mono-text t-meta">
+                        <td className="px-4 py-3 table-text font-mono t-meta">
                           {r.phone}
                         </td>
                         <td className="px-4 py-3">

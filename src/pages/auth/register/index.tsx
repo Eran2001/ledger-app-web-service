@@ -61,7 +61,7 @@ export default function RegisterPage() {
             <p className="t-body text-soft mb-6 max-w-sm mx-auto">
               Your request has been submitted. Admin will review it shortly.
             </p>
-            <Link to="/login" className="t-meta-bold text-brand link-hover">
+            <Link to="/login" className="t-meta-bold text-brand">
               ← Back to sign in
             </Link>
           </div>
@@ -152,7 +152,7 @@ export default function RegisterPage() {
 
               <p className="t-meta text-soft text-center mt-2">
                 Already have access?{" "}
-                <Link to="/login" className="text-brand fw-bold link-hover">
+                <Link to="/login" className="text-brand fw-bold">
                   Sign in
                 </Link>
               </p>

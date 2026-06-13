@@ -12,14 +12,22 @@ import {
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 const recentPayments = [...payments]
-  .sort((a, b) => new Date(b.paidDate).getTime() - new Date(a.paidDate).getTime())
+  .sort(
+    (a, b) => new Date(b.paidDate).getTime() - new Date(a.paidDate).getTime(),
+  )
   .slice(0, 5)
   .map((p) => {
-    const sched = installmentSchedules.find((s) => s.id === p.installmentScheduleId);
+    const sched = installmentSchedules.find(
+      (s) => s.id === p.installmentScheduleId,
+    );
     const sale = sched ? sales.find((s) => s.id === sched.saleId) : undefined;
     const customer = sale ? customerById(sale.customerId) : undefined;
     const product = sale ? productById(sale.productId) : undefined;
-    const status = (sched?.status ?? "PAID") as "PAID" | "PARTIALLY_PAID" | "OVERDUE" | "PENDING";
+    const status = (sched?.status ?? "PAID") as
+      | "PAID"
+      | "PARTIALLY_PAID"
+      | "OVERDUE"
+      | "PENDING";
     return {
       id: p.id,
       customer: customer?.fullName ?? "Unknown",
@@ -35,7 +43,10 @@ export default function RecentPayments() {
     <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-3 overflow-hidden">
       <div className="flex items-center justify-between px-6 h-14 border-b border-default">
         <h2 className="t-title text-main">Recent Payments</h2>
-        <Link to="/sales" className="t-meta-bold text-brand inline-flex items-center gap-1 link-hover">
+        <Link
+          to="/sales"
+          className="t-meta-bold text-brand inline-flex items-center gap-1"
+        >
           View All <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>
@@ -43,11 +54,11 @@ export default function RecentPayments() {
         <table className="w-full">
           <thead>
             <tr className="table-header">
-              <th className="px-6 py-3 align-text-left">Customer</th>
-              <th className="px-6 py-3 align-text-left">Product</th>
-              <th className="px-6 py-3 align-text-right">Amount</th>
-              <th className="px-6 py-3 align-text-left">Date</th>
-              <th className="px-6 py-3 align-text-left">Status</th>
+              <th className="px-6 py-3 text-left">Customer</th>
+              <th className="px-6 py-3 text-left">Product</th>
+              <th className="px-6 py-3 text-right">Amount</th>
+              <th className="px-6 py-3 text-left">Date</th>
+              <th className="px-6 py-3 text-left">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +71,7 @@ export default function RecentPayments() {
                   </div>
                 </td>
                 <td className="px-6 py-3 table-text">{p.product}</td>
-                <td className="px-6 py-3 align-text-right t-meta-bold text-main fw-semibold">
+                <td className="px-6 py-3 text-right t-meta-bold text-main fw-semibold">
                   {formatCurrency(p.amount)}
                 </td>
                 <td className="px-6 py-3 table-text">{formatDate(p.date)}</td>

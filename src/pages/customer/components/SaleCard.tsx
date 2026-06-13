@@ -6,7 +6,10 @@ import { Progress } from "@/components/ui/progress";
 import { saleStats, productById } from "@/lib/dummy-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
-const CATEGORY_PILL: Record<string, "indigo" | "teal" | "amber" | "purple" | "gray"> = {
+const CATEGORY_PILL: Record<
+  string,
+  "indigo" | "teal" | "amber" | "purple" | "gray"
+> = {
   Electronics: "indigo",
   Appliances: "teal",
   Furniture: "amber",
@@ -25,15 +28,21 @@ type Sale = {
 export default function SaleCard({ sale }: { sale: Sale }) {
   const product = productById(sale.productId);
   const stat = saleStats(sale.id);
-  const progress = stat.totalCount === 0 ? 0 : (stat.paidCount / stat.totalCount) * 100;
+  const progress =
+    stat.totalCount === 0 ? 0 : (stat.paidCount / stat.totalCount) * 100;
 
   return (
     <div className="surface-card card-rounded border border-default p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
-          <h3 className="t-section text-main truncate mb-1.5">{product?.name}</h3>
+          <h3 className="t-section text-main truncate mb-1.5">
+            {product?.name}
+          </h3>
           {product && (
-            <StatPill label={product.category} color={CATEGORY_PILL[product.category] ?? "gray"} />
+            <StatPill
+              label={product.category}
+              color={CATEGORY_PILL[product.category] ?? "gray"}
+            />
           )}
         </div>
         <StatusBadge status={stat.hasOverdue ? "OVERDUE" : "ACTIVE"} />
@@ -47,8 +56,12 @@ export default function SaleCard({ sale }: { sale: Sale }) {
 
       <div className="mb-3">
         <div className="flex items-center justify-between t-caption text-soft mb-1.5">
-          <span>{stat.paidCount} of {stat.totalCount} installments paid</span>
-          <span className="fw-bold text-main">{formatCurrency(stat.outstanding)} left</span>
+          <span>
+            {stat.paidCount} of {stat.totalCount} installments paid
+          </span>
+          <span className="fw-bold text-main">
+            {formatCurrency(stat.outstanding)} left
+          </span>
         </div>
         <Progress value={progress} className="h-2" />
       </div>
@@ -63,7 +76,7 @@ export default function SaleCard({ sale }: { sale: Sale }) {
         <Link
           to="/sales/$id"
           params={{ id: sale.id }}
-          className="t-caption-bold text-brand inline-flex items-center gap-1 link-hover"
+          className="t-caption-bold text-brand inline-flex items-center gap-1"
         >
           View Full Details <ArrowRight className="h-3 w-3" />
         </Link>
@@ -75,7 +88,9 @@ export default function SaleCard({ sale }: { sale: Sale }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="t-micro-bold text-faint case-upper tracking-label mb-1">{label}</p>
+      <p className="t-micro-bold text-faint text-uppercase tracking-label mb-1">
+        {label}
+      </p>
       <p className="t-meta-bold text-main">{value}</p>
     </div>
   );

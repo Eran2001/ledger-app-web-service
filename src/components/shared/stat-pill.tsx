@@ -1,7 +1,13 @@
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
-type PillColor = "indigo" | "amber" | "gray" | "green" | "red" | "teal" | "purple"
+type PillColor =
+  | "indigo"
+  | "amber"
+  | "gray"
+  | "green"
+  | "red"
+  | "teal"
+  | "purple";
 
 const COLOR_CLASS: Record<PillColor, string> = {
   indigo: "pill-indigo",
@@ -11,26 +17,26 @@ const COLOR_CLASS: Record<PillColor, string> = {
   red: "pill-red",
   teal: "pill-teal",
   purple: "pill-purple",
-}
+};
 
 export function StatPill({
   label,
   color = "indigo",
   className,
 }: {
-  label: string
-  color?: PillColor
-  className?: string
+  label: string;
+  color?: PillColor;
+  className?: string;
 }) {
   return (
     <span
       className={cn(
-        "t-micro fw-bold px-3 py-1 circle-rounded inline-block whitespace-nowrap case-upper tracking-label",
+        "t-micro fw-bold px-3 py-1 circle-rounded inline-block whitespace-nowrap text-uppercase [letter-spacing:var(--tracking-label)]",
         COLOR_CLASS[color],
         className,
       )}
     >
       {label}
     </span>
-  )
+  );
 }

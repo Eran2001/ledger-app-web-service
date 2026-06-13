@@ -1123,6 +1123,9 @@
   }
 
   /* SEMANTIC ROUNDING */
+  .global-rounded {
+    border-radius: var(--radius-md);
+  }
   .no-rounded {
     border-radius: 0;
   }
@@ -1294,62 +1297,6 @@
   }
   .border-danger-soft {
     border-color: color-mix(in srgb, var(--destructive) 20%, transparent);
-  }
-
-  /* LABEL / CAPS */
-  .label-caps {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .label-caps-wide {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  .case-upper {
-    text-transform: uppercase;
-  }
-  .case-title {
-    text-transform: capitalize;
-  }
-  .tracking-label {
-    letter-spacing: 0.06em;
-  }
-  .tracking-label-wide {
-    letter-spacing: 0.1em;
-  }
-  .mono-text {
-    font-family:
-      var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
-      Consolas, monospace;
-  }
-  .text-italic {
-    font-style: italic;
-  }
-  .text-strike {
-    text-decoration: line-through;
-  }
-  .link-hover:hover {
-    text-decoration: underline;
-  }
-  .text-balanced {
-    text-wrap: balance;
-  }
-  .lh-tight {
-    line-height: 1.25;
-  }
-  .align-text-left {
-    text-align: left;
-  }
-  .align-text-center {
-    text-align: center;
-  }
-  .align-text-right {
-    text-align: right;
   }
 
   /* PILL VARIANTS */
@@ -1530,6 +1477,7 @@
   /* TEXT DECORATION */
   .decoration-underline {
     text-decoration-line: underline;
+    text-underline-offset: 4px;
   }
   .decoration-overline {
     text-decoration-line: overline;
@@ -1539,6 +1487,20 @@
   }
   .decoration-none {
     text-decoration-line: none;
+  }
+
+  /* UNDERLINE OFFSET */
+  .offset-1 {
+    text-underline-offset: 1px;
+  }
+  .offset-2 {
+    text-underline-offset: 2px;
+  }
+  .offset-4 {
+    text-underline-offset: 4px;
+  }
+  .offset-8 {
+    text-underline-offset: 8px;
   }
 
   /* TEXT TRANSFORM */

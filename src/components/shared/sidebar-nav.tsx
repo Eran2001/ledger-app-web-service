@@ -11,6 +11,7 @@ import {
   Settings,
   ChevronLeft,
   LogOut,
+  FlaskConical,
   type LucideIcon,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
@@ -38,6 +39,7 @@ const SECTIONS: NavSection[] = [
   {
     label: "MAIN",
     items: [
+      { href: "/test", label: "Test", icon: FlaskConical },
       { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
       { href: "/customers", label: "Customers", icon: Users },
       { href: "/sales", label: "Sales", icon: ShoppingBag },
@@ -130,7 +132,7 @@ export function SidebarNav({
               className={cn("mb-4", collapsed && "px-2")}
             >
               {!collapsed ? (
-                <div className="px-5 mb-2 t-micro-bold app-sidebar-text-faint case-upper tracking-label-wide">
+                <div className="px-5 mb-2 t-micro-bold app-sidebar-text-faint text-uppercase [letter-spacing:var(--tracking-label-wide)]">
                   {section.label}
                 </div>
               ) : i > 0 ? (
@@ -207,7 +209,7 @@ export function SidebarNav({
               <p className="sidebar-user-name app-sidebar-text truncate">
                 {user?.name}
               </p>
-              <p className="sidebar-user-role app-sidebar-text-muted case-upper truncate">
+              <p className="sidebar-user-role app-sidebar-text-muted text-uppercase truncate">
                 {user?.role}
               </p>
             </div>

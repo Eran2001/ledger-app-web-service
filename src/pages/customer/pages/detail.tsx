@@ -44,7 +44,7 @@ export default function CustomerDetailPage() {
       <div className="p-6 overflow-y-auto">
         <Link
           to="/customers"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 link-hover group"
+          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to list

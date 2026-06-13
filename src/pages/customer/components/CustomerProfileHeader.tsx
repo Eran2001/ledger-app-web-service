@@ -33,7 +33,7 @@ export default function CustomerProfileHeader({ customer, stats }: Props) {
           <div className="flex flex-wrap gap-x-4 gap-y-1 t-meta text-soft mb-2">
             <span>
               <span className="text-faint mr-1">NIC</span>
-              <span className="mono-text">{customer.nic}</span>
+              <span className="font-mono">{customer.nic}</span>
             </span>
             <span>
               <span className="text-faint mr-1">Phone</span>

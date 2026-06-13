@@ -33,7 +33,7 @@ export default function AccountInfoPage() {
               <span className="pill-indigo t-caption-bold px-2.5 py-0.5 global-rounded">
                 {user?.role ?? "ADMIN"}
               </span>
-              <span className="t-meta text-soft mono-text">{form.email}</span>
+              <span className="t-meta text-soft font-mono">{form.email}</span>
             </div>
           </div>
         </div>

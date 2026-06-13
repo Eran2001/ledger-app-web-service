@@ -128,12 +128,12 @@ export default function OverduePage() {
       <div className="p-6 overflow-y-auto space-y-6 pb-32">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="label-caps">Overdue Customers</p>
+            <p className="text-uppercase">Overdue Customers</p>
             <p className="t-kpi-lg text-main mt-2">{overdueCustomersCount}</p>
             <p className="t-caption text-faint mt-1">No trend data</p>
           </div>
           <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="label-caps">Total Overdue Amount</p>
+            <p className="text-uppercase">Total Overdue Amount</p>
             <p className="t-kpi-lg text-danger mt-2">
               {formatCurrency(totalOverdue)}
             </p>
@@ -142,7 +142,7 @@ export default function OverduePage() {
             </p>
           </div>
           <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="label-caps">Longest Overdue</p>
+            <p className="text-uppercase">Longest Overdue</p>
             <p className="t-kpi-lg text-main mt-2">
               {longest ? `${longest.daysOverdue} Days` : "—"}
             </p>
@@ -214,7 +214,7 @@ export default function OverduePage() {
                   <tr>
                     <td
                       colSpan={7}
-                      className="px-4 py-12 align-text-center text-faint t-meta"
+                      className="px-4 py-12 text-center text-faint t-meta"
                     >
                       No overdue payments in this range.
                     </td>
@@ -243,7 +243,7 @@ export default function OverduePage() {
                               <p className="table-title-text truncate">
                                 {r.customerName}
                               </p>
-                              <p className="t-micro text-faint mono-text">
+                              <p className="t-micro text-faint font-mono">
                                 {r.customerPhone}
                               </p>
                             </div>

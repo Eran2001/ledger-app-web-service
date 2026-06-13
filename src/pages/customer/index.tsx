@@ -110,15 +110,13 @@ export default function CustomersPage() {
               <table className="w-full">
                 <thead>
                   <tr className="table-header">
-                    <th className="px-6 py-3 align-text-left">Customer</th>
-                    <th className="px-6 py-3 align-text-left">NIC Number</th>
-                    <th className="px-6 py-3 align-text-left">Phone</th>
-                    <th className="px-6 py-3 align-text-center">
-                      Active Sales
-                    </th>
-                    <th className="px-6 py-3 align-text-right">Outstanding</th>
-                    <th className="px-6 py-3 align-text-left">Status</th>
-                    <th className="px-6 py-3 align-text-right">Actions</th>
+                    <th className="px-6 py-3 text-left">Customer</th>
+                    <th className="px-6 py-3 text-left">NIC Number</th>
+                    <th className="px-6 py-3 text-left">Phone</th>
+                    <th className="px-6 py-3 text-center">Active Sales</th>
+                    <th className="px-6 py-3 text-right">Outstanding</th>
+                    <th className="px-6 py-3 text-left">Status</th>
+                    <th className="px-6 py-3 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -139,14 +137,14 @@ export default function CustomersPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-3 mono-text t-meta text-soft">
+                      <td className="px-6 py-3 font-mono t-meta text-soft">
                         {c.nic}
                       </td>
                       <td className="px-6 py-3 table-text">{c.phone}</td>
-                      <td className="px-6 py-3 align-text-center table-text">
+                      <td className="px-6 py-3 text-center table-text">
                         {c.activeSalesCount}
                       </td>
-                      <td className="px-6 py-3 align-text-right">
+                      <td className="px-6 py-3 text-right">
                         {c.outstanding > 0 ? (
                           <span className="t-meta-bold text-main fw-semibold">
                             {formatCurrency(c.outstanding)}
@@ -158,7 +156,7 @@ export default function CustomersPage() {
                       <td className="px-6 py-3">
                         <StatusBadge status={c.status} />
                       </td>
-                      <td className="px-6 py-3 align-text-right">
+                      <td className="px-6 py-3 text-right">
                         <Button
                           variant="outline"
                           size="sm"

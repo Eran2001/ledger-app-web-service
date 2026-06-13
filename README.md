@@ -110,34 +110,6 @@ The app runs at `http://localhost:5173` by default.
 | `t-micro`        | 11px medium — micro labels           | `<span className="t-micro">ADMIN</span>`                 |
 | `t-micro-bold`   | 11px bold — emphasized micro text    | `<span className="t-micro-bold">NEW</span>`              |
 
-### Font Size (`fs-*`)
-
-| Class     | Size     | Example                                  |
-| --------- | -------- | ---------------------------------------- |
-| `fs-xs`   | 12px     | `<span className="fs-xs">Label</span>`   |
-| `fs-sm`   | 0.875rem | `<span className="fs-sm">Label</span>`   |
-| `fs-base` | 1rem     | `<span className="fs-base">Label</span>` |
-| `fs-lg`   | 1.125rem | `<span className="fs-lg">Label</span>`   |
-| `fs-2xl`  | 1.5rem   | `<span className="fs-2xl">Label</span>`  |
-
-### Line Height (`lh-*`)
-
-| Class        | Value | Example                                     |
-| ------------ | ----- | ------------------------------------------- |
-| `lh-none`    | 1     | `<p className="t-kpi lh-none">₱48,500</p>`  |
-| `lh-tight`   | 1.25  | `<p className="t-body lh-tight">Text</p>`   |
-| `lh-snug`    | 1.375 | `<p className="t-body lh-snug">Text</p>`    |
-| `lh-relaxed` | 1.625 | `<p className="t-body lh-relaxed">Text</p>` |
-
-### Letter Spacing (`ls-*`)
-
-| Class       | Value   | Example                                                    |
-| ----------- | ------- | ---------------------------------------------------------- |
-| `ls-normal` | 0       | `<span className="ls-normal">Text</span>`                  |
-| `ls-wide`   | 0.025em | `<span className="ls-wide">Text</span>`                    |
-| `ls-wider`  | 0.05em  | `<span className="ls-wider">Text</span>`                   |
-| `ls-widest` | 0.1em   | `<span className="ls-widest text-uppercase">STATUS</span>` |
-
 ### Text Transform
 
 | Class             | Effect        | Example                                                     |
@@ -146,25 +118,30 @@ The app runs at `http://localhost:5173` by default.
 | `text-lowercase`  | all lowercase | `<span className="text-lowercase">EMAIL@EXAMPLE.COM</span>` |
 | `text-capitalize` | Title Case    | `<span className="text-capitalize">john doe</span>`         |
 
-### Font Style & Decoration
+### Text Decoration
 
 | Class                  | Effect            | Example                                             |
 | ---------------------- | ----------------- | --------------------------------------------------- |
-| `style-italic`         | italic            | `<span className="style-italic">Note: ...</span>`   |
 | `decoration-underline` | underline         | `<a className="decoration-underline">Link</a>`      |
 | `decoration-strike`    | line-through      | `<span className="decoration-strike">₱2,000</span>` |
 | `decoration-none`      | removes underline | `<a className="decoration-none">Link</a>`           |
 
 ### Semantic Rounding
 
-| Class            | Radius                                    | Example                                     |
-| ---------------- | ----------------------------------------- | ------------------------------------------- |
-| `global-rounded` | `--radius-md` (0.375rem) — shadcn default | `<div className="global-rounded">...</div>` |
-| `card-rounded`   | `--radius-lg` (0.525rem) — cards          | `<div className="card-rounded">...</div>`   |
-| `modal-rounded`  | `--radius-xl` (0.625rem) — modals         | `<div className="modal-rounded">...</div>`  |
-| `tab-rounded`    | `--radius-sm` (0.25rem) — tab pills       | `<div className="tab-rounded">...</div>`    |
-| `circle-rounded` | 999px — avatars, dots                     | `<div className="circle-rounded">...</div>` |
-| `no-rounded`     | 0 — flush edges                           | `<div className="no-rounded">...</div>`     |
+| Class           | Radius                       | Example                                    |
+| --------------- | ---------------------------- | ------------------------------------------ |
+| `no-rounded`    | 0 — flush edges              | `<div className="no-rounded">...</div>`    |
+| `sm-rounded`    | `--radius-sm` — small        | `<div className="sm-rounded">...</div>`    |
+| `md-rounded`    | `--radius-md` — default      | `<div className="md-rounded">...</div>`    |
+| `lg-rounded`    | `--radius-lg` — cards        | `<div className="lg-rounded">...</div>`    |
+| `xl-rounded`    | `--radius-xl` — modals       | `<div className="xl-rounded">...</div>`    |
+| `full-rounded`  | 999px — avatars, pills, dots | `<div className="full-rounded">...</div>`  |
+| `t-rounded`     | top corners only             | `<div className="t-rounded">...</div>`     |
+| `b-rounded`     | bottom corners only          | `<div className="b-rounded">...</div>`     |
+| `tl-rounded`    | top-left only                | `<div className="tl-rounded">...</div>`    |
+| `tr-rounded`    | top-right only               | `<div className="tr-rounded">...</div>`    |
+| `bl-rounded`    | bottom-left only             | `<div className="bl-rounded">...</div>`    |
+| `br-rounded`    | bottom-right only            | `<div className="br-rounded">...</div>`    |
 
 ### Semantic Text Colors
 
@@ -206,11 +183,11 @@ The app runs at `http://localhost:5173` by default.
 
 | Class            | Color    | Example                                                                                     |
 | ---------------- | -------- | ------------------------------------------------------------------------------------------- |
-| `status-success` | Green    | `<span className="status-success border rounded-full px-2 py-0.5 t-caption">Paid</span>`    |
-| `status-warning` | Amber    | `<span className="status-warning border rounded-full px-2 py-0.5 t-caption">Partial</span>` |
-| `status-error`   | Red      | `<span className="status-error border rounded-full px-2 py-0.5 t-caption">Overdue</span>`   |
-| `status-info`    | Sky blue | `<span className="status-info border rounded-full px-2 py-0.5 t-caption">Info</span>`       |
-| `status-pending` | Gray     | `<span className="status-pending border rounded-full px-2 py-0.5 t-caption">Pending</span>` |
+| `status-success` | Green    | `<span className="status-success border full-rounded px-2 py-0.5 t-caption">Paid</span>`    |
+| `status-warning` | Amber    | `<span className="status-warning border full-rounded px-2 py-0.5 t-caption">Partial</span>` |
+| `status-error`   | Red      | `<span className="status-error border full-rounded px-2 py-0.5 t-caption">Overdue</span>`   |
+| `status-info`    | Sky blue | `<span className="status-info border full-rounded px-2 py-0.5 t-caption">Info</span>`       |
+| `status-pending` | Gray     | `<span className="status-pending border full-rounded px-2 py-0.5 t-caption">Pending</span>` |
 
 ### Pill Variants
 

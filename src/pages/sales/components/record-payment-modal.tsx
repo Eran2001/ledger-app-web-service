@@ -73,15 +73,15 @@ export function RecordPaymentModal({
 
             <div className="surface-brand-soft modal-rounded p-5 flex justify-between items-start mb-5">
               <div>
-                <p className="t-micro-bold text-brand case-upper tracking-label">
+                <p className="t-micro-bold text-brand text-uppercase tracking-label">
                   Installment {installment.installmentNumber} of {total}
                 </p>
                 <p className="t-caption text-soft mt-1">
                   Due: {formatDate(installment.dueDate)}
                 </p>
               </div>
-              <div className="align-text-right">
-                <p className="t-micro-bold text-faint case-upper tracking-label">
+              <div className="text-right">
+                <p className="t-micro-bold text-faint text-uppercase tracking-label">
                   Remaining
                 </p>
                 <p className="t-section fw-black text-brand">
@@ -138,7 +138,7 @@ export function RecordPaymentModal({
                     <p className="t-meta-bold text-main">
                       Payment confirmation
                     </p>
-                    <p className="t-micro text-faint case-upper tracking-label truncate">
+                    <p className="t-micro text-faint text-uppercase tracking-label truncate">
                       Send to {customerPhone ?? "customer"}
                     </p>
                   </div>

@@ -74,7 +74,7 @@ export default function LoginPage() {
                 </Label>
                 <Link
                   to="/setup-password"
-                  className="t-caption-bold text-brand link-hover"
+                  className="t-caption-bold text-brand"
                 >
                   Forgot password?
                 </Link>
@@ -115,7 +115,7 @@ export default function LoginPage() {
 
           <p className="mt-8 t-meta text-soft text-center">
             Need access?{" "}
-            <Link to="/register" className="text-brand fw-bold link-hover">
+            <Link to="/register" className="text-brand fw-bold">
               Request access →
             </Link>
           </p>
@@ -153,12 +153,12 @@ export default function LoginPage() {
                 style={{ backgroundColor: "#22c55e" }}
               />
             </span>
-            <span className="t-micro-bold text-inverse case-upper tracking-label">
+            <span className="t-micro-bold text-inverse text-uppercase tracking-label">
               System Operational
             </span>
           </div>
 
-          <h2 className="t-hero text-inverse text-balanced mb-10 lh-tight">
+          <h2 className="t-hero text-inverse text-balance mb-10 leading-tight">
             Manage your store&apos;s installment plans with confidence
           </h2>
 
@@ -181,7 +181,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <p className="absolute bottom-6 left-12 mono-text t-micro text-inverse-faint case-upper tracking-label">
+        <p className="absolute bottom-6 left-12 font-mono t-micro text-inverse-faint text-uppercase tracking-label">
           SILVA TRADERS v1.0.0 · © 2026 Admin Panel
         </p>
       </div>
