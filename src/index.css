@@ -91,6 +91,7 @@
   --border-width: 1px;
   --radius-full: 999px;
   --btn-roll-height: 1.5rem;
+  --overlay-bg: hsl(0 0% 0% / 0.5);
 }
 
 .dark {
@@ -1298,6 +1299,12 @@
   .border-danger-soft {
     border-color: color-mix(in srgb, var(--destructive) 20%, transparent);
   }
+  .border-warning-soft {
+    border-color: color-mix(in srgb, var(--warning) 25%, transparent);
+  }
+  .border-info-soft {
+    border-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  }
 
   /* PILL VARIANTS */
   .pill-indigo {
@@ -1431,6 +1438,11 @@
   .auth-glass-panel {
     background-color: hsl(0 0% 100% / 0.08);
     border-color: hsl(0 0% 100% / 0.1);
+  }
+
+  /* OVERLAY */
+  .surface-overlay {
+    background-color: var(--overlay-bg);
   }
 
   /* GLASS */
@@ -1584,6 +1596,10 @@
 }
 
 @layer components {
+  /* ACCORDION */
+
+  /* ALERT-DIALOG */
+
   /* TABLE */
   .table-header {
     background-color: var(--page-bg);

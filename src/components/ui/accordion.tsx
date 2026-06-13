@@ -66,18 +66,4 @@ function AccordionContent({
   );
 }
 
-function AccordionTitle({ title }: { title: string }) {
-  return (
-    <p className="t-micro-bold text-uppercase [letter-spacing:var(--tracking-label-wide)] text-soft pb-2 border-b border-default mb-4">
-      {title}
-    </p>
-  );
-}
-
-export {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  AccordionTitle,
-};
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

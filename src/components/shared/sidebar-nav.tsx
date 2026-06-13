@@ -23,6 +23,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface NavItem {
   href: string;
@@ -108,9 +109,9 @@ export function SidebarNav({
         )}
         style={{ borderColor: "var(--sidebar-border)" }}
       >
-        <div className="app-sidebar-logo h-9 w-9 global-rounded flex items-center justify-center sidebar-brand-logo shrink-0">
-          ST
-        </div>
+        <Avatar>
+          <AvatarFallback>ST</AvatarFallback>
+        </Avatar>
         {!collapsed && (
           <div className="flex flex-col min-w-0">
             <span className="sidebar-brand-name app-sidebar-text truncate">
