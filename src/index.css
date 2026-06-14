@@ -307,7 +307,6 @@
   *:focus,
   *:focus-visible {
     outline: none !important;
-    box-shadow: none !important;
   }
 
   body {
@@ -2086,6 +2085,26 @@
 
   .calendar-dropdown {
     &:has(:focus-visible) {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  /* INPUT */
+  .input-field {
+    background-color: var(--background);
+    border-color: var(--input-border);
+    color: var(--foreground);
+    box-shadow: none;
+    outline: none;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+
+    &::placeholder {
+      color: var(--muted-foreground);
+    }
+    &:focus-visible {
       border-color: var(--ring);
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
     }
