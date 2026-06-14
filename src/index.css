@@ -1130,6 +1130,9 @@
   .no-rounded {
     border-radius: 0;
   }
+  .no-outline {
+    outline: none !important;
+  }
   .sm-rounded {
     border-radius: var(--radius-sm);
   }
@@ -1180,7 +1183,15 @@
     border-bottom-right-radius: 0;
   }
 
+  /* SEMANTIC FIELD HEIGHT */
+  .h-field {
+    height: 2.25rem; /* matches h-9 / default button height */
+  }
+
   /* SEMANTIC BORDERS — directional removal */
+  .no-border {
+    border: none !important;
+  }
   .no-l-border {
     border-left-width: 0;
   }
@@ -1239,6 +1250,12 @@
   }
 
   /* SEMANTIC COLORS — Surfaces */
+  .surface-transparent {
+    background-color: transparent !important;
+  }
+  .surface-background {
+    background-color: var(--background);
+  }
   .surface-page {
     background-color: var(--page-bg);
   }
@@ -1514,6 +1531,9 @@
   }
 
   /* SHADOW */
+  .no-shadow {
+    box-shadow: none !important;
+  }
   .shadow-brand-soft {
     box-shadow: 0 10px 15px -3px
       color-mix(in srgb, var(--primary) 18%, transparent);
@@ -1625,6 +1645,20 @@
   }
   .gap-fluid {
     gap: clamp(1rem, 0.5rem + 1.5vw, 2.5rem);
+  }
+
+  /* FOCUS RING */
+  .focus-ring {
+    &:focus-visible {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+  .has-focus-ring {
+    &:focus-within {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
   }
 
   /* BUTTON-GROUP join */
@@ -1898,28 +1932,59 @@
   /* CALENDAR */
   .calendar-day-btn {
     width: 100%;
+    line-height: 1;
 
-    &[data-selected],
-    &[data-range-start],
-    &[data-range-end] {
+    &[data-selected-single="true"] {
       background-color: var(--primary);
       color: var(--primary-foreground);
-
       &:hover {
         background-color: color-mix(in srgb, var(--primary) 90%, transparent);
-        color: var(--primary-foreground);
       }
     }
 
-    &[data-range-middle] {
-      background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
-      color: var(--secondary-foreground);
-      border-radius: 0;
+    &[data-range-start="true"],
+    &[data-range-end="true"] {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      &:hover {
+        background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+      }
     }
 
-    &[data-today]:not([data-selected]):not([data-range-start]):not([data-range-end]):not([data-range-middle]) {
+    &[data-range-middle="true"] {
+      background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+      color: var(--secondary-foreground);
+    }
+
+    &[data-today]:not([data-selected-single="true"]):not(
+        [data-range-start="true"]
+      ):not([data-range-end="true"]):not([data-range-middle="true"]) {
       border: var(--border-width) solid var(--primary);
       color: var(--primary);
+    }
+
+    &:is(.dark *):hover {
+      color: var(--accent-foreground);
+    }
+  }
+
+  .calendar-outside {
+    color: var(--muted-foreground);
+    &[aria-selected="true"] {
+      color: var(--muted-foreground);
+    }
+  }
+
+  .calendar-day {
+    &:first-child[data-selected="true"] button,
+    &:nth-child(2)[data-selected="true"] button {
+      border-top-left-radius: var(--radius);
+      border-bottom-left-radius: var(--radius);
+    }
+
+    &:last-child[data-selected="true"] button {
+      border-top-right-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
     }
   }
 
@@ -1943,6 +2008,55 @@
     &:has(:focus-visible) {
       border-color: var(--ring);
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  /* SEARCH FIELD */
+  .search-field-root {
+    border-radius: var(--radius-md);
+    border: var(--border-width) solid var(--border);
+    background-color: var(--background);
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+
+    &:focus-within {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  .search-field-icon {
+    color: var(--muted-foreground);
+  }
+
+  .search-field-input {
+    color: var(--foreground) !important;
+
+    &::placeholder {
+      color: var(--muted-foreground);
+    }
+    &:focus-visible {
+      box-shadow: none !important;
+      border-color: transparent !important;
+    }
+  }
+
+  .search-field-input-compact {
+    font-size: var(--font-size-xxs) !important;
+  }
+
+  .search-field-icon-btn {
+    color: var(--muted-foreground);
+    &:hover {
+      color: var(--foreground);
+    }
+  }
+
+  .search-field-clear {
+    color: var(--muted-foreground);
+    &:hover {
+      color: var(--foreground);
     }
   }
 
