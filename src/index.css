@@ -2366,6 +2366,41 @@
   /* DATE-TIME-PICKER */
 
   /* DIALOG */
+  .dialog-overlay {
+    background-color: hsl(0 0% 0% / 0.5);
+  }
+
+  .dialog-content {
+    background-color: var(--background);
+    border-color: var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .dialog-close-btn {
+    opacity: 0.7;
+    color: var(--foreground);
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow:
+        0 0 0 2px var(--background),
+        0 0 0 4px var(--ring);
+    }
+
+    &[data-state="open"] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
+
+  .dialog-description {
+    color: var(--muted-foreground);
+  }
 
   /* DRAWER */
 
