@@ -2512,6 +2512,29 @@
   }
 
   /* EMPTY */
+  .empty-root {
+    border-color: var(--border);
+  }
+
+  .empty-media-icon {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .empty-title {
+    letter-spacing: -0.025em;
+  }
+
+  .empty-description {
+    color: var(--muted-foreground);
+    line-height: var(--leading-relaxed);
+
+    & > a:hover {
+      color: var(--primary);
+    }
+  }
+
+  /* FIELD */
 
   /* TEXTAREA */
   .textarea-field {
