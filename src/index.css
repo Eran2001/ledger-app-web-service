@@ -2291,8 +2291,12 @@
     &[data-state="open"] {
       background-color: var(--accent);
       color: var(--accent-foreground);
-      & svg { color: inherit; }
-      & .context-menu-shortcut { color: inherit; }
+      & svg {
+        color: inherit;
+      }
+      & .context-menu-shortcut {
+        color: inherit;
+      }
     }
     &[data-variant="destructive"] {
       color: var(--destructive);
@@ -2329,7 +2333,9 @@
       background-color 0.15s,
       box-shadow 0.15s;
 
-    & svg { color: var(--muted-foreground); }
+    & svg {
+      color: var(--muted-foreground);
+    }
 
     &:hover {
       background-color: var(--background) !important;
@@ -2345,15 +2351,23 @@
     &[data-state="open"] {
       background-color: var(--background) !important;
       color: var(--foreground) !important;
-      & svg { color: var(--primary); }
+      & svg {
+        color: var(--primary);
+      }
     }
   }
-  .picker-trigger-empty { color: var(--muted-foreground); }
+  .picker-trigger-empty {
+    color: var(--muted-foreground);
+  }
   .picker-content {
     border-color: color-mix(in srgb, var(--border) 60%, transparent);
   }
 
   /* DATE-TIME-PICKER */
+
+  /* DIALOG */
+
+  /* DRAWER */
 
   /* TEXTAREA */
   .textarea-field {

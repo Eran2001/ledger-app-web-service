@@ -4,8 +4,8 @@ import { format } from "date-fns";
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TimePicker } from "@/components/ui/time-picker";
 import {
   Popover,
   PopoverContent,
@@ -18,6 +18,7 @@ interface DateTimePickerProps {
   value?: Date;
   onChange?: (date: Date | undefined) => void;
   minDate?: Date;
+  size?: "default" | "compact" | "large";
   className?: string;
   error?: boolean;
 }
@@ -26,6 +27,7 @@ export function DateTimePicker({
   value,
   onChange,
   minDate,
+  size = "default",
   className,
   error,
 }: DateTimePickerProps) {
@@ -33,12 +35,12 @@ export function DateTimePicker({
 
   const timeValue = value
     ? `${String(value.getHours()).padStart(2, "0")}:${String(
-      value.getMinutes(),
-    ).padStart(2, "0")}`
+        value.getMinutes(),
+      ).padStart(2, "0")}`
     : "00:00";
 
-  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const [hours, minutes] = e.target.value.split(":").map(Number);
+  const handleTimeChange = (timeStr: string) => {
+    const [hours, minutes] = timeStr.split(":").map(Number);
     const next = value ? new Date(value) : new Date();
     next.setHours(hours, minutes);
     onChange?.(next);
@@ -65,10 +67,15 @@ export function DateTimePicker({
               variant="outline"
               data-state={open ? "open" : "closed"}
               className={cn(
-                "w-full h-10 justify-between gap-2 pill-rounded picker-trigger",
-                "[&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:justify-between",
-                "border-border/60 hover:bg-accent/20",
-                "data-[state=open]:border-primary data-[state=open]:bg-accent/30",
+                "w-full justify-between gap-2",
+                size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
+                "[&>span]:flex [&>span]:w-full",
+                "[&>span]:items-center [&>span]:justify-between",
+                "t-meta global-rounded picker-trigger",
+                "border-border/60",
+                "hover:bg-accent/20",
+                "data-[state=open]:border-primary",
+                "data-[state=open]:bg-accent/30",
                 !value && "picker-trigger-empty",
                 error && "form-validation",
               )}
@@ -78,14 +85,21 @@ export function DateTimePicker({
               </span>
               <Icon.ChevronDown
                 className={cn(
-                  "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
+                  "h-4 w-4 shrink-0",
+                  "text-muted-foreground",
+                  "transition-transform duration-200",
                   open && "rotate-180 text-primary",
                 )}
               />
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-auto p-0 card-rounded border-border/60 dropdown-shadow"
+            className={cn(
+              "w-auto p-0",
+              "global-rounded",
+              "border-border/60",
+              "dropdown-shadow",
+            )}
             align="start"
             sideOffset={6}
           >
@@ -103,15 +117,10 @@ export function DateTimePicker({
 
       <div className="w-32 space-y-1.5">
         <Label className="datetime-field-label">Time</Label>
-        <Input
-          type="time"
+        <TimePicker
           value={timeValue}
           onChange={handleTimeChange}
-          className={cn(
-            "form-input pill-rounded appearance-none tabular-nums",
-            "[&::-webkit-calendar-picker-indicator]:hidden",
-            error && "form-validation",
-          )}
+          size={size}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DatePickerInput } from "@/components/ui/date-picker-input";
+import { DateTimePicker } from "@/components/ui/date-time-picker";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
@@ -7,24 +7,9 @@ const TestPage = () => {
 
   return (
     <>
-      <TopBar pageTitle="Date Picker" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-4 max-w-sm">
-        <DatePickerInput
-          label="Date"
-          value={date}
-          onChange={setDate}
-          placeholder="Select a date"
-        />
-        <DatePickerInput
-          value={date}
-          onChange={setDate}
-          placeholder="No label"
-        />
-        <DatePickerInput
-          label="Disabled"
-          placeholder="Disabled"
-          disabled
-        />
+      <TopBar pageTitle="Date Time Picker" pageSubtitle="Test" />
+      <div className="p-6 max-w-md">
+        <DateTimePicker value={date} onChange={setDate} />
       </div>
     </>
   );

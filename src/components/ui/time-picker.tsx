@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 interface TimePickerProps {
   value: string; // "HH:mm" 24h
   onChange: (value: string) => void;
+  size?: "default" | "compact" | "large";
   className?: string;
   disabled?: boolean;
 }
@@ -66,6 +67,7 @@ function formatDisplay(
 export function TimePicker({
   value,
   onChange,
+  size = "default",
   className,
   disabled,
 }: TimePickerProps) {
@@ -88,10 +90,16 @@ export function TimePicker({
           aria-disabled={disabled}
           data-state={open ? "open" : "closed"}
           className={cn(
-            "flex items-center justify-between w-full h-10 px-3 gap-2",
-            "pill-rounded border bg-background cursor-pointer outline-none picker-trigger",
-            "border-border/60 hover:bg-accent/20",
-            "data-[state=open]:border-primary data-[state=open]:bg-accent/30",
+            "flex items-center justify-between",
+            "w-full px-3 gap-2",
+            size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
+            "global-rounded border bg-background",
+            "cursor-pointer outline-none",
+            "picker-trigger",
+            "border-border/60",
+            "hover:bg-accent/20",
+            "data-[state=open]:border-primary",
+            "data-[state=open]:bg-accent/30",
             "transition-colors duration-150",
             disabled && "opacity-50 pointer-events-none",
             !value && "picker-trigger-empty",
@@ -103,7 +111,9 @@ export function TimePicker({
           </span>
           <Icon.Clock
             className={cn(
-              "h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-150",
+              "h-4 w-4 shrink-0",
+              "text-muted-foreground",
+              "transition-colors duration-150",
               open && "text-primary",
             )}
           />
@@ -111,13 +121,18 @@ export function TimePicker({
       </PopoverTrigger>
 
       <PopoverContent
-        className="w-auto p-3 card-rounded border-border/60 dropdown-shadow"
+        className={cn(
+          "w-auto p-3",
+          "global-rounded",
+          "border-border/60",
+          "dropdown-shadow",
+        )}
         align="start"
         sideOffset={6}
       >
         <div className="flex items-center gap-1.5">
           <Select value={String(hour)} onValueChange={handleHour}>
-            <SelectTrigger className="w-16 h-10 tabular-nums">
+            <SelectTrigger className="w-20 tabular-nums">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -132,7 +147,7 @@ export function TimePicker({
           <span className="picker-separator text-muted-foreground">:</span>
 
           <Select value={String(minute)} onValueChange={handleMinute}>
-            <SelectTrigger className="w-16 h-10 tabular-nums">
+            <SelectTrigger className="w-20 tabular-nums">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="max-h-60">
@@ -145,7 +160,7 @@ export function TimePicker({
           </Select>
 
           <Select value={period} onValueChange={handlePeriod}>
-            <SelectTrigger className="w-20 h-10">
+            <SelectTrigger className="w-20">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
