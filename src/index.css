@@ -1194,6 +1194,15 @@
   .full-rounded {
     border-radius: 999px;
   }
+  .pill-rounded {
+    border-radius: 999px;
+  }
+  .card-rounded {
+    border-radius: var(--radius-lg);
+  }
+  .dropdown-shadow {
+    box-shadow: var(--shadow-card);
+  }
   .t-rounded {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
@@ -2310,6 +2319,39 @@
   }
 
   /* DATE-PICKER-INPUT */
+  .picker-trigger {
+    background-color: var(--background);
+    border-color: color-mix(in srgb, var(--border) 80%, transparent);
+    box-shadow: var(--shadow-none) !important;
+    outline: var(--outline-none);
+    transition:
+      border-color 0.15s,
+      background-color 0.15s,
+      box-shadow 0.15s;
+
+    & svg { color: var(--muted-foreground); }
+
+    &:hover {
+      background-color: var(--background) !important;
+      color: var(--foreground) !important;
+    }
+
+    &:focus-visible,
+    &[data-state="open"] {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent) !important;
+    }
+
+    &[data-state="open"] {
+      background-color: var(--background) !important;
+      color: var(--foreground) !important;
+      & svg { color: var(--primary); }
+    }
+  }
+  .picker-trigger-empty { color: var(--muted-foreground); }
+  .picker-content {
+    border-color: color-mix(in srgb, var(--border) 60%, transparent);
+  }
 
   /* DATE-TIME-PICKER */
 
