@@ -1,13 +1,12 @@
-import * as Icon from "@/components/icons";
-import { Badge } from "@/components/ui/badge";
-import { BadgeIcon } from "@/components/ui/badge-icon";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { TopBar } from "@/components/shared/top-bar";
+import * as Icon from "@/components/icons";
 
 const TestPage = () => {
   return (
-    <div className="surface-page min-h-screen">
+    <>
       <TopBar
-        pageTitle="Overdue Payments"
+        pageTitle="Button Group"
         pageSubtitle="Test"
         primaryAction={{
           to: "/customers/new",
@@ -15,39 +14,44 @@ const TestPage = () => {
           label: "New Customer",
         }}
       />
-      <div className="p-6">
-        <h1 className="t-kpi text-main mb-4">Component Lab</h1>
-
-        <section className="flex flex-wrap items-center gap-3">
-          <Badge variant="default">Default</Badge>
-          <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="destructive">Destructive</Badge>
-          <Badge variant="outline">Outline</Badge>
-          <Badge variant="success">Success</Badge>
-          <Badge variant="warning">Warning</Badge>
-          <Badge variant="info">Info</Badge>
-          <Badge variant="processing">Processing</Badge>
-          <Badge variant="overtime">Overtime</Badge>
-          <Badge variant="sky">Sky</Badge>
+      <div className="p-6 flex flex-col gap-8">
+        <section className="flex flex-col gap-2">
+          <ButtonGroup action="toggle" defaultValue="list" />
         </section>
 
-        <section className="flex flex-wrap items-center gap-3 mt-6">
-          <BadgeIcon variant="success" icon={<Icon.CircleCheck />}>
-            Paid
-          </BadgeIcon>
-          <BadgeIcon variant="warning" icon={<Icon.Clock />}>
-            Partial
-          </BadgeIcon>
-          <BadgeIcon
-            variant="destructive"
-            icon={<Icon.CircleAlert />}
-            iconPosition="right"
-          >
-            Overdue
-          </BadgeIcon>
+        <section className="flex flex-col gap-2">
+          <ButtonGroup
+            action="split"
+            items={[
+              { icon: <Icon.Save />, label: "Save Invoice", onClick: () => {} },
+              {
+                icon: <Icon.FileText />,
+                label: "Save as Draft",
+                onClick: () => {},
+              },
+              { icon: <Icon.Send />, label: "Save & Send", onClick: () => {} },
+            ]}
+          />
+        </section>
+
+        <section className="flex flex-col gap-2">
+          <ButtonGroup
+            action="search"
+            placeholder="Search customers…"
+            onChange={() => {}}
+          />
+        </section>
+
+        <section className="flex flex-col gap-2">
+          <ButtonGroup
+            action="pagination"
+            label="Page 3 of 12"
+            onPrev={() => {}}
+            onNext={() => {}}
+          />
         </section>
       </div>
-    </div>
+    </>
   );
 };
 

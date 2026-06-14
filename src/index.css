@@ -1600,6 +1600,45 @@
 
   /* ALERT-DIALOG */
 
+  /* BREADCRUMBS */
+
+  /* BUTTON-GROUP */
+  .btn-group-toggle-item {
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--background);
+    color: var(--text-secondary);
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    &[data-active="true"] {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+  }
+  .btn-group-search {
+    &:focus-within > * {
+      border-color: var(--ring);
+    }
+
+    & [data-slot="input"]:focus-visible {
+      box-shadow: none;
+    }
+  }
+
+  .breadcrumb-link {
+    color: inherit;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+
   /* TABLE */
   .table-header {
     background-color: var(--page-bg);
