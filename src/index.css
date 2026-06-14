@@ -2108,6 +2108,19 @@
     }
   }
 
+  /* CARD */
+  .card-root {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+  .card-description {
+    color: var(--muted-foreground);
+  }
+
+  /* CAROUSAL */
+
   /* INPUT */
   .input-field {
     background-color: var(--background);
@@ -2148,10 +2161,10 @@
     &[data-placeholder] {
       color: var(--muted-foreground);
     }
-    & svg:not([class*='text-']) {
+    & svg:not([class*="text-"]) {
       color: var(--muted-foreground);
     }
-    & svg:not([class*='size-']) {
+    & svg:not([class*="size-"]) {
       width: 1rem;
       height: 1rem;
     }
