@@ -15,7 +15,7 @@ interface SearchFieldProps extends Omit<
   onClear?: () => void;
   onSearch?: () => void;
   containerClassName?: string;
-  size?: "default" | "compact";
+  size?: "default" | "compact" | "large";
 }
 
 export function SearchField({
@@ -48,7 +48,11 @@ export function SearchField({
     <div
       className={cn(
         "flex items-center w-full cursor-text search-field-root",
-        size === "compact" ? "h-8 gap-1.5 px-2.5" : "h-field gap-2 px-3",
+        size === "compact"
+          ? "h-compact gap-1.5 px-2.5"
+          : size === "large"
+            ? "h-large gap-2.5 px-4"
+            : "h-field gap-2 px-3",
         containerClassName,
       )}
       onClick={() => inputRef.current?.focus()}
@@ -65,10 +69,20 @@ export function SearchField({
           }}
           aria-label="Search"
         >
-          <Icon.Search className="size-4 search-field-icon" />
+          <Icon.Search
+            className={cn(
+              size === "large" ? "icon-large" : "icon-default",
+              "search-field-icon",
+            )}
+          />
         </Button>
       ) : (
-        <Icon.Search className="size-4 shrink-0 search-field-icon" />
+        <Icon.Search
+          className={cn(
+            size === "large" ? "icon-large" : "icon-default",
+            "shrink-0 search-field-icon",
+          )}
+        />
       )}
       <Input
         ref={inputRef}
@@ -78,8 +92,10 @@ export function SearchField({
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className={cn(
-          "flex-1 min-w-0 h-full p-0 surface-transparent no-border no-rounded no-shadow no-outline t-meta search-field-input",
+          "flex-1 min-w-0 h-full p-0",
+          "search-field-input",
           size === "compact" && "search-field-input-compact",
+          size === "large" && "search-field-input-large",
           className,
         )}
         {...props}
@@ -99,7 +115,15 @@ export function SearchField({
           )}
           aria-label="Clear search"
         >
-          <Icon.X className={cn(size === "compact" ? "size-3.5" : "size-4")} />
+          <Icon.X
+            className={cn(
+              size === "large"
+                ? "icon-large"
+                : size === "compact"
+                  ? "icon-compact"
+                  : "icon-default",
+            )}
+          />
         </Button>
       )}
     </div>

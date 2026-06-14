@@ -1185,7 +1185,27 @@
 
   /* SEMANTIC FIELD HEIGHT */
   .h-field {
-    height: 2.25rem; /* matches h-9 / default button height */
+    height: 2.25rem;
+  }
+  .h-compact {
+    height: 2rem;
+  }
+  .h-large {
+    height: 2.5rem;
+  }
+
+  /* SEMANTIC ICON SIZE */
+  .icon-compact {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  .icon-default {
+    width: 1rem;
+    height: 1rem;
+  }
+  .icon-large {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   /* SEMANTIC BORDERS — directional removal */
@@ -2031,6 +2051,13 @@
   }
 
   .search-field-input {
+    background-color: var(--surface-transparent);
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-medium) !important;
     color: var(--foreground) !important;
 
     &::placeholder {
@@ -2044,6 +2071,10 @@
 
   .search-field-input-compact {
     font-size: var(--font-size-xxs) !important;
+  }
+  .search-field-input-large {
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-normal) !important;
   }
 
   .search-field-icon-btn {
