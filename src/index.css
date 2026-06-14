@@ -2403,6 +2403,36 @@
   }
 
   /* DRAWER */
+  .drawer-content {
+    background-color: var(--background);
+    border-color: var(--border);
+    color: var(--foreground);
+
+    &[data-vaul-drawer-direction="top"] {
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+
+    &[data-vaul-drawer-direction="bottom"] {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+  }
+
+  .drawer-handle {
+    background-color: var(--muted);
+    border-radius: var(--radius-full);
+  }
+
+  .drawer-title {
+    color: var(--foreground);
+  }
+
+  .drawer-description {
+    color: var(--muted-foreground);
+  }
+
+  /* DROPDOWN-MENU */
 
   /* TEXTAREA */
   .textarea-field {
