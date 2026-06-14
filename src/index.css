@@ -1163,6 +1163,36 @@
   .br-rounded {
     border-radius: 0 0 var(--radius-lg) 0;
   }
+  .no-l-rounded {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .no-r-rounded {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .no-t-rounded {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .no-b-rounded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* SEMANTIC BORDERS — directional removal */
+  .no-l-border {
+    border-left-width: 0;
+  }
+  .no-r-border {
+    border-right-width: 0;
+  }
+  .no-t-border {
+    border-top-width: 0;
+  }
+  .no-b-border {
+    border-bottom-width: 0;
+  }
 
   /* SEMANTIC COLORS — Text */
   .text-main {
@@ -1241,6 +1271,9 @@
   }
   .surface-muted {
     background-color: var(--muted);
+  }
+  .surface-input {
+    background-color: var(--input);
   }
   .surface-overdue-row {
     background-color: var(--status-overdue-row);
@@ -1592,6 +1625,26 @@
   }
   .gap-fluid {
     gap: clamp(1rem, 0.5rem + 1.5vw, 2.5rem);
+  }
+
+  /* BUTTON-GROUP join */
+  .btn-group-h > *:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
+  }
+  .btn-group-h > *:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .btn-group-v > *:not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-width: 0;
+  }
+  .btn-group-v > *:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
