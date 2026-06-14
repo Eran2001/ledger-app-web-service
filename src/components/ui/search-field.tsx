@@ -102,30 +102,20 @@ export function SearchField({
         {...props}
       />
       {value && (
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon-sm"
+        <Icon.X
+          className={cn(
+            size === "large"
+              ? "icon-large"
+              : size === "compact"
+                ? "icon-compact"
+                : "icon-default",
+            "shrink-0 search-field-clear cursor-pointer",
+          )}
           onClick={(e) => {
             e.stopPropagation();
             handleClear();
           }}
-          className={cn(
-            "shrink-0 search-field-clear",
-            size === "compact" && "size-6",
-          )}
-          aria-label="Clear search"
-        >
-          <Icon.X
-            className={cn(
-              size === "large"
-                ? "icon-large"
-                : size === "compact"
-                  ? "icon-compact"
-                  : "icon-default",
-            )}
-          />
-        </Button>
+        />
       )}
     </div>
   );

@@ -185,6 +185,7 @@ function ButtonGroup({
         data-slot="button-group"
         className={cn(
           buttonGroupVariants({ orientation }),
+          "h-field global-rounded",
           "btn-group-search",
           className,
         )}
