@@ -1,35 +1,29 @@
 import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { Button } from "@/components/ui/button";
 import { TopBar } from "@/components/shared/top-bar";
-import * as Icon from "@/components/icons";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Empty" pageSubtitle="Test" />
-      <div className="p-6">
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <Icon.Box />
-            </EmptyMedia>
-            <EmptyTitle>No results found</EmptyTitle>
-            <EmptyDescription>
-              There are no items to display yet. Try adjusting your filters or{" "}
-              <a href="#">create a new one</a>.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>Create New</Button>
-          </EmptyContent>
-        </Empty>
+      <TopBar pageTitle="Hover Card" pageSubtitle="Test" />
+      <div className="p-6 flex gap-4">
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <Button variant="outline">Hover me</Button>
+          </HoverCardTrigger>
+          <HoverCardContent>
+            <div className="flex flex-col gap-2">
+              <p className="t-meta fw-semibold">John Doe</p>
+              <p className="t-caption">
+                Full-stack developer. Joined January 2023.
+              </p>
+            </div>
+          </HoverCardContent>
+        </HoverCard>
       </div>
     </>
   );

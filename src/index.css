@@ -2534,7 +2534,15 @@
     }
   }
 
-  /* FIELD */
+  /* HOVER-CARD */
+  .hover-card-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* INPUT-GROUP */
 
   /* TEXTAREA */
   .textarea-field {
