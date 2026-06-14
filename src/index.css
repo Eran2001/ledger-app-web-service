@@ -1271,6 +1271,11 @@
     height: 1.25rem;
   }
 
+  /* SEMANTIC Z-INDEX */
+  .z-dropdown {
+    z-index: 50;
+  }
+
   /* SEMANTIC BORDERS — directional removal */
   .no-border {
     border: none !important;
@@ -2257,6 +2262,56 @@
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
     }
   }
+
+  /* COLLAPSIBLE */
+
+  /* CONTEXT-MENU */
+  .context-menu-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+  .context-menu-item {
+    & svg:not([class*="size-"]) {
+      width: 1rem;
+      height: 1rem;
+    }
+    &:focus,
+    &[data-highlighted],
+    &[data-state="open"] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+      & svg { color: inherit; }
+      & .context-menu-shortcut { color: inherit; }
+    }
+    &[data-variant="destructive"] {
+      color: var(--destructive);
+      & svg {
+        color: var(--destructive) !important;
+      }
+    }
+    &[data-variant="destructive"]:focus {
+      background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+      color: var(--destructive);
+    }
+    &:is(.dark *)[data-variant="destructive"]:focus {
+      background-color: color-mix(in srgb, var(--destructive) 20%, transparent);
+    }
+  }
+  .context-menu-label {
+    color: var(--foreground);
+  }
+  .context-menu-separator {
+    background-color: var(--border);
+  }
+  .context-menu-shortcut {
+    color: var(--muted-foreground);
+  }
+
+  /* DATE-PICKER-INPUT */
+
+  /* DATE-TIME-PICKER */
 
   /* TEXTAREA */
   .textarea-field {
