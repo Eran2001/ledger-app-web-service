@@ -2051,13 +2051,6 @@
   }
 
   .search-field-input {
-    background-color: var(--surface-transparent);
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    outline: none !important;
-    font-size: var(--font-size-xs) !important;
-    font-weight: var(--font-weight-medium) !important;
     color: var(--foreground) !important;
 
     &::placeholder {

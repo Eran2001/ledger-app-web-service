@@ -93,7 +93,8 @@ export function SearchField({
         placeholder={placeholder}
         className={cn(
           "flex-1 min-w-0 h-full p-0",
-          "search-field-input",
+          "surface-transparent no-border no-rounded no-shadow no-outline",
+          "t-meta search-field-input",
           size === "compact" && "search-field-input-compact",
           size === "large" && "search-field-input-large",
           className,
