@@ -10,7 +10,7 @@ export function AppFooter() {
           <span className="font-mono">Version {APP_VERSION}</span>
         </div>
         <div className="text-center sm:flex-1">
-          <span>Copyright © {year} Silva Traders. All rights reserved.</span>
+          <span>© {year} Installments. All rights reserved.</span>
         </div>
         <div className="sm:flex-1 sm:flex sm:justify-end">
           <div />

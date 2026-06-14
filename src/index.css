@@ -1661,7 +1661,9 @@
     border-radius: var(--radius);
     background-color: var(--background);
     color: var(--text-secondary);
-    transition: background-color 0.15s, color 0.15s;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
 
     &:hover {
       background-color: var(--primary);
@@ -1797,9 +1799,151 @@
 
   /* BTN BASE */
   .btn-base {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
     line-height: var(--leading-tight);
+
+    &:focus-visible {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--destructive);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 20%, transparent);
+
+      &:is(.dark *) {
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--destructive) 40%, transparent);
+      }
+    }
+  }
+
+  /* BUTTON VARIANTS */
+  .btn-outline {
+    background-color: var(--background);
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    &:is(.dark *) {
+      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+      border-color: var(--input);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--input) 50%, transparent);
+      }
+    }
+  }
+
+  .btn-destructive {
+    &:hover {
+      background-color: color-mix(in srgb, var(--destructive) 90%, transparent);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 20%, transparent);
+    }
+
+    &:is(.dark *) {
+      background-color: color-mix(in srgb, var(--destructive) 60%, transparent);
+
+      &:focus-visible {
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--destructive) 40%, transparent);
+      }
+    }
+  }
+
+  .btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+    }
+  }
+
+  .btn-ghost {
+    &:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    &:is(.dark *):hover {
+      background-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    }
+  }
+
+  .btn-cancel {
+    border-color: transparent;
+    background-color: transparent;
+
+    &:hover {
+      border-color: var(--border);
+    }
+  }
+
+  .btn-link {
+    &:hover {
+      text-decoration-line: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  /* CALENDAR */
+  .calendar-day-btn {
+    width: 100%;
+
+    &[data-selected],
+    &[data-range-start],
+    &[data-range-end] {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+        color: var(--primary-foreground);
+      }
+    }
+
+    &[data-range-middle] {
+      background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+      color: var(--secondary-foreground);
+      border-radius: 0;
+    }
+
+    &[data-today]:not([data-selected]):not([data-range-start]):not([data-range-end]):not([data-range-middle]) {
+      border: var(--border-width) solid var(--primary);
+      color: var(--primary);
+    }
+  }
+
+  .calendar-range-start,
+  .calendar-range-middle,
+  .calendar-range-end {
+    background-color: color-mix(in srgb, var(--secondary) 50%, transparent);
+  }
+
+  .calendar-range-start {
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+  }
+
+  .calendar-range-end {
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+
+  .calendar-dropdown {
+    &:has(:focus-visible) {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
   }
 
   /* FORMS */
