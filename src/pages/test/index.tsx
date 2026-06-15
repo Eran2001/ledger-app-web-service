@@ -1,38 +1,67 @@
 import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-  InputOTPSeparator,
-} from "@/components/ui/input-otp";
+  Item,
+  ItemMedia,
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+  ItemActions,
+  ItemGroup,
+  ItemSeparator,
+} from "@/components/ui/item";
 import { TopBar } from "@/components/shared/top-bar";
+import { Button } from "@/components/ui/button";
+import * as Icon from "@/components/icons";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Input OTP" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6">
-        <InputOTP maxLength={6}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={3} />
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
-          </InputOTPGroup>
-        </InputOTP>
+      <TopBar pageTitle="Item" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-6 max-w-lg">
 
-        <InputOTP maxLength={4}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-        </InputOTP>
+        <ItemGroup>
+          <Item>
+            <ItemMedia variant="icon">
+              <Icon.User />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>John Doe</ItemTitle>
+              <ItemDescription>john@example.com</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Button size="sm" variant="ghost">Edit</Button>
+            </ItemActions>
+          </Item>
+          <ItemSeparator />
+          <Item>
+            <ItemMedia variant="icon">
+              <Icon.Settings />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>Settings</ItemTitle>
+              <ItemDescription>Manage your account preferences and notifications.</ItemDescription>
+            </ItemContent>
+          </Item>
+          <ItemSeparator />
+          <Item variant="muted" size="sm">
+            <ItemContent>
+              <ItemTitle>Compact muted item</ItemTitle>
+            </ItemContent>
+            <ItemActions>
+              <Button size="sm" variant="outline">View</Button>
+            </ItemActions>
+          </Item>
+        </ItemGroup>
+
+        <Item variant="outline">
+          <ItemMedia variant="image">
+            <img src="https://placehold.co/40x40" alt="placeholder" />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Image item</ItemTitle>
+            <ItemDescription>Item with image media variant.</ItemDescription>
+          </ItemContent>
+        </Item>
+
       </div>
     </>
   );

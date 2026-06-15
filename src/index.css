@@ -2646,6 +2646,47 @@
   }
 
   /* ITEM */
+  .item-root {
+    border-color: transparent;
+    outline: var(--outline-none);
+    transition: color 0.1s, background-color 0.1s;
+
+    &:is(a):hover {
+      background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    }
+
+    &:focus-visible {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  .item-outline {
+    border-color: var(--border);
+  }
+
+  .item-muted {
+    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  }
+
+  .item-media-icon {
+    background-color: var(--muted);
+    border-color: var(--border);
+  }
+
+  .item-title {
+    font-weight: 500;
+    line-height: var(--leading-snug);
+  }
+
+  .item-description {
+    color: var(--muted-foreground);
+    line-height: var(--leading-base);
+
+    & > a:hover {
+      color: var(--primary);
+    }
+  }
 
   /* KBD */
 
