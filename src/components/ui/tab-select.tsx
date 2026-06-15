@@ -1,3 +1,6 @@
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
 type TabItem = { value: string; label: string };
 
 export function TabSelect({
@@ -21,11 +24,10 @@ export function TabSelect({
             role="tab"
             aria-selected={value === t.value}
             onClick={() => onValueChange(t.value)}
-            className={`py-3 px-5 t-meta-bold tab-trigger border-b-2 ${
-              value === t.value
-                ? "border-brand surface-card"
-                : "border-transparent"
-            }`}
+            className={cn(
+              "py-3 px-5 t-meta-bold tab-trigger border-b-2",
+              value === t.value && "surface-card",
+            )}
           >
             {t.label}
           </button>

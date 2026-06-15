@@ -1,36 +1,56 @@
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from "@/components/ui/table";
 import { TopBar } from "@/components/shared/top-bar";
+
+const rows = [
+  { name: "Alice Johnson", role: "Engineer", status: "Active", amount: "$4,200" },
+  { name: "Bob Smith", role: "Designer", status: "Active", amount: "$3,800" },
+  { name: "Carol White", role: "Manager", status: "Inactive", amount: "$5,100" },
+  { name: "David Lee", role: "Engineer", status: "Active", amount: "$4,500" },
+];
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Switch" pageSubtitle="Test" />
+      <TopBar pageTitle="Table" pageSubtitle="Test" />
       <div className="p-6">
-        <Card className="p-6 flex flex-col gap-4 max-w-sm">
 
-          <div className="flex items-center gap-2">
-            <Switch id="s1" />
-            <Label htmlFor="s1">Default (off)</Label>
-          </div>
+        <Table>
+          <TableCaption>Team members overview</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.role}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell className="text-right">{row.amount}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3}>Total</TableCell>
+              <TableCell className="text-right">$17,600</TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
 
-          <div className="flex items-center gap-2">
-            <Switch id="s2" defaultChecked />
-            <Label htmlFor="s2">Default (on)</Label>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Switch id="s3" disabled />
-            <Label htmlFor="s3">Disabled (off)</Label>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Switch id="s4" disabled defaultChecked />
-            <Label htmlFor="s4">Disabled (on)</Label>
-          </div>
-
-        </Card>
       </div>
     </>
   );

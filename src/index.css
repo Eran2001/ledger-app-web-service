@@ -89,6 +89,19 @@
   --glass-border: hsl(0 0% 100% / 0.12);
   --blur-glass: 12px;
   --border-width: 1px;
+  --border-transparent: transparent;
+
+  --switch-sm-w: 1.25rem;
+  --switch-sm-h: 0.75rem;
+  --switch-sm-thumb: 0.625rem;
+
+  --switch-default-w: 2rem;
+  --switch-default-h: 1.15rem;
+  --switch-default-thumb: 1rem;
+
+  --switch-lg-w: 2.5rem;
+  --switch-lg-h: 1.5rem;
+  --switch-lg-thumb: 1.25rem;
   --radius-full: 999px;
   --btn-roll-height: 1.5rem;
   --overlay-bg: hsl(0 0% 0% / 0.5);
@@ -1852,45 +1865,12 @@
     }
   }
 
-  /* TABLE */
-  .table-header {
-    background-color: var(--page-bg);
-    font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-label);
-  }
-  .table-text {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-normal);
-    color: var(--text-secondary);
-  }
-  .table-title-text {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-  }
-
   /* CARD BASE */
   .card-base {
     background-color: var(--card-bg);
     border: var(--border-width) solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-  }
-
-  /* TAB SELECT */
-  .tab-trigger {
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: color 150ms;
-  }
-  .tab-trigger:hover {
-    color: var(--text-primary);
-  }
-  .tab-trigger[aria-selected="true"] {
-    color: var(--text-primary);
   }
 
   /* TABS TRIGGER */
@@ -3249,9 +3229,137 @@
 
   /* SPINNER */
 
-  /* TAB-SELECT */
+  /* SWITCH */
+  .switch-track {
+    border-color: var(--border-transparent);
+    box-shadow: var(--shadow-xs);
+    outline: var(--outline-none);
+    transition: all 0.15s;
+
+    &[data-state="checked"] {
+      background-color: var(--primary);
+    }
+
+    &[data-state="unchecked"] {
+      background-color: var(--input);
+    }
+
+    .dark &[data-state="unchecked"] {
+      background-color: color-mix(in srgb, var(--input) 80%, transparent);
+    }
+
+    &:focus-visible {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .switch-thumb {
+    background-color: var(--background);
+    box-shadow: none;
+
+    .dark &[data-state="unchecked"] {
+      background-color: var(--foreground);
+    }
+
+    .dark &[data-state="checked"] {
+      background-color: var(--primary-foreground);
+    }
+  }
+
+  .switch-sm {
+    height: var(--switch-sm-h);
+    width: var(--switch-sm-w);
+
+    & [data-slot="switch-thumb"] {
+      width: var(--switch-sm-thumb);
+      height: var(--switch-sm-thumb);
+    }
+  }
+
+  .switch-default {
+    height: var(--switch-default-h);
+    width: var(--switch-default-w);
+
+    & [data-slot="switch-thumb"] {
+      width: var(--switch-default-thumb);
+      height: var(--switch-default-thumb);
+    }
+  }
+
+  .switch-lg {
+    height: var(--switch-lg-h);
+    width: var(--switch-lg-w);
+
+    & [data-slot="switch-thumb"] {
+      width: var(--switch-lg-thumb);
+      height: var(--switch-lg-thumb);
+    }
+  }
+
+  /* TAB SELECT */
+  .tab-trigger {
+    color: var(--text-secondary);
+    border-color: var(--border-transparent);
+    cursor: pointer;
+    transition: color 150ms;
+  }
+  .tab-trigger:hover {
+    color: var(--text-primary);
+  }
+  .tab-trigger[aria-selected="true"] {
+    color: var(--text-primary);
+    border-color: var(--primary);
+  }
 
   /* TABLE */
+  .table-header {
+    background-color: var(--page-bg);
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+  }
+  .table-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-secondary);
+  }
+  .table-title-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+  }
+
+  .table-footer {
+    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  }
+
+  .table-row {
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+    }
+
+    &[data-state="selected"] {
+      background-color: var(--muted);
+    }
+  }
+
+  .table-head {
+    color: var(--foreground);
+  }
+
+  .table-caption {
+    color: var(--muted-foreground);
+  }
 
   /* TABS */
 
