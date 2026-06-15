@@ -2697,19 +2697,42 @@
     background-color: var(--muted);
     color: var(--muted-foreground);
 
-    &:is([data-slot=tooltip-content] *) {
+    &:is([data-slot="tooltip-content"] *) {
       background-color: color-mix(in srgb, var(--background) 20%, transparent);
       color: var(--background);
 
       &:is(.dark *) {
-        background-color: color-mix(in srgb, var(--background) 10%, transparent);
+        background-color: color-mix(
+          in srgb,
+          var(--background) 10%,
+          transparent
+        );
       }
     }
   }
 
   /* LABEL */
+  .label {
+    line-height: var(--leading-none);
+
+    &:is([data-disabled="true"] *) {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &:has(~ :disabled) {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
 
   /* MENUBAR */
+
+  /* NAVIGATION-MENU */
+
+  /* PAGINATION */
+
+  /* POPOVER */
 
   /* TEXTAREA */
   .textarea-field {

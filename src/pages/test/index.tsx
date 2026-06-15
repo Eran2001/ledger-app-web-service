@@ -1,37 +1,26 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { TopBar } from "@/components/shared/top-bar";
-import * as Icon from "@/components/icons";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Kbd" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6">
+      <TopBar pageTitle="Label" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-6 max-w-sm">
 
-        <div className="flex items-center gap-3">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
-          <Kbd>Enter</Kbd>
-          <Kbd>Esc</Kbd>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email">Email address</Label>
+          <Input id="email" type="email" placeholder="you@example.com" />
         </div>
 
-        <div className="flex items-center gap-3">
-          <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>K</Kbd>
-          </KbdGroup>
-          <KbdGroup>
-            <Kbd>Ctrl</Kbd>
-            <Kbd>Shift</Kbd>
-            <Kbd>P</Kbd>
-          </KbdGroup>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="disabled" className="opacity-50">Disabled label</Label>
+          <Input id="disabled" disabled placeholder="Disabled input" />
         </div>
 
-        <div className="flex items-center gap-3">
-          <Kbd><Icon.ChevronUp className="size-3" /></Kbd>
-          <Kbd><Icon.ChevronDown className="size-3" /></Kbd>
-          <Kbd><Icon.ChevronLeft className="size-3" /></Kbd>
-          <Kbd><Icon.ChevronRight className="size-3" /></Kbd>
+        <div className="flex items-center gap-2">
+          <input type="checkbox" id="terms" />
+          <Label htmlFor="terms">Accept terms and conditions</Label>
         </div>
 
       </div>
