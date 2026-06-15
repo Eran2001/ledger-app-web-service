@@ -107,6 +107,18 @@
 
 ---
 
+## Responsive Spacing Constants
+
+The app supports all breakpoints (`xs` → `8xl`). For layout properties that repeat the same breakpoint scale across multiple components (e.g. `px`, `py`, `min-h`, `gap`, `w`, `max-w`), extract them into `src/constants/responsive.ts` instead of duplicating inline.
+
+**Rules:**
+- Group constants by **layout context** (e.g. `layout`, `header`, `footer`, `page`, `card`, `section`, `emptyState`, `modal`) — not just by property name, because different areas use different scale values
+- Each context object holds only the properties relevant to it (e.g. `header` needs `minH`, `footer` needs `minH`, `page` needs `px/py/gap`)
+- Export as a single `R` object (`as const`) — import with `import { R } from "@/constants/responsive"`
+- Do **not** create this file until the full set of sections and values has been explicitly agreed with the user — the scale values differ per context and must be intentional
+
+---
+
 ## Shadcn Component Rule
 
 **Never modify any file in `src/components/ui/` without explicitly asking the user first.**

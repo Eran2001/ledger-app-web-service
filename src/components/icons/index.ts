@@ -181,4 +181,7 @@ export {
   MoreVertical,
   MessageCircle,
   ChevronDownIcon,
+  ShoppingBag,
+  FlaskConical,
+  UserCog,
 } from "lucide-react";

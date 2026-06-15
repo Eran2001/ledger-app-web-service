@@ -1,68 +1,19 @@
-import { Link, useLocation, useNavigate } from "@tanstack/react-router";
-import {
-  LayoutDashboard,
-  Users,
-  ShoppingBag,
-  PlusCircle,
-  Package,
-  BarChart3,
-  AlertTriangle,
-  UserCog,
-  Settings,
-  ChevronLeft,
-  LogOut,
-  FlaskConical,
-  type LucideIcon,
-} from "lucide-react";
-import { cn, getInitials } from "@/lib/utils";
-import { useUIStore } from "@/stores/ui-store";
-import { useAuthStore } from "@/stores/auth-store";
+import { Link, useLocation } from "@tanstack/react-router";
+
+import { BusinessHeader } from "@/components/shared/business-header";
+import { UserProfile } from "@/components/shared/user-profile";
+
+import * as Icon from "@/components/icons";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
-interface NavItem {
-  href: string;
-  label: string;
-  icon: LucideIcon;
-}
-
-interface NavSection {
-  label: string;
-  items: NavItem[];
-}
-
-const SECTIONS: NavSection[] = [
-  {
-    label: "MAIN",
-    items: [
-      { href: "/test", label: "Test", icon: FlaskConical },
-      { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-      { href: "/customers", label: "Customers", icon: Users },
-      { href: "/sales", label: "Sales", icon: ShoppingBag },
-      { href: "/sales/new", label: "New Sale", icon: PlusCircle },
-      { href: "/products", label: "Products", icon: Package },
-    ],
-  },
-  {
-    label: "FINANCE",
-    items: [
-      { href: "/reports", label: "Reports", icon: BarChart3 },
-      { href: "/overdue", label: "Overdue", icon: AlertTriangle },
-    ],
-  },
-  {
-    label: "SYSTEM",
-    items: [
-      { href: "/users", label: "Users", icon: UserCog },
-      { href: "/settings", label: "Settings", icon: Settings },
-    ],
-  },
-];
+import { cn } from "@/lib/utils";
+import { SECTIONS } from "@/constants/sidebar-nav-links";
 
 interface SidebarNavProps {
   collapsed: boolean;
@@ -78,9 +29,6 @@ export function SidebarNav({
   showToggle = true,
 }: SidebarNavProps) {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const user = useAuthStore((s) => s.user);
-  const logout = useAuthStore((s) => s.logout);
 
   const allHrefs = SECTIONS.flatMap((s) => s.items.map((i) => i.href));
 
@@ -101,31 +49,9 @@ export function SidebarNav({
       style={{ borderColor: "var(--sidebar-border)" }}
       aria-label="Main sidebar"
     >
-      {/* Brand header */}
-      <div
-        className={cn(
-          "flex items-center gap-3 px-4 h-16 border-b shrink-0",
-          collapsed && "justify-center px-0",
-        )}
-        style={{ borderColor: "var(--sidebar-border)" }}
-      >
-        <Avatar>
-          <AvatarFallback>ST</AvatarFallback>
-        </Avatar>
-        {!collapsed && (
-          <div className="flex flex-col min-w-0">
-            <span className="sidebar-brand-name app-sidebar-text truncate">
-              Silva Traders
-            </span>
-            <span className="sidebar-brand-sub app-sidebar-text-faint truncate">
-              Admin Panel
-            </span>
-          </div>
-        )}
-      </div>
+      <BusinessHeader collapsed={collapsed} />
 
-      {/* Nav */}
-      <nav className="flex-1 min-h-0 overflow-y-auto py-4 scrollbar-hidden">
+      <nav className="flex-1 min-h-0 overflow-y-auto pt-4 scrollbar-hidden">
         <TooltipProvider delayDuration={0}>
           {SECTIONS.map((section, i) => (
             <div
@@ -179,7 +105,7 @@ export function SidebarNav({
                         to={item.href}
                         onClick={onItemClick}
                         className={cn(
-                          "app-sidebar-link flex items-center gap-3 px-3 h-10 control-rounded t-nav transition-colors",
+                          "app-sidebar-link flex items-center gap-3 px-3 h-10 global-rounded t-meta transition-colors",
                           active &&
                             "app-sidebar-link-active border-l-[3px] border-start-brand pl-2.25",
                         )}
@@ -196,59 +122,27 @@ export function SidebarNav({
         </TooltipProvider>
       </nav>
 
-      {/* User footer + collapse toggle */}
       <div
         className="border-t shrink-0 p-3"
         style={{ borderColor: "var(--sidebar-border)" }}
       >
-        {!collapsed ? (
-          <div className="app-sidebar-panel panel-rounded p-3 flex items-center gap-3">
-            <div className="app-sidebar-avatar circle-rounded h-9 w-9 flex items-center justify-center t-caption-bold shrink-0">
-              {user ? getInitials(user.name) : "U"}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="sidebar-user-name app-sidebar-text truncate">
-                {user?.name}
-              </p>
-              <p className="sidebar-user-role app-sidebar-text-muted text-uppercase truncate">
-                {user?.role}
-              </p>
-            </div>
-            <button
-              onClick={() => {
-                logout();
-                navigate({ to: "/login" });
-              }}
-              className="h-8 w-8 flex items-center justify-center global-rounded app-sidebar-icon-btn"
-              aria-label="Log out"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-          </div>
-        ) : (
-          <div className="flex justify-center mb-2">
-            <div className="app-sidebar-avatar circle-rounded h-9 w-9 flex items-center justify-center t-caption-bold">
-              {user ? getInitials(user.name) : "U"}
-            </div>
-          </div>
-        )}
+        <UserProfile collapsed={collapsed} />
 
         {showToggle && onToggleCollapse && (
-          <button
+          <Button
+            variant="ghost"
             onClick={onToggleCollapse}
-            className={cn(
-              "mt-2 w-full h-9 flex items-center justify-center gap-2 control-rounded app-sidebar-link app-sidebar-icon-btn t-caption",
-            )}
+            className="mt-2 w-full app-sidebar-link app-sidebar-icon-btn t-caption"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            <ChevronLeft
+            <Icon.ChevronLeft
               className={cn(
                 "h-4 w-4 transition-transform",
                 collapsed && "rotate-180",
               )}
             />
             {!collapsed && <span>Collapse</span>}
-          </button>
+          </Button>
         )}
       </div>
     </aside>
