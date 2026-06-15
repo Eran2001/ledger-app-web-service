@@ -200,6 +200,8 @@
     0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
   --shadow-brand: 0 4px 14px 0
     color-mix(in srgb, var(--primary) 25%, transparent);
+  --shadow-focus: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+  --shadow-focus-error: 0 0 0 3px color-mix(in srgb, var(--destructive) 25%, transparent);
 
   /* Typography scale */
   --font-size-4xs: 9px;
@@ -2478,6 +2480,7 @@
 
   /* INPUT-GROUP */
   .input-group-root {
+    background-color: var(--background);
     border-color: var(--input-border);
     box-shadow: var(--shadow-none);
     transition:
@@ -2500,6 +2503,22 @@
         box-shadow: var(--shadow-focus-error);
       }
     }
+
+    & .input-group-control {
+      border-radius: 0;
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+
+      &:is(.dark *) {
+        background-color: transparent;
+      }
+
+      &:focus-visible {
+        border-color: transparent;
+        box-shadow: none;
+      }
+    }
   }
 
   .input-group-addon {
@@ -2508,19 +2527,6 @@
 
   .input-group-text {
     color: var(--muted-foreground);
-  }
-
-  .input-group-control {
-    border-radius: 0;
-    background-color: transparent;
-
-    &:is(.dark *) {
-      background-color: transparent;
-    }
-
-    &:focus-visible {
-      box-shadow: none;
-    }
   }
 
   .input-group-btn-xs {
