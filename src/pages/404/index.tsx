@@ -31,8 +31,8 @@ const NotFound = () => {
     const connectionDistance = 150;
 
     const computed = getComputedStyle(document.documentElement);
-    const primary = computed.getPropertyValue("--primary").trim();
-    const particleColor = `hsl(${primary} / 0.25)`;
+    const foreground = computed.getPropertyValue("--foreground").trim();
+    const particleColor = `hsl(${foreground} / 0.25)`;
 
     class Particle {
       x: number;
@@ -90,7 +90,7 @@ const NotFound = () => {
 
           if (distance < connectionDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `hsl(${primary} / ${0.08 * (1 - distance / connectionDistance)})`;
+            ctx.strokeStyle = `hsl(${foreground} / ${0.08 * (1 - distance / connectionDistance)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(comparison.x, comparison.y);
@@ -156,6 +156,7 @@ const NotFound = () => {
           size="icon"
           onClick={toggleTheme}
           aria-label="Toggle theme"
+          className="app-sidebar-link app-sidebar-icon-btn"
         >
           {isDark ? (
             <Icon.Sun className="h-5 w-5" />
