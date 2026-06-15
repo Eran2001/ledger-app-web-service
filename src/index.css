@@ -385,6 +385,15 @@
       height: 0;
     }
   }
+
+  @keyframes skeleton-shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
 }
 
 @layer utilities {
@@ -2685,6 +2694,8 @@
     }
   }
 
+  /* LOADING */
+
   /* MENUBAR */
   .menubar-root {
     background-color: var(--background);
@@ -3132,12 +3143,127 @@
   }
 
   /* SHEET */
+  .sheet-overlay {
+    background-color: rgb(0 0 0 / 0.5);
+  }
+
+  .sheet-content {
+    background-color: var(--background);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .sheet-close-btn {
+    opacity: 0.7;
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: var(--outline-none);
+      box-shadow:
+        0 0 0 2px var(--background),
+        0 0 0 4px var(--ring);
+    }
+
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &[data-state="open"] {
+      background-color: var(--secondary);
+    }
+  }
+
+  .sheet-title {
+    color: var(--foreground);
+  }
+
+  .sheet-description {
+    color: var(--muted-foreground);
+  }
 
   /* SIDEBAR */
 
   /* SKELETON */
+  .skeleton-base {
+    @apply relative overflow-hidden bg-muted;
+    border-radius: var(--radius);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in srgb, var(--foreground) 6%, transparent) 50%,
+        transparent 100%
+      );
+      transform: translateX(-100%);
+      animation: skeleton-shimmer 1.6s ease-in-out infinite;
+    }
+  }
 
   /* SLIDER */
+  .slider-root {
+    &[data-disabled] {
+      opacity: 0.5;
+    }
+  }
+
+  .slider-track {
+    background-color: var(--muted);
+  }
+
+  .slider-range {
+    background-color: var(--primary);
+  }
+
+  .slider-thumb {
+    background-color: var(--background);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xs);
+    transition:
+      color 0.15s,
+      box-shadow 0.15s;
+
+    &:hover {
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    &:focus-visible {
+      outline: var(--outline-none);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  /* SONNER */
+
+  /* SPINNER */
+
+  /* TAB-SELECT */
+
+  /* TABLE */
+
+  /* TABS */
+
+  /* TEXTAREA */
+
+  /* TIME-PICKER */
+
+  /* TOGGLE-GROUP */
+
+  /* TOGGLE */
+
+  /* TOOLTIP */
 
   /* FORMS */
   .form-label {

@@ -1,26 +1,36 @@
-import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Separator" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6 max-w-sm">
+      <TopBar pageTitle="Switch" pageSubtitle="Test" />
+      <div className="p-6">
+        <Card className="p-6 flex flex-col gap-4 max-w-sm">
 
-        <div className="flex flex-col gap-2">
-          <p className="t-meta">Above</p>
-          <Separator />
-          <p className="t-meta">Below</p>
-        </div>
+          <div className="flex items-center gap-2">
+            <Switch id="s1" />
+            <Label htmlFor="s1">Default (off)</Label>
+          </div>
 
-        <div className="flex items-center gap-4 h-8">
-          <p className="t-meta">Left</p>
-          <Separator orientation="vertical" />
-          <p className="t-meta">Middle</p>
-          <Separator orientation="vertical" />
-          <p className="t-meta">Right</p>
-        </div>
+          <div className="flex items-center gap-2">
+            <Switch id="s2" defaultChecked />
+            <Label htmlFor="s2">Default (on)</Label>
+          </div>
 
+          <div className="flex items-center gap-2">
+            <Switch id="s3" disabled />
+            <Label htmlFor="s3">Disabled (off)</Label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Switch id="s4" disabled defaultChecked />
+            <Label htmlFor="s4">Disabled (on)</Label>
+          </div>
+
+        </Card>
       </div>
     </>
   );

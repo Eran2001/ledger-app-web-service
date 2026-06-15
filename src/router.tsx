@@ -6,7 +6,7 @@ import {
   redirect,
 } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import { Loading } from "@/components/shared/loading";
+import { Loading } from "@/components/ui/loading";
 import AuthLayout from "@/layouts/auth-layout";
 import DefaultLayout from "@/layouts/default-layout";
 
