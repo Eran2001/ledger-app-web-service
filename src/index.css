@@ -3355,10 +3355,99 @@
 
   .table-head {
     color: var(--foreground);
+    font-weight: var(--font-weight-medium);
+    padding-inline: 0.5rem;
+  }
+
+  .table-cell {
+    padding: 0.75rem 1rem;
   }
 
   .table-caption {
     color: var(--muted-foreground);
+  }
+
+  /* MAIN VARIANT — striped alternating rows */
+  .table-striped [data-slot="table-header"] [data-slot="table-row"] {
+    background-color: color-mix(in srgb, var(--border) 50%, var(--muted));
+  }
+
+  .table-striped [data-slot="table-head"] {
+    height: 3rem;
+    padding-inline: 1rem;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+  }
+
+  .table-striped .table-cell {
+    height: 3rem;
+    padding-block: 0;
+  }
+
+  .table-striped [data-slot="table-body"] [data-slot="table-row"]:nth-child(odd),
+  .table-striped [data-slot="table-body"] [data-slot="table-row"]:nth-child(odd):hover {
+    background-color: var(--background);
+  }
+
+  .table-striped [data-slot="table-body"] [data-slot="table-row"]:nth-child(even),
+  .table-striped [data-slot="table-body"] [data-slot="table-row"]:nth-child(even):hover {
+    background-color: var(--muted);
+  }
+
+  .table-striped [data-slot="table-body"] [data-slot="table-row"] {
+    cursor: pointer;
+  }
+
+  .table-striped [data-slot="table-body"] [data-slot="table-row"]:hover [data-slot="table-cell"]:first-child {
+    color: var(--primary);
+  }
+
+  /* SIMPLE VARIANT — card-wrapped, white rows, more padding */
+  .table-simple [data-slot="table-header"] [data-slot="table-row"] {
+    background-color: var(--page-bg);
+  }
+
+  .table-simple [data-slot="table-head"] {
+    height: 2.5rem;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    padding-inline: 1.25rem;
+  }
+
+  .table-simple [data-slot="table-body"] [data-slot="table-row"]:nth-child(odd),
+  .table-simple [data-slot="table-body"] [data-slot="table-row"]:nth-child(odd):hover {
+    background-color: var(--card);
+  }
+
+  .table-simple [data-slot="table-body"] [data-slot="table-row"]:nth-child(even),
+  .table-simple [data-slot="table-body"] [data-slot="table-row"]:nth-child(even):hover {
+    background-color: var(--page-bg);
+  }
+
+  .table-simple [data-slot="table-body"] [data-slot="table-row"] {
+    cursor: pointer;
+  }
+
+  .table-simple [data-slot="table-body"] [data-slot="table-row"]:hover [data-slot="table-cell"]:first-child {
+    color: var(--primary);
+  }
+
+  .table-simple .table-cell {
+    padding: 1rem 1.25rem;
+  }
+
+  .table-action-link {
+    color: var(--primary);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   /* TABS */

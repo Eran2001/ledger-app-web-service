@@ -2,11 +2,9 @@ import {
   Table,
   TableHeader,
   TableBody,
-  TableFooter,
   TableHead,
   TableRow,
   TableCell,
-  TableCaption,
 } from "@/components/ui/table";
 import { TopBar } from "@/components/shared/top-bar";
 
@@ -21,10 +19,9 @@ const TestPage = () => {
   return (
     <>
       <TopBar pageTitle="Table" pageSubtitle="Test" />
-      <div className="p-6">
+      <div className="p-6 flex flex-col gap-8">
 
         <Table>
-          <TableCaption>Team members overview</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>
@@ -43,12 +40,32 @@ const TestPage = () => {
               </TableRow>
             ))}
           </TableBody>
-          <TableFooter>
+        </Table>
+
+        <Table
+          variant="simple"
+          caption="Team Members"
+          actionLabel="View All"
+          actionTo="/"
+        >
+          <TableHeader>
             <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">$17,600</TableCell>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
             </TableRow>
-          </TableFooter>
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.role}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell className="text-right">{row.amount}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
 
       </div>

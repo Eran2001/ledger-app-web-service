@@ -1,20 +1,59 @@
 import * as React from "react";
+import { Link } from "@tanstack/react-router";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
-  return (
+function Table({
+  className,
+  variant = "main",
+  caption,
+  actionLabel,
+  actionTo,
+  ...props
+}: React.ComponentProps<"table"> & {
+  variant?: "main" | "simple";
+  caption?: string;
+  actionLabel?: string;
+  actionTo?: string;
+}) {
+  const tableEl = (
     <div
       data-slot="table-container"
       className="relative w-full overflow-x-auto"
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom t-meta", className)}
+        className={cn(
+          "w-full t-meta",
+          variant === "simple" ? "table-simple" : "table-striped",
+          className,
+        )}
         {...props}
       />
     </div>
   );
+
+  if (variant === "simple") {
+    return (
+      <Card className="p-0 gap-0 overflow-hidden">
+        {(caption || actionLabel) && (
+          <div className="flex items-center justify-between px-5 py-3 border-b border-default">
+            {caption && <span className="t-display">{caption}</span>}
+            {actionLabel && actionTo && (
+              <Button variant="link" size="sm">
+                <Link to={actionTo}>{actionLabel} →</Link>
+              </Button>
+            )}
+          </div>
+        )}
+        {tableEl}
+      </Card>
+    );
+  }
+
+  return tableEl;
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
@@ -55,10 +94,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
       data-slot="table-row"
-      className={cn(
-        "border-b table-row",
-        className,
-      )}
+      className={cn("border-b table-row", className)}
       {...props}
     />
   );
@@ -69,7 +105,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "h-10 px-2 text-left align-middle fw-medium whitespace-nowrap table-head",
+        "text-left align-middle whitespace-nowrap table-head",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -83,7 +119,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
     <td
       data-slot="table-cell"
       className={cn(
-        "p-2 align-middle whitespace-nowrap",
+        "align-middle whitespace-nowrap table-cell",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
