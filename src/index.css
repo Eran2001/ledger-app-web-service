@@ -2727,8 +2727,170 @@
   }
 
   /* MENUBAR */
+  .menubar-root {
+    background-color: var(--background);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .menubar-trigger {
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &[data-state="open"] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
+
+  .menubar-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .menubar-item {
+    & svg:not([class*="text-"]) {
+      color: var(--muted-foreground);
+    }
+
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+
+      & .menubar-shortcut,
+      & svg {
+        color: currentColor;
+      }
+    }
+
+    &[data-variant="destructive"] {
+      color: var(--destructive);
+
+      & svg {
+        color: var(--destructive);
+      }
+
+      &:focus {
+        background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+        color: var(--destructive);
+
+        &:is(.dark *) {
+          background-color: color-mix(in srgb, var(--destructive) 20%, transparent);
+        }
+      }
+    }
+  }
+
+  .menubar-separator {
+    background-color: var(--border);
+  }
+
+  .menubar-shortcut {
+    color: var(--muted-foreground);
+    letter-spacing: var(--tracking-label-wide);
+  }
+
+  .menubar-sub-trigger {
+    & svg {
+      color: currentColor;
+    }
+
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &[data-state="open"] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
 
   /* NAVIGATION-MENU */
+  .nav-menu-trigger {
+    background-color: var(--background);
+    outline: var(--outline-none);
+    transition: color 0.15s, box-shadow 0.15s;
+
+    &:hover,
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      outline: 1px solid;
+    }
+
+    &[data-state="open"] {
+      background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+      color: var(--accent-foreground);
+
+      &:hover,
+      &:focus {
+        background-color: var(--accent);
+      }
+    }
+  }
+
+  .nav-menu-content {
+    [data-slot="navigation-menu"][data-viewport="false"] & {
+      background-color: var(--popover);
+      color: var(--popover-foreground);
+      border-color: var(--border);
+      box-shadow: var(--shadow-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+  }
+
+  .nav-menu-viewport {
+    border: var(--border-width) solid var(--border);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-card);
+  }
+
+  .nav-menu-link {
+    outline: var(--outline-none);
+    transition: all 0.15s;
+
+    & svg:not([class*="text-"]) {
+      color: var(--muted-foreground);
+    }
+
+    &:hover,
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      outline: 1px solid;
+    }
+
+    &[data-active="true"] {
+      background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+      color: var(--accent-foreground);
+
+      &:hover,
+      &:focus {
+        background-color: var(--accent);
+      }
+    }
+  }
+
+  .nav-menu-indicator-arrow {
+    border-top-left-radius: var(--radius-sm);
+    background-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
 
   /* PAGINATION */
 
