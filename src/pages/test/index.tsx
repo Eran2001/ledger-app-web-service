@@ -1,46 +1,27 @@
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Popover" pageSubtitle="Test" />
-      <div className="p-6 flex items-start gap-6">
+      <TopBar pageTitle="Radio Group" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-6 max-w-sm">
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline">Open popover</Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <div className="flex flex-col gap-2">
-              <p className="t-meta fw-medium">Settings</p>
-              <p className="t-caption">Manage your account preferences here.</p>
-            </div>
-          </PopoverContent>
-        </Popover>
-
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline">Align start</Button>
-          </PopoverTrigger>
-          <PopoverContent align="start">
-            <p className="t-meta">Aligned to start.</p>
-          </PopoverContent>
-        </Popover>
-
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline">Align end</Button>
-          </PopoverTrigger>
-          <PopoverContent align="end">
-            <p className="t-meta">Aligned to end.</p>
-          </PopoverContent>
-        </Popover>
+        <RadioGroup defaultValue="option-1">
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="option-1" id="r1" />
+            <Label htmlFor="r1">Option 1</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="option-2" id="r2" />
+            <Label htmlFor="r2">Option 2</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="option-3" id="r3" disabled />
+            <Label htmlFor="r3">Option 3 (disabled)</Label>
+          </div>
+        </RadioGroup>
 
       </div>
     </>
