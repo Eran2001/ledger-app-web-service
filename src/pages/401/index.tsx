@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import { useThemeStore } from "@/stores/theme-store";
 
-const NotFound = () => {
+const Unauthorized = () => {
   const navigate = useNavigate();
   const isDark = useThemeStore((s) => s.isDark);
   const toggleTheme = useThemeStore((s) => s.toggle);
@@ -15,7 +15,7 @@ const NotFound = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    document.title = "404 | Page Not Found";
+    document.title = "401 | Unauthorized";
   }, []);
 
   useEffect(() => {
@@ -166,13 +166,13 @@ const NotFound = () => {
       </nav>
 
       <main ref={cardRef} className="unauthorized-main">
-        <div className="unauthorized-hero-code">404</div>
+        <div className="unauthorized-hero-code">401</div>
 
         <div className="unauthorized-copy unauthorized-fade unauthorized-stagger-2">
-          <h1 className="unauthorized-heading">Page Not Found</h1>
+          <h1 className="unauthorized-heading">Access Denied</h1>
           <p className="unauthorized-body">
-            The resource you are looking for might have been removed, renamed,
-            or is temporarily unavailable in the portal.
+            You don&apos;t have permission to access this resource. Contact your
+            administrator if you believe this is a mistake.
           </p>
 
           <div className="unauthorized-actions">
@@ -196,4 +196,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default Unauthorized;

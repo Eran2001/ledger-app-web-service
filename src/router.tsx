@@ -6,6 +6,7 @@ import {
   redirect,
 } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
+
 import { Loading } from "@/components/ui/loading";
 import AuthLayout from "@/layouts/auth-layout";
 import DefaultLayout from "@/layouts/default-layout";
@@ -27,6 +28,9 @@ const SettingsPage = lazy(() => import("./pages/settings"));
 const ProfilePage = lazy(
   () => import("./pages/settings/components/account-information"),
 );
+const NotFoundPage = lazy(() => import("./pages/404"));
+const UnauthorizedPage = lazy(() => import("./pages/401"));
+const SubscriptionErrorPage = lazy(() => import("./pages/502"));
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -132,6 +136,22 @@ const profileRoute = createRoute({
   component: ProfilePage,
 });
 
+const notFoundRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/404",
+  component: NotFoundPage,
+});
+const unauthorizedRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/401",
+  component: UnauthorizedPage,
+});
+const subscriptionErrorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/502",
+  component: SubscriptionErrorPage,
+});
+
 const routeTree = rootRoute.addChildren([
   authRoute.addChildren([loginRoute, registerRoute, setupPasswordRoute]),
   shellRoute.addChildren([
@@ -149,6 +169,9 @@ const routeTree = rootRoute.addChildren([
     settingsRoute,
     profileRoute,
   ]),
+  notFoundRoute,
+  unauthorizedRoute,
+  subscriptionErrorRoute,
 ]);
 
 export const router = createRouter({
