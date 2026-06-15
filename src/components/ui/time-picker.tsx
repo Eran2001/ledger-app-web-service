@@ -90,17 +90,10 @@ export function TimePicker({
           aria-disabled={disabled}
           data-state={open ? "open" : "closed"}
           className={cn(
-            "flex items-center justify-between",
-            "w-full px-3 gap-2",
+            "flex items-center justify-between w-full px-3 gap-2 cursor-pointer",
             size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
-            "global-rounded border bg-background",
-            "cursor-pointer outline-none",
+            "global-rounded border",
             "picker-trigger",
-            "border-border/60",
-            "hover:bg-accent/20",
-            "data-[state=open]:border-primary",
-            "data-[state=open]:bg-accent/30",
-            "transition-colors duration-150",
             disabled && "opacity-50 pointer-events-none",
             !value && "picker-trigger-empty",
             className,
@@ -109,24 +102,12 @@ export function TimePicker({
           <span className="truncate tabular-nums">
             {formatDisplay(hour, minute, period)}
           </span>
-          <Icon.Clock
-            className={cn(
-              "h-4 w-4 shrink-0",
-              "text-muted-foreground",
-              "transition-colors duration-150",
-              open && "text-primary",
-            )}
-          />
+          <Icon.Clock className="h-4 w-4 shrink-0" />
         </div>
       </PopoverTrigger>
 
       <PopoverContent
-        className={cn(
-          "w-auto p-3",
-          "global-rounded",
-          "border-border/60",
-          "dropdown-shadow",
-        )}
+        className={cn("w-auto p-3 global-rounded dropdown-shadow picker-content")}
         align="start"
         sideOffset={6}
       >
@@ -144,7 +125,7 @@ export function TimePicker({
             </SelectContent>
           </Select>
 
-          <span className="picker-separator text-muted-foreground">:</span>
+          <span className="picker-separator">:</span>
 
           <Select value={String(minute)} onValueChange={handleMinute}>
             <SelectTrigger className="w-20 tabular-nums">
