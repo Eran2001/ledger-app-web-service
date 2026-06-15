@@ -2775,11 +2775,19 @@
       }
 
       &:focus {
-        background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+        background-color: color-mix(
+          in srgb,
+          var(--destructive) 10%,
+          transparent
+        );
         color: var(--destructive);
 
         &:is(.dark *) {
-          background-color: color-mix(in srgb, var(--destructive) 20%, transparent);
+          background-color: color-mix(
+            in srgb,
+            var(--destructive) 20%,
+            transparent
+          );
         }
       }
     }
@@ -2814,7 +2822,9 @@
   .nav-menu-trigger {
     background-color: var(--background);
     outline: var(--outline-none);
-    transition: color 0.15s, box-shadow 0.15s;
+    transition:
+      color 0.15s,
+      box-shadow 0.15s;
 
     &:hover,
     &:focus {
@@ -2895,6 +2905,13 @@
   /* PAGINATION */
 
   /* POPOVER */
+  .popover-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+    outline: var(--outline-none);
+  }
 
   /* TEXTAREA */
   .textarea-field {
@@ -2918,6 +2935,8 @@
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
     }
   }
+
+  /* PROGRESS */
 
   /* SEARCH FIELD */
   .search-field-root {
