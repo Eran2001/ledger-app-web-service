@@ -27,7 +27,6 @@ const SettingsPage = lazy(() => import("./pages/settings"));
 const ProfilePage = lazy(
   () => import("./pages/settings/components/account-information"),
 );
-const TestPage = lazy(() => import("./pages/test"));
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -132,11 +131,6 @@ const profileRoute = createRoute({
   path: "/settings/profile",
   component: ProfilePage,
 });
-const testRoute = createRoute({
-  getParentRoute: () => shellRoute,
-  path: "/test",
-  component: TestPage,
-});
 
 const routeTree = rootRoute.addChildren([
   authRoute.addChildren([loginRoute, registerRoute, setupPasswordRoute]),
@@ -154,7 +148,6 @@ const routeTree = rootRoute.addChildren([
     reportsRoute,
     settingsRoute,
     profileRoute,
-    testRoute,
   ]),
 ]);
 

@@ -17,7 +17,6 @@ export const SECTIONS: NavSection[] = [
   {
     label: "MAIN",
     items: [
-      { href: "/test", label: "Test", icon: Icon.FlaskConical },
       { href: "/dashboard", label: "Dashboard", icon: Icon.LayoutDashboard },
       { href: "/customers", label: "Customers", icon: Icon.Users },
       { href: "/sales", label: "Sales", icon: Icon.ShoppingBag },

@@ -1,18 +1,8 @@
 import type { ComponentType } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
+
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import {
-  Bell,
-  Menu,
-  Moon,
-  Sun,
-  User as UserIcon,
-  Settings as SettingsIcon,
-  LogOut,
-} from "lucide-react";
-import { useUIStore } from "@/stores/ui-store";
-import { useThemeStore } from "@/stores/theme-store";
-import { useAuthStore } from "@/stores/auth-store";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import {
   DropdownMenu,
@@ -22,6 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import { useUIStore } from "@/stores/ui-store";
+import { useThemeStore } from "@/stores/theme-store";
+import { useAuthStore } from "@/stores/auth-store";
 
 interface PrimaryAction {
   to?: string;
@@ -49,14 +43,16 @@ export function TopBar({
   const navigate = useNavigate();
 
   return (
-    <header className="surface-card border-b border-default h-16 shrink-0 px-4 sm:px-6 flex items-center gap-3 sticky top-0 z-30">
-      <button
+    <header className="surface-card border-b border-default h-16 shrink-0 px-4 sm:px-6 flex items-center gap-3 sticky top-0 z-topbar">
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden icon-button h-9 w-9 flex items-center justify-center"
+        className="lg:hidden app-sidebar-link app-sidebar-icon-btn"
         aria-label="Open menu"
       >
-        <Menu className="h-5 w-5" />
-      </button>
+        <Icon.Menu className="h-5 w-5" />
+      </Button>
 
       <div className="flex items-baseline gap-2 min-w-0 flex-1">
         <h1 className="t-heading text-main truncate">{pageTitle}</h1>
@@ -89,21 +85,29 @@ export function TopBar({
             )}
           </div>
         )}
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
           onClick={toggleTheme}
-          className="icon-button h-9 w-9 flex items-center justify-center"
+          className="app-sidebar-link app-sidebar-icon-btn"
           aria-label="Toggle theme"
         >
-          {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </button>
+          {isDark ? (
+            <Icon.Sun className="h-5 w-5" />
+          ) : (
+            <Icon.Moon className="h-5 w-5" />
+          )}
+        </Button>
 
-        <button
-          className="icon-button h-9 w-9 flex items-center justify-center relative"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative app-sidebar-link app-sidebar-icon-btn"
           aria-label="Notifications"
         >
-          <Bell className="h-5 w-5" />
+          <Icon.Bell className="h-5 w-5" />
           <span className="notification-dot absolute top-1.5 right-1.5 h-2.5 w-2.5" />
-        </button>
+        </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -127,23 +131,24 @@ export function TopBar({
                 to="/settings/profile"
                 className="flex items-center gap-2 t-meta"
               >
-                <UserIcon className="h-4 w-4" /> Profile
+                <Icon.User className="h-4 w-4" /> Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link to="/settings" className="flex items-center gap-2 t-meta">
-                <SettingsIcon className="h-4 w-4" /> Settings
+                <Icon.Settings className="h-4 w-4" /> Settings
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
+              variant="destructive"
               onClick={() => {
                 logout();
                 navigate({ to: "/login" });
               }}
-              className="text-danger flex items-center gap-2 t-meta"
+              className="flex items-center gap-2 t-meta"
             >
-              <LogOut className="h-4 w-4" /> Logout
+              <Icon.LogOut className="h-4 w-4" /> Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
