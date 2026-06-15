@@ -2574,6 +2574,56 @@
   }
 
   /* INPUT-OTP */
+  .otp-input {
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .otp-slot {
+    border-top-width: var(--border-width);
+    border-bottom-width: var(--border-width);
+    border-right-width: var(--border-width);
+    border-color: var(--input-border);
+    box-shadow: var(--shadow-xs);
+    outline: var(--outline-none);
+    transition: all 0.15s;
+
+    &:first-child {
+      border-left-width: var(--border-width);
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    &:is(.dark *) {
+      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--destructive);
+    }
+
+    &[data-active="true"] {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+
+      &[aria-invalid="true"] {
+        border-color: var(--destructive);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent);
+
+        &:is(.dark *) {
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+        }
+      }
+    }
+  }
+
+  .otp-caret {
+    background-color: var(--foreground);
+  }
 
   /* INPUT */
   .input-field {
@@ -2596,6 +2646,8 @@
   }
 
   /* ITEM */
+
+  /* KBD */
 
   /* TEXTAREA */
   .textarea-field {
