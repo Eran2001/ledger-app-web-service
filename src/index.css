@@ -2612,10 +2612,12 @@
 
       &[aria-invalid="true"] {
         border-color: var(--destructive);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent);
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--destructive) 20%, transparent);
 
         &:is(.dark *) {
-          box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+          box-shadow: 0 0 0 3px
+            color-mix(in srgb, var(--destructive) 40%, transparent);
         }
       }
     }
@@ -2649,7 +2651,9 @@
   .item-root {
     border-color: transparent;
     outline: var(--outline-none);
-    transition: color 0.1s, background-color 0.1s;
+    transition:
+      color 0.1s,
+      background-color 0.1s;
 
     &:is(a):hover {
       background-color: color-mix(in srgb, var(--accent) 50%, transparent);
@@ -2689,6 +2693,23 @@
   }
 
   /* KBD */
+  .kbd {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+
+    &:is([data-slot=tooltip-content] *) {
+      background-color: color-mix(in srgb, var(--background) 20%, transparent);
+      color: var(--background);
+
+      &:is(.dark *) {
+        background-color: color-mix(in srgb, var(--background) 10%, transparent);
+      }
+    }
+  }
+
+  /* LABEL */
+
+  /* MENUBAR */
 
   /* TEXTAREA */
   .textarea-field {
