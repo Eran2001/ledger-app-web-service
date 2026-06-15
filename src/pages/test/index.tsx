@@ -1,69 +1,46 @@
 import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Navigation Menu" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-              <NavigationMenuContent
-                items={[
-                  {
-                    title: "Introduction",
-                    desc: "Overview of how it all works.",
-                    to: "#",
-                  },
-                  {
-                    title: "Installation",
-                    desc: "How to install and set up.",
-                    to: "#",
-                  },
-                  {
-                    title: "Quickstart",
-                    desc: "Get up and running fast.",
-                    to: "#",
-                  },
-                ]}
-              />
-            </NavigationMenuItem>
+      <TopBar pageTitle="Pagination" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-8">
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-              <NavigationMenuContent
-                items={[
-                  {
-                    title: "Button",
-                    desc: "Clickable action element.",
-                    to: "#",
-                  },
-                  { title: "Input", desc: "Text input field.", to: "#" },
-                  {
-                    title: "Dialog",
-                    desc: "Modal overlay component.",
-                    to: "#",
-                  },
-                ]}
-              />
-            </NavigationMenuItem>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">10</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
 
-            <NavigationMenuItem>
-              <NavigationMenuLink href="#" className="px-4 py-2">
-                Docs
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
       </div>
     </>
   );
