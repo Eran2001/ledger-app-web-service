@@ -39,7 +39,6 @@ function SelectTrigger({
         "flex w-fit items-center justify-between gap-2",
         "px-3 py-2 whitespace-nowrap cursor-pointer",
         size === "sm" ? "h-compact" : "h-field",
-        "disabled:cursor-not-allowed disabled:opacity-50",
         "*:data-[slot=select-value]:line-clamp-1",
         "*:data-[slot=select-value]:flex",
         "*:data-[slot=select-value]:items-center",
@@ -53,7 +52,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="size-4 opacity-50" />
+        <ChevronDownIcon className="size-4 select-chevron" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -77,7 +76,7 @@ function SelectContent({
           "data-[side=left]:slide-in-from-right-2",
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
-          "relative z-50 overflow-x-hidden overflow-y-auto",
+          "relative z-dropdown overflow-x-hidden overflow-y-auto",
           "max-h-(--radix-select-content-available-height)",
           "min-w-32 origin-(--radix-select-content-transform-origin)",
           "global-rounded border",
@@ -127,17 +126,15 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground",
-        "[&_svg:not([class*='text-'])]:text-muted-foreground",
-        "relative flex w-full cursor-default select-none",
+        "relative flex w-full cursor-pointer select-none",
         "items-center gap-2",
-        "rounded-sm",
+        "global-rounded",
         "py-1.5 pr-8 pl-2",
-        "text-sm outline-hidden",
-        "data-disabled:pointer-events-none data-disabled:opacity-50",
+        "t-meta",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
-        "*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 cursor-pointer",
+        "*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        "select-item",
         className,
       )}
       {...props}
@@ -159,11 +156,7 @@ function SelectSeparator({
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn(
-        "bg-border",
-        "pointer-events-none -mx-1 my-1 h-px",
-        className,
-      )}
+      className={cn("pointer-events-none -mx-1 my-1 h-px", "select-separator", className)}
       {...props}
     />
   );

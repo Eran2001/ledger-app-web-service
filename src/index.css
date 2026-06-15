@@ -2139,51 +2139,6 @@
 
   /* CAROUSAL */
 
-  /* SELECT */
-  .select-trigger {
-    background-color: var(--background);
-    border-color: var(--input-border);
-    color: var(--foreground);
-    box-shadow: var(--shadow-none);
-    outline: var(--outline-none);
-    transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
-
-    &:is(.dark *) {
-      background-color: color-mix(in srgb, var(--input) 30%, transparent);
-      &:hover {
-        background-color: color-mix(in srgb, var(--input) 50%, transparent);
-      }
-    }
-    &[data-placeholder] {
-      color: var(--muted-foreground);
-    }
-    & svg:not([class*="text-"]) {
-      color: var(--muted-foreground);
-    }
-    & svg:not([class*="size-"]) {
-      width: 1rem;
-      height: 1rem;
-    }
-    &:focus-visible,
-    &[data-state="open"] {
-      border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
-    }
-  }
-
-  .select-label {
-    color: var(--muted-foreground);
-  }
-
-  .select-content {
-    background-color: var(--popover);
-    color: var(--popover-foreground);
-    border-color: var(--border);
-    box-shadow: var(--shadow-card);
-  }
-
   /* COMMAND */
   .command-root {
     background-color: var(--background);
@@ -3012,6 +2967,33 @@
   }
 
   /* SCROLL-AREA */
+  .scroll-area-root {
+    border-color: var(--border);
+  }
+
+  .scroll-area-viewport {
+    outline: var(--outline-none);
+    transition:
+      color 0.15s,
+      box-shadow 0.15s;
+
+    &:focus-visible {
+      outline-width: 1px;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  .scroll-area-scrollbar {
+    transition:
+      color 0.15s,
+      background-color 0.15s,
+      border-color 0.15s;
+    border-color: transparent;
+  }
+
+  .scroll-area-thumb {
+    background-color: var(--border);
+  }
 
   /* SEARCH FIELD */
   .search-field-root {
@@ -3065,6 +3047,97 @@
       color: var(--foreground);
     }
   }
+
+  /* SELECT */
+  .select-trigger {
+    background-color: var(--background);
+    border-color: var(--input-border);
+    color: var(--foreground);
+    box-shadow: var(--shadow-none);
+    outline: var(--outline-none);
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+
+    &:is(.dark *) {
+      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+      &:hover {
+        background-color: color-mix(in srgb, var(--input) 50%, transparent);
+      }
+    }
+    &[data-placeholder] {
+      color: var(--muted-foreground);
+    }
+    & svg:not([class*="text-"]) {
+      color: var(--muted-foreground);
+    }
+    & svg:not([class*="size-"]) {
+      width: 1rem;
+      height: 1rem;
+    }
+    &:focus-visible,
+    &[data-state="open"] {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+  }
+
+  .select-trigger {
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .select-chevron {
+    opacity: 0.5;
+  }
+
+  .select-label {
+    color: var(--muted-foreground);
+  }
+
+  .select-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .select-item {
+    outline: var(--outline-none);
+
+    & svg:not([class*="text-"]) {
+      color: var(--muted-foreground);
+    }
+
+    &:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &[data-disabled] {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  .select-separator {
+    background-color: var(--border);
+  }
+
+  /* SEPARATOR */
+  .separator {
+    background-color: var(--border);
+  }
+
+  /* SHEET */
+
+  /* SIDEBAR */
+
+  /* SKELETON */
+
+  /* SLIDER */
 
   /* FORMS */
   .form-label {
