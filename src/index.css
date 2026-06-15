@@ -2956,7 +2956,9 @@
     border-color: var(--input);
     box-shadow: var(--shadow-xs);
     outline: var(--outline-none);
-    transition: color 0.15s, box-shadow 0.15s;
+    transition:
+      color 0.15s,
+      box-shadow 0.15s;
 
     &:focus-visible {
       border-color: var(--ring);
@@ -2970,7 +2972,8 @@
 
     &[aria-invalid="true"] {
       border-color: var(--destructive);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 20%, transparent);
     }
 
     .dark & {
@@ -2978,7 +2981,8 @@
     }
 
     .dark &[aria-invalid="true"] {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 40%, transparent);
     }
   }
 
@@ -2987,6 +2991,27 @@
   }
 
   /* RESIZABLE */
+  .resizable-root {
+    border-color: var(--border);
+  }
+
+  .resizable-handle {
+    background-color: var(--border);
+
+    &:focus-visible {
+      outline: var(--outline-none);
+      box-shadow:
+        0 0 0 1px var(--background),
+        0 0 0 2px var(--ring);
+    }
+  }
+
+  .resizable-handle-grip {
+    background-color: var(--border);
+    border-color: var(--border);
+  }
+
+  /* SCROLL-AREA */
 
   /* SEARCH FIELD */
   .search-field-root {

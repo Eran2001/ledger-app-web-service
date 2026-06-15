@@ -1,28 +1,48 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Radio Group" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6 max-w-sm">
+      <TopBar pageTitle="Resizable" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-6">
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="h-48"
+        >
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4 t-meta">
+              Panel A
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4 t-meta">
+              Panel B
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
 
-        <RadioGroup defaultValue="option-1">
-          <div className="flex items-center gap-2">
-            <RadioGroupItem value="option-1" id="r1" />
-            <Label htmlFor="r1">Option 1</Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <RadioGroupItem value="option-2" id="r2" />
-            <Label htmlFor="r2">Option 2</Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <RadioGroupItem value="option-3" id="r3" disabled />
-            <Label htmlFor="r3">Option 3 (disabled)</Label>
-          </div>
-        </RadioGroup>
-
+        <ResizablePanelGroup
+          direction="vertical"
+          className="h-96"
+        >
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4 t-meta">
+              Top
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4 t-meta">
+              Bottom
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </>
   );
