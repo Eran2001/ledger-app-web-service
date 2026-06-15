@@ -1,21 +1,19 @@
-import { useState } from "react";
-
-import { SidebarNav } from "@/components/shared/sidebar-nav";
+import { StatusBadge } from "@/components/shared/status-badge";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
     <>
-      <TopBar pageTitle="Sidebar Nav" pageSubtitle="Test" />
-      <div className="p-6 flex gap-8">
-        <div className="h-150 shrink-0 overflow-hidden border global-rounded">
-          <SidebarNav
-            collapsed={collapsed}
-            onToggleCollapse={() => setCollapsed((c) => !c)}
-            showToggle
-          />
+      <TopBar pageTitle="Status Badge" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-6">
+        <div className="flex flex-wrap gap-3">
+          <StatusBadge status="PAID" />
+          <StatusBadge status="PARTIALLY_PAID" />
+          <StatusBadge status="OVERDUE" />
+          <StatusBadge status="PENDING" />
+          <StatusBadge status="ACTIVE" />
+          <StatusBadge status="COMPLETED" />
+          <StatusBadge status="WRITTEN_OFF" />
         </div>
       </div>
     </>
