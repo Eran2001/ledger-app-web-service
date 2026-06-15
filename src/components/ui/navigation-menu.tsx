@@ -63,7 +63,6 @@ function NavigationMenuItem({
 const navigationMenuTriggerStyle = cva([
   "group inline-flex h-field w-max items-center justify-center",
   "global-rounded px-4 py-2 t-meta fw-medium",
-  "disabled:pointer-events-none disabled:opacity-50",
   "nav-menu-trigger",
 ]);
 
@@ -80,7 +79,7 @@ function NavigationMenuTrigger({
     >
       {children}{" "}
       <ChevronDownIcon
-        className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+        className="relative top-px ml-1 size-3"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
@@ -125,8 +124,6 @@ function NavigationMenuContent({
         "group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95",
         "group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0",
         "group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0",
-        "**:data-[slot=navigation-menu-link]:focus:ring-0",
-        "**:data-[slot=navigation-menu-link]:focus:outline-none",
         "nav-menu-content",
         className,
       )}

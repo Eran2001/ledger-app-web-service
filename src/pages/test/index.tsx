@@ -1,60 +1,43 @@
-import * as Icon from "@/components/icons";
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-} from "@/components/ui/input-group";
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import { TopBar } from "@/components/shared/top-bar";
 
 const TestPage = () => {
   return (
     <>
-      <TopBar pageTitle="Input Group" pageSubtitle="Test" />
-      <div className="p-6 flex flex-col gap-6 max-w-md">
+      <TopBar pageTitle="Resizable" pageSubtitle="Test" />
+      <div className="p-6 flex flex-col gap-8">
 
-        <InputGroup>
-          <InputGroupAddon>
-            <Icon.Search />
-          </InputGroupAddon>
-          <InputGroupInput placeholder="Search..." />
-        </InputGroup>
+        <ResizablePanelGroup direction="horizontal" className="h-48">
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4">
+              <span className="t-meta">Left panel</span>
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4">
+              <span className="t-meta">Right panel</span>
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
 
-        <InputGroup>
-          <InputGroupAddon align="inline-start">
-            <InputGroupText>https://</InputGroupText>
-          </InputGroupAddon>
-          <InputGroupInput placeholder="yoursite.com" />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton>Go</InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
-
-        <InputGroup size="compact">
-          <InputGroupAddon>
-            <Icon.Mail />
-          </InputGroupAddon>
-          <InputGroupInput placeholder="Email address" />
-        </InputGroup>
-
-        <InputGroup size="large">
-          <InputGroupAddon>
-            <Icon.DollarSign />
-          </InputGroupAddon>
-          <InputGroupInput placeholder="0.00" />
-          <InputGroupAddon align="inline-end">
-            <InputGroupText>USD</InputGroupText>
-          </InputGroupAddon>
-        </InputGroup>
-
-        <InputGroup>
-          <InputGroupAddon align="block-start">
-            <InputGroupText>Message</InputGroupText>
-          </InputGroupAddon>
-          <InputGroupTextarea placeholder="Type your message..." />
-        </InputGroup>
+        <ResizablePanelGroup direction="vertical" className="h-64">
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4">
+              <span className="t-meta">Top panel</span>
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full items-center justify-center p-4">
+              <span className="t-meta">Bottom panel</span>
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
 
       </div>
     </>

@@ -194,6 +194,10 @@
   /* Shadows */
   --shadow-none: none;
   --outline-none: none;
+
+  /* Z-index scale */
+  --z-tabs-trigger: 10;
+  --z-dropdown: 50;
   --shadow-card:
     0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
   --shadow-card-hover:
@@ -201,7 +205,8 @@
   --shadow-brand: 0 4px 14px 0
     color-mix(in srgb, var(--primary) 25%, transparent);
   --shadow-focus: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
-  --shadow-focus-error: 0 0 0 3px color-mix(in srgb, var(--destructive) 25%, transparent);
+  --shadow-focus-error: 0 0 0 3px
+    color-mix(in srgb, var(--destructive) 25%, transparent);
 
   /* Typography scale */
   --font-size-4xs: 9px;
@@ -1310,10 +1315,10 @@
 
   /* SEMANTIC Z-INDEX */
   .z-dropdown {
-    z-index: 50;
+    z-index: var(--z-dropdown);
   }
   .z-tabs-trigger {
-    z-index: 10;
+    z-index: var(--z-tabs-trigger);
   }
 
   /* SEMANTIC BORDERS — directional removal */
@@ -1820,19 +1825,63 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+  .btn-group-h > *:focus-visible,
+  .btn-group-v > *:focus-visible {
+    z-index: var(--z-tabs-trigger);
+    position: relative;
+  }
+  .btn-group-h:has(select[aria-hidden="true"]:last-child)
+    [data-slot="select-trigger"]:last-of-type {
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
 }
 
 @layer components {
   /* ACCORDION */
+  .accordion-trigger {
+    outline: var(--outline-none);
+    transition: all 0.15s;
+
+    &:focus-visible {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &[data-state="open"] > .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    & .accordion-label {
+      transition: text-decoration 0.15s;
+    }
+
+    &:hover .accordion-label {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  .accordion-chevron {
+    transition: transform 0.2s;
+  }
 
   /* ALERT-DIALOG */
+  .alert-dialog-content {
+    box-shadow: var(--shadow-card-hover);
+  }
 
   /* BREADCRUMBS */
 
   /* BUTTON-GROUP */
   .btn-group-toggle-item {
     border: var(--border-width) solid var(--border);
-    border-radius: var(--radius);
+    /* border-radius: var(--radius-md); */
     background-color: var(--background);
     color: var(--text-secondary);
     transition:
@@ -1848,6 +1897,9 @@
       background-color: var(--primary);
       color: var(--primary-foreground);
     }
+  }
+  .btn-group-text {
+    box-shadow: var(--shadow-card-hover);
   }
   .btn-group-search {
     &:focus-within > * {
@@ -2268,6 +2320,9 @@
 
     & svg {
       color: var(--muted-foreground);
+      transition:
+        transform 0.2s,
+        color 0.15s;
     }
 
     &:hover {
@@ -2286,6 +2341,7 @@
       color: var(--foreground) !important;
       & svg {
         color: var(--primary);
+        transform: rotate(180deg);
       }
     }
   }
@@ -2551,11 +2607,11 @@
 
     &:first-child {
       border-left-width: var(--border-width);
-      border-radius: var(--radius) 0 0 var(--radius);
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
     }
 
     &:last-child {
-      border-radius: 0 var(--radius) var(--radius) 0;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
     }
 
     &:is(.dark *) {
@@ -2567,6 +2623,7 @@
     }
 
     &[data-active="true"] {
+      z-index: var(--z-tabs-trigger);
       border-color: var(--ring);
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
 
@@ -2788,6 +2845,10 @@
       color 0.15s,
       box-shadow 0.15s;
 
+    & > svg {
+      transition: transform 0.3s;
+    }
+
     &:hover,
     &:focus {
       background-color: var(--accent);
@@ -2807,6 +2868,15 @@
       &:focus {
         background-color: var(--accent);
       }
+
+      & > svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
     }
   }
 
@@ -2975,6 +3045,7 @@
   }
 
   .scroll-area-viewport {
+    border-radius: inherit;
     outline: var(--outline-none);
     transition:
       color 0.15s,
@@ -3000,7 +3071,7 @@
 
   /* SEARCH FIELD */
   .search-field-root {
-    border-radius: var(--radius-md);
+    /* border-radius: var(--radius-md); */
     border: var(--border-width) solid var(--border);
     background-color: var(--background);
     transition:
@@ -3554,7 +3625,7 @@
 
     &:focus,
     &:focus-visible {
-      z-index: 10;
+      z-index: var(--z-tabs-trigger);
     }
 
     &[data-variant="outline"] {

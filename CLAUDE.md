@@ -107,6 +107,13 @@
 
 ---
 
+## Shadcn Component Rule
+
+**Never modify any file in `src/components/ui/` without explicitly asking the user first.**
+These are the base UI primitives. Always confirm before making any change, no matter how small.
+
+---
+
 ## Component Rules
 
 - Never use `any` or `unknown` — type everything explicitly

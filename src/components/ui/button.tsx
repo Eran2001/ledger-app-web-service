@@ -80,7 +80,7 @@ const Button = ({
           <Icon.Loader2 className="size-4 animate-spin" />
         </span>
       )}
-      <span className={cn(loading && "opacity-0")}>{content}</span>
+      <span className={cn("inline-flex items-center gap-2", loading && "opacity-0")}>{content}</span>
     </Comp>
   );
 };

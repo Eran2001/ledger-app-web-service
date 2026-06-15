@@ -23,9 +23,8 @@ import {
 
 const buttonGroupVariants = cva(
   [
-    "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative",
+    "flex w-fit items-stretch",
     "[&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
-    "has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md",
     "has-[>[data-slot=button-group]]:gap-2",
   ].join(" "),
   {
@@ -245,7 +244,7 @@ function ButtonGroupItem({
       data-slot="button-group-item"
       data-active={isActive}
       className={cn(
-        "btn-group-toggle-item",
+        "btn-group-toggle-item global-rounded",
         "inline-flex items-center justify-center size-9 cursor-pointer",
         "[&>svg]:size-4 [&>svg]:pointer-events-none [&>svg]:shrink-0",
         className,
@@ -273,7 +272,7 @@ function ButtonGroupText({
   return (
     <Comp
       className={cn(
-        "surface-muted global-rounded t-meta border flex items-center gap-2 px-4 shadow-card-hover",
+        "surface-muted global-rounded t-meta border flex items-center gap-2 px-4 btn-group-text",
         "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className,
       )}

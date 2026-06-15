@@ -47,7 +47,7 @@ export function SearchField({
   return (
     <div
       className={cn(
-        "flex items-center w-full cursor-text search-field-root",
+        "flex items-center w-full cursor-text search-field-root global-rounded",
         size === "compact"
           ? "h-compact gap-1.5 px-2.5"
           : size === "large"

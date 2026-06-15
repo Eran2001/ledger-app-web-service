@@ -55,7 +55,6 @@ function InputOTPSlot({
       className={cn(
         "relative flex aspect-square items-center justify-center",
         size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
-        "data-[active=true]:z-10",
         "otp-slot",
         className,
       )}

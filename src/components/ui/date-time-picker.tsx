@@ -72,10 +72,6 @@ export function DateTimePicker({
                 "[&>span]:flex [&>span]:w-full",
                 "[&>span]:items-center [&>span]:justify-between",
                 "t-meta global-rounded picker-trigger",
-                "border-border/60",
-                "hover:bg-accent/20",
-                "data-[state=open]:border-primary",
-                "data-[state=open]:bg-accent/30",
                 !value && "picker-trigger-empty",
                 error && "form-validation",
               )}
@@ -83,23 +79,11 @@ export function DateTimePicker({
               <span className="truncate">
                 {value ? format(value, "dd MMM yyyy") : "Select date"}
               </span>
-              <Icon.ChevronDown
-                className={cn(
-                  "h-4 w-4 shrink-0",
-                  "text-muted-foreground",
-                  "transition-transform duration-200",
-                  open && "rotate-180 text-primary",
-                )}
-              />
+              <Icon.ChevronDown className="h-4 w-4 shrink-0" />
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className={cn(
-              "w-auto p-0",
-              "global-rounded",
-              "border-border/60",
-              "dropdown-shadow",
-            )}
+            className="w-auto p-0 global-rounded dropdown-shadow picker-content"
             align="start"
             sideOffset={6}
           >
