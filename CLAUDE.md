@@ -161,6 +161,34 @@ src/
 
 ---
 
+---
+
+## Custom Hooks Rules
+
+- Always prefix with use
+- Sidebar and auth pages use the styled **WorkerOs.AI** text logo (icon + text), not the dunner files
+- Do **not** delete the dunner logo files from assets
+
+---
+
+---
+
+## Handler Naming
+
+```
+// ✅ always handle prefix
+const handleSubmit = () => {}
+const handleDelete = () => {}
+const handleModalOpen = () => {}
+
+// ❌
+const onSubmit = () => {}
+const deleteItem = () => {}
+const openModal = () => {}
+```
+
+---
+
 ## Colour Tokens
 
 All colours are CSS HSL variables in `index.css @layer base`. Never hardcode hex values — always reference the token.
@@ -223,7 +251,7 @@ One component must never exceed **200 lines**. Split into smaller sub-components
 ## Export Rules
  
 | Location                     | Export Type      | Reason                                        |
-| ---------------------------- | ---------------- | --------------------------------------------- |       |
+| ---------------------------- | ---------------- | --------------------------------------------- |       
 | `src/pages/**/index.tsx`     | `export default` | Required for `React.lazy()` code splitting    |
 | `src/components/layout/`     | `named export`   | Tree shaking + consistent imports             |
 | `src/components/shared/`     | `named export`   | Tree shaking + consistent imports             |  
