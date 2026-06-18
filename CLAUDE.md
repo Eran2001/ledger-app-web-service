@@ -1,4 +1,4 @@
-# WorkerOs Web Control Plane — Claude Guidelines
+# WorkerOs Web Control Plane — Claude Guidelines.
 
 ---
 
@@ -30,18 +30,18 @@
 
 ### Forbidden in Component JSX
 
-| Category         | Forbidden pattern            | Use instead                                  |
-| ---------------- | ---------------------------- | -------------------------------------------- |
-| Font size        | `text-{xs/sm/base/lg/xl…}`   | `t-*` (size + weight bundled)                |
-| Font weight      | `font-{thin/light/bold…}`    | `fw-*`                                       |
-| Letter spacing   | `tracking-{tight/wide…}`     | `[letter-spacing:var(--tracking-*)]`         |
-| Line height      | `leading-{tight/relaxed…}`   | `[line-height:var(--leading-*)]`             |
-| Text transform   | `uppercase` `capitalize` …   | `text-uppercase` `text-capitalize`           |
-| Color / bg-color | `text-gray-*` `bg-slate-*` … | semantic token classes                       |
-| Border color     | `border-gray-*` …            | `border-default` `border-brand` …            |
-| Border radius    | `rounded-*`                  | `md-rounded` `lg-rounded` `full-rounded` …   |
-| Interactive      | inline `hover:` / `focus:`   | `btn-brand` `sidebar-nav-*`                  |
-| Text decoration  | `underline` `line-through` … | `decoration-*`                               |
+| Category         | Forbidden pattern            | Use instead                                |
+| ---------------- | ---------------------------- | ------------------------------------------ |
+| Font size        | `text-{xs/sm/base/lg/xl…}`   | `t-*` (size + weight bundled)              |
+| Font weight      | `font-{thin/light/bold…}`    | `fw-*`                                     |
+| Letter spacing   | `tracking-{tight/wide…}`     | `[letter-spacing:var(--tracking-*)]`       |
+| Line height      | `leading-{tight/relaxed…}`   | `[line-height:var(--leading-*)]`           |
+| Text transform   | `uppercase` `capitalize` …   | `text-uppercase` `text-capitalize`         |
+| Color / bg-color | `text-gray-*` `bg-slate-*` … | semantic token classes                     |
+| Border color     | `border-gray-*` …            | `border-default` `border-brand` …          |
+| Border radius    | `rounded-*`                  | `md-rounded` `lg-rounded` `full-rounded` … |
+| Interactive      | inline `hover:` / `focus:`   | `btn-brand` `sidebar-nav-*`                |
+| Text decoration  | `underline` `line-through` … | `decoration-*`                             |
 
 ### Allowed in Component JSX
 
@@ -112,6 +112,7 @@
 The app supports all breakpoints (`xs` → `8xl`). For layout properties that repeat the same breakpoint scale across multiple components (e.g. `px`, `py`, `min-h`, `gap`, `w`, `max-w`), extract them into `src/constants/responsive.ts` instead of duplicating inline.
 
 **Rules:**
+
 - Group constants by **layout context** (e.g. `layout`, `header`, `footer`, `page`, `card`, `section`, `emptyState`, `modal`) — not just by property name, because different areas use different scale values
 - Each context object holds only the properties relevant to it (e.g. `header` needs `minH`, `footer` needs `minH`, `page` needs `px/py/gap`)
 - Export as a single `R` object (`as const`) — import with `import { R } from "@/constants/responsive"`
@@ -233,11 +234,11 @@ Never run build commands (`npm run build`, `vite build`, `tsc`, etc.). Only run 
 
 ```ts
 // ✅
-import { Button } from "@/components/ui/button"
-import { useAuthStore } from "@/stores/auth-store"
+import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/stores/auth-store";
 
 // ❌
-import { Button } from "../../components/ui/button"
+import { Button } from "../../components/ui/button";
 ```
 
 ---
@@ -249,31 +250,33 @@ One component must never exceed **200 lines**. Split into smaller sub-components
 ---
 
 ## Export Rules
- 
-| Location                     | Export Type      | Reason                                        |
-| ---------------------------- | ---------------- | --------------------------------------------- |       
-| `src/pages/**/index.tsx`     | `export default` | Required for `React.lazy()` code splitting    |
-| `src/components/layout/`     | `named export`   | Tree shaking + consistent imports             |
-| `src/components/shared/`     | `named export`   | Tree shaking + consistent imports             |  
-| `src/components/ui/`         | `named export`   | Follows shadcn convention                     |
-| `src/pages/home/components`  | `named export`   | Bundled with root, never lazy-loaded directly |
+
+| Location                    | Export Type      | Reason                                        |
+| --------------------------- | ---------------- | --------------------------------------------- |
+| `src/pages/**/index.tsx`    | `export default` | Required for `React.lazy()` code splitting    |
+| `src/components/layout/`    | `named export`   | Tree shaking + consistent imports             |
+| `src/components/shared/`    | `named export`   | Tree shaking + consistent imports             |
+| `src/components/ui/`        | `named export`   | Follows shadcn convention                     |
+| `src/pages/home/components` | `named export`   | Bundled with root, never lazy-loaded directly |
 
 ### Rules
+
 - Every page folder has an `index.tsx` as the **root component** — this is the only file that uses `export default`
 - All child components inside a page folder use **named exports**
 - `React.lazy()` always points to the page root (`index.tsx`) — never to child components directly
-- 
+-
+
 ```tsx
 // ✅ src/pages/dashboard/index.tsx — root, lazy loadable
 const DashboardPage = () => { ... }
 export default DashboardPage
- 
+
 // ✅ src/pages/dashboard/dashboard-stats.tsx — child, named
 export const DashboardStats = () => { ... }
- 
+
 // ✅ src/components/shared/sale-card.tsx
 export const SaleCard = () => { ... }
- 
+
 // ✅ Router
 const DashboardPage = React.lazy(() => import('@/pages/dashboard'))
 ```
@@ -285,12 +288,13 @@ const DashboardPage = React.lazy(() => import('@/pages/dashboard'))
 - Use **arrow functions** for all components, helpers, hooks, and methods by default
 - Avoid `function` declarations unless there is a specific technical reason (e.g. hoisting required)
 - Keep all new code consistent with arrow-function style
-- 
+-
+
 ```tsx
 // ✅ Correct
 export const DashboardStats = () => { ... }
 export const formatCurrency = (amount: number) => { ... }
- 
+
 // ❌ Avoid
 export function DashboardStats() { ... }
 ```
@@ -303,16 +307,16 @@ Always use `Notification` from `@/utils/notification`. Never import `toast` dire
 
 ```ts
 // ✅ Correct
-import { Notification } from "@/utils/notification"
-Notification.success("Sale created.")
-Notification.error("Something went wrong.")
+import { Notification } from "@/utils/notification";
+Notification.success("Sale created.");
+Notification.error("Something went wrong.");
 
 // ❌ Wrong — direct sonner import
-import { toast } from "sonner"
-toast.success("Sale created.")
+import { toast } from "sonner";
+toast.success("Sale created.");
 
 // ❌ Wrong — shadcn hook
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
 ```
 
 ---
@@ -337,14 +341,14 @@ const items: unknown[] = []
 
 ## Naming Conventions
 
-| What                    | Convention    | Example                                |
-| ----------------------- | ------------- | -------------------------------------- |
-| File names              | `kebab-case`  | `sale-card.tsx`, `dashboard-stats.tsx` |
-| Component names         | `PascalCase`  | `SaleCard`, `DashboardStats`           |
-| Page root files         | `index.tsx`   | `src/pages/dashboard/index.tsx`        |
-| Zustand stores          | `kebab-case`  | `auth-store.ts`, `theme-store.ts`      |
-| Query files             | `kebab-case`  | `auth-queries.ts`                      |
-| Schema files            | `kebab-case`  | `sale-schema.ts`                       |
- 
+| What            | Convention   | Example                                |
+| --------------- | ------------ | -------------------------------------- |
+| File names      | `kebab-case` | `sale-card.tsx`, `dashboard-stats.tsx` |
+| Component names | `PascalCase` | `SaleCard`, `DashboardStats`           |
+| Page root files | `index.tsx`  | `src/pages/dashboard/index.tsx`        |
+| Zustand stores  | `kebab-case` | `auth-store.ts`, `theme-store.ts`      |
+| Query files     | `kebab-case` | `auth-queries.ts`                      |
+| Schema files    | `kebab-case` | `sale-schema.ts`                       |
+
 > **Why kebab-case for files?** Avoids case-sensitivity bugs across Windows/Mac/Linux and prevents Git from missing renames.
 > **Why PascalCase for components?** React requires it — lowercase JSX tags are treated as HTML elements.
