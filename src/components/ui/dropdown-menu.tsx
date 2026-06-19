@@ -205,11 +205,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn(
-        "-mx-1 my-1 h-px",
-        "dropdown-menu-separator",
-        className,
-      )}
+      className={cn("-mx-1 my-1 h-px", "dropdown-menu-separator", className)}
       {...props}
     />
   );
@@ -222,11 +218,7 @@ function DropdownMenuShortcut({
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      className={cn(
-        "ml-auto t-caption",
-        "dropdown-menu-shortcut",
-        className,
-      )}
+      className={cn("ml-auto t-caption", "dropdown-menu-shortcut", className)}
       {...props}
     />
   );
@@ -235,9 +227,7 @@ function DropdownMenuShortcut({
 function DropdownMenuSub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
-  return (
-    <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />
-  );
+  return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
 }
 
 function DropdownMenuSubTrigger({

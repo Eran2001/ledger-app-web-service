@@ -111,9 +111,7 @@ export function TopBar({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="ml-1" aria-label="User menu">
-              <InitialsAvatar name={user?.name ?? "User"} size="sm" />
-            </button>
+            <InitialsAvatar name={user?.name ?? "User"} size="md" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"

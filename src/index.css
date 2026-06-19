@@ -1269,23 +1269,43 @@
   }
 
   /* SEMANTIC FIELD HEIGHT */
-  .h-field {
-    height: 2.25rem;
+  .h-small {
+    height: 1.75rem; /* h-7 */
+  }
+  .w-small {
+    width: 1.75rem; /* w-7 */
   }
   .h-compact {
-    height: 2rem;
+    height: 2rem; /* h-8 */
+  }
+  .w-compact {
+    width: 2rem; /* w-8 */
+  }
+  .h-field {
+    height: 2.25rem; /* h-9 */
+  }
+  .w-field {
+    width: 2.25rem; /* w-9 */
   }
   .h-large {
-    height: 2.5rem;
+    height: 2.5rem; /* h-10 */
   }
-  .h-small {
-    height: 1.75rem;
+  .w-large {
+    width: 2.5rem; /* w-10 */
+  }
+  .h-extra-large {
+    height: 3.5rem; /* h-14 */
+  }
+  .w-extra-large {
+    width: 3.5rem; /* w-14 */
   }
   .min-h-textarea {
+    /* min-h-16 */
     min-height: 4rem;
   }
   /* HIGHT FOR PROGRESS COMPO */
   .h-progress {
+    /* h-2 */
     height: 0.5rem;
   }
 
@@ -3729,7 +3749,11 @@
     inset: 0;
     height: 100%;
     width: 100%;
-    mask-image: radial-gradient(ellipse 50% 60% at center, transparent 35%, black 65%);
+    mask-image: radial-gradient(
+      ellipse 50% 60% at center,
+      transparent 35%,
+      black 65%
+    );
   }
   .unauthorized-spotlight {
     pointer-events: none;

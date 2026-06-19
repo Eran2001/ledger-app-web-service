@@ -7,9 +7,9 @@ interface InitialsAvatarProps {
 }
 
 const SIZE_MAP = {
-  sm: { box: "h-8 w-8", text: "t-caption-bold" },
-  md: { box: "h-10 w-10", text: "t-meta-bold" },
-  lg: { box: "h-14 w-14", text: "t-display" },
+  sm: { box: "h-compact w-compact", text: "t-caption-bold" },
+  md: { box: "h-field w-field", text: "t-meta-bold" },
+  lg: { box: "h-extra-large w-extra-large", text: "t-meta-bold" },
 };
 
 export function InitialsAvatar({
