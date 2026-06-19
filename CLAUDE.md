@@ -352,3 +352,82 @@ const items: unknown[] = []
 
 > **Why kebab-case for files?** Avoids case-sensitivity bugs across Windows/Mac/Linux and prevents Git from missing renames.
 > **Why PascalCase for components?** React requires it — lowercase JSX tags are treated as HTML elements.
+
+```
+
+## Cascading for CSS
+
+Cascade cheatsheet · CSS
+/* ============================================================
+   CSS CASCADE STRENGTH — STRONGEST TO WEAKEST (top wins)
+   ============================================================
+
+   1. INLINE STYLE="" + !IMPORTANT ANYWHERE
+      ------------------------------------------------------------
+      Highest possible priority in the whole system.
+      style="color: red !important" on an element beats
+      literally everything below it, no exceptions.
+
+   2. BROWSER / OS LEVEL INJECTED STYLES
+      ------------------------------------------------------------
+      Not your CSS at all — Chrome's own internal UA styles.
+      e.g. input:-webkit-autofill yellow background,
+      default <select> arrow, default checkbox look.
+      This is WHY no-layer + !important is required to beat it —
+      your stylesheet (even unlayered) is still "author CSS",
+      and the browser's own internal style sits ABOVE all author
+      CSS by default. !important on YOUR rule is what lets your
+      author CSS jump above that browser-injected style.
+      → This is the actual reason the autofill hack needs
+        !important. It's not fighting your own utilities,
+        it's fighting Chrome itself.
+
+   3. INLINE STYLE="" (no !important)
+      ------------------------------------------------------------
+      Style attributes written directly in HTML/JSX, OR injected
+      live by a JS library (Sonner, Radix, react-international-phone).
+      Beats ANY selector in your stylesheet, layered or not,
+      because inline style has a fixed specificity above
+      classes/ids in the normal cascade.
+
+   4. NO LAYER (your own unlayered author CSS)
+      ------------------------------------------------------------
+      Any CSS you write OUTSIDE @layer blocks.
+      Beats @layer utilities, @layer components, @layer base —
+      all of them — automatically, by cascade layer rules.
+      No !important needed UNLESS you're also fighting #2 or #3
+      above (browser UA styles or inline styles from a library).
+      → Reserved for: 3rd-party override patches,
+        browser quirk fixes, vendor CSS overrides.
+
+   5. @LAYER UTILITIES
+      ------------------------------------------------------------
+      Atomic, single-purpose classes (.text-main, .pill-rounded).
+      Beats @layer components and @layer base automatically.
+      Never needs !important to win against your own components —
+      that's the whole point of using layers in the first place.
+
+   6. @LAYER COMPONENTS
+      ------------------------------------------------------------
+      Multi-property reusable patterns (.btn-base, .card-base).
+      Beats @layer base. Loses to @layer utilities — intentional,
+      so a utility class can always override one property of
+      a component without a fight.
+
+   7. @LAYER BASE
+      ------------------------------------------------------------
+      Element resets & global defaults (*, body, h1, a).
+      Weakest of your own layers. Designed to be overridden
+      by everything above it — that's its entire job.
+
+   ============================================================
+   THE ONE-LINE TAKEAWAY
+   ------------------------------------------------------------
+   no-layer beats your OWN layered CSS automatically (layer rule).
+   !important is ONLY needed when fighting something that ISN'T
+   your CSS — browser-injected UA styles, or inline styles
+   written/injected by a JS library. Two different problems,
+   two different tools.
+   ============================================================ */
+
+```
