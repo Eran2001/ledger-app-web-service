@@ -32,7 +32,7 @@ export default function SaleCard({ sale }: { sale: Sale }) {
     stat.totalCount === 0 ? 0 : (stat.paidCount / stat.totalCount) * 100;
 
   return (
-    <div className="surface-card card-rounded border border-default p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="surface-card global-rounded border border-default p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <h3 className="t-section text-main truncate mb-1.5">

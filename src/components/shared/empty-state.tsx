@@ -23,7 +23,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "surface-card card-rounded border border-default",
+        "surface-card global-rounded border border-default",
         "flex flex-col items-center justify-center text-center",
         "px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 2xl:px-20 3xl:px-24",
         "4xl:px-28 5xl:px-32 6xl:px-40 7xl:px-48 8xl:px-56",

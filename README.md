@@ -161,7 +161,7 @@ The app runs at `http://localhost:5173` by default.
 | Class                  | Description            | Example                                                    |
 | ---------------------- | ---------------------- | ---------------------------------------------------------- |
 | `surface-page`         | Page background        | `<div className="surface-page">...</div>`                  |
-| `surface-card`         | Card background        | `<div className="surface-card card-rounded p-4">...</div>` |
+| `surface-card`         | Card background        | `<div className="surface-card global-rounded p-4">...</div>` |
 | `surface-brand`        | Primary brand fill     | `<div className="surface-brand text-white">...</div>`      |
 | `surface-brand-soft`   | Light brand tint       | `<div className="surface-brand-soft">...</div>`            |
 | `surface-success-soft` | Success background     | `<div className="surface-success-soft">...</div>`          |

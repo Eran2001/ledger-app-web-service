@@ -13,9 +13,9 @@ export default function KpiCard({
 }) {
   return (
     <div
-      className={`surface-card card-rounded border border-default p-5 border-l-4 ${danger ? "border-start-danger" : "border-start-brand"} shadow-sm`}
+      className={`surface-card global-rounded border border-default p-5 border-l-4 ${danger ? "border-start-danger" : "border-start-brand"} shadow-sm`}
     >
-      <p className="t-micro-bold text-soft text-uppercase [letter-spacing:var(--tracking-label)] mb-2">
+      <p className="t-micro-bold text-soft text-uppercase tracking-label mb-2">
         {label}
       </p>
       <p className="t-kpi text-main">{value}</p>

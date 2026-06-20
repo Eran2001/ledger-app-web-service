@@ -244,7 +244,7 @@ export default function NewSalePage() {
                     {formatCurrency(remaining)}
                   </span>
                 </div>
-                <div className="surface-brand-soft card-rounded p-4 mt-4 mb-3 flex justify-between items-center">
+                <div className="surface-brand-soft global-rounded p-4 mt-4 mb-3 flex justify-between items-center">
                   <span className="t-meta-bold text-brand">
                     Monthly Payment
                   </span>

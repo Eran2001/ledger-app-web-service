@@ -31,7 +31,7 @@ export default function OverdueList() {
   const navigate = useNavigate();
 
   return (
-    <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-2 flex flex-col overflow-hidden">
+    <section className="surface-card global-rounded border border-default shadow-sm xl:col-span-2 flex flex-col overflow-hidden">
       <div className="flex items-center justify-between px-6 h-14 border-b border-default">
         <h2 className="t-title text-main">Overdue Installments</h2>
         <button className="t-meta-bold text-danger inline-flex items-center gap-1">

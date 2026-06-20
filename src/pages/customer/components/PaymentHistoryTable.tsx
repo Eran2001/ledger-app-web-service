@@ -16,7 +16,7 @@ export default function PaymentHistoryTable({
   payments: Payment[];
 }) {
   return (
-    <div className="surface-card card-rounded border border-default shadow-sm overflow-hidden">
+    <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>

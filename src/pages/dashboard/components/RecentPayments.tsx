@@ -40,7 +40,7 @@ const recentPayments = [...payments]
 
 export default function RecentPayments() {
   return (
-    <section className="surface-card card-rounded border border-default shadow-sm xl:col-span-3 overflow-hidden">
+    <section className="surface-card global-rounded border border-default shadow-sm xl:col-span-3 overflow-hidden">
       <div className="flex items-center justify-between px-6 h-14 border-b border-default">
         <h2 className="t-title text-main">Recent Payments</h2>
         <Link

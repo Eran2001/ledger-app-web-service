@@ -66,7 +66,7 @@ export default function SaleDetailPage() {
 
         <div className="grid gap-6 lg:grid-cols-2 mb-6">
           {/* Customer */}
-          <div className="surface-card card-rounded border border-default p-6 shadow-sm">
+          <div className="surface-card global-rounded border border-default p-6 shadow-sm">
             <p className="t-micro-bold text-soft text-uppercase tracking-label mb-4">
               Customer
             </p>
@@ -101,7 +101,7 @@ export default function SaleDetailPage() {
           </div>
 
           {/* Sale summary */}
-          <div className="surface-card card-rounded border border-default p-6 shadow-sm relative">
+          <div className="surface-card global-rounded border border-default p-6 shadow-sm relative">
             <div className="flex items-start justify-between mb-4">
               <p className="t-micro-bold text-soft text-uppercase tracking-label">
                 Sale Summary
@@ -253,7 +253,7 @@ export default function SaleDetailPage() {
                         Recorded by {p.recordedBy}
                       </p>
                       {p.notes && (
-                        <p className="surface-page card-rounded p-3 t-caption text-soft mt-2 border border-default">
+                        <p className="surface-page global-rounded p-3 t-caption text-soft mt-2 border border-default">
                           {p.notes}
                         </p>
                       )}

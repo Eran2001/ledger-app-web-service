@@ -105,7 +105,7 @@ export default function CustomersPage() {
             onAction={() => undefined}
           />
         ) : (
-          <div className="surface-card card-rounded border border-default shadow-sm overflow-hidden">
+          <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
