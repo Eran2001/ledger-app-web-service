@@ -59,6 +59,46 @@
 
 ---
 
+## index.css File Organization
+
+`src/index.css` is organized into 8 numbered, banner-commented sections, in this exact cascade order.
+When adding new CSS, find the matching section below — don't append randomly or create a new top-level block.
+
+| #   | Section              | Purpose                                                                                                                                                                                                                                                                                                                                                                    |
+| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `:root`              | Light mode tokens. Raw design values — always full `hsl(...)`, never bare numbers. Everything downstream references these; never hardcode a color anywhere else.                                                                                                                                                                                                          |
+| 2   | `.dark`               | Dark mode overrides. Same variable **names** as `:root`, different **values**. This is the _only_ place dark mode happens — never add a `.dark` override anywhere else.                                                                                                                                                                                                   |
+| 3   | `@theme`              | Design tokens NOT tied to light/dark (fonts, shadows, spacing scale, breakpoints, animations). Real Tailwind config — generates utilities like `font-sans`, `shadow-card`.                                                                                                                                                                                                |
+| 4   | `@theme inline`       | Bridges `:root`/`.dark` vars into Tailwind's naming convention (`--color-*`, `--radius-*`) so `bg-primary`, `rounded-lg` etc. work. Always reference vars — never hardcode a hex/hsl here, or dark mode silently breaks for that token.                                                                                                                                  |
+| 5   | `@layer base`         | Element resets & global defaults. WEAKEST layer. Targets raw HTML elements (`*`, `body`, `h1`, `a`) — never class names.                                                                                                                                                                                                                                                  |
+| 6   | `@layer utilities`    | Atomic, single-purpose classes (1-3 properties): typography scale, color/rounding/spacing helpers. STRONGEST layer besides no-layer — always beats `@layer components` automatically.                                                                                                                                                                                     |
+| 7   | `@layer components`   | Multi-property reusable patterns (`.btn-base`, `.card-base`). MIDDLE layer — beats base, loses to utilities, intentionally, so a utility can override one property without a fight.                                                                                                                                                                                       |
+| 8   | No layer              | Third-party overrides & escape hatches. STRONGEST in the whole cascade, beats utilities too. Reserved for overriding library-injected styles (Radix, Sonner, react-international-phone) and browser quirks (autofill, webkit scrollbar). Keep this section SMALL — if you're tempted to put your own classes here "to be safe," they belong in `@layer utilities` instead. |
+
+---
+
+## Cascading for CSS
+
+CSS cascade strength, strongest to weakest (top wins). Know this before reaching for `!important` or no-layer CSS.
+
+1. **Inline `style=""` + `!important` anywhere** — Highest possible priority in the whole system. `style="color: red !important"` beats literally everything below it, no exceptions.
+
+2. **Browser / OS level injected styles** — Not your CSS at all — Chrome's own internal UA styles (e.g. `input:-webkit-autofill` yellow background, default `<select>` arrow, default checkbox look). This is WHY no-layer + `!important` is required to beat it — your stylesheet (even unlayered) is still "author CSS," and the browser's own internal style sits ABOVE all author CSS by default. `!important` on YOUR rule is what lets your author CSS jump above that browser-injected style. → This is the actual reason the autofill hack needs `!important`. It's not fighting your own utilities, it's fighting Chrome itself.
+
+3. **Inline `style=""` (no `!important`)** — Style attributes written directly in HTML/JSX, OR injected live by a JS library (Sonner, Radix, react-international-phone). Beats ANY selector in your stylesheet, layered or not, because inline style has a fixed specificity above classes/ids in the normal cascade.
+
+4. **No layer (your own unlayered author CSS)** — Any CSS you write OUTSIDE `@layer` blocks. Beats `@layer utilities`, `@layer components`, `@layer base` — all of them — automatically, by cascade layer rules. No `!important` needed UNLESS you're also fighting #2 or #3 above (browser UA styles or inline styles from a library). → Reserved for: 3rd-party override patches, browser quirk fixes, vendor CSS overrides.
+
+5. **`@layer utilities`** — Atomic, single-purpose classes (`.text-main`, `.pill-rounded`). Beats `@layer components` and `@layer base` automatically. Never needs `!important` to win against your own components — that's the whole point of using layers in the first place.
+
+6. **`@layer components`** — Multi-property reusable patterns (`.btn-base`, `.card-base`). Beats `@layer base`. Loses to `@layer utilities` — intentional, so a utility class can always override one property of a component without a fight.
+
+7. **`@layer base`** — Element resets & global defaults (`*`, `body`, `h1`, `a`). Weakest of your own layers. Designed to be overridden by everything above it — that's its entire job.
+
+> **The one-line takeaway:** No-layer beats your OWN layered CSS automatically (layer rule). `!important` is ONLY needed when fighting something that ISN'T your CSS — browser-injected UA styles, or inline styles written/injected by a JS library. Two different problems, two different tools.
+
+---
+
 ## Semantic Typography Classes (`src/index.css @layer utilities`)
 
 ### Size + weight combos (`t-*`) — use these first
@@ -354,80 +394,5 @@ const items: unknown[] = []
 > **Why PascalCase for components?** React requires it — lowercase JSX tags are treated as HTML elements.
 
 ```
-
-## Cascading for CSS
-
-Cascade cheatsheet · CSS
-/* ============================================================
-   CSS CASCADE STRENGTH — STRONGEST TO WEAKEST (top wins)
-   ============================================================
-
-   1. INLINE STYLE="" + !IMPORTANT ANYWHERE
-      ------------------------------------------------------------
-      Highest possible priority in the whole system.
-      style="color: red !important" on an element beats
-      literally everything below it, no exceptions.
-
-   2. BROWSER / OS LEVEL INJECTED STYLES
-      ------------------------------------------------------------
-      Not your CSS at all — Chrome's own internal UA styles.
-      e.g. input:-webkit-autofill yellow background,
-      default <select> arrow, default checkbox look.
-      This is WHY no-layer + !important is required to beat it —
-      your stylesheet (even unlayered) is still "author CSS",
-      and the browser's own internal style sits ABOVE all author
-      CSS by default. !important on YOUR rule is what lets your
-      author CSS jump above that browser-injected style.
-      → This is the actual reason the autofill hack needs
-        !important. It's not fighting your own utilities,
-        it's fighting Chrome itself.
-
-   3. INLINE STYLE="" (no !important)
-      ------------------------------------------------------------
-      Style attributes written directly in HTML/JSX, OR injected
-      live by a JS library (Sonner, Radix, react-international-phone).
-      Beats ANY selector in your stylesheet, layered or not,
-      because inline style has a fixed specificity above
-      classes/ids in the normal cascade.
-
-   4. NO LAYER (your own unlayered author CSS)
-      ------------------------------------------------------------
-      Any CSS you write OUTSIDE @layer blocks.
-      Beats @layer utilities, @layer components, @layer base —
-      all of them — automatically, by cascade layer rules.
-      No !important needed UNLESS you're also fighting #2 or #3
-      above (browser UA styles or inline styles from a library).
-      → Reserved for: 3rd-party override patches,
-        browser quirk fixes, vendor CSS overrides.
-
-   5. @LAYER UTILITIES
-      ------------------------------------------------------------
-      Atomic, single-purpose classes (.text-main, .pill-rounded).
-      Beats @layer components and @layer base automatically.
-      Never needs !important to win against your own components —
-      that's the whole point of using layers in the first place.
-
-   6. @LAYER COMPONENTS
-      ------------------------------------------------------------
-      Multi-property reusable patterns (.btn-base, .card-base).
-      Beats @layer base. Loses to @layer utilities — intentional,
-      so a utility class can always override one property of
-      a component without a fight.
-
-   7. @LAYER BASE
-      ------------------------------------------------------------
-      Element resets & global defaults (*, body, h1, a).
-      Weakest of your own layers. Designed to be overridden
-      by everything above it — that's its entire job.
-
-   ============================================================
-   THE ONE-LINE TAKEAWAY
-   ------------------------------------------------------------
-   no-layer beats your OWN layered CSS automatically (layer rule).
-   !important is ONLY needed when fighting something that ISN'T
-   your CSS — browser-injected UA styles, or inline styles
-   written/injected by a JS library. Two different problems,
-   two different tools.
-   ============================================================ */
 
 ```
