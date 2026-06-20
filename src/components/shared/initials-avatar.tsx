@@ -1,9 +1,9 @@
+import { forwardRef } from "react";
 import { cn, getAvatarColors, getInitials } from "@/lib/utils";
 
-interface InitialsAvatarProps {
+interface InitialsAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string;
   size?: "sm" | "md" | "lg";
-  className?: string;
 }
 
 const SIZE_MAP = {
@@ -12,26 +12,27 @@ const SIZE_MAP = {
   lg: { box: "h-extra-large w-extra-large", text: "t-meta-bold" },
 };
 
-export function InitialsAvatar({
-  name,
-  size = "md",
-  className,
-}: InitialsAvatarProps) {
-  const colors = getAvatarColors(name);
-  const sizing = SIZE_MAP[size];
-  return (
-    <div
-      className={cn(
-        "global-rounded flex items-center justify-center",
-        "shrink-0 select-none cursor-pointer",
-        sizing.box,
-        sizing.text,
-        className,
-      )}
-      style={{ backgroundColor: colors.bg, color: colors.fg }}
-      aria-label={name}
-    >
-      {getInitials(name)}
-    </div>
-  );
-}
+export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
+  ({ name, size = "md", className, ...props }, ref) => {
+    const colors = getAvatarColors(name);
+    const sizing = SIZE_MAP[size];
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "global-rounded flex items-center justify-center",
+          "shrink-0 select-none cursor-pointer",
+          sizing.box,
+          sizing.text,
+          className,
+        )}
+        style={{ backgroundColor: colors.bg, color: colors.fg }}
+        aria-label={name}
+        {...props}
+      >
+        {getInitials(name)}
+      </div>
+    );
+  },
+);
+InitialsAvatar.displayName = "InitialsAvatar";
