@@ -281,7 +281,7 @@ export default function OverduePage() {
                               <Bell />
                               Remind
                             </Button>
-                            <Button asChild size="sm" variant="ghost">
+                            <Button size="sm" variant="ghost">
                               <Link to="/sales/$id" params={{ id: r.saleId }}>
                                 <Eye />
                                 View
