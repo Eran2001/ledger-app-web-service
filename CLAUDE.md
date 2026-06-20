@@ -64,16 +64,26 @@
 `src/index.css` is organized into 8 numbered, banner-commented sections, in this exact cascade order.
 When adding new CSS, find the matching section below — don't append randomly or create a new top-level block.
 
-| #   | Section              | Purpose                                                                                                                                                                                                                                                                                                                                                                    |
-| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `:root`              | Light mode tokens. Raw design values — always full `hsl(...)`, never bare numbers. Everything downstream references these; never hardcode a color anywhere else.                                                                                                                                                                                                          |
-| 2   | `.dark`               | Dark mode overrides. Same variable **names** as `:root`, different **values**. This is the _only_ place dark mode happens — never add a `.dark` override anywhere else.                                                                                                                                                                                                   |
-| 3   | `@theme`              | Design tokens NOT tied to light/dark (fonts, shadows, spacing scale, breakpoints, animations). Real Tailwind config — generates utilities like `font-sans`, `shadow-card`.                                                                                                                                                                                                |
-| 4   | `@theme inline`       | Bridges `:root`/`.dark` vars into Tailwind's naming convention (`--color-*`, `--radius-*`) so `bg-primary`, `rounded-lg` etc. work. Always reference vars — never hardcode a hex/hsl here, or dark mode silently breaks for that token.                                                                                                                                  |
-| 5   | `@layer base`         | Element resets & global defaults. WEAKEST layer. Targets raw HTML elements (`*`, `body`, `h1`, `a`) — never class names.                                                                                                                                                                                                                                                  |
-| 6   | `@layer utilities`    | Atomic, single-purpose classes (1-3 properties): typography scale, color/rounding/spacing helpers. STRONGEST layer besides no-layer — always beats `@layer components` automatically.                                                                                                                                                                                     |
-| 7   | `@layer components`   | Multi-property reusable patterns (`.btn-base`, `.card-base`). MIDDLE layer — beats base, loses to utilities, intentionally, so a utility can override one property without a fight.                                                                                                                                                                                       |
-| 8   | No layer              | Third-party overrides & escape hatches. STRONGEST in the whole cascade, beats utilities too. Reserved for overriding library-injected styles (Radix, Sonner, react-international-phone) and browser quirks (autofill, webkit scrollbar). Keep this section SMALL — if you're tempted to put your own classes here "to be safe," they belong in `@layer utilities` instead. |
+| # | Section            | Purpose                                   |                                                                                   |
+| - | ------------------ | ----------------------------------------- | --------------------------------------------------------------------------------- |
+| 1 | :root              | Light mode tokens. Raw design values — always full `hsl(...)`, never bare numbers. Everything downstream references these;    |
+                           never hardcode a color anywhere else.                                                                                        
+| 2 | .dark              | Dark mode overrides. Same variable **names** as `:root`, different **values**. This is the _only_                             |
+                           place dark mode happens — never add a `.dark` override anywhere else.    
+| 3 | @theme             | Design tokens NOT tied to light/dark (fonts, shadows, spacing scale, breakpoints, animations).                                |
+                           Real Tailwind config — generates utilities like `font-sans`, `shadow-card`.        
+| 4 | @theme inline      | Bridges `:root`/`.dark` vars into Tailwind's naming convention (`--color-*`, `--radius-*`) so `bg-primary`, `rounded-lg` etc. |
+                           work. Always reference vars — never hardcode a hex/hsl here, or dark mode silently breaks for that token.
+| 5 | @layer base        | Element resets & global defaults. WEAKEST layer. Targets raw HTML elements (`*`, `body`, `h1`, `a`) — never class names.      |
+
+| 6 | @layer utilities   | Atomic, single-purpose classes (1-3 properties): typography scale, color/rounding/spacing helpers.                            |
+                           STRONGEST layer besides no-layer — always beats `@layer components` automatically.                                            
+| 7 | @layer components  | Multi-property reusable patterns (`.btn-base`, `.card-base`). MIDDLE layer — beats base, loses to utilities,                  |
+                                                                                                                                                                                   
+| 8 | No layer           | Third-party overrides & escape hatches. STRONGEST in the whole cascade, beats utilities too. Reserved for overriding          |
+                           library-injected styles (Radix, Sonner, react-international-phone) and browser quirks (autofill, webkit scrollbar). 
+                           Keep this section SMALL — if you're tempted to put your own classes here "to be safe," 
+                           they belong in `@layer utilities` instead.
 
 ---
 
