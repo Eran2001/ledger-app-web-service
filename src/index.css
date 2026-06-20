@@ -10,7 +10,6 @@
    just references these — never hardcode a color anywhere else.
 */
 :root {
-  --radius: 0.375rem;
   --primary: hsl(221 83% 53%);
   --primary-dark: hsl(224 76% 48%);
   --primary-light: hsl(214 100% 97%);
@@ -93,23 +92,7 @@
   --chart-5: hsl(262 83% 58%);
   --glass-bg: hsl(0 0% 100% / 0.06);
   --glass-border: hsl(0 0% 100% / 0.12);
-  --blur-glass: 12px;
-  --border-width: 1px;
   --border-transparent: transparent;
-
-  --switch-sm-w: 1.25rem;
-  --switch-sm-h: 0.75rem;
-  --switch-sm-thumb: 0.625rem;
-
-  --switch-default-w: 2rem;
-  --switch-default-h: 1.15rem;
-  --switch-default-thumb: 1rem;
-
-  --switch-lg-w: 2.5rem;
-  --switch-lg-h: 1.5rem;
-  --switch-lg-thumb: 1.25rem;
-  --radius-full: 999px;
-  --btn-roll-height: 1.5rem;
   --overlay-bg: hsl(0 0% 0% / 0.5);
 }
 
@@ -207,6 +190,24 @@
 @theme {
   /* Font */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius / sizing */
+  --radius: 0.375rem;
+  --radius-full: 999px;
+  --border-width: 1px;
+  --blur-glass: 12px;
+  --btn-roll-height: 1.5rem;
+
+  /* Switch sizes */
+  --switch-sm-w: 1.25rem;
+  --switch-sm-h: 0.75rem;
+  --switch-sm-thumb: 0.625rem;
+  --switch-default-w: 2rem;
+  --switch-default-h: 1.15rem;
+  --switch-default-thumb: 1rem;
+  --switch-lg-w: 2.5rem;
+  --switch-lg-h: 1.5rem;
+  --switch-lg-thumb: 1.25rem;
 
   /* Accordion */
   --animate-accordion-down: accordion-down 0.2s ease-out;
