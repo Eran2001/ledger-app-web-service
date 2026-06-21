@@ -177,7 +177,7 @@ const Unauthorized = () => {
           "gap-6 px-6 py-20 md:py-24 text-center min-h-dvh w-full max-w-4xl",
         )}
       >
-        <div className="unauthorized-hero-code">401</div>
+        <div className="unauthorized-hero-code t-error-code">401</div>
 
         <div className="unauthorized-copy unauthorized-fade unauthorized-stagger-2">
           <h1 className="unauthorized-heading">Access Denied</h1>
