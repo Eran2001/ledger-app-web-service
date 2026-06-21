@@ -658,6 +658,7 @@
       font-size: var(--font-size-9xl);
     } /* 10000px */
   }
+
   .t-kpi-lg {
     /* max-xs  < 480px  */
     font-size: var(--font-size-xl);
@@ -4139,20 +4140,17 @@
   .unauthorized-hero-code {
     user-select: none;
     font-size: 7rem;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.05em;
-    color: hsl(var(--primary) / 0.14);
-    animation: unauthorized-reveal-text 1.8s cubic-bezier(0.2, 0.8, 0.2, 1)
+    font-weight: var(--font-weight-black);
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tight);
+    color: color-mix(in srgb, var(--primary) 14%, var(--bg-transparent));
+    animation: unauthorized-reveal-text var(--duration-shimmer) var(--ease-roll)
       forwards;
-  }
-  @media (min-width: 640px) {
-    .unauthorized-hero-code {
+
+    @media (min-width: theme(--breakpoint-sm)) {
       font-size: 9rem;
     }
-  }
-  @media (min-width: 768px) {
-    .unauthorized-hero-code {
+    @media (min-width: theme(--breakpoint-md)) {
       font-size: 12rem;
     }
   }
