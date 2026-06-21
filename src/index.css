@@ -4067,9 +4067,6 @@
   }
 
   .tabs-slide-indicator {
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
     border-radius: var(--radius-md);
     background-color: var(--background);
     box-shadow: var(--shadow-card);

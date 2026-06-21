@@ -69,7 +69,7 @@ function TabsList({
     >
       <div
         aria-hidden
-        className="tabs-slide-indicator"
+        className="tabs-slide-indicator absolute top-1 bottom-1"
         style={{
           left: pill.left,
           width: pill.width,
