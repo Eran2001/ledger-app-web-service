@@ -194,7 +194,7 @@ function CalendarDayButton({
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       className={cn(
-        "flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 fw-normal calendar-day-btn",
+        "flex aspect-square size-auto min-w-(--cell-size) flex-col gap-1 fw-normal calendar-day-btn w-full",
         defaultClassNames.day,
         className,
       )}

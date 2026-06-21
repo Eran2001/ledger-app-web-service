@@ -2481,7 +2481,6 @@
 
   /* CALENDAR */
   .calendar-day-btn {
-    width: 100%;
     line-height: var(--leading-none);
 
     &[data-selected-single="true"] {

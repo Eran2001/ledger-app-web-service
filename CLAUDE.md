@@ -37,8 +37,16 @@
 | Color / bg-color | `text-gray-*` `bg-slate-*` … | `semantic token classes`                   |
 | Border color     | `border-gray-*` …            | `border-default` `border-brand` …          |
 | Border radius    | `rounded-*`                  | `md-rounded` `lg-rounded` `full-rounded` … |
-| Interactive      | `inline `hover:` / `focus:`  | `btn-brand` `sidebar-nav-*`                |
+| Interactive      | `inline hover:/focus: for    | `btn-brand` `sidebar-nav-*`                |
+                      color, background, 
+                      border-color, shadow, 
+                      outline`                
 | Text decoration  | `underline` `line-through` … | `decoration-*`                             |
+| Box shadow       | `shadow-sm` `ring-2` …       | `dropdown-shadow` `shadow-brand-soft`, etc.|
+| Status badges    | `bg-green-100` `text-green`  | `status-success`, etc.                     |
+| Pill variants    | `bg-{color}-100`             | `pill-indigo`, etc.                        |
+| Icon size        | `h-4 w-4 size-4`             | `icon-compact` `icon-large` etc.           |
+| Field h/w        | `h-7 h-8 h-9`                | `h-small` `h-compact` etc.           |
 
 ### Allowed in Component JSX
 
