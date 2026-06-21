@@ -191,7 +191,7 @@ const SubscriptionError = () => {
             plan to continue accessing the portal.
           </p>
 
-          <div className="unauthorized-actions">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button onClick={() => navigate({ to: "/dashboard" })}>
               <Icon.Home className="h-5 w-5" />
               Go Home

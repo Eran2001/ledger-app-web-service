@@ -4221,24 +4221,12 @@
   .unauthorized-body {
     color: var(--muted-foreground);
   }
-  .unauthorized-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-  @media (min-width: 640px) {
-    .unauthorized-actions {
-      flex-direction: row;
-    }
-  }
   .unauthorized-fade {
-    opacity: 0;
-    animation: unauthorized-fade-in 0.9s ease-out forwards;
+    opacity: var(--opacity-0);
+    animation: unauthorized-fade-in var(--duration-slow) ease-out forwards;
   }
   .unauthorized-stagger-2 {
-    animation-delay: 0.7s;
+    animation-delay: var(--duration-slow);
   }
 }
 
