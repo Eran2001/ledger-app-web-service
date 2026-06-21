@@ -179,7 +179,12 @@ const SubscriptionError = () => {
       >
         <div className="unauthorized-hero-code t-error-code">502</div>
 
-        <div className="unauthorized-copy unauthorized-fade unauthorized-stagger-2">
+        <div
+          className={cn(
+            "relative -mt-4 md:-mt-5 flex flex-col items-center gap-4 md:gap-5",
+            "unauthorized-fade unauthorized-stagger-2",
+          )}
+        >
           <h1 className="unauthorized-heading">Subscription Required</h1>
           <p className="unauthorized-body">
             Your subscription has expired or is not active. Please renew your

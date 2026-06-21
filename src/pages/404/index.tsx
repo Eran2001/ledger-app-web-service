@@ -179,7 +179,12 @@ const NotFound = () => {
       >
         <div className="unauthorized-hero-code t-error-code">404</div>
 
-        <div className="unauthorized-copy unauthorized-fade unauthorized-stagger-2">
+        <div
+          className={cn(
+            "relative -mt-4 md:-mt-5 flex flex-col items-center gap-4 md:gap-5",
+            "unauthorized-fade unauthorized-stagger-2",
+          )}
+        >
           <h1 className="unauthorized-heading">Page Not Found</h1>
           <p className="unauthorized-body">
             The resource you are looking for might have been removed, renamed,

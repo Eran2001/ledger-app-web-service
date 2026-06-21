@@ -4215,20 +4215,6 @@
     animation: unauthorized-reveal-text var(--duration-shimmer) var(--ease-roll)
       forwards;
   }
-  .unauthorized-copy {
-    position: relative;
-    margin-top: -1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  @media (min-width: 768px) {
-    .unauthorized-copy {
-      margin-top: -1.25rem;
-      gap: 1.25rem;
-    }
-  }
   .unauthorized-heading {
     font-size: 2.25rem;
     font-weight: 900;
