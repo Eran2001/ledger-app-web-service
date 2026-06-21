@@ -3667,7 +3667,7 @@
   /* SLIDER */
   .slider-root {
     &[data-disabled] {
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
@@ -3684,21 +3684,21 @@
     border-color: var(--primary);
     box-shadow: var(--shadow-xs);
     transition:
-      color 0.15s,
-      box-shadow 0.15s;
+      color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:hover {
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
 
     &:focus-visible {
       outline: var(--outline-none);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
 
     &:disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
