@@ -1,6 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { CardCaption } from "@/components/shared/card-caption";
+
 import {
   installmentSchedules,
   productById,
@@ -27,17 +29,16 @@ const overdueRows = installmentSchedules
   .sort((a, b) => b.days - a.days)
   .slice(0, 6);
 
-export default function OverdueList() {
+export const OverdueList = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="surface-card global-rounded border border-default shadow-sm xl:col-span-2 flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-6 h-14 border-b border-default">
-        <h2 className="t-title text-main">Overdue Installments</h2>
-        <button className="t-meta-bold text-danger inline-flex items-center gap-1">
-          Send Reminders <ArrowRight className="h-3.5 w-3.5" />
-        </button>
-      </div>
+    <CardCaption
+      title="Overdue Installments"
+      className="xl:col-span-2"
+      actionLabel="View All"
+      actionTo="/overdue"
+    >
       <ul className="flex-1 divide-y divide-border">
         {overdueRows.map((r) => (
           <li
@@ -56,7 +57,7 @@ export default function OverdueList() {
               </div>
             </div>
             <div className="text-right shrink-0">
-              <p className="t-micro-bold text-danger text-uppercase tracking-label">
+              <p className="t-micro-bold text-danger text-uppercase">
                 {r.days} days late
               </p>
               <p className="t-meta-bold text-main">
@@ -66,9 +67,9 @@ export default function OverdueList() {
           </li>
         ))}
       </ul>
-      <div className="surface-page px-6 py-3 text-center t-micro text-faint">
+      <div className="surface-page px-6 py-3.5 text-center t-micro text-faint">
         Manual reminders recommended for 60+ days
       </div>
-    </section>
+    </CardCaption>
   );
-}
+};

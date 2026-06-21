@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Link } from "@tanstack/react-router";
+
+import { Card } from "@/components/ui/card";
+import { CardCaption } from "@/components/shared/card-caption";
+import { InitialsAvatar } from "@/components/shared/initials-avatar";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 
 function Table({
   className,
@@ -36,21 +37,19 @@ function Table({
   );
 
   if (variant === "simple") {
-    return (
-      <Card className="p-0 gap-0 overflow-hidden">
-        {(caption || actionLabel) && (
-          <div className="flex items-center justify-between px-5 py-3 border-b border-default">
-            {caption && <span className="t-display">{caption}</span>}
-            {actionLabel && actionTo && (
-              <Button variant="link" size="sm">
-                <Link to={actionTo}>{actionLabel} →</Link>
-              </Button>
-            )}
-          </div>
-        )}
-        {tableEl}
-      </Card>
-    );
+    if (caption) {
+      return (
+        <CardCaption
+          title={caption}
+          actionLabel={actionLabel}
+          actionTo={actionTo}
+        >
+          {tableEl}
+        </CardCaption>
+      );
+    }
+
+    return <Card className="p-0 gap-0 overflow-hidden">{tableEl}</Card>;
   }
 
   return tableEl;
@@ -146,6 +145,34 @@ function TableCell({
   );
 }
 
+interface TableCellMediaProps {
+  name: string;
+  title: string;
+  subtitle?: string;
+  avatarSize?: "sm" | "md" | "lg";
+}
+
+function TableCellMedia({
+  name,
+  title,
+  subtitle,
+  avatarSize = "sm",
+}: TableCellMediaProps) {
+  return (
+    <div className="flex items-center gap-3">
+      <InitialsAvatar name={name} size={avatarSize} />
+      {subtitle ? (
+        <div className="flex flex-col">
+          <span>{title}</span>
+          <span className="table-text">{subtitle}</span>
+        </div>
+      ) : (
+        <span>{title}</span>
+      )}
+    </div>
+  );
+}
+
 function TableCaption({
   className,
   ...props
@@ -167,5 +194,6 @@ export {
   TableHead,
   TableRow,
   TableCell,
+  TableCellMedia,
   TableCaption,
 };

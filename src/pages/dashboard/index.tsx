@@ -4,9 +4,9 @@ import { TopBar } from "@/components/shared/top-bar";
 import { installmentSchedules, saleStats, sales } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
 
-import KpiCard from "./components/KpiCard";
-import RecentPayments from "./components/RecentPayments";
-import OverdueList from "./components/OverdueList";
+import { KpiCard } from "./components/kpi-card";
+import { RecentPayments } from "./components/recent-payments";
+import { OverdueList } from "./components/overdue-list";
 
 export default function DashboardPage() {
   const totalOutstanding = sales.reduce(
@@ -33,7 +33,7 @@ export default function DashboardPage() {
         primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 overflow-y-auto">
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mb-6">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mb-6">
           <KpiCard
             label="Total Outstanding"
             value={formatCurrency(totalOutstanding)}

@@ -3876,17 +3876,18 @@
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
   }
-  .table-text {
+  .table-text,
+  [data-slot="table-cell"]:not(:first-child) {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-normal);
     color: var(--text-secondary);
   }
-  .table-title-text {
+  .table-title-text,
+  [data-slot="table-cell"]:first-child {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     color: var(--text-primary);
   }
-
   .table-footer {
     background-color: color-mix(
       in srgb,
