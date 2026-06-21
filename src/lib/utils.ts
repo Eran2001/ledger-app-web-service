@@ -44,3 +44,8 @@ export function getAvatarColors(name: string) {
 export function daysOverdue(dueDate: string | Date): number {
   return Math.max(0, differenceInDays(new Date(), new Date(dueDate)))
 }
+
+export function formatStatusLabel(status: string): string {
+  const lower = status.toLowerCase().split("_").join(" ")
+  return lower.charAt(0).toUpperCase() + lower.slice(1)
+}

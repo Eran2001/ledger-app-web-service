@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, formatStatusLabel } from "@/lib/utils";
 
 type Status =
   | "PAID"
@@ -50,7 +50,7 @@ export function StatusBadge({
       )}
       style={{ backgroundColor: colors.bg, color: colors.text }}
     >
-      {status.replace("_", " ")}
+      {formatStatusLabel(status)}
     </span>
   );
 }
