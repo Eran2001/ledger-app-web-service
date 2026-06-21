@@ -114,7 +114,7 @@ function TableHead({
       data-slot="table-head"
       className={cn(
         "text-left align-middle whitespace-nowrap table-head",
-        variant === "simple" ? "h-large px-5" : "h-extra-large px-4",
+        variant === "simple" ? "h-large px-4" : "h-extra-large px-4",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -137,7 +137,7 @@ function TableCell({
       data-slot="table-cell"
       className={cn(
         "align-middle whitespace-nowrap",
-        variant === "simple" ? "h-extra-large px-5" : "h-extra-large px-4",
+        variant === "simple" ? "h-extra-large px-4" : "h-extra-large px-4",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}

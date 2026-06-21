@@ -60,6 +60,13 @@ export default function DashboardPage() {
                 <TableCell>Active</TableCell>
                 <TableCell>2026-07-01</TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell variant="simple">John Doe</TableCell>
+                <TableCell variant="simple">#S-1042</TableCell>
+                <TableCell variant="simple">{formatCurrency(12500)}</TableCell>
+                <TableCell variant="simple">Active</TableCell>
+                <TableCell variant="simple">2026-07-01</TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </div>
@@ -75,6 +82,13 @@ export default function DashboardPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
+              <TableRow>
+                <TableCell variant="simple">John Doe</TableCell>
+                <TableCell variant="simple">#S-1042</TableCell>
+                <TableCell variant="simple">{formatCurrency(12500)}</TableCell>
+                <TableCell variant="simple">Active</TableCell>
+                <TableCell variant="simple">2026-07-01</TableCell>
+              </TableRow>
               <TableRow>
                 <TableCell variant="simple">John Doe</TableCell>
                 <TableCell variant="simple">#S-1042</TableCell>
