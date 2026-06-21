@@ -3519,13 +3519,21 @@
     box-shadow: var(--shadow-none);
     outline: var(--outline-none);
     transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:is(.dark *) {
-      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--input) 30%,
+        var(--bg-transparent)
+      );
       &:hover {
-        background-color: color-mix(in srgb, var(--input) 50%, transparent);
+        background-color: color-mix(
+          in srgb,
+          var(--input) 50%,
+          var(--bg-transparent)
+        );
       }
     }
     &[data-placeholder] {
@@ -3535,25 +3543,25 @@
       color: var(--muted-foreground);
     }
     & svg:not([class*="size-"]) {
-      width: 1rem;
-      height: 1rem;
+      width: var(--icon-size-default);
+      height: var(--icon-size-default);
     }
     &:focus-visible,
     &[data-state="open"] {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
   }
 
   .select-trigger {
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
   .select-chevron {
-    opacity: 0.5;
+    opacity: var(--opacity-50);
   }
 
   .select-label {
@@ -3581,7 +3589,7 @@
 
     &[data-disabled] {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
