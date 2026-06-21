@@ -67,7 +67,7 @@ export const OverdueList = () => {
           </li>
         ))}
       </ul>
-      <div className="surface-page px-6 py-3.5 text-center t-micro text-faint">
+      <div className="surface-page px-6 py-3 text-center t-micro text-faint">
         Manual reminders recommended for 60+ days
       </div>
     </CardCaption>
