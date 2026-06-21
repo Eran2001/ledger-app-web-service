@@ -2351,14 +2351,9 @@
 
   /* BUTTON MOTION — vertical roll */
   .btn-roll .btn-roll-clip {
-    display: inline-flex;
-    flex-direction: column;
-    overflow: hidden;
     height: var(--btn-roll-height);
   }
   .btn-roll .btn-roll-track {
-    display: flex;
-    flex-direction: column;
     transform: translateY(0);
     transition: transform var(--duration-slow) var(--ease-roll);
   }
@@ -2367,10 +2362,6 @@
     transform: translateY(calc(var(--btn-roll-height) * -1));
   }
   .btn-roll .btn-roll-face {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
     height: var(--btn-roll-height);
     flex: 0 0 var(--btn-roll-height);
   }

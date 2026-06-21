@@ -56,10 +56,10 @@ const Button = ({
   const content = asChild ? (
     children
   ) : isRoll ? (
-    <span className="btn-roll-clip">
-      <span className="btn-roll-track">
-        <span className="btn-roll-face">{children}</span>
-        <span className="btn-roll-face" aria-hidden="true">
+    <span className="btn-roll-clip inline-flex flex-col overflow-hidden">
+      <span className="btn-roll-track flex flex-col">
+        <span className="btn-roll-face inline-flex items-center justify-center gap-2">{children}</span>
+        <span className="btn-roll-face inline-flex items-center justify-center gap-2" aria-hidden="true">
           {children}
         </span>
       </span>
