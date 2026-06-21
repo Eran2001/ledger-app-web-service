@@ -3934,6 +3934,34 @@
   }
 
   .table-striped
+    [data-slot="table-header"]
+    [data-slot="table-row"]
+    [data-slot="table-head"]:first-child {
+    border-top-left-radius: var(--radius-md);
+  }
+
+  .table-striped
+    [data-slot="table-header"]
+    [data-slot="table-row"]
+    [data-slot="table-head"]:last-child {
+    border-top-right-radius: var(--radius-md);
+  }
+
+  .table-striped
+    [data-slot="table-body"]
+    [data-slot="table-row"]:last-child
+    [data-slot="table-cell"]:first-child {
+    border-bottom-left-radius: var(--radius-md);
+  }
+
+  .table-striped
+    [data-slot="table-body"]
+    [data-slot="table-row"]:last-child
+    [data-slot="table-cell"]:last-child {
+    border-bottom-right-radius: var(--radius-md);
+  }
+
+  .table-striped
     [data-slot="table-body"]
     [data-slot="table-row"]:nth-child(odd),
   .table-striped
