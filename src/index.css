@@ -2125,12 +2125,12 @@
 
     &:focus-visible {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
 
     &:disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
 
     &[data-state="open"] > .accordion-chevron {
@@ -2143,7 +2143,7 @@
 
     &:hover .accordion-label {
       text-decoration: underline;
-      text-underline-offset: 4px;
+      text-underline-offset: var(--offset-3);
     }
   }
 
@@ -2161,7 +2161,7 @@
   /* BUTTON-GROUP */
   .btn-group-toggle-item {
     border: var(--border-width) solid var(--border);
-    /* border-radius: var(--radius-md); */
+    border-radius: var(--radius-md);
     background-color: var(--background);
     color: var(--text-secondary);
     transition:
@@ -2186,10 +2186,10 @@
       border-color: var(--ring);
     }
     &:focus-within {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
     & [data-slot="input"]:focus-visible {
-      box-shadow: none;
+      box-shadow: var(--shadow-none);
     }
   }
 

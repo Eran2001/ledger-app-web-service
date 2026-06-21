@@ -1,7 +1,9 @@
-import { Plus } from "lucide-react";
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
+
 import { installmentSchedules, saleStats, sales } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
+
 import KpiCard from "./components/KpiCard";
 import RecentPayments from "./components/RecentPayments";
 import OverdueList from "./components/OverdueList";
@@ -28,7 +30,7 @@ export default function DashboardPage() {
       <TopBar
         pageTitle="Dashboard"
         pageSubtitle="Overview of your installment business"
-        primaryAction={{ to: "/sales/new", icon: Plus, label: "New Sale" }}
+        primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 overflow-y-auto">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mb-6">
