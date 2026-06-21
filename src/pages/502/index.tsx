@@ -5,6 +5,7 @@ import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 
 import { useThemeStore } from "@/stores/theme-store";
+import { cn } from "@/lib/utils";
 
 const SubscriptionError = () => {
   const navigate = useNavigate();
@@ -136,20 +137,23 @@ const SubscriptionError = () => {
 
   return (
     <div
-      className="unauthorized-page"
+      className="unauthorized-bg relative flex min-h-dvh overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <canvas ref={canvasRef} className="unauthorized-canvas" />
+      <canvas
+        ref={canvasRef}
+        className="unauthorized-canvas absolute w-full h-full inset-0"
+      />
 
       <div
-        className="unauthorized-spotlight"
+        className="unauthorized-spotlight absolute inset-0"
         style={{
           background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, hsl(var(--primary) / 0.08), transparent 80%)`,
         }}
       />
 
-      <nav className="unauthorized-nav">
+      <nav className="unauthorized-nav absolute top-0 right-0 left-0 flex justify-between items-center p-4 md:p-6">
         <div />
         <Button
           variant="ghost"
@@ -166,7 +170,13 @@ const SubscriptionError = () => {
         </Button>
       </nav>
 
-      <main ref={cardRef} className="unauthorized-main">
+      <main
+        ref={cardRef}
+        className={cn(
+          "unauthorized-main relative mx-auto flex flex-col justify-center items-center",
+          "gap-6 px-6 py-20 md:py-24 text-center min-h-dvh w-full max-w-4xl",
+        )}
+      >
         <div className="unauthorized-hero-code">502</div>
 
         <div className="unauthorized-copy unauthorized-fade unauthorized-stagger-2">
