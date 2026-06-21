@@ -5,7 +5,7 @@ export const KpiCard = ({ label, value, sub, trend, danger }: KpiCardProps) => {
   return (
     <div
       className={cn(
-        "surface-card global-rounded border border-default p-5 border-l-4 dropdown-shadow",
+        "surface-card global-rounded border border-default p-4 border-l-4 dropdown-shadow",
         danger ? "border-start-danger" : "border-start-brand",
       )}
     >
