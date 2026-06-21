@@ -185,7 +185,7 @@ const SubscriptionError = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading">Subscription Required</h1>
+          <h1 className="unauthorized-heading t-hero">Subscription Required</h1>
           <p className="unauthorized-body">
             Your subscription has expired or is not active. Please renew your
             plan to continue accessing the portal.

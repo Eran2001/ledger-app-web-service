@@ -185,7 +185,7 @@ const NotFound = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading">Page Not Found</h1>
+          <h1 className="unauthorized-heading t-hero">Page Not Found</h1>
           <p className="unauthorized-body">
             The resource you are looking for might have been removed, renamed,
             or is temporarily unavailable in the portal.

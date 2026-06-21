@@ -185,7 +185,7 @@ const Unauthorized = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading">Access Denied</h1>
+          <h1 className="unauthorized-heading t-hero">Access Denied</h1>
           <p className="unauthorized-body">
             You don&apos;t have permission to access this resource. Contact your
             administrator if you believe this is a mistake.
