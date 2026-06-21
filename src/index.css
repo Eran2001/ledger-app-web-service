@@ -273,6 +273,12 @@
     color-mix(in srgb, var(--destructive) 20%, var(--box-transparent));
   --shadow-invalid-dark: 0 0 0 3px
     color-mix(in srgb, var(--destructive) 40%, var(--box-transparent));
+  --shadow-lg:
+    0 10px 15px -3px
+      color-mix(in srgb, var(--shadow-color) 10%, var(--border-transparent)),
+    0 4px 6px -4px
+      color-mix(in srgb, var(--shadow-color) 10%, var(--border-transparent));
+  --shadow-ring-offset: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
 
   /* Typography scale */
   --font-size-4xs: 9px;
@@ -305,6 +311,7 @@
   --font-style-oblique: oblique;
 
   /* Letter spacing */
+  --tracking-tight: -0.025em;
   --tracking-none: 0;
   --tracking-wide: 0.025em;
   --tracking-wider: 0.05em;
@@ -2716,14 +2723,12 @@
     transition: opacity var(--duration-fast);
 
     &:hover {
-      opacity: 1;
+      opacity: var(--opacity-100);
     }
 
     &:focus-visible {
-      outline: none;
-      box-shadow:
-        0 0 0 2px var(--background),
-        0 0 0 4px var(--ring);
+      outline: var(--outline-none);
+      box-shadow: var(--shadow-ring-offset);
     }
 
     &[data-state="open"] {
@@ -2806,7 +2811,7 @@
         background-color: color-mix(
           in srgb,
           var(--destructive) 10%,
-          transparent
+          var(--bg-transparent)
         );
         color: var(--destructive);
       }
@@ -2856,7 +2861,7 @@
   }
 
   .empty-title {
-    letter-spacing: -0.025em;
+    letter-spacing: var(--tracking-tight);
   }
 
   .empty-description {
@@ -2882,11 +2887,15 @@
     border-color: var(--input-border);
     box-shadow: var(--shadow-none);
     transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:is(.dark *) {
-      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--input) 30%,
+        var(--bg-transparent)
+      );
     }
 
     &:has(:focus-visible) {
@@ -2903,18 +2912,18 @@
     }
 
     & .input-group-control {
-      border-radius: 0;
-      background-color: transparent;
-      border-color: transparent;
-      box-shadow: none;
+      border-radius: var(--radius-none);
+      background-color: var(--bg-transparent);
+      border-color: var(--border-transparent);
+      box-shadow: var(--shadow-none);
 
       &:is(.dark *) {
-        background-color: transparent;
+        background-color: var(--bg-transparent);
       }
 
       &:focus-visible {
-        border-color: transparent;
-        box-shadow: none;
+        border-color: var(--border-transparent);
+        box-shadow: var(--shadow-none);
       }
     }
   }
@@ -2928,7 +2937,7 @@
   }
 
   .input-group-btn-xs {
-    border-radius: calc(var(--radius-md) - 5px);
+    border-radius: var(--radius-md);
   }
 
   /* INPUT-OTP */
