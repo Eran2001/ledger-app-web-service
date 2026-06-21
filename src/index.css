@@ -4045,9 +4045,9 @@
     background-color: transparent;
     outline: var(--outline-none);
     transition:
-      color 0.15s,
-      background-color 0.15s,
-      box-shadow 0.15s;
+      color var(--duration-fast),
+      background-color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:hover {
       background-color: var(--muted);
@@ -4061,19 +4061,18 @@
 
     &:focus-visible {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
 
     &[disabled],
     &:disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
 
     &[aria-invalid="true"] {
       border-color: var(--destructive);
-      box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--destructive) 20%, transparent);
+      box-shadow: var(--shadow-invalid);
     }
   }
   .toggle-outline {
