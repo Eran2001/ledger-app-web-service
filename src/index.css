@@ -357,6 +357,7 @@
   --duration-instant: 100ms;
   --duration-fast: 150ms; /* 0.15s */
   --duration-base: 200ms;
+  --duration-slower: 300ms;
   --duration-slow: 450ms;
 
   /* Button Motion section */
@@ -3212,11 +3213,11 @@
     background-color: var(--background);
     outline: var(--outline-none);
     transition:
-      color 0.15s,
-      box-shadow 0.15s;
+      color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     & > svg {
-      transition: transform 0.3s;
+      transition: transform var(--duration-slower);
     }
 
     &:hover,
@@ -3226,12 +3227,16 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
       outline: 1px var(--border-solid);
     }
 
     &[data-state="open"] {
-      background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--accent) 50%,
+        var(--bg-transparent)
+      );
       color: var(--accent-foreground);
 
       &:hover,
@@ -3246,7 +3251,7 @@
 
     &:disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
@@ -3270,7 +3275,7 @@
 
   .nav-menu-link {
     outline: var(--outline-none);
-    transition: all 0.15s;
+    transition: all var(--duration-fast);
 
     & svg:not([class*="text-"]) {
       color: var(--muted-foreground);
@@ -3283,12 +3288,17 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
-      outline: 1px var(--border-solid);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--ring) 50%, var(--box-transparent));
+      outline: var(--border-width) var(--border-solid);
     }
 
     &[data-active="true"] {
-      background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--accent) 50%,
+        var(--bg-transparent)
+      );
       color: var(--accent-foreground);
 
       &:hover,
