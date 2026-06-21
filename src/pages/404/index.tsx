@@ -186,7 +186,7 @@ const NotFound = () => {
           )}
         >
           <h1 className="unauthorized-heading t-hero">Page Not Found</h1>
-          <p className="unauthorized-body">
+          <p className="unauthorized-body t-body mx-auto max-w-2xl">
             The resource you are looking for might have been removed, renamed,
             or is temporarily unavailable in the portal.
           </p>

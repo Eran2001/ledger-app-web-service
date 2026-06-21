@@ -186,7 +186,7 @@ const SubscriptionError = () => {
           )}
         >
           <h1 className="unauthorized-heading t-hero">Subscription Required</h1>
-          <p className="unauthorized-body">
+          <p className="unauthorized-body t-body mx-auto max-w-2xl">
             Your subscription has expired or is not active. Please renew your
             plan to continue accessing the portal.
           </p>

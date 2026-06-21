@@ -186,7 +186,7 @@ const Unauthorized = () => {
           )}
         >
           <h1 className="unauthorized-heading t-hero">Access Denied</h1>
-          <p className="unauthorized-body">
+          <p className="unauthorized-body t-body mx-auto max-w-2xl">
             You don&apos;t have permission to access this resource. Contact your
             administrator if you believe this is a mistake.
           </p>
