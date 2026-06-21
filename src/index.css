@@ -3464,12 +3464,12 @@
     border: var(--border-width) var(--border-solid) var(--border);
     background-color: var(--background);
     transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:focus-within {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
   }
 
@@ -3484,7 +3484,7 @@
       color: var(--muted-foreground);
     }
     &:focus-visible {
-      box-shadow: none !important;
+      box-shadow: var(--shadow-none) !important;
       border-color: transparent !important;
     }
   }
