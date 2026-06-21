@@ -3354,12 +3354,16 @@
 
   /* PROGRESS */
   .progress-root {
-    background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--primary) 20%,
+      var(--bg-transparent)
+    );
   }
 
   .progress-indicator {
     background-color: var(--primary);
-    transition: transform 0.3s ease;
+    transition: transform var(--duration-slower) ease;
   }
 
   /* RADIO_GROUP */
