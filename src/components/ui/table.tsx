@@ -93,7 +93,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
       data-slot="table-row"
-      className={cn("border-b table-row", className)}
+      className={cn("table-row", className)}
       {...props}
     />
   );
@@ -112,7 +112,7 @@ function TableHead({
     <th
       data-slot="table-head"
       className={cn(
-        "text-left align-middle whitespace-nowrap table-head",
+        "text-left align-middle whitespace-nowrap border-b border-default table-head",
         variant === "simple" ? "h-large px-4" : "h-extra-large px-4",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
