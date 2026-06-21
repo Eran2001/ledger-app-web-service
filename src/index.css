@@ -3711,7 +3711,7 @@
     border-color: var(--border-transparent);
     box-shadow: var(--shadow-xs);
     outline: var(--outline-none);
-    transition: all 0.15s;
+    transition: all var(--duration-fast);
 
     &[data-state="checked"] {
       background-color: var(--primary);
@@ -3722,23 +3722,27 @@
     }
 
     .dark &[data-state="unchecked"] {
-      background-color: color-mix(in srgb, var(--input) 80%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--input) 80%,
+        var(--bg-transparent)
+      );
     }
 
     &:focus-visible {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.5;
+      opacity: var(--opacity-50);
     }
   }
 
   .switch-thumb {
     background-color: var(--background);
-    box-shadow: none;
+    box-shadow: var(--shadow-none);
 
     .dark &[data-state="unchecked"] {
       background-color: var(--foreground);
