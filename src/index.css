@@ -279,6 +279,7 @@
     0 4px 6px -4px
       color-mix(in srgb, var(--shadow-color) 10%, var(--border-transparent));
   --shadow-ring-offset: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+  --shadow-ring-offset-sm: 0 0 0 1px var(--background), 0 0 0 2px var(--ring);
   --shadow-xs: 0 1px 2px 0
     color-mix(in srgb, var(--shadow-color) 5%, var(--border-transparent));
 
@@ -3418,9 +3419,7 @@
 
     &:focus-visible {
       outline: var(--outline-none);
-      box-shadow:
-        0 0 0 1px var(--background),
-        0 0 0 2px var(--ring);
+      box-shadow: var(--shadow-ring-offset-sm);
     }
   }
 
@@ -3438,21 +3437,21 @@
     border-radius: inherit;
     outline: var(--outline-none);
     transition:
-      color 0.15s,
-      box-shadow 0.15s;
+      color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:focus-visible {
-      outline-width: 1px;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      outline-width: var(--border-width);
+      box-shadow: var(--shadow-ring);
     }
   }
 
   .scroll-area-scrollbar {
     transition:
-      color 0.15s,
-      background-color 0.15s,
-      border-color 0.15s;
-    border-color: transparent;
+      color var(--duration-fast),
+      background-color var(--duration-fast),
+      border-color var(--duration-fast);
+    border-color: var(--border-transparent);
   }
 
   .scroll-area-thumb {
