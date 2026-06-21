@@ -3604,7 +3604,7 @@
 
   /* SHEET */
   .sheet-overlay {
-    background-color: rgb(0 0 0 / 0.5);
+    background-color: var(--overlay-bg);
   }
 
   .sheet-content {
@@ -3614,18 +3614,16 @@
   }
 
   .sheet-close-btn {
-    opacity: 0.7;
-    transition: opacity 0.15s;
+    opacity: var(--opacity-75);
+    transition: opacity var(--duration-fast);
 
     &:hover {
-      opacity: 1;
+      opacity: var(--opacity-100);
     }
 
     &:focus {
       outline: var(--outline-none);
-      box-shadow:
-        0 0 0 2px var(--background),
-        0 0 0 4px var(--ring);
+      box-shadow: var(--shadow-ring-offset);
     }
 
     &:disabled {
