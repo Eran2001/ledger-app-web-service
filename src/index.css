@@ -3333,18 +3333,22 @@
     box-shadow: var(--shadow-none);
     outline: var(--outline-none);
     transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
 
     &:is(.dark *) {
-      background-color: color-mix(in srgb, var(--input) 30%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--input) 30%,
+        var(--bg-transparent)
+      );
     }
     &::placeholder {
       color: var(--muted-foreground);
     }
     &:focus-visible {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      box-shadow: var(--shadow-ring);
     }
   }
 
@@ -3982,10 +3986,6 @@
       outline: var(--outline-none);
     }
   }
-
-  /* TEXTAREA */
-
-  /* TIME-PICKER */
 
   /* TOGGLE-GROUP */
   .toggle-group-root {
