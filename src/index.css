@@ -3788,7 +3788,7 @@
     color: var(--text-secondary);
     border-color: var(--border-transparent);
     cursor: pointer;
-    transition: color 150ms;
+    transition: color var(--duration-fast);
   }
   .tab-trigger:hover {
     color: var(--text-primary);
@@ -3819,14 +3819,22 @@
   }
 
   .table-footer {
-    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--muted) 50%,
+      var(--bg-transparent)
+    );
   }
 
   .table-row {
-    transition: background-color 0.15s;
+    transition: background-color var(--duration-fast);
 
     &:hover {
-      background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--muted) 50%,
+        var(--bg-transparent)
+      );
     }
 
     &[data-state="selected"] {
