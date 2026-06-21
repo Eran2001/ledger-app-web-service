@@ -620,52 +620,8 @@
 */
 @layer utilities {
   /* TYPOGRAPHY SCALE */
-  .t-hero {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-none);
 
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-3xl);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-4xl);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-5xl);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-5xl);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-6xl);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-6xl);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-7xl);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-7xl);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-8xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-8xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-10xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-10xl);
-    } /* 10000px */
-  }
-
+  /* Oversized decorative numerals — error pages (404/401/502) */
   .t-error-code {
     /* max-xs  < 480px  */
     font-size: var(--font-size-9xl);
@@ -712,6 +668,54 @@
     } /* 10000px */
   }
 
+  /* Hero numbers */
+  .t-hero {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-none);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-3xl);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-4xl);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-5xl);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-5xl);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-6xl);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-7xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-8xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-8xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-10xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-10xl);
+    } /* 10000px */
+  }
+
+  /* Large KPI values */
   .t-kpi-lg {
     /* max-xs  < 480px  */
     font-size: var(--font-size-xl);
@@ -758,6 +762,7 @@
     } /* 10000px */
   }
 
+  /* KPI numbers, page stats */
   .t-kpi {
     /* max-xs  < 480px  */
     font-size: var(--font-size-lg);
@@ -804,6 +809,7 @@
     } /* 10000px */
   }
 
+  /* Section titles */
   .t-section {
     /* max-xs  < 480px  */
     font-size: var(--font-size-sm);
@@ -850,6 +856,7 @@
     } /* 10000px */
   }
 
+  /* Card titles, modal headings */
   .t-display {
     /* max-xs  < 480px  */
     font-size: var(--font-size-xs);
@@ -896,6 +903,7 @@
     } /* 10000px */
   }
 
+  /* Softer display headings */
   .t-display-soft {
     /* max-xs  < 480px  */
     font-size: var(--font-size-xs);
@@ -942,6 +950,7 @@
     } /* 10000px */
   }
 
+  /* General headings */
   .t-heading {
     /* max-xs  < 480px  */
     font-size: var(--font-size-xs);
@@ -988,328 +997,7 @@
     } /* 10000px */
   }
 
-  .t-title {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-none);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-xs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-sm);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-sm);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-sm);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-xl);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-xl);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 10000px */
-  }
-
-  .t-nav {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-none);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-xs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-sm);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-sm);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-sm);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-xl);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-xl);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 10000px */
-  }
-
-  .t-body {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-normal);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-base);
-    letter-spacing: var(--tracking-none);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-xs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-sm);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-sm);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-sm);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-xl);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-xl);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-3xl);
-    } /* 10000px */
-  }
-
-  .t-meta {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-xxs);
-    font-weight: var(--font-weight-medium);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-xxs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-xs);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-xs);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-xs);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-lg);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 10000px */
-  }
-
-  .t-meta-bold {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-xxs);
-    font-weight: var(--font-weight-bold);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-xxs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-xs);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-xs);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-xs);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-lg);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-lg);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-xl);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 10000px */
-  }
-
-  .t-caption {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-medium);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-2xs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-xxs);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-xxs);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-xs);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-xs);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-lg);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-lg);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 10000px */
-  }
-
-  .t-caption-bold {
-    /* max-xs  < 480px  */
-    font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-bold);
-    font-style: var(--font-style-normal);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-
-    @media (min-width: theme(--breakpoint-xs)) {
-      font-size: var(--font-size-2xs);
-    } /* 480px  */
-    @media (min-width: theme(--breakpoint-sm)) {
-      font-size: var(--font-size-xxs);
-    } /* 640px  */
-    @media (min-width: theme(--breakpoint-md)) {
-      font-size: var(--font-size-xxs);
-    } /* 768px  */
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: var(--font-size-xs);
-    } /* 1024px */
-    @media (min-width: theme(--breakpoint-xl)) {
-      font-size: var(--font-size-xs);
-    } /* 1280px */
-    @media (min-width: theme(--breakpoint-2xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1536px */
-    @media (min-width: theme(--breakpoint-3xl)) {
-      font-size: var(--font-size-sm);
-    } /* 1920px */
-    @media (min-width: theme(--breakpoint-4xl)) {
-      font-size: var(--font-size-lg);
-    } /* 2560px */
-    @media (min-width: theme(--breakpoint-5xl)) {
-      font-size: var(--font-size-lg);
-    } /* 3840px */
-    @media (min-width: theme(--breakpoint-6xl)) {
-      font-size: var(--font-size-xl);
-    } /* 5120px */
-    @media (min-width: theme(--breakpoint-7xl)) {
-      font-size: var(--font-size-xl);
-    } /* 7680px */
-    @media (min-width: theme(--breakpoint-8xl)) {
-      font-size: var(--font-size-2xl);
-    } /* 10000px */
-  }
-
+  /* Form input text */
   .t-input {
     /* max-xs  < 480px  */
     font-size: var(--font-size-sm);
@@ -1356,6 +1044,336 @@
     } /* 10000px */
   }
 
+  /* Page titles */
+  .t-title {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-none);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  /* Nav items */
+  .t-nav {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-none);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  /* Primary body text */
+  .t-body {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-base);
+    letter-spacing: var(--tracking-none);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-sm);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-sm);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-sm);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-xl);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-xl);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-3xl);
+    } /* 10000px */
+  }
+
+  /* Table cells, metadata */
+  .t-meta {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xxs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  /* Emphasized metadata */
+  .t-meta-bold {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-xxs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-lg);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-xl);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  /* Captions, timestamps, small labels */
+  .t-caption {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-medium);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-2xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xxs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xxs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-lg);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  /* Emphasized captions */
+  .t-caption-bold {
+    /* max-xs  < 480px  */
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+
+    @media (min-width: theme(--breakpoint-xs)) {
+      font-size: var(--font-size-2xs);
+    } /* 480px  */
+    @media (min-width: theme(--breakpoint-sm)) {
+      font-size: var(--font-size-xxs);
+    } /* 640px  */
+    @media (min-width: theme(--breakpoint-md)) {
+      font-size: var(--font-size-xxs);
+    } /* 768px  */
+    @media (min-width: theme(--breakpoint-lg)) {
+      font-size: var(--font-size-xs);
+    } /* 1024px */
+    @media (min-width: theme(--breakpoint-xl)) {
+      font-size: var(--font-size-xs);
+    } /* 1280px */
+    @media (min-width: theme(--breakpoint-2xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1536px */
+    @media (min-width: theme(--breakpoint-3xl)) {
+      font-size: var(--font-size-sm);
+    } /* 1920px */
+    @media (min-width: theme(--breakpoint-4xl)) {
+      font-size: var(--font-size-lg);
+    } /* 2560px */
+    @media (min-width: theme(--breakpoint-5xl)) {
+      font-size: var(--font-size-lg);
+    } /* 3840px */
+    @media (min-width: theme(--breakpoint-6xl)) {
+      font-size: var(--font-size-xl);
+    } /* 5120px */
+    @media (min-width: theme(--breakpoint-7xl)) {
+      font-size: var(--font-size-xl);
+    } /* 7680px */
+    @media (min-width: theme(--breakpoint-8xl)) {
+      font-size: var(--font-size-2xl);
+    } /* 10000px */
+  }
+
+  /* Micro labels, role tags */
   .t-micro {
     /* max-xs  < 480px  */
     font-size: var(--font-size-3xs);
@@ -1402,6 +1420,7 @@
     } /* 10000px */
   }
 
+  /* Emphasized micro text */
   .t-micro-bold {
     /* max-xs  < 480px  */
     font-size: var(--font-size-3xs);
