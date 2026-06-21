@@ -8,7 +8,7 @@ import { KpiCard } from "./components/kpi-card";
 import { RecentPayments } from "./components/recent-payments";
 import { OverdueList } from "./components/overdue-list";
 
-export default function DashboardPage() {
+const DashboardPage = () => {
   const totalOutstanding = sales.reduce(
     (sum, s) => sum + saleStats(s.id).outstanding,
     0,
@@ -65,4 +65,6 @@ export default function DashboardPage() {
       </div>
     </div>
   );
-}
+};
+
+export default DashboardPage;
