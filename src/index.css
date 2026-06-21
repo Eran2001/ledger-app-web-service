@@ -3715,7 +3715,7 @@
 
   /* SKELETON */
   .skeleton-base {
-    @apply relative overflow-hidden bg-muted;
+    background-color: var(--muted);
     border-radius: var(--radius-md);
 
     &::after {
@@ -3914,11 +3914,6 @@
   .table-head {
     color: var(--foreground);
     font-weight: var(--font-weight-medium);
-    padding-inline: 0.5rem;
-  }
-
-  .table-cell {
-    padding: 0.75rem 1rem;
   }
 
   .table-caption {
@@ -3931,18 +3926,11 @@
   }
 
   .table-striped [data-slot="table-head"] {
-    height: 3rem;
-    padding-inline: 1rem;
     font-size: var(--font-size-xxs);
     font-weight: var(--font-weight-bold);
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
-  }
-
-  .table-striped .table-cell {
-    height: 3rem;
-    padding-block: 0;
   }
 
   .table-striped
@@ -3980,13 +3968,11 @@
   }
 
   .table-simple [data-slot="table-head"] {
-    height: 2.5rem;
     font-size: var(--font-size-xxs);
     font-weight: var(--font-weight-bold);
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--tracking-label);
-    padding-inline: 1.25rem;
   }
 
   .table-simple [data-slot="table-body"] [data-slot="table-row"]:nth-child(odd),
@@ -4014,10 +4000,6 @@
     [data-slot="table-row"]:hover
     [data-slot="table-cell"]:first-child {
     color: var(--primary);
-  }
-
-  .table-simple .table-cell {
-    padding: 1rem 1.25rem;
   }
 
   .table-action-link {

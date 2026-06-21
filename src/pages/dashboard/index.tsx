@@ -1,5 +1,13 @@
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 import { installmentSchedules, saleStats, sales } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
@@ -33,6 +41,50 @@ export default function DashboardPage() {
         primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 overflow-y-auto">
+        <div className="mb-6">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Customer</TableHead>
+                <TableHead>Sale ID</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Due Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>John Doe</TableCell>
+                <TableCell>#S-1042</TableCell>
+                <TableCell>{formatCurrency(12500)}</TableCell>
+                <TableCell>Active</TableCell>
+                <TableCell>2026-07-01</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+        <div className="mb-6">
+          <Table variant="simple">
+            <TableHeader>
+              <TableRow>
+                <TableHead variant="simple">Customer</TableHead>
+                <TableHead variant="simple">Sale ID</TableHead>
+                <TableHead variant="simple">Amount</TableHead>
+                <TableHead variant="simple">Status</TableHead>
+                <TableHead variant="simple">Due Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell variant="simple">John Doe</TableCell>
+                <TableCell variant="simple">#S-1042</TableCell>
+                <TableCell variant="simple">{formatCurrency(12500)}</TableCell>
+                <TableCell variant="simple">Active</TableCell>
+                <TableCell variant="simple">2026-07-01</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mb-6">
           <KpiCard
             label="Total Outstanding"
