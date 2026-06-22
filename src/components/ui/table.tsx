@@ -52,7 +52,9 @@ function Table({
     return <Card className="p-0 gap-0 overflow-hidden">{tableEl}</Card>;
   }
 
-  return tableEl;
+  return (
+    <Card className="card-base overflow-hidden p-0 gap-0">{tableEl}</Card>
+  );
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
@@ -124,11 +126,14 @@ function TableHead({
 
 interface TableCellProps extends React.ComponentProps<"td"> {
   variant?: "striped" | "simple";
+  accentBar?: boolean;
 }
 
 function TableCell({
   className,
   variant = "striped",
+  accentBar = false,
+  children,
   ...props
 }: TableCellProps) {
   return (
@@ -136,12 +141,21 @@ function TableCell({
       data-slot="table-cell"
       className={cn(
         "align-middle whitespace-nowrap",
+        accentBar && "relative",
         variant === "simple" ? "h-extra-large px-4" : "h-extra-large px-4",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
       {...props}
-    />
+    >
+      {accentBar && (
+        <span
+          aria-hidden
+          className="absolute left-0 top-0 bottom-0 w-1 surface-danger"
+        />
+      )}
+      {children}
+    </td>
   );
 }
 

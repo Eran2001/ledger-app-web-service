@@ -184,4 +184,5 @@ export {
   ShoppingBag,
   FlaskConical,
   UserCog,
+  ArrowUpFromLine,
 } from "lucide-react";

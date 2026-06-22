@@ -4041,7 +4041,7 @@
 
   /* TABS */
   .tabs-list {
-    background-color: var(--muted);
+    background-color: color-mix(in srgb, var(--border) 50%, var(--muted));
     color: var(--muted-foreground);
   }
 

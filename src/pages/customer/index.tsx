@@ -6,7 +6,21 @@ import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCellMedia,
+} from "@/components/ui/table";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { EmptyState } from "@/components/shared/empty-state";
 
@@ -44,7 +58,7 @@ const CustomersPage = () => {
   });
 
   return (
-    <div className="flex flex-col h-full surface-page">
+    <>
       <TopBar
         pageTitle="Customers"
         pageSubtitle={`${customers.length} customers`}
@@ -54,118 +68,123 @@ const CustomersPage = () => {
           label: "New Customer",
         }}
       />
-      <div className="p-6 overflow-y-auto">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
-          <SearchField
-            value={search}
-            onChange={setSearch}
-            placeholder="Search by name, NIC, or phone…"
-            size="large"
-            containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
-          />
-          <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
-            <Tabs
-              value={tab}
-              onValueChange={(v) => setTab(v as Tab)}
-              className="w-full xs:w-auto"
-            >
-              <TabsList>
-                <TabsTrigger value="all">All Customers</TabsTrigger>
-                <TabsTrigger value="active">Active Sales</TabsTrigger>
-                <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
-              </TabsList>
-            </Tabs>
-            <Button variant="outline" className="shrink-0">
-              <Icon.Download /> Export
-            </Button>
-          </div>
-        </div>
 
-        {filtered.length === 0 ? (
-          <EmptyState
-            icon={Icon.Users}
-            title="No customers found"
-            subtitle="Try adjusting your search or filter, or add your first customer."
-            actionLabel="New Customer"
-            onAction={() => undefined}
-          />
-        ) : (
-          <div className="card-base overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="table-header">
-                    <th className="px-6 py-3 text-left">Customer</th>
-                    <th className="px-6 py-3 text-left">NIC Number</th>
-                    <th className="px-6 py-3 text-left">Phone</th>
-                    <th className="px-6 py-3 text-center">Active Sales</th>
-                    <th className="px-6 py-3 text-right">Outstanding</th>
-                    <th className="px-6 py-3 text-left">Status</th>
-                    <th className="px-6 py-3 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((c) => (
-                    <tr
-                      key={c.id}
-                      onClick={() =>
-                        navigate({ to: "/customers/$id", params: { id: c.id } })
-                      }
-                      className={`border-t border-default surface-hover cursor-pointer ${c.hasOverdue ? "border-l-4 border-start-danger" : ""}`}
-                    >
-                      <td className="px-6 py-3">
-                        <div className="flex items-center gap-3">
-                          <InitialsAvatar name={c.fullName} size="sm" />
-                          <div>
-                            <p className="table-title-text">{c.fullName}</p>
-                            <p className="t-caption text-faint">{c.city}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-3 font-mono t-meta text-soft">
-                        {c.nic}
-                      </td>
-                      <td className="px-6 py-3 table-text">{c.phone}</td>
-                      <td className="px-6 py-3 text-center table-text">
-                        {c.activeSalesCount}
-                      </td>
-                      <td className="px-6 py-3 text-right">
-                        {c.outstanding > 0 ? (
-                          <span className="t-meta-bold text-main fw-semibold">
-                            {formatCurrency(c.outstanding)}
-                          </span>
-                        ) : (
-                          <span className="t-meta text-faint">Paid</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-3">
-                        <StatusBadge status={c.status} />
-                      </td>
-                      <td className="px-6 py-3 text-right">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate({
-                              to: "/customers/$id",
-                              params: { id: c.id },
-                            });
-                          }}
-                          className="t-caption-bold control-rounded border-default text-soft bg-transparent"
-                        >
-                          View Profile
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {filtered.length === 0 ? (
+        <EmptyState
+          icon={Icon.Users}
+          title="No customers found"
+          subtitle="Try adjusting your search or filter, or add your first customer."
+          actionLabel="New Customer"
+          onAction={() => undefined}
+        />
+      ) : (
+        <>
+          <div className="p-6 overflow-y-auto">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+              <SearchField
+                value={search}
+                onChange={setSearch}
+                placeholder="Search by name, NIC, or phone…"
+                size="large"
+                containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+              />
+              <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+                <Tabs
+                  value={tab}
+                  onValueChange={(v) => setTab(v as Tab)}
+                  className="w-full xs:w-auto"
+                >
+                  <TabsList>
+                    <TabsTrigger value="all">All Customers</TabsTrigger>
+                    <TabsTrigger value="active">Active Sales</TabsTrigger>
+                    <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+                <Button variant="secondary" className="shrink-0">
+                  <Icon.ArrowUpFromLine /> Export
+                </Button>
+              </div>
             </div>
+
+            <Table variant="main">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Customer</TableHead>
+                  <TableHead>NIC Number</TableHead>
+                  <TableHead>Phone</TableHead>
+                  <TableHead>Active Sales</TableHead>
+                  <TableHead>Outstanding</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filtered.map((c) => (
+                  <TableRow
+                    key={c.id}
+                    onClick={() =>
+                      navigate({
+                        to: "/customers/$id",
+                        params: { id: c.id },
+                      })
+                    }
+                  >
+                    <TableCell accentBar={c.hasOverdue}>
+                      <TableCellMedia
+                        name={c.fullName}
+                        title={c.fullName}
+                        subtitle={c.city}
+                      />
+                    </TableCell>
+                    <TableCell>{c.nic}</TableCell>
+                    <TableCell>{c.phone}</TableCell>
+                    <TableCell>{c.activeSalesCount}</TableCell>
+                    <TableCell>
+                      {c.outstanding > 0 ? (
+                        <span>{formatCurrency(c.outstanding)}</span>
+                      ) : (
+                        <span>N/A</span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <StatusBadge status={c.status} />
+                    </TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="secondary"
+                            size="icon-sm"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Icon.MoreVertical />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          align="end"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <DropdownMenuItem
+                            onClick={() =>
+                              navigate({
+                                to: "/customers/$id",
+                                params: { id: c.id },
+                              })
+                            }
+                          >
+                            <Icon.Eye /> View
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
-        )}
-      </div>
-    </div>
+        </>
+      )}
+    </>
   );
 };
 
