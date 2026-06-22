@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Download, Plus, Search, Users } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,12 +9,12 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { EmptyState } from "@/components/shared/empty-state";
+
 import { customers, customerStats } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
+import { Tab } from "@/types/customer";
 
-type Tab = "all" | "active" | "overdue";
-
-export default function CustomersPage() {
+const CustomersPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<Tab>("all");
@@ -51,14 +52,14 @@ export default function CustomersPage() {
         pageSubtitle={`${customers.length} customers`}
         primaryAction={{
           to: "/customers/new",
-          icon: Plus,
+          icon: Icon.Plus,
           label: "New Customer",
         }}
       />
       <div className="p-6 overflow-y-auto">
         <div className="flex flex-wrap items-center gap-3 mb-5">
           <div className="relative flex-1 min-w-60 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
+            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-faint" />
             <Input
               placeholder="Search by name, NIC, or phone…"
               value={search}
@@ -92,20 +93,20 @@ export default function CustomersPage() {
             variant="outline"
             className="ml-auto h-10 control-rounded border-default text-soft gap-2 bg-transparent"
           >
-            <Download className="h-4 w-4" /> Export
+            <Icon.Download /> Export
           </Button>
         </div>
 
         {filtered.length === 0 ? (
           <EmptyState
-            icon={Users}
+            icon={Icon.Users}
             title="No customers found"
             subtitle="Try adjusting your search or filter, or add your first customer."
             actionLabel="New Customer"
             onAction={() => undefined}
           />
         ) : (
-          <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
+          <div className="card-base overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -167,7 +168,7 @@ export default function CustomersPage() {
                               params: { id: c.id },
                             });
                           }}
-                          className="t-caption-bold control-rounded border-default text-soft hover:text-brand bg-transparent"
+                          className="t-caption-bold control-rounded border-default text-soft bg-transparent"
                         >
                           View Profile
                         </Button>
@@ -182,4 +183,6 @@ export default function CustomersPage() {
       </div>
     </div>
   );
-}
+};
+
+export default CustomersPage;

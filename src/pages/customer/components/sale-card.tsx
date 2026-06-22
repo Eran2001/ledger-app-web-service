@@ -1,10 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { StatPill } from "@/components/shared/stat-pill";
 import { Progress } from "@/components/ui/progress";
+
 import { saleStats, productById } from "@/lib/dummy-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { Sale } from "@/types/customer";
+
+import { Stat } from "./stat";
 
 const CATEGORY_PILL: Record<
   string,
@@ -17,22 +22,14 @@ const CATEGORY_PILL: Record<
   Other: "gray",
 };
 
-type Sale = {
-  id: string;
-  productId: string;
-  soldPrice: number;
-  downPayment: number;
-  monthlyAmount: number;
-};
-
-export default function SaleCard({ sale }: { sale: Sale }) {
+export const SaleCard = ({ sale }: { sale: Sale }) => {
   const product = productById(sale.productId);
   const stat = saleStats(sale.id);
   const progress =
     stat.totalCount === 0 ? 0 : (stat.paidCount / stat.totalCount) * 100;
 
   return (
-    <div className="surface-card global-rounded border border-default p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="card-base p-6">
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <h3 className="t-section text-main truncate mb-1.5">
@@ -78,20 +75,9 @@ export default function SaleCard({ sale }: { sale: Sale }) {
           params={{ id: sale.id }}
           className="t-caption-bold text-brand inline-flex items-center gap-1"
         >
-          View Full Details <ArrowRight className="h-3 w-3" />
+          View Full Details <Icon.ArrowRight />
         </Link>
       </div>
     </div>
   );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="t-micro-bold text-faint text-uppercase tracking-label mb-1">
-        {label}
-      </p>
-      <p className="t-meta-bold text-main">{value}</p>
-    </div>
-  );
-}
+};

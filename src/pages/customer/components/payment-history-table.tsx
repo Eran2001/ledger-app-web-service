@@ -1,22 +1,10 @@
 import { productById, sales } from "@/lib/dummy-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { Payment } from "@/types/customer";
 
-type Payment = {
-  id: string;
-  saleId: string;
-  paidDate: string;
-  paidAmount: number;
-  recordedBy: string;
-  notes?: string | null;
-};
-
-export default function PaymentHistoryTable({
-  payments,
-}: {
-  payments: Payment[];
-}) {
+export const PaymentHistoryTable = ({ payments }: { payments: Payment[] }) => {
   return (
-    <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
+    <div className="card-base overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -64,4 +52,4 @@ export default function PaymentHistoryTable({
       </div>
     </div>
   );
-}
+};

@@ -1,31 +1,18 @@
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatPill } from "@/components/shared/stat-pill";
+
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { Props } from "@/types/customer";
 
-type Props = {
-  customer: {
-    fullName: string;
-    nic: string;
-    phone: string;
-    email?: string;
-    address: string;
-    createdAt: string;
-  };
-  stats: {
-    activeSalesCount: number;
-    outstanding: number;
-  };
-};
-
-export default function CustomerProfileHeader({ customer, stats }: Props) {
+export const CustomerProfileHeader = ({ customer, stats }: Props) => {
   return (
-    <div className="surface-card modal-rounded border border-default p-8 mb-8 shadow-sm overflow-hidden relative">
+    <div className="surface-card modal-rounded border border-default p-8 mb-8 dropdown-shadow overflow-hidden relative">
       <div
-        className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 rounded-full opacity-60"
+        className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
       />
       <div className="relative flex flex-col xl:flex-row gap-6 items-start xl:items-center">
-        <div className="ring-4 ring-(--primary-light) circle-rounded shadow-brand-soft">
+        <div className="border-4 border-brand-muted circle-rounded shadow-brand-soft">
           <InitialsAvatar name={customer.fullName} size="lg" />
         </div>
         <div className="flex-1 min-w-0">
@@ -49,11 +36,20 @@ export default function CustomerProfileHeader({ customer, stats }: Props) {
           <p className="t-meta text-soft">{customer.address}</p>
         </div>
         <div className="flex flex-wrap gap-2 shrink-0">
-          <StatPill label={`${stats.activeSalesCount} Active Sales`} color="indigo" />
-          <StatPill label={`${formatCurrency(stats.outstanding)} Outstanding`} color="amber" />
-          <StatPill label={`Since ${formatDate(customer.createdAt)}`} color="gray" />
+          <StatPill
+            label={`${stats.activeSalesCount} Active Sales`}
+            color="indigo"
+          />
+          <StatPill
+            label={`${formatCurrency(stats.outstanding)} Outstanding`}
+            color="amber"
+          />
+          <StatPill
+            label={`Since ${formatDate(customer.createdAt)}`}
+            color="gray"
+          />
         </div>
       </div>
     </div>
   );
-}
+};

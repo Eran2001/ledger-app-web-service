@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { Link, useParams, Navigate } from "@tanstack/react-router";
-import { ArrowLeft, Plus } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
+
 import {
   customerById,
   customerStats,
   paymentsForSale,
   sales,
 } from "@/lib/dummy-data";
-import CustomerProfileHeader from "../components/CustomerProfileHeader";
-import SaleCard from "../components/SaleCard";
-import PaymentHistoryTable from "../components/PaymentHistoryTable";
+import { TABS } from "@/types/customer";
 
-const TABS = [
-  { value: "active", label: "Active Sales" },
-  { value: "payments", label: "Payment History" },
-];
+import { CustomerProfileHeader } from "../components/customer-profile-header";
+import { SaleCard } from "../components/sale-card";
+import { PaymentHistoryTable } from "../components/payment-history-table";
 
-export default function CustomerDetailPage() {
+export const CustomerDetailPage = () => {
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
@@ -39,14 +38,14 @@ export default function CustomerDetailPage() {
       <TopBar
         pageTitle={customer.fullName}
         pageSubtitle="Customer profile"
-        primaryAction={{ to: "/sales/new", icon: Plus, label: "New Sale" }}
+        primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 overflow-y-auto">
         <Link
           to="/customers"
           className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
         >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+          <Icon.ArrowLeft className="transition-transform group-hover:-translate-x-1" />
           Back to list
         </Link>
 
@@ -72,4 +71,4 @@ export default function CustomerDetailPage() {
       </div>
     </div>
   );
-}
+};

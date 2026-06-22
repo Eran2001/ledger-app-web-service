@@ -248,14 +248,20 @@ Never run build commands (`npm run build`, `vite build`, `tsc`, etc.). Only run 
 ---
 ## Import Alias
 
-`@/` maps to `src/` — always use it, never use relative paths like `../../`.
+`@/` maps to `src/` — always use it for anything outside the current page folder.
+
+**Exception:** importing a local component, sub-page, or util that lives inside the same page folder (e.g. `src/pages/customer/**`) may use a relative path instead. This keeps a page folder portable/movable without rewriting imports.
 
 ```ts
-// ✅
+// ✅ — cross-folder import, always @/
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth-store";
 
-// ❌
+// ✅ — local import within the same page folder, relative is fine
+import { SaleCard } from "../components/sale-card";
+import { Stat } from "./stat";
+
+// ❌ — relative path reaching outside the page folder
 import { Button } from "../../components/ui/button";
 ```
 
