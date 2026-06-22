@@ -158,6 +158,7 @@ These are the base UI primitives. Always confirm before making any change, no ma
 ## Component Rules
 
 - Never use `any` or `unknown` — type everything explicitly
+- Never use the `useMemo` hook
 - Functions over 50 lines must be split
 - Prefer explicit over clever — no magic
 - One page = one constants file in `src/constant/` (e.g. `overview-data.ts`)

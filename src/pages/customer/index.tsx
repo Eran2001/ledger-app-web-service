@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
@@ -19,18 +19,16 @@ const CustomersPage = () => {
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<Tab>("all");
 
-  const enriched = useMemo(() => {
-    return customers.map((c) => {
-      const stat = customerStats(c.id);
-      const status: "ACTIVE" | "OVERDUE" | "COMPLETED" =
-        stat.outstanding === 0
-          ? "COMPLETED"
-          : stat.hasOverdue
-            ? "OVERDUE"
-            : "ACTIVE";
-      return { ...c, ...stat, status };
-    });
-  }, []);
+  const enriched = customers.map((c) => {
+    const stat = customerStats(c.id);
+    const status: "ACTIVE" | "OVERDUE" | "COMPLETED" =
+      stat.outstanding === 0
+        ? "COMPLETED"
+        : stat.hasOverdue
+          ? "OVERDUE"
+          : "ACTIVE";
+    return { ...c, ...stat, status };
+  });
 
   const filtered = enriched.filter((c) => {
     const q = search.trim().toLowerCase();
@@ -57,44 +55,30 @@ const CustomersPage = () => {
         }}
       />
       <div className="p-6 overflow-y-auto">
-        <div className="flex flex-wrap items-center gap-3 mb-5">
-          <div className="relative flex-1 min-w-60 max-w-sm">
-            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-faint" />
-            <Input
-              placeholder="Search by name, NIC, or phone…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 h-10 control-rounded border-default surface-card"
-            />
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+          <SearchField
+            value={search}
+            onChange={setSearch}
+            placeholder="Search by name, NIC, or phone…"
+            size="large"
+            containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+          />
+          <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+            <Tabs
+              value={tab}
+              onValueChange={(v) => setTab(v as Tab)}
+              className="w-full xs:w-auto"
+            >
+              <TabsList>
+                <TabsTrigger value="all">All Customers</TabsTrigger>
+                <TabsTrigger value="active">Active Sales</TabsTrigger>
+                <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <Button variant="outline" className="shrink-0">
+              <Icon.Download /> Export
+            </Button>
           </div>
-          <Tabs value={tab} onValueChange={(v) => setTab(v as Tab)}>
-            <TabsList className="surface-tab-list h-10 p-1 tab-rounded">
-              <TabsTrigger
-                value="all"
-                className="tabs-trigger px-3 tab-rounded"
-              >
-                All Customers
-              </TabsTrigger>
-              <TabsTrigger
-                value="active"
-                className="tabs-trigger px-3 tab-rounded"
-              >
-                Active Sales
-              </TabsTrigger>
-              <TabsTrigger
-                value="overdue"
-                className="tabs-trigger px-3 tab-rounded"
-              >
-                Has Overdue
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-          <Button
-            variant="outline"
-            className="ml-auto h-10 control-rounded border-default text-soft gap-2 bg-transparent"
-          >
-            <Icon.Download /> Export
-          </Button>
         </div>
 
         {filtered.length === 0 ? (

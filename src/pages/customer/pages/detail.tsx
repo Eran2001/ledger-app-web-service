@@ -11,13 +11,13 @@ import {
   paymentsForSale,
   sales,
 } from "@/lib/dummy-data";
-import { TABS } from "@/types/customer";
+import { TABS } from "@/constant/customer";
 
 import { CustomerProfileHeader } from "../components/customer-profile-header";
 import { SaleCard } from "../components/sale-card";
 import { PaymentHistoryTable } from "../components/payment-history-table";
 
-export const CustomerDetailPage = () => {
+const CustomerDetailPage = () => {
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
@@ -72,3 +72,5 @@ export const CustomerDetailPage = () => {
     </div>
   );
 };
+
+export default CustomerDetailPage;

@@ -1,10 +1,5 @@
 export type Tab = "all" | "active" | "overdue";
 
-export const TABS = [
-  { value: "active", label: "Active Sales" },
-  { value: "payments", label: "Payment History" },
-];
-
 export type Sale = {
   id: string;
   productId: string;

@@ -17,7 +17,7 @@ const buttonVariants = cva(
       variant: {
         default: "surface-brand text-inverse btn-roll",
         destructive: "surface-danger text-inverse btn-destructive",
-        outline: "border shadow-card-hover btn-outline",
+        outline: "border btn-outline",
         secondary: "btn-secondary",
         ghost: "btn-ghost",
         cancel: "border btn-cancel",
@@ -58,8 +58,13 @@ const Button = ({
   ) : isRoll ? (
     <span className="btn-roll-clip inline-flex flex-col overflow-hidden">
       <span className="btn-roll-track flex flex-col">
-        <span className="btn-roll-face inline-flex items-center justify-center gap-2">{children}</span>
-        <span className="btn-roll-face inline-flex items-center justify-center gap-2" aria-hidden="true">
+        <span className="btn-roll-face inline-flex items-center justify-center gap-2">
+          {children}
+        </span>
+        <span
+          className="btn-roll-face inline-flex items-center justify-center gap-2"
+          aria-hidden="true"
+        >
           {children}
         </span>
       </span>
@@ -80,7 +85,11 @@ const Button = ({
           <Icon.Loader2 className="size-4 animate-spin" />
         </span>
       )}
-      <span className={cn("inline-flex items-center gap-2", loading && "opacity-0")}>{content}</span>
+      <span
+        className={cn("inline-flex items-center gap-2", loading && "opacity-0")}
+      >
+        {content}
+      </span>
     </Comp>
   );
 };

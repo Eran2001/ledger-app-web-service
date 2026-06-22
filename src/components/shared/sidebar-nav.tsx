@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
-import { SECTIONS } from "@/constants/sidebar-nav-links";
+import { SECTIONS } from "@/constant/sidebar-nav-links";
 
 interface SidebarNavProps {
   collapsed: boolean;

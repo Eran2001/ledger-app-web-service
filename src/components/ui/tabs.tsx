@@ -18,7 +18,7 @@ function Tabs({
     <HeightContext.Provider value={height}>
       <TabsPrimitive.Root
         data-slot="tabs"
-        className={cn("flex flex-col gap-2", className)}
+        className={cn("flex flex-col gap-2 min-w-0", className)}
         {...props}
       />
     </HeightContext.Provider>
@@ -57,27 +57,29 @@ function TabsList({
   }, [updatePill]);
 
   return (
-    <TabsPrimitive.List
-      ref={listRef}
-      data-slot="tabs-list"
-      className={cn(
-        "relative inline-flex w-fit items-center justify-center global-rounded tabs-list",
-        height === "compact" ? "p-0.75" : height === "large" ? "p-1.5" : "p-1",
-        className,
-      )}
-      {...props}
-    >
-      <div
-        aria-hidden
-        className="tabs-slide-indicator absolute top-1 bottom-1"
-        style={{
-          left: pill.left,
-          width: pill.width,
-          opacity: pill.ready ? 1 : 0,
-        }}
-      />
-      {children}
-    </TabsPrimitive.List>
+    <div className="w-full min-w-0 overflow-x-auto hide-scrollbar">
+      <TabsPrimitive.List
+        ref={listRef}
+        data-slot="tabs-list"
+        className={cn(
+          "relative inline-flex w-fit items-center justify-center global-rounded tabs-list",
+          height === "compact" ? "p-0.75" : height === "large" ? "p-1.5" : "p-1",
+          className,
+        )}
+        {...props}
+      >
+        <div
+          aria-hidden
+          className="tabs-slide-indicator absolute top-1 bottom-1"
+          style={{
+            left: pill.left,
+            width: pill.width,
+            opacity: pill.ready ? 1 : 0,
+          }}
+        />
+        {children}
+      </TabsPrimitive.List>
+    </div>
   );
 }
 
