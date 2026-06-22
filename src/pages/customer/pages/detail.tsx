@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useParams, Navigate } from "@tanstack/react-router";
+import { useNavigate, useParams, Navigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
+import { Button } from "@/components/ui/button";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
 
 import {
@@ -18,6 +19,7 @@ import { SaleCard } from "../components/sale-card";
 import { PaymentHistoryTable } from "../components/payment-history-table";
 
 const CustomerDetailPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
@@ -34,20 +36,22 @@ const CustomerDetailPage = () => {
     );
 
   return (
-    <div className="flex flex-col h-full surface-page">
+    <div>
       <TopBar
         pageTitle={customer.fullName}
         pageSubtitle="Customer profile"
         primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
-      <div className="p-6 overflow-y-auto">
-        <Link
-          to="/customers"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
+      <div className="p-6 space-y-6 overflow-y-auto">
+        <Button
+          variant="link"
+          size="sm"
+          className="p-0 t-meta-bold group"
+          onClick={() => navigate({ to: "/customers" })}
         >
-          <Icon.ArrowLeft className="transition-transform group-hover:-translate-x-1" />
+          <Icon.ArrowLeft className="icon-back-hover" />
           Back to list
-        </Link>
+        </Button>
 
         <CustomerProfileHeader customer={customer} stats={stats} />
 

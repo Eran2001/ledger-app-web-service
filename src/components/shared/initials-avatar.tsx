@@ -3,13 +3,14 @@ import { cn, getAvatarColors, getInitials } from "@/lib/utils";
 
 interface InitialsAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "auto";
 }
 
 const SIZE_MAP = {
   sm: { box: "h-compact w-compact", text: "t-caption-bold" },
   md: { box: "h-field w-field", text: "t-meta-bold" },
   lg: { box: "h-extra-large w-extra-large", text: "t-meta-bold" },
+  auto: { box: "h-full w-20", text: "t-meta-bold" },
 };
 
 export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(

@@ -80,16 +80,25 @@ const Button = ({
       disabled={loading || disabled}
       {...props}
     >
-      {loading && (
-        <span className="absolute inset-0 flex items-center justify-center">
-          <Icon.Loader2 className="size-4 animate-spin" />
-        </span>
+      {asChild ? (
+        content
+      ) : (
+        <>
+          {loading && (
+            <span className="absolute inset-0 flex items-center justify-center">
+              <Icon.Loader2 className="size-4 animate-spin" />
+            </span>
+          )}
+          <span
+            className={cn(
+              "inline-flex items-center gap-2",
+              loading && "opacity-0",
+            )}
+          >
+            {content}
+          </span>
+        </>
       )}
-      <span
-        className={cn("inline-flex items-center gap-2", loading && "opacity-0")}
-      >
-        {content}
-      </span>
     </Comp>
   );
 };

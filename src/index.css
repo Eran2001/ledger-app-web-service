@@ -1593,6 +1593,14 @@
     height: var(--icon-size-large); /* h-5 */
   }
 
+  /* SEMANTIC ICON MOTION */
+  .icon-back-hover {
+    transition: transform var(--duration-fast);
+  }
+  .group:hover .icon-back-hover {
+    transform: translateX(-0.25rem);
+  }
+
   /* SEMANTIC Z-INDEX */
   .z-dropdown {
     z-index: var(--z-dropdown); /* z-50 */

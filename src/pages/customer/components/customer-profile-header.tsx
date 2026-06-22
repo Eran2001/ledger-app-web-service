@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatPill } from "@/components/shared/stat-pill";
 
@@ -6,36 +7,36 @@ import { Props } from "@/types/customer";
 
 export const CustomerProfileHeader = ({ customer, stats }: Props) => {
   return (
-    <div className="surface-card modal-rounded border border-default p-8 mb-8 dropdown-shadow overflow-hidden relative">
+    <Card className="p-6 overflow-hidden relative">
       <div
         className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
       />
-      <div className="relative flex flex-col xl:flex-row gap-6 items-start xl:items-center">
-        <div className="border-4 border-brand-muted circle-rounded shadow-brand-soft">
-          <InitialsAvatar name={customer.fullName} size="lg" />
+      <div className="relative flex flex-col lg:flex-row gap-6 items-start lg:items-stretch">
+        <div>
+          <InitialsAvatar name={customer.fullName} size="auto" />
         </div>
-        <div className="flex-1 min-w-0">
-          <h2 className="t-section text-main mb-1.5">{customer.fullName}</h2>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 t-meta text-soft mb-2">
+        <div className="flex-1 min-w-0 xl:self-center space-y-1">
+          <h2 className="t-section text-main">{customer.fullName}</h2>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 t-meta text-soft">
             <span>
-              <span className="text-faint mr-1">NIC</span>
+              <span className="text-faint">NIC: </span>
               <span className="font-mono">{customer.nic}</span>
             </span>
             <span>
-              <span className="text-faint mr-1">Phone</span>
+              <span className="text-faint">Phone: </span>
               {customer.phone}
             </span>
             {customer.email && (
               <span>
-                <span className="text-faint mr-1">Email</span>
+                <span className="text-faint">Email: </span>
                 {customer.email}
               </span>
             )}
           </div>
           <p className="t-meta text-soft">{customer.address}</p>
         </div>
-        <div className="flex flex-wrap gap-2 shrink-0">
+        <div className="flex flex-wrap gap-2 shrink-0 lg:self-center">
           <StatPill
             label={`${stats.activeSalesCount} Active Sales`}
             color="indigo"
@@ -50,6 +51,6 @@ export const CustomerProfileHeader = ({ customer, stats }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
