@@ -42,7 +42,7 @@ const CustomerDetailPage = () => {
         primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 space-y-6 overflow-y-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           <CustomerProfileHeader customer={customer} />
           <AccountSummaryCard
             outstanding={stats.outstanding}

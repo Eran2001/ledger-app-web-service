@@ -25,23 +25,29 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="p-6 overflow-hidden relative">
+    <Card className="overflow-hidden relative">
       <div
         className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
       />
       <div className="relative space-y-4">
-        <Button
-          variant="link"
-          size="sm"
-          className="p-0 t-meta-bold group"
-          onClick={() => navigate({ to: "/customers" })}
-        >
-          <Icon.ArrowLeft className="icon-back-hover" />
-          Back to list
-        </Button>
+        <div className="flex justify-between items-center">
+          <Button
+            variant="link"
+            size="sm"
+            className="p-0 t-meta-bold group"
+            onClick={() => navigate({ to: "/customers" })}
+          >
+            <Icon.ArrowLeft className="icon-back-hover" />
+            Back to list
+          </Button>
 
-        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[auto_1fr] lg:gap-6">
+          <Button variant="link" size="icon" className="app-sidebar-icon-btn">
+            <Icon.Edit />
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-[auto_1fr] gap-6">
           <InitialsAvatar name={customer.fullName} size="auto" />
           <div className="min-w-0 flex flex-col justify-center space-y-1">
             <h2 className="t-section text-main">{customer.fullName}</h2>
