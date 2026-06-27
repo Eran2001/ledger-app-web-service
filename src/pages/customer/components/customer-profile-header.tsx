@@ -42,9 +42,7 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
         </Button>
 
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[auto_1fr] lg:gap-6">
-          <div className="w-20 aspect-square lg:w-auto lg:self-stretch">
-            <InitialsAvatar name={customer.fullName} size="auto" />
-          </div>
+          <InitialsAvatar name={customer.fullName} size="auto" />
           <div className="min-w-0 flex flex-col justify-center space-y-1">
             <h2 className="t-section text-main">{customer.fullName}</h2>
             <div className="flex flex-wrap gap-x-4 gap-y-1">

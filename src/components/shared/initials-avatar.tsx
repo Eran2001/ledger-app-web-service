@@ -23,6 +23,7 @@ export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
         className={cn(
           "global-rounded flex items-center justify-center",
           "shrink-0 select-none cursor-pointer",
+          "w-20 aspect-square lg:w-auto lg:self-stretch",
           sizing.box,
           sizing.text,
           className,
