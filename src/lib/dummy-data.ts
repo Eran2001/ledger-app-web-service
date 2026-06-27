@@ -292,13 +292,21 @@ export function saleStats(saleId: string) {
 export function customerStats(customerId: string) {
   const customerSales = sales.filter((s) => s.customerId === customerId)
   let outstanding = 0
+  let totalPaid = 0
   let activeSalesCount = 0
   let hasOverdue = false
+  let nextDue: string | undefined = undefined
   customerSales.forEach((s) => {
     const stat = saleStats(s.id)
     outstanding += stat.outstanding
+    totalPaid += stat.totalPaid
     if (s.status === "ACTIVE") activeSalesCount++
     if (stat.hasOverdue) hasOverdue = true
+    if (stat.nextDue) {
+      if (!nextDue || new Date(stat.nextDue) < new Date(nextDue)) {
+        nextDue = stat.nextDue
+      }
+    }
   })
-  return { outstanding, activeSalesCount, hasOverdue, totalSales: customerSales.length }
+  return { outstanding, totalPaid, activeSalesCount, hasOverdue, totalSales: customerSales.length, nextDue }
 }

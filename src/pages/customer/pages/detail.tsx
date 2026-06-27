@@ -15,6 +15,7 @@ import {
 import { TABS } from "@/constant/customer";
 
 import { CustomerProfileHeader } from "../components/customer-profile-header";
+import { AccountSummaryCard } from "../components/account-summary-card";
 import { SaleCard } from "../components/sale-card";
 import { PaymentHistoryTable } from "../components/payment-history-table";
 
@@ -53,7 +54,16 @@ const CustomerDetailPage = () => {
           Back to list
         </Button>
 
-        <CustomerProfileHeader customer={customer} stats={stats} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <CustomerProfileHeader customer={customer} />
+          <AccountSummaryCard
+            outstanding={stats.outstanding}
+            totalPaid={stats.totalPaid}
+            activeSalesCount={stats.activeSalesCount}
+            nextDue={stats.nextDue}
+            customerSince={customer.createdAt}
+          />
+        </div>
 
         <TabSelect tabs={TABS} value={tab} onValueChange={setTab}>
           <TabPanel value="active" active={tab} className="pt-6">
