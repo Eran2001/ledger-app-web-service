@@ -9,7 +9,7 @@ import { saleStats, productById } from "@/lib/dummy-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Sale } from "@/types/customer";
 
-import { Stat } from "./stat";
+import { Stat } from "../../../components/ui/stat";
 
 const CATEGORY_PILL: Record<
   string,

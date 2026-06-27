@@ -1,8 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { StatPill } from "@/components/shared/stat-pill";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { Stat } from "@/components/ui/stat";
 
-import { Stat } from "./stat";
+import { formatCurrency, formatDate } from "@/lib/utils";
 
 type Props = {
   outstanding: number;
@@ -52,7 +52,7 @@ export const AccountSummaryCard = ({
         />
         <Stat label="Total Paid" value={formatCurrency(totalPaid)} />
         <Stat label="Next Due" value={nextDue ? formatDate(nextDue) : "—"} />
-        <Stat label="Customer Since" value={formatDate(customerSince)} />
+        <Stat label="Last Payment" value={formatDate(customerSince)} />
       </div>
     </Card>
   );

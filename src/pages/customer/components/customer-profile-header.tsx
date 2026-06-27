@@ -1,46 +1,75 @@
+import { useNavigate } from "@tanstack/react-router";
+
+import * as Icon from "@/components/icons";
 import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { Button } from "@/components/ui/button";
+import { StatInline, StatMeta } from "@/components/ui/stat";
+
+import { formatDate } from "@/lib/utils";
 
 type Props = {
   customer: {
     fullName: string;
     nic: string;
-    phone: string;
+    primary_phone: string;
+    secondary_phone?: string;
     email?: string;
     address: string;
+    city: string;
+    createdAt: string;
   };
 };
 
 export const CustomerProfileHeader = ({ customer }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <Card className="p-6 overflow-hidden relative">
       <div
         className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
       />
-      <div className="relative flex flex-col lg:flex-row gap-6 items-start lg:items-center">
-        <div>
-          <InitialsAvatar name={customer.fullName} size="auto" />
-        </div>
-        <div className="flex-1 min-w-0 space-y-1">
-          <h2 className="t-section text-main">{customer.fullName}</h2>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 t-meta text-soft">
-            <span>
-              <span className="text-faint">NIC: </span>
-              <span className="font-mono">{customer.nic}</span>
-            </span>
-            <span>
-              <span className="text-faint">Phone: </span>
-              {customer.phone}
-            </span>
-            {customer.email && (
-              <span>
-                <span className="text-faint">Email: </span>
-                {customer.email}
-              </span>
-            )}
+      <div className="relative space-y-4">
+        <Button
+          variant="link"
+          size="sm"
+          className="p-0 t-meta-bold group"
+          onClick={() => navigate({ to: "/customers" })}
+        >
+          <Icon.ArrowLeft className="icon-back-hover" />
+          Back to list
+        </Button>
+
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[auto_1fr] lg:gap-6">
+          <div className="w-20 aspect-square lg:w-auto lg:self-stretch">
+            <InitialsAvatar name={customer.fullName} size="auto" />
           </div>
-          <p className="t-meta text-soft">{customer.address}</p>
+          <div className="min-w-0 flex flex-col justify-center space-y-1">
+            <h2 className="t-section text-main">{customer.fullName}</h2>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <StatMeta label="NIC" value={customer.nic} />
+              <StatMeta label="Phone" value={customer.primary_phone} />
+              {customer.email && (
+                <StatMeta label="Email" value={customer.email} />
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-2 items-baseline">
+          <StatInline label="Address" value={customer.address} />
+          <StatInline label="City" value={customer.city} />
+          {customer.secondary_phone && (
+            <StatInline
+              label="Secondary Phone"
+              value={customer.secondary_phone}
+            />
+          )}
+          <StatInline
+            label="Customer Since"
+            value={formatDate(customer.createdAt)}
+          />
         </div>
       </div>
     </Card>

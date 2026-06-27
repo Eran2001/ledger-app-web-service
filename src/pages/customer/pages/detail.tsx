@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate, useParams, Navigate } from "@tanstack/react-router";
+import { useParams, Navigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
-import { Button } from "@/components/ui/button";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
 
 import {
@@ -20,7 +19,6 @@ import { SaleCard } from "../components/sale-card";
 import { PaymentHistoryTable } from "../components/payment-history-table";
 
 const CustomerDetailPage = () => {
-  const navigate = useNavigate();
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
@@ -44,16 +42,6 @@ const CustomerDetailPage = () => {
         primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
       <div className="p-6 space-y-6 overflow-y-auto">
-        <Button
-          variant="link"
-          size="sm"
-          className="p-0 t-meta-bold group"
-          onClick={() => navigate({ to: "/customers" })}
-        >
-          <Icon.ArrowLeft className="icon-back-hover" />
-          Back to list
-        </Button>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <CustomerProfileHeader customer={customer} />
           <AccountSummaryCard

@@ -50,7 +50,7 @@ const CustomersPage = () => {
       !q ||
       c.fullName.toLowerCase().includes(q) ||
       c.nic.toLowerCase().includes(q) ||
-      c.phone.toLowerCase().includes(q);
+      c.primary_phone.toLowerCase().includes(q);
     if (!matchesSearch) return false;
     if (tab === "active") return c.activeSalesCount > 0;
     if (tab === "overdue") return c.hasOverdue;
@@ -137,7 +137,7 @@ const CustomersPage = () => {
                       />
                     </TableCell>
                     <TableCell>{c.nic}</TableCell>
-                    <TableCell>{c.phone}</TableCell>
+                    <TableCell>{c.primary_phone}</TableCell>
                     <TableCell>{c.activeSalesCount}</TableCell>
                     <TableCell>
                       {c.outstanding > 0 ? (
