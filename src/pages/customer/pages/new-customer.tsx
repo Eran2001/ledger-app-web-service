@@ -26,7 +26,15 @@ const CustomerNewPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!firstName || !lastName || !nic || !primaryPhone || !addressLine1 || !city || !province) {
+    if (
+      !firstName ||
+      !lastName ||
+      !nic ||
+      !primaryPhone ||
+      !addressLine1 ||
+      !city ||
+      !province
+    ) {
       Notification.error("Please fill all required fields.");
       return;
     }
@@ -43,7 +51,19 @@ const CustomerNewPage = () => {
         pageSubtitle="Add a new customer to your records"
       />
 
-      <div className="p-6 overflow-y-auto">
+      <div className="p-6 overflow-y-auto space-y-6">
+        <div className="flex justify-between items-center">
+          <Button
+            variant="link"
+            size="sm"
+            className="p-0 t-meta-bold group"
+            onClick={() => navigate({ to: "/customers" })}
+          >
+            <Icon.ArrowLeft className="icon-back-hover" />
+            Back to list
+          </Button>
+        </div>
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="card-base p-6 flex flex-col gap-5">
             <div className="flex items-center gap-2 pb-3 border-b border-default">
@@ -53,8 +73,12 @@ const CustomerNewPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="first_name" className="t-meta-bold text-main">
-                  First name <span className="text-danger">*</span>
+                <Label
+                  htmlFor="first_name"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  First name
                 </Label>
                 <Input
                   id="first_name"
@@ -65,8 +89,12 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="last_name" className="t-meta-bold text-main">
-                  Last name <span className="text-danger">*</span>
+                <Label
+                  htmlFor="last_name"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  Last name
                 </Label>
                 <Input
                   id="last_name"
@@ -77,8 +105,8 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="nic" className="t-meta-bold text-main">
-                  NIC number <span className="text-danger">*</span>
+                <Label htmlFor="nic" className="t-meta-bold text-main" required>
+                  NIC number
                 </Label>
                 <Input
                   id="nic"
@@ -111,8 +139,12 @@ const CustomerNewPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="primary_phone" className="t-meta-bold text-main">
-                  Primary phone <span className="text-danger">*</span>
+                <Label
+                  htmlFor="primary_phone"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  Primary phone
                 </Label>
                 <Input
                   id="primary_phone"
@@ -124,7 +156,10 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="secondary_phone" className="t-meta-bold text-main">
+                <Label
+                  htmlFor="secondary_phone"
+                  className="t-meta-bold text-main"
+                >
                   Secondary phone{" "}
                   <span className="t-caption text-faint">(optional)</span>
                 </Label>
@@ -147,8 +182,12 @@ const CustomerNewPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5 sm:col-span-2">
-                <Label htmlFor="address_line1" className="t-meta-bold text-main">
-                  Address line 1 <span className="text-danger">*</span>
+                <Label
+                  htmlFor="address_line1"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  Address line 1
                 </Label>
                 <Input
                   id="address_line1"
@@ -159,7 +198,10 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5 sm:col-span-2">
-                <Label htmlFor="address_line2" className="t-meta-bold text-main">
+                <Label
+                  htmlFor="address_line2"
+                  className="t-meta-bold text-main"
+                >
                   Address line 2{" "}
                   <span className="t-caption text-faint">(optional)</span>
                 </Label>
@@ -172,8 +214,12 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="city" className="t-meta-bold text-main">
-                  City <span className="text-danger">*</span>
+                <Label
+                  htmlFor="city"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  City
                 </Label>
                 <Input
                   id="city"
@@ -184,8 +230,12 @@ const CustomerNewPage = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="province" className="t-meta-bold text-main">
-                  Province <span className="text-danger">*</span>
+                <Label
+                  htmlFor="province"
+                  className="t-meta-bold text-main"
+                  required
+                >
+                  Province
                 </Label>
                 <Input
                   id="province"
