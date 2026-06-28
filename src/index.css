@@ -3936,6 +3936,14 @@
     color: var(--muted-foreground);
   }
 
+  .table-empty {
+    padding: 3rem 0;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-faint);
+  }
+
   /* MAIN VARIANT — striped alternating rows */
   .table-striped [data-slot="table-header"] [data-slot="table-row"] {
     background-color: color-mix(in srgb, var(--border) 50%, var(--muted));

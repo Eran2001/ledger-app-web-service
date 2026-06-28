@@ -5,7 +5,7 @@ import * as Icon from "@/components/icons";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { StatPill } from "@/components/shared/stat-pill";
 import { Progress } from "@/components/ui/progress";
-import { Stat } from "@/components/ui/stat";
+import { Stat, StatMeta } from "@/components/ui/stat";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -68,12 +68,10 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
       <Separator />
 
       <div className="flex items-center justify-between">
-        <p className="t-caption text-soft">
-          Next due:{" "}
-          <span className="fw-semibold text-main">
-            {stat.nextDue ? formatDate(stat.nextDue) : "—"}
-          </span>
-        </p>
+        <StatMeta
+          label="Next due"
+          value={stat.nextDue ? formatDate(stat.nextDue) : "N/A"}
+        />
         <Button
           variant="link"
           size="sm"
