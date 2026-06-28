@@ -1,72 +1,69 @@
-import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as Icon from "@/components/icons";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+} from "@/components/ui/sheet";
 
+import {
+  newCustomerSchema,
+  type NewCustomerFormValues,
+} from "@/schemas/customers-schema";
+import { useUIStore } from "@/stores/ui-store";
 import { Notification } from "@/utils/notification";
 
-const CustomerNewPage = () => {
-  const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [nic, setNic] = useState("");
-  const [primaryPhone, setPrimaryPhone] = useState("");
-  const [secondaryPhone, setSecondaryPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [addressLine2, setAddressLine2] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-  const [notes, setNotes] = useState("");
+export const NewCustomer = () => {
+  const { newCustomerOpen, closeNewCustomer } = useUIStore();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<NewCustomerFormValues>({
+    resolver: zodResolver(newCustomerSchema),
+  });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (
-      !firstName ||
-      !lastName ||
-      !nic ||
-      !primaryPhone ||
-      !addressLine1 ||
-      !city ||
-      !province
-    ) {
-      Notification.error("Please fill all required fields.");
-      return;
-    }
-    Notification.success("Customer created.");
-    navigate({ to: "/customers" });
+  const handleClose = () => {
+    reset();
+    closeNewCustomer();
   };
 
-  const handleCancel = () => navigate({ to: "/customers" });
+  const handleFormSubmit = (data: NewCustomerFormValues) => {
+    console.log(data);
+    Notification.success("Customer created.");
+    handleClose();
+  };
 
   return (
-    <>
-      <TopBar
-        pageTitle="New Customer"
-        pageSubtitle="Add a new customer to your records"
-      />
+    <Sheet
+      open={newCustomerOpen}
+      onOpenChange={(open) => !open && handleClose()}
+    >
+      <SheetContent side="right" className="sm:max-w-5xl">
+        <SheetHeader>
+          <SheetTitle>New Customer</SheetTitle>
+          <SheetDescription>
+            Add a new customer to your records.
+          </SheetDescription>
+        </SheetHeader>
 
-      <div className="p-6 overflow-y-auto space-y-6">
-        <div className="flex justify-between items-center">
-          <Button
-            variant="link"
-            size="sm"
-            className="p-0 t-meta-bold group"
-            onClick={() => navigate({ to: "/customers" })}
-          >
-            <Icon.ArrowLeft className="icon-back-hover" />
-            Back to list
-          </Button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <form
+          id="new-customer-form"
+          onSubmit={handleSubmit(handleFormSubmit)}
+          className="flex-1 overflow-y-auto px-4 pb-4 flex flex-col gap-4"
+        >
           <Card>
             <CardHeader>
               <CardTitle icon={Icon.User}>Personal Info</CardTitle>
@@ -80,10 +77,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="first_name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
                     placeholder="e.g. Nimal"
+                    aria-invalid={!!errors.firstName}
+                    {...register("firstName")}
                   />
+                  {errors.firstName && (
+                    <p className="t-caption text-danger">
+                      {errors.firstName.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -92,10 +94,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="last_name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
                     placeholder="e.g. Perera"
+                    aria-invalid={!!errors.lastName}
+                    {...register("lastName")}
                   />
+                  {errors.lastName && (
+                    <p className="t-caption text-danger">
+                      {errors.lastName.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -104,10 +111,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="nic"
-                    value={nic}
-                    onChange={(e) => setNic(e.target.value)}
                     placeholder="e.g. 198512345678"
+                    aria-invalid={!!errors.nic}
+                    {...register("nic")}
                   />
+                  {errors.nic && (
+                    <p className="t-caption text-danger">
+                      {errors.nic.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -118,10 +130,15 @@ const CustomerNewPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. nimal@gmail.com"
+                    aria-invalid={!!errors.email}
+                    {...register("email")}
                   />
+                  {errors.email && (
+                    <p className="t-caption text-danger">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -141,10 +158,15 @@ const CustomerNewPage = () => {
                   <Input
                     id="primary_phone"
                     type="tel"
-                    value={primaryPhone}
-                    onChange={(e) => setPrimaryPhone(e.target.value)}
                     placeholder="+94 77 123 4567"
+                    aria-invalid={!!errors.primaryPhone}
+                    {...register("primaryPhone")}
                   />
+                  {errors.primaryPhone && (
+                    <p className="t-caption text-danger">
+                      {errors.primaryPhone.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -155,9 +177,8 @@ const CustomerNewPage = () => {
                   <Input
                     id="secondary_phone"
                     type="tel"
-                    value={secondaryPhone}
-                    onChange={(e) => setSecondaryPhone(e.target.value)}
                     placeholder="+94 71 234 5678"
+                    {...register("secondaryPhone")}
                   />
                 </div>
               </div>
@@ -177,10 +198,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="address_line1"
-                    value={addressLine1}
-                    onChange={(e) => setAddressLine1(e.target.value)}
                     placeholder="e.g. No 12, Kandy Road"
+                    aria-invalid={!!errors.addressLine1}
+                    {...register("addressLine1")}
                   />
+                  {errors.addressLine1 && (
+                    <p className="t-caption text-danger">
+                      {errors.addressLine1.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5 sm:col-span-2">
@@ -190,9 +216,8 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="address_line2"
-                    value={addressLine2}
-                    onChange={(e) => setAddressLine2(e.target.value)}
                     placeholder="e.g. Kadawatha"
+                    {...register("addressLine2")}
                   />
                 </div>
 
@@ -202,10 +227,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="city"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
                     placeholder="e.g. Colombo"
+                    aria-invalid={!!errors.city}
+                    {...register("city")}
                   />
+                  {errors.city && (
+                    <p className="t-caption text-danger">
+                      {errors.city.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -214,10 +244,15 @@ const CustomerNewPage = () => {
                   </Label>
                   <Input
                     id="province"
-                    value={province}
-                    onChange={(e) => setProvince(e.target.value)}
                     placeholder="e.g. Western"
+                    aria-invalid={!!errors.province}
+                    {...register("province")}
                   />
+                  {errors.province && (
+                    <p className="t-caption text-danger">
+                      {errors.province.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -235,27 +270,23 @@ const CustomerNewPage = () => {
                 </Label>
                 <Textarea
                   id="notes"
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
                   placeholder="Reminders, contact preferences, etc."
+                  {...register("notes")}
                 />
               </div>
             </CardContent>
           </Card>
-
-          <div className="flex items-center justify-end gap-3">
-            <Button type="button" variant="secondary" onClick={handleCancel}>
-              Cancel
-            </Button>
-            <Button type="submit">
-              <Icon.UserPlus />
-              Create Customer
-            </Button>
-          </div>
         </form>
-      </div>
-    </>
+
+        <SheetFooter className="flex-row justify-end">
+          <Button type="button" variant="cancel" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button type="submit" form="new-customer-form">
+            <Icon.UserPlus /> Create Customer
+          </Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };
-
-export default CustomerNewPage;

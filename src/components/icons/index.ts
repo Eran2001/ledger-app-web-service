@@ -185,4 +185,5 @@ export {
   FlaskConical,
   UserCog,
   ArrowUpFromLine,
+  XIcon,
 } from "lucide-react";

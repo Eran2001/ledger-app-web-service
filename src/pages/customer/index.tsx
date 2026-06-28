@@ -4,6 +4,9 @@ import { useNavigate } from "@tanstack/react-router";
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
+import { useUIStore } from "@/stores/ui-store";
+
+import { NewCustomer } from "./pages/new-customer";
 import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -41,6 +44,7 @@ const enriched = customers.map((c) => {
 
 const CustomersPage = () => {
   const navigate = useNavigate();
+  const openNewCustomer = useUIStore((s) => s.openNewCustomer);
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<Tab>("all");
 
@@ -59,24 +63,25 @@ const CustomersPage = () => {
 
   return (
     <>
+      <NewCustomer />
       <TopBar
         pageTitle="Customers"
         pageSubtitle={`${customers.length} customers`}
         primaryAction={{
-          to: "/customers/new",
+          onClick: openNewCustomer,
           icon: Icon.Plus,
           label: "New Customer",
         }}
       />
 
-      {customers.length === 0 ? (
+      {customers.length !== 0 ? (
         <EmptyState
           icon={Icon.Users}
           title="No customers found"
           subtitle="Try adjusting your search or filter, or add your first customer."
           actionIcon={Icon.Plus}
           actionLabel="New Customer"
-          onAction={() => navigate({ to: "/customers/new" })}
+          onAction={openNewCustomer}
         />
       ) : (
         <div className="p-6 overflow-y-auto">
