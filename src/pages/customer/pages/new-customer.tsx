@@ -7,17 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  CardAction,
-} from "@/components/ui/card";
 import { Notification } from "@/utils/notification";
 
 const CustomerNewPage = () => {
@@ -75,206 +67,181 @@ const CustomerNewPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <div className="card-base p-6 flex flex-col gap-5">
-            <div className="flex items-center gap-2 pb-3 border-b border-default">
-              <Icon.User className="icon-compact text-brand" />
-              <h2 className="t-heading text-main">Personal Info</h2>
-            </div>
+          <Card>
+            <CardHeader>
+              <CardTitle icon={Icon.User}>Personal Info</CardTitle>
+              <Separator />
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="first_name" required>
+                    First name
+                  </Label>
+                  <Input
+                    id="first_name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="e.g. Nimal"
+                  />
+                </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="last_name" required>
+                    Last name
+                  </Label>
+                  <Input
+                    id="last_name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="e.g. Perera"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="nic" required>
+                    NIC number
+                  </Label>
+                  <Input
+                    id="nic"
+                    value={nic}
+                    onChange={(e) => setNic(e.target.value)}
+                    placeholder="e.g. 198512345678"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="email">
+                    Email{" "}
+                    <span className="t-caption text-faint">(optional)</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="e.g. nimal@gmail.com"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle icon={Icon.Phone}>Contact</CardTitle>
+              <Separator />
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="primary_phone" required>
+                    Primary phone
+                  </Label>
+                  <Input
+                    id="primary_phone"
+                    type="tel"
+                    value={primaryPhone}
+                    onChange={(e) => setPrimaryPhone(e.target.value)}
+                    placeholder="+94 77 123 4567"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="secondary_phone">
+                    Secondary phone{" "}
+                    <span className="t-caption text-faint">(optional)</span>
+                  </Label>
+                  <Input
+                    id="secondary_phone"
+                    type="tel"
+                    value={secondaryPhone}
+                    onChange={(e) => setSecondaryPhone(e.target.value)}
+                    placeholder="+94 71 234 5678"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle icon={Icon.MapPin}>Location</CardTitle>
+              <Separator />
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5 sm:col-span-2">
+                  <Label htmlFor="address_line1" required>
+                    Address line 1
+                  </Label>
+                  <Input
+                    id="address_line1"
+                    value={addressLine1}
+                    onChange={(e) => setAddressLine1(e.target.value)}
+                    placeholder="e.g. No 12, Kandy Road"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5 sm:col-span-2">
+                  <Label htmlFor="address_line2">
+                    Address line 2{" "}
+                    <span className="t-caption text-faint">(optional)</span>
+                  </Label>
+                  <Input
+                    id="address_line2"
+                    value={addressLine2}
+                    onChange={(e) => setAddressLine2(e.target.value)}
+                    placeholder="e.g. Kadawatha"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="city" required>
+                    City
+                  </Label>
+                  <Input
+                    id="city"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="e.g. Colombo"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="province" required>
+                    Province
+                  </Label>
+                  <Input
+                    id="province"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
+                    placeholder="e.g. Western"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle icon={Icon.FileText}>Additional Info</CardTitle>
+              <Separator />
+            </CardHeader>
+            <CardContent>
               <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="first_name"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  First name
+                <Label htmlFor="notes">
+                  Notes <span className="t-caption text-faint">(optional)</span>
                 </Label>
-                <Input
-                  id="first_name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="e.g. Nimal"
+                <Textarea
+                  id="notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Reminders, contact preferences, etc."
                 />
               </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="last_name"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  Last name
-                </Label>
-                <Input
-                  id="last_name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="e.g. Perera"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="nic" className="t-meta-bold text-main" required>
-                  NIC number
-                </Label>
-                <Input
-                  id="nic"
-                  value={nic}
-                  onChange={(e) => setNic(e.target.value)}
-                  placeholder="e.g. 198512345678"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="email" className="t-meta-bold text-main">
-                  Email <span className="t-caption text-faint">(optional)</span>
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. nimal@gmail.com"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card-base p-6 flex flex-col gap-5">
-            <div className="flex items-center gap-2 pb-3 border-b border-default">
-              <Icon.Phone className="icon-compact text-brand" />
-              <h2 className="t-heading text-main">Contact</h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="primary_phone"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  Primary phone
-                </Label>
-                <Input
-                  id="primary_phone"
-                  type="tel"
-                  value={primaryPhone}
-                  onChange={(e) => setPrimaryPhone(e.target.value)}
-                  placeholder="+94 77 123 4567"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="secondary_phone"
-                  className="t-meta-bold text-main"
-                >
-                  Secondary phone{" "}
-                  <span className="t-caption text-faint">(optional)</span>
-                </Label>
-                <Input
-                  id="secondary_phone"
-                  type="tel"
-                  value={secondaryPhone}
-                  onChange={(e) => setSecondaryPhone(e.target.value)}
-                  placeholder="+94 71 234 5678"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card-base p-6 flex flex-col gap-5">
-            <div className="flex items-center gap-2 pb-3 border-b border-default">
-              <Icon.MapPin className="icon-compact text-brand" />
-              <h2 className="t-heading text-main">Location</h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5 sm:col-span-2">
-                <Label
-                  htmlFor="address_line1"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  Address line 1
-                </Label>
-                <Input
-                  id="address_line1"
-                  value={addressLine1}
-                  onChange={(e) => setAddressLine1(e.target.value)}
-                  placeholder="e.g. No 12, Kandy Road"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5 sm:col-span-2">
-                <Label
-                  htmlFor="address_line2"
-                  className="t-meta-bold text-main"
-                >
-                  Address line 2{" "}
-                  <span className="t-caption text-faint">(optional)</span>
-                </Label>
-                <Input
-                  id="address_line2"
-                  value={addressLine2}
-                  onChange={(e) => setAddressLine2(e.target.value)}
-                  placeholder="e.g. Kadawatha"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="city"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  City
-                </Label>
-                <Input
-                  id="city"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  placeholder="e.g. Colombo"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="province"
-                  className="t-meta-bold text-main"
-                  required
-                >
-                  Province
-                </Label>
-                <Input
-                  id="province"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                  placeholder="e.g. Western"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card-base p-6 flex flex-col gap-5">
-            <div className="flex items-center gap-2 pb-3 border-b border-default">
-              <Icon.FileText className="icon-compact text-brand" />
-              <h2 className="t-heading text-main">Additional Info</h2>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="notes" className="t-meta-bold text-main">
-                Notes <span className="t-caption text-faint">(optional)</span>
-              </Label>
-              <Textarea
-                id="notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="Reminders, contact preferences, etc."
-              />
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           <div className="flex items-center justify-end gap-3">
             <Button type="button" variant="secondary" onClick={handleCancel}>
