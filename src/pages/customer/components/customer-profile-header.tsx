@@ -6,7 +6,9 @@ import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { Button } from "@/components/ui/button";
 import { StatInline, StatMeta } from "@/components/ui/stat";
 
+import { useIsMobile } from "@/hooks/use-mobile";
 import { formatDate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 type Props = {
   customer: {
@@ -23,6 +25,7 @@ type Props = {
 
 export const CustomerProfileHeader = ({ customer }: Props) => {
   const navigate = useNavigate();
+  const isMaxXs = useIsMobile(480);
 
   return (
     <Card className="overflow-hidden relative">
@@ -47,11 +50,36 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-[auto_1fr] gap-6">
-          <InitialsAvatar name={customer.fullName} size="auto" />
+        <div className="flex flex-col gap-6 xs:grid xs:grid-cols-[auto_1fr] xs:gap-6">
+          {isMaxXs && (
+            <div className="flex justify-center items-center">
+              <h2 className="t-section text-main">{customer.fullName}</h2>
+            </div>
+          )}
+          {isMaxXs ? (
+            <div className="flex justify-center items-center">
+              <InitialsAvatar
+                name={customer.fullName}
+                size={isMaxXs ? "lg" : "auto"}
+              />
+            </div>
+          ) : (
+            <InitialsAvatar
+              name={customer.fullName}
+              size={isMaxXs ? "lg" : "auto"}
+            />
+          )}
           <div className="min-w-0 flex flex-col justify-center space-y-1">
-            <h2 className="t-section text-main">{customer.fullName}</h2>
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {!isMaxXs && (
+              <h2 className="t-section text-main">{customer.fullName}</h2>
+            )}
+            <div
+              className={cn(
+                "flex flex-wrap gap-x-4 gap-y-1",
+                "hello",
+                isMaxXs && "flex justify-center items-center",
+              )}
+            >
               <StatMeta label="NIC" value={customer.nic} />
               <StatMeta label="Phone" value={customer.primary_phone} />
               {customer.email && (
@@ -61,7 +89,12 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-2 items-baseline">
+        <div
+          className={cn(
+            "grid grid-cols-[max-content_1fr] gap-x-3 gap-y-2 items-baseline",
+            isMaxXs && "grid grid-cols-1 gap-3",
+          )}
+        >
           <StatInline label="Address" value={customer.address} />
           <StatInline label="City" value={customer.city} />
           {customer.secondary_phone && (
