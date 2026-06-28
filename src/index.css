@@ -530,10 +530,16 @@
   /* INPUT AUTOFILL */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
     -webkit-text-fill-color: var(--foreground) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--background) inset, var(--shadow-ring) !important;
+    -webkit-text-fill-color: var(--foreground) !important;
+    border-color: var(--ring) !important;
     transition: background-color 5000s ease-in-out 0s;
   }
 
