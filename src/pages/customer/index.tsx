@@ -6,7 +6,6 @@ import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { useUIStore } from "@/stores/ui-store";
 
-import { NewCustomer } from "./pages/new-customer";
 import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -26,6 +25,8 @@ import {
 } from "@/components/ui/table";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { EmptyState } from "@/components/shared/empty-state";
+
+import { NewCustomer } from "./components/new-customer";
 
 import { customers, customerStats } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
@@ -74,7 +75,7 @@ const CustomersPage = () => {
         }}
       />
 
-      {customers.length !== 0 ? (
+      {customers.length === 0 ? (
         <EmptyState
           icon={Icon.Users}
           title="No customers found"

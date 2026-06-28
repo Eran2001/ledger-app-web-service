@@ -5,6 +5,7 @@ import * as Icon from "@/components/icons";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -81,9 +82,15 @@ function SheetContent({
         {...props}
       >
         {children}
-        <SheetPrimitive.Close className="absolute top-4 right-4 cursor-pointer global-rounded sheet-close-btn">
-          <Icon.XIcon className="size-4" />
-          <span className="sr-only">Close</span>
+        <SheetPrimitive.Close asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 right-4 app-sidebar-icon-btn"
+            aria-label="Close"
+          >
+            <Icon.XIcon />
+          </Button>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>

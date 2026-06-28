@@ -25,13 +25,19 @@ export const useUIStore = create<UIState>((set) => ({
   selectedInstallmentId: null,
 
   /* New Customer */
-  newCustomerOpen: false,
+  newCustomerOpen: sessionStorage.getItem("newCustomerOpen") === "true",
 
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   setMobileSidebarOpen: (open) => set({ mobileSidebarOpen: open }),
   openModal: (name) => set({ activeModal: name }),
   closeModal: () => set({ activeModal: null, selectedInstallmentId: null }),
   setSelectedInstallment: (id) => set({ selectedInstallmentId: id }),
-  openNewCustomer: () => set({ newCustomerOpen: true }),
-  closeNewCustomer: () => set({ newCustomerOpen: false }),
+  openNewCustomer: () => {
+    sessionStorage.setItem("newCustomerOpen", "true");
+    set({ newCustomerOpen: true });
+  },
+  closeNewCustomer: () => {
+    sessionStorage.removeItem("newCustomerOpen");
+    set({ newCustomerOpen: false });
+  },
 }));
