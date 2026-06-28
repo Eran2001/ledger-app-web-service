@@ -28,21 +28,21 @@ import { customers, customerStats } from "@/lib/dummy-data";
 import { formatCurrency } from "@/lib/utils";
 import { Tab } from "@/types/customer";
 
+const enriched = customers.map((c) => {
+  const stat = customerStats(c.id);
+  const status: "ACTIVE" | "OVERDUE" | "COMPLETED" =
+    stat.outstanding === 0
+      ? "COMPLETED"
+      : stat.hasOverdue
+        ? "OVERDUE"
+        : "ACTIVE";
+  return { ...c, ...stat, status };
+});
+
 const CustomersPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<Tab>("all");
-
-  const enriched = customers.map((c) => {
-    const stat = customerStats(c.id);
-    const status: "ACTIVE" | "OVERDUE" | "COMPLETED" =
-      stat.outstanding === 0
-        ? "COMPLETED"
-        : stat.hasOverdue
-          ? "OVERDUE"
-          : "ACTIVE";
-    return { ...c, ...stat, status };
-  });
 
   const filtered = enriched.filter((c) => {
     const q = search.trim().toLowerCase();
@@ -69,57 +69,64 @@ const CustomersPage = () => {
         }}
       />
 
-      {filtered.length === 0 ? (
+      {customers.length === 0 ? (
         <EmptyState
           icon={Icon.Users}
           title="No customers found"
           subtitle="Try adjusting your search or filter, or add your first customer."
+          actionIcon={Icon.Plus}
           actionLabel="New Customer"
-          onAction={() => undefined}
+          onAction={() => navigate({ to: "/customers/new" })}
         />
       ) : (
-        <>
-          <div className="p-6 overflow-y-auto">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
-              <SearchField
-                value={search}
-                onChange={setSearch}
-                placeholder="Search by name, NIC, or phone…"
-                size="large"
-                containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
-              />
-              <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
-                <Tabs
-                  value={tab}
-                  onValueChange={(v) => setTab(v as Tab)}
-                  className="w-full xs:w-auto"
-                >
-                  <TabsList>
-                    <TabsTrigger value="all">All Customers</TabsTrigger>
-                    <TabsTrigger value="active">Active Sales</TabsTrigger>
-                    <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
-                  </TabsList>
-                </Tabs>
-                <Button variant="secondary" className="shrink-0">
-                  <Icon.ArrowUpFromLine /> Export
-                </Button>
-              </div>
+        <div className="p-6 overflow-y-auto">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+            <SearchField
+              value={search}
+              onChange={setSearch}
+              placeholder="Search by name, NIC, or phone…"
+              size="large"
+              containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+            />
+            <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+              <Tabs
+                value={tab}
+                onValueChange={(v) => setTab(v as Tab)}
+                className="w-full xs:w-auto"
+              >
+                <TabsList>
+                  <TabsTrigger value="all">All Customers</TabsTrigger>
+                  <TabsTrigger value="active">Active Sales</TabsTrigger>
+                  <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
+                </TabsList>
+              </Tabs>
+              <Button variant="secondary" className="shrink-0">
+                <Icon.ArrowUpFromLine /> Export
+              </Button>
             </div>
+          </div>
 
-            <Table variant="main">
-              <TableHeader>
+          <Table variant="main">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Customer</TableHead>
+                <TableHead>NIC Number</TableHead>
+                <TableHead>Phone</TableHead>
+                <TableHead>Active Sales</TableHead>
+                <TableHead>Outstanding</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filtered.length === 0 ? (
                 <TableRow>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>NIC Number</TableHead>
-                  <TableHead>Phone</TableHead>
-                  <TableHead>Active Sales</TableHead>
-                  <TableHead>Outstanding</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableCell colSpan={7} className="table-empty">
+                    No customers match your search or filter.
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filtered.map((c) => (
+              ) : (
+                filtered.map((c) => (
                   <TableRow
                     key={c.id}
                     onClick={() =>
@@ -178,11 +185,11 @@ const CustomersPage = () => {
                       </DropdownMenu>
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
       )}
     </>
   );

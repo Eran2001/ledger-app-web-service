@@ -14,12 +14,16 @@ import DefaultLayout from "@/layouts/default-layout";
 const LoginPage = lazy(() => import("./pages/auth/login"));
 const RegisterPage = lazy(() => import("./pages/auth/register"));
 const SetupPasswordPage = lazy(() => import("./pages/auth/setup-password"));
+
 const DashboardPage = lazy(() => import("./pages/dashboard"));
 const SalesPage = lazy(() => import("./pages/sales"));
 const SalesNewPage = lazy(() => import("./pages/sales/pages/SalesNewPage"));
 const SaleDetailPage = lazy(() => import("./pages/sales/pages/SaleDetailPage"));
 const CustomersPage = lazy(() => import("./pages/customer"));
 const CustomerDetailPage = lazy(() => import("./pages/customer/pages/detail"));
+const CustomerNewPage = lazy(
+  () => import("./pages/customer/pages/new-customer"),
+);
 const ProductsPage = lazy(() => import("./pages/products"));
 const EmployeePage = lazy(() => import("./pages/employees"));
 const OverduePage = lazy(() => import("./pages/overdue"));
@@ -28,6 +32,7 @@ const SettingsPage = lazy(() => import("./pages/settings"));
 const ProfilePage = lazy(
   () => import("./pages/settings/components/account-information"),
 );
+
 const NotFoundPage = lazy(() => import("./pages/404"));
 const UnauthorizedPage = lazy(() => import("./pages/401"));
 const SubscriptionErrorPage = lazy(() => import("./pages/502"));
@@ -100,6 +105,11 @@ const customersRoute = createRoute({
   path: "/customers",
   component: CustomersPage,
 });
+const customerNewRoute = createRoute({
+  getParentRoute: () => shellRoute,
+  path: "/customers/new",
+  component: CustomerNewPage,
+});
 const customerDetailRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/customers/$id",
@@ -161,6 +171,7 @@ const routeTree = rootRoute.addChildren([
     salesNewRoute,
     saleDetailRoute,
     customersRoute,
+    customerNewRoute,
     customerDetailRoute,
     productsRoute,
     usersRoute,
