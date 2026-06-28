@@ -54,7 +54,7 @@ const CustomerDetailPage = () => {
         </div>
 
         <TabSelect tabs={TABS} value={tab} onValueChange={setTab}>
-          <TabPanel value="active" active={tab} className="pt-6">
+          <TabPanel value="active" active={tab}>
             {activeSales.length === 0 ? (
               <p className="t-body text-faint">No active sales.</p>
             ) : (
@@ -66,7 +66,7 @@ const CustomerDetailPage = () => {
             )}
           </TabPanel>
 
-          <TabPanel value="payments" active={tab} className="pt-6">
+          <TabPanel value="payments" active={tab}>
             <PaymentHistoryTable payments={allPayments} />
           </TabPanel>
         </TabSelect>

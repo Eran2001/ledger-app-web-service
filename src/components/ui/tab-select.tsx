@@ -50,5 +50,5 @@ export function TabPanel({
   children: React.ReactNode;
 }) {
   if (value !== active) return null;
-  return <div className={className}>{children}</div>;
+  return <div className={cn("pt-6", className)}>{children}</div>;
 }
