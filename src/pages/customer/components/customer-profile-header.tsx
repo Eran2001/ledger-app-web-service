@@ -33,7 +33,7 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
         className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
       />
-      <div className="relative space-y-4">
+      <div className="relative space-y-6">
         <div className="flex justify-between items-center">
           <Button
             variant="link"
@@ -50,7 +50,7 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
           </Button>
         </div>
 
-        <div className="flex flex-col gap-6 xs:grid xs:grid-cols-[auto_1fr] xs:gap-6">
+        <div className="flex flex-col gap-6 pb-2 xs:grid xs:grid-cols-[auto_1fr] xs:gap-6">
           {isMaxXs && (
             <div className="flex justify-center items-center">
               <h2 className="t-section text-main">{customer.fullName}</h2>
@@ -69,14 +69,13 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
               size={isMaxXs ? "lg" : "auto"}
             />
           )}
-          <div className="min-w-0 flex flex-col justify-center space-y-1">
+          <div className="min-w-0 flex flex-col space-y-1">
             {!isMaxXs && (
               <h2 className="t-section text-main">{customer.fullName}</h2>
             )}
             <div
               className={cn(
                 "flex flex-wrap gap-x-4 gap-y-1",
-                "hello",
                 isMaxXs && "flex justify-center items-center",
               )}
             >
