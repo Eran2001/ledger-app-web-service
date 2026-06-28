@@ -450,6 +450,7 @@
   --radius-md: var(--radius); /* common one */
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 
   /* SIDEBAR COLORS */
   --color-sidebar: var(--sidebar);
@@ -537,7 +538,9 @@
   }
 
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px var(--background) inset, var(--shadow-ring) !important;
+    -webkit-box-shadow:
+      0 0 0 1000px var(--background) inset,
+      var(--shadow-ring) !important;
     -webkit-text-fill-color: var(--foreground) !important;
     border-color: var(--ring) !important;
     transition: background-color 5000s ease-in-out 0s;

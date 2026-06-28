@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
@@ -24,7 +25,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
       className={cn(
         "@container/card-header",
         "grid auto-rows-min grid-rows-[auto_auto]",
-        "items-start gap-2 px-6",
+        "items-start gap-2",
         "has-data-[slot=card-action]:grid-cols-[1fr_auto]",
         "[.border-b]:pb-6",
         className,
@@ -34,13 +35,21 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({
+  className,
+  icon: Icon,
+  children,
+  ...props
+}: React.ComponentProps<"div"> & { icon?: React.ElementType }) {
   return (
     <div
       data-slot="card-title"
-      className={cn("t-display-soft", className)}
+      className={cn("t-display-soft", Icon && "flex items-center gap-2", className)}
       {...props}
-    />
+    >
+      {Icon && <Icon className="icon-compact text-brand" />}
+      {children}
+    </div>
   );
 }
 
@@ -69,22 +78,19 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-content"
-      className={cn("px-6", className)}
-      {...props}
-    />
-  );
+  return <div data-slot="card-content" className={cn(className)} {...props} />;
 }
 
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
-      data-slot="card-footer"
-      className={cn("flex items-center px-6", "[.border-t]:pt-6", className)}
-      {...props}
-    />
+    <>
+      <Separator />
+      <div
+        data-slot="card-footer"
+        className={cn("flex items-center", className)}
+        {...props}
+      />
+    </>
   );
 }
 
