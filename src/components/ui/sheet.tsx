@@ -62,9 +62,9 @@ function SheetContent({
         data-slot="sheet-content"
         className={cn(
           "fixed z-dropdown flex flex-col gap-4",
-          "transition ease-in-out sheet-content",
+          "transition-[transform,opacity] ease-in-out will-change-transform sheet-content",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
-          "data-[state=closed]:duration-300 data-[state=open]:duration-500",
+          "data-[state=closed]:duration-300 data-[state=open]:duration-300",
           side === "right" &&
             "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm" +
               " data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
@@ -86,7 +86,7 @@ function SheetContent({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 app-sidebar-icon-btn"
+            className="absolute top-2 right-2 app-sidebar-icon-btn"
             aria-label="Close"
           >
             <Icon.XIcon />

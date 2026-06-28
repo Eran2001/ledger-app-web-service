@@ -69,7 +69,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="first_name"
-                placeholder="e.g. Nimal"
+                placeholder="Enter user first name"
                 aria-invalid={!!errors.firstName}
                 {...register("firstName")}
               />
@@ -86,7 +86,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="last_name"
-                placeholder="e.g. Perera"
+                placeholder="Enter user last name"
                 aria-invalid={!!errors.lastName}
                 {...register("lastName")}
               />
@@ -103,7 +103,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="nic"
-                placeholder="e.g. 198512345678"
+                placeholder="Enter user NIC"
                 aria-invalid={!!errors.nic}
                 {...register("nic")}
               />
@@ -119,7 +119,7 @@ export const NewCustomer = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="e.g. nimal@gmail.com"
+                placeholder="Enter user email"
                 aria-invalid={!!errors.email}
                 {...register("email")}
               />
@@ -135,7 +135,7 @@ export const NewCustomer = () => {
               <Input
                 id="primary_phone"
                 type="tel"
-                placeholder="+94 77 123 4567"
+                placeholder="Enter user primary phone"
                 aria-invalid={!!errors.primaryPhone}
                 {...register("primaryPhone")}
               />
@@ -154,7 +154,7 @@ export const NewCustomer = () => {
               <Input
                 id="secondary_phone"
                 type="tel"
-                placeholder="+94 71 234 5678"
+                placeholder="Enter user sec phone"
                 {...register("secondaryPhone")}
               />
             </div>
@@ -165,7 +165,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="address_line1"
-                placeholder="e.g. No 12, Kandy Road"
+                placeholder="Enter user address line 1"
                 aria-invalid={!!errors.addressLine1}
                 {...register("addressLine1")}
               />
@@ -183,7 +183,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="address_line2"
-                placeholder="e.g. Kadawatha"
+                placeholder="Enter user address line 2"
                 {...register("addressLine2")}
               />
             </div>
@@ -194,7 +194,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="city"
-                placeholder="e.g. Colombo"
+                placeholder="Enter user city"
                 aria-invalid={!!errors.city}
                 {...register("city")}
               />
@@ -209,7 +209,7 @@ export const NewCustomer = () => {
               </Label>
               <Input
                 id="province"
-                placeholder="e.g. Western"
+                placeholder="Enter user province"
                 aria-invalid={!!errors.province}
                 {...register("province")}
               />
@@ -226,15 +226,20 @@ export const NewCustomer = () => {
               </Label>
               <Textarea
                 id="notes"
-                placeholder="Reminders, contact preferences, etc."
+                placeholder="Enter user additional notes"
                 {...register("notes")}
               />
             </div>
           </div>
         </form>
 
-        <SheetFooter className="flex-row justify-end">
-          <Button type="button" variant="cancel" onClick={handleClose}>
+        <SheetFooter className="flex-row max-xs:flex-col justify-end">
+          <Button
+            type="button"
+            variant="cancel"
+            className="max-xs:order-2"
+            onClick={handleClose}
+          >
             Cancel
           </Button>
           <Button type="submit" form="new-customer-form">

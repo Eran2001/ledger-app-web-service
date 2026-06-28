@@ -68,21 +68,32 @@ export function TopBar({
 
       <div className="flex items-center gap-2">
         {primaryAction && (
-          <div className="ml-1 hidden sm:block">
-            {primaryAction.to ? (
-              <Button
-                type="button"
-                onClick={() => navigate({ to: primaryAction.to })}
-              >
-                <primaryAction.icon />
-                {primaryAction.label}
-              </Button>
-            ) : (
-              <Button type="button" onClick={primaryAction.onClick}>
-                <primaryAction.icon />
-                {primaryAction.label}
-              </Button>
-            )}
+          <div className="ml-1">
+            <Button
+              type="button"
+              size="icon"
+              className="sm:hidden"
+              onClick={
+                primaryAction.to
+                  ? () => navigate({ to: primaryAction.to })
+                  : primaryAction.onClick
+              }
+              aria-label={primaryAction.label}
+            >
+              <primaryAction.icon />
+            </Button>
+            <Button
+              type="button"
+              className="hidden sm:flex"
+              onClick={
+                primaryAction.to
+                  ? () => navigate({ to: primaryAction.to })
+                  : primaryAction.onClick
+              }
+            >
+              <primaryAction.icon />
+              {primaryAction.label}
+            </Button>
           </div>
         )}
         <Button
