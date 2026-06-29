@@ -1,12 +1,12 @@
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 
-import { installmentSchedules, saleStats, sales } from "@/constant/sale-data";
-import { formatCurrency } from "@/utils/format-currency";
-
 import { KpiCard } from "./components/kpi-card";
 import { RecentPayments } from "./components/recent-payments";
 import { OverdueList } from "./components/overdue-list";
+
+import { installmentSchedules, saleStats, sales } from "@/constant/sale-data";
+import { formatCurrency } from "@/utils/format-currency";
 
 const DashboardPage = () => {
   const totalOutstanding = sales.reduce(

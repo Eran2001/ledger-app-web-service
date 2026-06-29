@@ -11,6 +11,7 @@ import { formatCurrency } from "@/utils/format-currency";
 
 const overdueRows = installmentSchedules
   .filter((i) => i.status === "OVERDUE")
+  .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())
   .map((i) => {
     const sale = sales.find((s) => s.id === i.saleId);
     const customer = sale ? customerById(sale.customerId) : undefined;
@@ -24,7 +25,6 @@ const overdueRows = installmentSchedules
       amount: i.expectedAmount - i.paidAmount,
     };
   })
-  .sort((a, b) => b.days - a.days)
   .slice(0, 6);
 
 export const OverdueList = () => {
@@ -56,7 +56,7 @@ export const OverdueList = () => {
             </div>
             <div className="text-right shrink-0">
               <p className="t-micro-bold text-danger text-uppercase">
-                {r.days} days late
+                {r.days}
               </p>
               <p className="t-meta-bold text-main">
                 {formatCurrency(r.amount)}

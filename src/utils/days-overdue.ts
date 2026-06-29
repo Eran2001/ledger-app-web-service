@@ -1,5 +1,9 @@
 import { differenceInDays } from "date-fns";
 
-export function daysOverdue(dueDate: string | Date): number {
-  return Math.max(0, differenceInDays(new Date(), new Date(dueDate)));
-}
+export const daysOverdue = (dueDate: string | Date | null | undefined): string => {
+  if (dueDate == null) return "—";
+  const d = new Date(dueDate);
+  if (isNaN(d.getTime())) return "—";
+  const days = Math.max(0, differenceInDays(new Date(), d));
+  return `${days} days late`;
+};
