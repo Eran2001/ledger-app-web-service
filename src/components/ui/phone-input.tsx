@@ -14,6 +14,7 @@ interface PhoneInputProps {
   placeholder?: string;
   defaultCountry?: Country;
   disabled?: boolean;
+  size?: "default" | "compact" | "large";
 }
 
 export const PhoneInput = ({
@@ -22,20 +23,30 @@ export const PhoneInput = ({
   onChange,
   "aria-invalid": ariaInvalid,
   className,
-  placeholder = "Enter phone number",
+  placeholder = "Enter your phone number",
   defaultCountry = "LK",
   disabled,
+  size = "default",
 }: PhoneInputProps) => {
   return (
     <PhoneInputPrimitive
       id={id}
       international
       defaultCountry={defaultCountry}
+      placeholder={placeholder}
       value={value}
       onChange={onChange}
       disabled={disabled}
-      autoComplete="off"
-      className={cn(ariaInvalid && "phone-input-invalid", className)}
+      autoComplete="tel"
+      className={cn(
+        size === "compact"
+          ? "h-compact"
+          : size === "large"
+            ? "h-large"
+            : "h-field",
+        ariaInvalid && "phone-input-invalid",
+        className,
+      )}
     />
   );
 };

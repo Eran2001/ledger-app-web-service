@@ -537,7 +537,7 @@
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  input:-webkit-autofill:focus {
+  input:not(.PhoneInputInput):-webkit-autofill:focus {
     -webkit-box-shadow:
       0 0 0 1000px var(--background) inset,
       var(--shadow-ring) !important;
@@ -4282,7 +4282,6 @@
   background-color: var(--background);
   border: 1px solid var(--input-border);
   border-radius: var(--radius-md);
-  height: 2.25rem;
   padding-inline: 0.75rem;
   transition:
     border-color var(--duration-fast),
@@ -4318,19 +4317,33 @@
 .PhoneInputInput {
   flex: 1;
   min-width: 0;
-  background: transparent;
-  border: none;
-  outline: none;
+  background: var(--bg-transparent);
+  border: var(--border-none);
+  outline: var(--outline-none);
   color: var(--foreground);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
 }
 
 .PhoneInputInput::placeholder {
   color: var(--muted-foreground);
+  /* color: red; */
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .PhoneInputInput:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.PhoneInputInput:-webkit-autofill,
+.PhoneInputInput:-webkit-autofill:hover,
+.PhoneInputInput:-webkit-autofill:focus,
+.PhoneInputInput:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  border: none !important;
+  outline: none !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
