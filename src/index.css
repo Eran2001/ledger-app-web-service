@@ -3196,6 +3196,7 @@
 
   /* LABEL */
   .label {
+    cursor: pointer;
     line-height: var(--leading-none);
 
     &:is([data-disabled="true"] *) {
@@ -4260,11 +4261,11 @@
   }
 }
 
-/* 
+/*
    STRONGEST in the whole cascade — beats utilities too.
    Reserved for things you don't control the source of:
    - overriding a library's injected styles (Radix, Sonner,
-     react-international-phone, etc.)
+     react-phone-number-input, etc.)
    - browser-specific hacks (autofill background, webkit
      scrollbar pseudo-elements)
    Keep this section SMALL. If you're putting your own
@@ -4273,3 +4274,63 @@
    where layers genuinely can't reach (vendor CSS, pseudo-
    elements injected outside your control).
 */
+
+/* react-phone-number-input */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  height: 2.25rem;
+  padding-inline: 0.75rem;
+  transition:
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast);
+}
+
+.PhoneInput:focus-within {
+  border-color: var(--ring);
+  box-shadow: var(--shadow-ring);
+}
+
+.PhoneInput.phone-input-invalid {
+  border-color: var(--destructive);
+  box-shadow: var(--shadow-invalid);
+}
+
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.25rem;
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  border-right: 1px solid var(--input-border);
+  --PhoneInputCountryFlag-height: 1rem;
+}
+
+.PhoneInputCountrySelectArrow {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.PhoneInputInput::placeholder {
+  color: var(--muted-foreground);
+}
+
+.PhoneInputInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

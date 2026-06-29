@@ -14,7 +14,7 @@ function Label({
       data-slot="label"
       className={cn(
         "flex items-center gap-2 t-meta-bold text-main select-none",
-        "label cursor-pointer",
+        "label",
         className,
       )}
       {...props}

@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -29,6 +30,7 @@ export const NewCustomer = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm<NewCustomerFormValues>({
     resolver: zodResolver(newCustomerSchema),
   });
@@ -132,12 +134,17 @@ export const NewCustomer = () => {
               <Label htmlFor="primary_phone" required>
                 Primary phone
               </Label>
-              <Input
-                id="primary_phone"
-                type="tel"
-                placeholder="Enter user primary phone"
-                aria-invalid={!!errors.primaryPhone}
-                {...register("primaryPhone")}
+              <Controller
+                name="primaryPhone"
+                control={control}
+                render={({ field }) => (
+                  <PhoneInput
+                    id="primary_phone"
+                    value={field.value}
+                    onChange={field.onChange}
+                    aria-invalid={!!errors.primaryPhone}
+                  />
+                )}
               />
               {errors.primaryPhone && (
                 <p className="t-caption text-danger">
@@ -151,11 +158,16 @@ export const NewCustomer = () => {
                 Secondary phone{" "}
                 <span className="t-caption text-faint">(optional)</span>
               </Label>
-              <Input
-                id="secondary_phone"
-                type="tel"
-                placeholder="Enter user sec phone"
-                {...register("secondaryPhone")}
+              <Controller
+                name="secondaryPhone"
+                control={control}
+                render={({ field }) => (
+                  <PhoneInput
+                    id="secondary_phone"
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </div>
 
