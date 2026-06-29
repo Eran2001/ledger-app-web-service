@@ -1,3 +1,7 @@
+import type { saleStats } from "@/constant/sale-data";
+import type { customerById } from "@/constant/customer-data";
+import type { productById } from "@/constant/product-data";
+
 export type SaleStatus = "ACTIVE" | "COMPLETED" | "WRITTEN_OFF";
 
 export type SaleTab = "all" | "active" | "overdue" | "completed" | "writtenoff";
@@ -27,4 +31,15 @@ export interface Sale {
   saleDate: string;
   status: SaleStatus;
   notes?: string;
+}
+
+export type EnrichedSale = {
+  sale: Sale;
+  stat: ReturnType<typeof saleStats>;
+  customer: ReturnType<typeof customerById>;
+  product: ReturnType<typeof productById>;
+};
+
+export interface SalesTableProps {
+  rows: EnrichedSale[];
 }

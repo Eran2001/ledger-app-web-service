@@ -3,8 +3,10 @@ import * as React from "react";
 import { Card } from "@/components/ui/card";
 import { CardCaption } from "@/components/shared/card-caption";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { CategoryLabel } from "@/components/shared/category-label";
 
 import { cn } from "@/lib/utils";
+import type { ProductCategory } from "@/types/product-types";
 
 function Table({
   className,
@@ -52,9 +54,7 @@ function Table({
     return <Card className="p-0 gap-0 overflow-hidden">{tableEl}</Card>;
   }
 
-  return (
-    <Card className="card-base overflow-hidden p-0 gap-0">{tableEl}</Card>
-  );
+  return <Card className="card-base overflow-hidden p-0 gap-0">{tableEl}</Card>;
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
@@ -187,6 +187,20 @@ function TableCellMedia({
   );
 }
 
+interface TableCellProductProps {
+  name: string | undefined;
+  category: ProductCategory | undefined;
+}
+
+function TableCellProduct({ name, category }: TableCellProductProps) {
+  return (
+    <div className="flex flex-col">
+      <span className="table-title-text">{name}</span>
+      {category && <CategoryLabel category={category} />}
+    </div>
+  );
+}
+
 function TableCaption({
   className,
   ...props
@@ -209,5 +223,6 @@ export {
   TableRow,
   TableCell,
   TableCellMedia,
+  TableCellProduct,
   TableCaption,
 };

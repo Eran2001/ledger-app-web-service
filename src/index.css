@@ -3947,7 +3947,7 @@
   }
 
   .table-empty {
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: center;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-normal);

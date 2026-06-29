@@ -1,23 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
-import { StatusBadge } from "@/components/shared/status-badge";
 import { SearchField } from "@/components/ui/search-field";
 
-import { CategoryLabel } from "@/components/shared/category-label";
+import { SalesTable } from "./components/sales-table";
 
 import { useWidth } from "@/hooks/use-width";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { saleStats, sales, SALE_TABS } from "@/constant/sale-data";
-import { formatDate } from "@/utils/format-date";
-import { formatCurrency } from "@/utils/format-currency";
 import type { SaleTab } from "@/types/sale-types";
 
 const enriched = sales.map((s) => {
@@ -29,7 +23,6 @@ const enriched = sales.map((s) => {
 
 const SalesPage = () => {
   const { width, breakpoints } = useWidth();
-  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -76,7 +69,7 @@ const SalesPage = () => {
             >
               <TabsList>
                 {SALE_TABS.map((t) => (
-                  <TabsTrigger value={t.value}>{t.label}</TabsTrigger>
+                  <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
@@ -91,104 +84,7 @@ const SalesPage = () => {
           </div>
         </div>
 
-        <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="table-header">
-                  <th className="px-6 py-3 text-left">Customer</th>
-                  <th className="px-6 py-3 text-left">Product</th>
-                  <th className="px-6 py-3 text-right">Sold Price</th>
-                  <th className="px-6 py-3 text-right">Outstanding</th>
-                  <th className="px-6 py-3 text-right">Monthly</th>
-                  <th className="px-6 py-3 text-left">Next Due</th>
-                  <th className="px-6 py-3 text-left">Status</th>
-                  <th className="px-6 py-3 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map(({ sale, stat, customer, product }) => (
-                  <tr
-                    key={sale.id}
-                    onClick={() =>
-                      navigate({ to: "/sales/$id", params: { id: sale.id } })
-                    }
-                    className={`border-t border-default surface-hover cursor-pointer ${
-                      stat.hasOverdue
-                        ? "surface-overdue-row border-l-2 border-start-danger"
-                        : ""
-                    }`}
-                  >
-                    <td className="px-6 py-3">
-                      <div className="flex items-center gap-3">
-                        <InitialsAvatar
-                          name={customer?.fullName ?? ""}
-                          size="sm"
-                        />
-                        <span className="table-title-text">
-                          {customer?.fullName}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-3">
-                      <div className="flex flex-col">
-                        <span className="table-title-text">
-                          {product?.name}
-                        </span>
-                        {product && (
-                          <CategoryLabel category={product.category} />
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-3 text-right table-text">
-                      {formatCurrency(sale.soldPrice)}
-                    </td>
-                    <td className="px-6 py-3 text-right t-meta-bold text-main fw-bold">
-                      {formatCurrency(stat.outstanding)}
-                    </td>
-                    <td className="px-6 py-3 text-right table-text">
-                      {formatCurrency(sale.monthlyAmount)}
-                    </td>
-                    <td className="px-6 py-3 table-text">
-                      {formatDate(stat.nextDue)}
-                    </td>
-                    <td className="px-6 py-3">
-                      <StatusBadge
-                        status={stat.hasOverdue ? "OVERDUE" : sale.status}
-                      />
-                    </td>
-                    <td className="px-6 py-3 text-right">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate({
-                            to: "/sales/$id",
-                            params: { id: sale.id },
-                          });
-                        }}
-                        className="t-caption-bold control-rounded border-default text-soft hover:text-brand bg-transparent"
-                      >
-                        View
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-                {filtered.length === 0 && (
-                  <tr>
-                    <td
-                      colSpan={8}
-                      className="px-6 py-16 text-center t-body text-faint"
-                    >
-                      No sales match your filters.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <SalesTable rows={filtered} />
       </div>
     </div>
   );

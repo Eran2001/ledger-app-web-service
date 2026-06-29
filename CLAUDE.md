@@ -358,6 +358,37 @@ const items: unknown[] = []
 ```
 
 ---
+## Data Access Rules
+
+- Always use **optional chaining** when accessing data from objects that may be `null` or `undefined`
+- For fallback values, the operator depends on the type:
+  - **Strings** → nullish coalescing `??`
+  - **Numbers** → logical OR `||`
+
+```ts
+// ✅ optional chaining always — objects and arrays
+customer?.fullName
+product?.category
+sale?.soldPrice
+items?.[0]
+list?.map((i) => i.id)
+
+// ✅ string fallback — nullish coalescing
+name ?? ""
+label ?? "Unknown"
+
+// ✅ number fallback — logical OR
+count || 0
+amount || 0
+
+// ❌ nullish coalescing for numbers
+count ?? 0
+
+// ❌ no optional chaining
+customer.fullName
+```
+
+---
 ## Naming Conventions
 
 | What            | Convention   | Example                                |
