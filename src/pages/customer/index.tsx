@@ -29,7 +29,7 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { NewCustomer } from "./components/new-customer";
 
 import { customers, customerStats } from "@/constant/customer-data";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/utils/format-currency";
 import { Tab } from "@/types/customer-types";
 
 const enriched = customers.map((c) => {

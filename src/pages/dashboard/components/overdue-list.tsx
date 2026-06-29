@@ -6,7 +6,8 @@ import { CardCaption } from "@/components/shared/card-caption";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, sales } from "@/constant/sale-data";
-import { formatCurrency, daysOverdue } from "@/lib/utils";
+import { daysOverdue } from "@/utils/days-overdue";
+import { formatCurrency } from "@/utils/format-currency";
 
 const overdueRows = installmentSchedules
   .filter((i) => i.status === "OVERDUE")

@@ -20,7 +20,8 @@ import { Button } from "@/components/ui/button";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById, sales } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Notification } from "@/utils/notification";
 
 interface MonthlyPoint {

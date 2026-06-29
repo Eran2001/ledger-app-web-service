@@ -13,7 +13,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { installmentSchedules, schedulesForSale } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Notification } from "@/utils/notification";
 
 interface Props {

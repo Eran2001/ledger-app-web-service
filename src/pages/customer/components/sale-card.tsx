@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/button";
 
 import { productById } from "@/constant/product-data";
 import { saleStats } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Sale } from "@/types/customer-types";
 
 const CATEGORY_PILL: Record<

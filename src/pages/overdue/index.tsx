@@ -10,7 +10,8 @@ import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { customerById, customers } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Notification } from "@/utils/notification";
 
 const TABS = ["All", "1-30 days", "31-60 days", "60+ days"] as const;
@@ -41,7 +42,7 @@ function buildOverdueRows(): OverdueRow[] {
         saleId: s.saleId,
         customerId: customer?.id ?? "",
         customerName: customer?.fullName ?? "Unknown",
-        customerPhone: customer?.phone ?? "",
+        customerPhone: customer?.primary_phone ?? "",
         productName: product?.name ?? "Unknown",
         dueDate: s.dueDate,
         daysOverdue: differenceInDays(today, new Date(s.dueDate)),

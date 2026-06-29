@@ -1,4 +1,5 @@
-import { cn, formatStatusLabel } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { formatStatusLabel } from "@/utils/format-status-label";
 
 type Status =
   | "PAID"

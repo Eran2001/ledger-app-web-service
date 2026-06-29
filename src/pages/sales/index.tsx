@@ -10,7 +10,8 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { saleStats, sales } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 
 const CATEGORY_TEXT: Record<string, string> = {
   Electronics: "text-brand",

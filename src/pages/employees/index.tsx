@@ -8,7 +8,7 @@ import {
   pendingRegistrations,
   employees as initialUsers,
 } from "@/constant/employee-data";
-import { formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
 import type { Employee, Role } from "@/types/employee-types";
 import { Notification } from "@/utils/notification";
 

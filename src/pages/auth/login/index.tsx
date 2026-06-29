@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/stores/auth-store";
-import { users } from "@/constant/employee-data";
+import { employees } from "@/constant/employee-data";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function LoginPage() {
     e.preventDefault();
     setSubmitting(true);
     setTimeout(() => {
-      login(users[0]);
+      login(employees[0]);
       navigate({ to: "/dashboard" });
     }, 400);
   }

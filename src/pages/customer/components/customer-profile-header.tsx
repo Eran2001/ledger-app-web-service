@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { StatInline, StatMeta } from "@/components/ui/stat";
 
 import { useIsMobile } from "@/hooks/use-mobile";
-import { formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
 import { cn } from "@/lib/utils";
 
 type Props = {

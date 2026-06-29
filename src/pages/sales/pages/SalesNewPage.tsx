@@ -16,7 +16,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { customers } from "@/constant/customer-data";
 import { products } from "@/constant/product-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Notification } from "@/utils/notification";
 
 export default function NewSalePage() {
@@ -93,7 +94,7 @@ export default function NewSalePage() {
                   <SelectContent>
                     {customers.map((c) => (
                       <SelectItem key={c.id} value={c.id}>
-                        {c.fullName} · {c.phone}
+                        {c.fullName} · {c.primary_phone}
                       </SelectItem>
                     ))}
                   </SelectContent>

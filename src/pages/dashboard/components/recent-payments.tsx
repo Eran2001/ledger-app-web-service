@@ -12,7 +12,8 @@ import {
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, payments, sales } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 
 const recentPayments = [...payments]
   .sort(

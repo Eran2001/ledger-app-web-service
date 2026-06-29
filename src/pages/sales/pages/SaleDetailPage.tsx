@@ -13,7 +13,8 @@ import {
   saleStats,
   schedulesForSale,
 } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 
 import { RecordPaymentModal } from "@/pages/sales/components/record-payment-modal";
 
@@ -83,7 +84,7 @@ export default function SaleDetailPage() {
                   </span>
                   <span>
                     <span className="text-faint mr-1">Phone</span>
-                    {customer?.phone}
+                    {customer?.primary_phone}
                   </span>
                 </div>
                 <p className="t-meta text-soft mt-1">{customer?.address}</p>
@@ -270,7 +271,7 @@ export default function SaleDetailPage() {
         open={!!activeInstallmentId}
         onClose={() => setActiveInstallmentId(null)}
         installmentId={activeInstallmentId}
-        customerPhone={customer?.phone}
+        customerPhone={customer?.primary_phone}
       />
     </div>
   );

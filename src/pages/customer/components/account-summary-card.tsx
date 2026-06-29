@@ -3,7 +3,8 @@ import { StatPill } from "@/components/shared/stat-pill";
 import { Stat } from "@/components/ui/stat";
 import { Separator } from "@/components/ui/separator";
 
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 
 type Props = {
   outstanding: number;

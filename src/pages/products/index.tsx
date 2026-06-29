@@ -11,8 +11,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { products as initialProducts } from "@/constant/product-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
-import type { Product } from "@/lib/types";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
+import type { Product } from "@/types/product-types";
 import { Notification } from "@/utils/notification";
 
 const TABS = [

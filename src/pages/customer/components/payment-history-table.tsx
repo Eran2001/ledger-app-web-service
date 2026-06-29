@@ -1,6 +1,7 @@
 import { productById } from "@/constant/product-data";
 import { sales } from "@/constant/sale-data";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import {
   Table,
   TableBody,
