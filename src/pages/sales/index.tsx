@@ -1,43 +1,39 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Download, Plus, Search } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { SearchField } from "@/components/ui/search-field";
+
+import { CategoryLabel } from "@/components/shared/category-label";
+
+import { useWidth } from "@/hooks/use-width";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
-import { saleStats, sales } from "@/constant/sale-data";
+import { saleStats, sales, SALE_TABS } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
+import type { SaleTab } from "@/types/sale-types";
 
-const CATEGORY_TEXT: Record<string, string> = {
-  Electronics: "text-brand",
-  Appliances: "text-cat-teal",
-  Furniture: "text-warning-role",
-  Hardware: "text-cat-purple",
-  Other: "text-faint",
-};
+const enriched = sales.map((s) => {
+  const stat = saleStats(s.id);
+  const customer = customerById(s.customerId);
+  const product = productById(s.productId);
+  return { sale: s, stat, customer, product };
+});
 
-type Tab = "all" | "active" | "overdue" | "completed" | "writtenoff";
-
-export default function SalesPage() {
+const SalesPage = () => {
+  const { width, breakpoints } = useWidth();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [tab, setTab] = useState<Tab>("all");
-
-  const enriched = useMemo(() => {
-    return sales.map((s) => {
-      const stat = saleStats(s.id);
-      const customer = customerById(s.customerId);
-      const product = productById(s.productId);
-      return { sale: s, stat, customer, product };
-    });
-  }, []);
+  const [tab, setTab] = useState<SaleTab>("all");
 
   const filtered = enriched.filter(({ sale, stat, customer, product }) => {
     const q = search.trim().toLowerCase();
@@ -61,82 +57,40 @@ export default function SalesPage() {
       <TopBar
         pageTitle="Sales"
         pageSubtitle={`${sales.length} total sales`}
-        primaryAction={{ to: "/sales/new", icon: Plus, label: "New Sale" }}
+        primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
       />
-      <div className="p-6 overflow-y-auto">
-        {/* Filter tabs */}
-        <Tabs
-          value={tab}
-          onValueChange={(v) => setTab(v as Tab)}
-          className="mb-4"
-        >
-          <TabsList className="surface-tab-list h-10 p-1 tab-rounded">
-            <TabsTrigger value="all" className="tabs-trigger px-3 tab-rounded">
-              All Sales
-            </TabsTrigger>
-            <TabsTrigger
-              value="active"
-              className="tabs-trigger px-3 tab-rounded"
+      <div className="p-6 overflow-y-auto space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+          <SearchField
+            value={search}
+            onChange={setSearch}
+            placeholder="Search by name, NIC, or phone…"
+            size={width >= breakpoints.xl ? "large" : "default"}
+            containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+          />
+          <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+            <Tabs
+              value={tab}
+              onValueChange={(v) => setTab(v as SaleTab)}
+              className="w-full xs:w-auto"
             >
-              Active
-            </TabsTrigger>
-            <TabsTrigger
-              value="overdue"
-              className="tabs-trigger px-3 tab-rounded"
-            >
-              Overdue
-            </TabsTrigger>
-            <TabsTrigger
-              value="completed"
-              className="tabs-trigger px-3 tab-rounded"
-            >
-              Completed
-            </TabsTrigger>
-            <TabsTrigger
-              value="writtenoff"
-              className="tabs-trigger px-3 tab-rounded"
-            >
-              Written Off
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+              <TabsList>
+                {SALE_TABS.map((t) => (
+                  <TabsTrigger value={t.value}>{t.label}</TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
 
-        <div className="flex flex-wrap items-center gap-3 mb-5">
-          <div className="relative flex-1 min-w-60 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
-            <Input
-              placeholder="Search customer or product…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 h-10 control-rounded border-default surface-card"
-            />
+            <Button
+              size={width >= breakpoints.xl ? "lg" : "default"}
+              variant="secondary"
+              className="shrink-0"
+            >
+              <Icon.ArrowUpFromLine /> Export
+            </Button>
           </div>
-
-          <div className="flex items-center gap-2">
-            <Input
-              type="date"
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-              className="h-10 control-rounded border-default surface-card t-meta text-soft"
-            />
-            <span className="t-caption text-faint">to</span>
-            <Input
-              type="date"
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              className="h-10 control-rounded border-default surface-card t-meta text-soft"
-            />
-          </div>
-
-          <Button
-            variant="outline"
-            className="ml-auto h-10 control-rounded border-default text-soft gap-2 bg-transparent"
-          >
-            <Download className="h-4 w-4" /> Export
-          </Button>
         </div>
 
-        {/* Table */}
         <div className="surface-card global-rounded border border-default shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -181,11 +135,9 @@ export default function SalesPage() {
                         <span className="table-title-text">
                           {product?.name}
                         </span>
-                        <span
-                          className={`t-micro-bold text-uppercase tracking-label ${product ? CATEGORY_TEXT[product.category] : "text-faint"}`}
-                        >
-                          {product?.category}
-                        </span>
+                        {product && (
+                          <CategoryLabel category={product.category} />
+                        )}
                       </div>
                     </td>
                     <td className="px-6 py-3 text-right table-text">
@@ -198,7 +150,7 @@ export default function SalesPage() {
                       {formatCurrency(sale.monthlyAmount)}
                     </td>
                     <td className="px-6 py-3 table-text">
-                      {stat.nextDue ? formatDate(stat.nextDue) : "—"}
+                      {formatDate(stat.nextDue)}
                     </td>
                     <td className="px-6 py-3">
                       <StatusBadge
@@ -240,4 +192,6 @@ export default function SalesPage() {
       </div>
     </div>
   );
-}
+};
+
+export default SalesPage;

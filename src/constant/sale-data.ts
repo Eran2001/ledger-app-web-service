@@ -1,6 +1,14 @@
 import { addMonths, format, subDays, subMonths } from "date-fns";
 
-import type { Sale } from "@/types/sale-types";
+import type { Sale, SaleTab } from "@/types/sale-types";
+
+export const SALE_TABS: { value: SaleTab; label: string }[] = [
+  { value: "all", label: "All Sales" },
+  { value: "active", label: "Active" },
+  { value: "overdue", label: "Overdue" },
+  { value: "completed", label: "Completed" },
+  { value: "writtenoff", label: "Written Off" },
+];
 import {
   InstallmentSchedule,
   InstallmentStatus,

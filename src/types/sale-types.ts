@@ -1,5 +1,7 @@
 export type SaleStatus = "ACTIVE" | "COMPLETED" | "WRITTEN_OFF";
 
+export type SaleTab = "all" | "active" | "overdue" | "completed" | "writtenoff";
+
 export interface SaleSpec {
   id: string;
   customerId: string;

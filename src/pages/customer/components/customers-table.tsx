@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table";
 import { StatusBadge } from "@/components/shared/status-badge";
 
+import { useWidth } from "@/hooks/use-width";
 import { formatCurrency } from "@/utils/format-currency";
 import type { Customer } from "@/types/customer-types";
 import type { customerStats } from "@/constant/customer-data";
@@ -33,6 +34,7 @@ interface CustomersTableProps {
 }
 
 export const CustomersTable = ({ rows }: CustomersTableProps) => {
+  const { width, breakpoints } = useWidth();
   const navigate = useNavigate();
 
   return (

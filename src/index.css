@@ -4020,7 +4020,7 @@
   .table-striped
     [data-slot="table-body"]
     [data-slot="table-row"]:hover
-    [data-slot="table-cell"]:first-child {
+    [data-slot="table-cell"]:first-child:not(.table-empty) {
     color: var(--primary);
   }
 
@@ -4060,7 +4060,7 @@
   .table-simple
     [data-slot="table-body"]
     [data-slot="table-row"]:hover
-    [data-slot="table-cell"]:first-child {
+    [data-slot="table-cell"]:first-child:not(.table-empty) {
     color: var(--primary);
   }
 

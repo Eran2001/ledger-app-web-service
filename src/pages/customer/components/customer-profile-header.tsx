@@ -6,14 +6,15 @@ import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { Button } from "@/components/ui/button";
 import { StatInline, StatMeta } from "@/components/ui/stat";
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useWidth } from "@/hooks/use-width";
 import { formatDate } from "@/utils/format-date";
 import { cn } from "@/lib/utils";
 import { ProfileProps } from "@/types/customer-types";
 
 export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
   const navigate = useNavigate();
-  const isMaxXs = useIsMobile(480);
+  const { width, breakpoints } = useWidth();
+  const isMaxXs = width < breakpoints.xs;
 
   return (
     <Card className="overflow-hidden relative">
