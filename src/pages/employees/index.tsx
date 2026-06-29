@@ -4,9 +4,12 @@ import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
-import { pendingRegistrations, users as initialUsers } from "@/lib/dummy-data";
+import {
+  pendingRegistrations,
+  employees as initialUsers,
+} from "@/constant/employee-data";
 import { formatDate } from "@/lib/utils";
-import type { User, Role } from "@/lib/types";
+import type { Employee, Role } from "@/types/employee-types";
 import { Notification } from "@/utils/notification";
 
 const TABS = ["Team Members", "Pending Requests"] as const;
@@ -26,7 +29,7 @@ function rolePillClass(role: Role): string {
 
 export default function UsersPage() {
   const [tab, setTab] = useState<Tab>("Team Members");
-  const [users, setUsers] = useState<User[]>(initialUsers);
+  const [users, setUsers] = useState<Employee[]>(initialUsers);
   const [pending, setPending] = useState(pendingRegistrations);
 
   function approve(id: string) {

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { KpiCardProps } from "@/types/dashboard";
+import { KpiCardProps } from "@/types/dashboard-types";
 
 export const KpiCard = ({ label, value, sub, trend, danger }: KpiCardProps) => {
   return (

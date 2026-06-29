@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { products as initialProducts } from "@/lib/dummy-data";
+import { products as initialProducts } from "@/constant/product-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import type { Product } from "@/lib/types";
 import { Notification } from "@/utils/notification";

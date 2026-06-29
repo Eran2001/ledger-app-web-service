@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { installmentSchedules, schedulesForSale } from "@/lib/dummy-data";
+import { installmentSchedules, schedulesForSale } from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Notification } from "@/utils/notification";
 

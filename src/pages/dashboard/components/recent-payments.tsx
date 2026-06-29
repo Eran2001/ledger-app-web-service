@@ -9,13 +9,9 @@ import {
   TableCellMedia,
 } from "@/components/ui/table";
 
-import {
-  installmentSchedules,
-  payments,
-  productById,
-  customerById,
-  sales,
-} from "@/lib/dummy-data";
+import { customerById } from "@/constant/customer-data";
+import { productById } from "@/constant/product-data";
+import { installmentSchedules, payments, sales } from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 const recentPayments = [...payments]

@@ -10,9 +10,10 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
-import { saleStats, productById } from "@/lib/dummy-data";
+import { productById } from "@/constant/product-data";
+import { saleStats } from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
-import { Sale } from "@/types/customer";
+import { Sale } from "@/types/customer-types";
 
 const CATEGORY_PILL: Record<
   string,

@@ -7,13 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
-import {
-  customerById,
-  customers,
-  installmentSchedules,
-  productById,
-  saleById,
-} from "@/lib/dummy-data";
+import { customerById, customers } from "@/constant/customer-data";
+import { productById } from "@/constant/product-data";
+import { installmentSchedules, saleById } from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Notification } from "@/utils/notification";
 

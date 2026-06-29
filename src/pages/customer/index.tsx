@@ -28,9 +28,9 @@ import { EmptyState } from "@/components/shared/empty-state";
 
 import { NewCustomer } from "./components/new-customer";
 
-import { customers, customerStats } from "@/lib/dummy-data";
+import { customers, customerStats } from "@/constant/customer-data";
 import { formatCurrency } from "@/lib/utils";
-import { Tab } from "@/types/customer";
+import { Tab } from "@/types/customer-types";
 
 const enriched = customers.map((c) => {
   const stat = customerStats(c.id);

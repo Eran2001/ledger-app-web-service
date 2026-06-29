@@ -1,7 +1,7 @@
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 
-import { installmentSchedules, saleStats, sales } from "@/lib/dummy-data";
+import { installmentSchedules, saleStats, sales } from "@/constant/sale-data";
 import { formatCurrency } from "@/lib/utils";
 
 import { KpiCard } from "./components/kpi-card";

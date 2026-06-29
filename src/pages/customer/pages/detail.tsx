@@ -5,13 +5,8 @@ import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
 
-import {
-  customerById,
-  customerStats,
-  paymentsForSale,
-  sales,
-} from "@/lib/dummy-data";
-import { TABS } from "@/constant/customer";
+import { customerById, customerStats, TABS } from "@/constant/customer-data";
+import { paymentsForSale, sales } from "@/constant/sale-data";
 
 import { CustomerProfileHeader } from "../components/customer-profile-header";
 import { AccountSummaryCard } from "../components/account-summary-card";

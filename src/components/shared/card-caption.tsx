@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 import { cn } from "@/lib/utils";
-import { CardCaptionProps } from "@/types/dashboard";
+import { CardCaptionProps } from "@/types/dashboard-types";
 
 export function CardCaption({
   title,

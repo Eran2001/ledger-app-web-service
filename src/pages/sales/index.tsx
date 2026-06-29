@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
-import { customerById, productById, saleStats, sales } from "@/lib/dummy-data";
+import { customerById } from "@/constant/customer-data";
+import { productById } from "@/constant/product-data";
+import { saleStats, sales } from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 const CATEGORY_TEXT: Record<string, string> = {

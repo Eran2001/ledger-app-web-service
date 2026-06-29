@@ -14,7 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { customers, products } from "@/lib/dummy-data";
+import { customers } from "@/constant/customer-data";
+import { products } from "@/constant/product-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Notification } from "@/utils/notification";
 

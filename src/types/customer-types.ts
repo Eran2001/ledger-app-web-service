@@ -31,3 +31,15 @@ export type Props = {
     outstanding: number;
   };
 };
+
+export interface Customer {
+  id: string;
+  fullName: string;
+  primary_phone: string;
+  secondary_phone: string;
+  nic: string;
+  address: string;
+  city: string;
+  createdAt: string;
+  email?: string;
+}

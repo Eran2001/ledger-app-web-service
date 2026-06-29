@@ -5,14 +5,14 @@ import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { customerById } from "@/constant/customer-data";
+import { productById } from "@/constant/product-data";
 import {
-  customerById,
   paymentsForSale,
-  productById,
   saleById,
   saleStats,
   schedulesForSale,
-} from "@/lib/dummy-data";
+} from "@/constant/sale-data";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 import { RecordPaymentModal } from "@/pages/sales/components/record-payment-modal";

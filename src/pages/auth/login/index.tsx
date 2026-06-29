@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/stores/auth-store";
-import { users } from "@/lib/dummy-data";
+import { users } from "@/constant/employee-data";
 
 export default function LoginPage() {
   const navigate = useNavigate();

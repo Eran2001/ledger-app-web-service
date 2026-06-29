@@ -1,18 +1,17 @@
-
-import { create } from "zustand"
-import type { User } from "@/lib/types"
-import { users } from "@/lib/dummy-data"
+import { create } from "zustand";
+import type { Employee } from "@/types/employee-types";
+import { employees } from "@/constant/employee-data";
 
 interface AuthState {
-  user: User | null
-  isAuthenticated: boolean
-  login: (user: User) => void
-  logout: () => void
+  user: Employee | null;
+  isAuthenticated: boolean;
+  login: (user: Employee) => void;
+  logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: users[0],
+  user: employees[0],
   isAuthenticated: true,
   login: (user) => set({ user, isAuthenticated: true }),
   logout: () => set({ user: null, isAuthenticated: false }),
-}))
+}));

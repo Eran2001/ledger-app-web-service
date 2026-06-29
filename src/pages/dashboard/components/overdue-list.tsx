@@ -3,12 +3,9 @@ import { useNavigate } from "@tanstack/react-router";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { CardCaption } from "@/components/shared/card-caption";
 
-import {
-  installmentSchedules,
-  productById,
-  customerById,
-  sales,
-} from "@/lib/dummy-data";
+import { customerById } from "@/constant/customer-data";
+import { productById } from "@/constant/product-data";
+import { installmentSchedules, sales } from "@/constant/sale-data";
 import { formatCurrency, daysOverdue } from "@/lib/utils";
 
 const overdueRows = installmentSchedules

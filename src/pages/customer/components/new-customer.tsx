@@ -19,7 +19,7 @@ import {
 import {
   newCustomerSchema,
   type NewCustomerFormValues,
-} from "@/schemas/customers-schema";
+} from "@/schemas/customer-schema";
 import { useUIStore } from "@/stores/ui-store";
 import { Notification } from "@/utils/notification";
 
