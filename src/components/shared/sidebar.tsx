@@ -1,6 +1,6 @@
 import { useUIStore } from "@/stores/ui-store";
 import { SidebarNav } from "./sidebar-nav";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 export function Sidebar() {
   const collapsed = useUIStore((s) => s.sidebarCollapsed);
@@ -20,14 +20,16 @@ export function MobileSidebar() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side="left"
-        className="p-0 w-72 app-sidebar"
+        className="p-0 w-full sm:w-72 app-sidebar"
         style={{ borderColor: "var(--sidebar-border)" }}
-        aria-label="Mobile navigation"
+        aria-describedby={undefined}
       >
+        <SheetTitle className="sr-only">Navigation menu</SheetTitle>
         <SidebarNav
           collapsed={false}
           onItemClick={() => setOpen(false)}
           showToggle={false}
+          className="w-full"
         />
       </SheetContent>
     </Sheet>

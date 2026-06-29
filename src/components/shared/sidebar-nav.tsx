@@ -20,6 +20,7 @@ interface SidebarNavProps {
   onToggleCollapse?: () => void;
   onItemClick?: () => void;
   showToggle?: boolean;
+  className?: string;
 }
 
 export function SidebarNav({
@@ -27,6 +28,7 @@ export function SidebarNav({
   onToggleCollapse,
   onItemClick,
   showToggle = true,
+  className,
 }: SidebarNavProps) {
   const { pathname } = useLocation();
 
@@ -45,6 +47,7 @@ export function SidebarNav({
       className={cn(
         "app-sidebar h-full min-h-0 flex flex-col transition-[width] duration-300 overflow-hidden border-r",
         collapsed ? "w-16" : "w-55",
+        className,
       )}
       style={{ borderColor: "var(--sidebar-border)" }}
       aria-label="Main sidebar"
