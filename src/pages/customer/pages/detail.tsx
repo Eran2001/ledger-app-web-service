@@ -5,13 +5,13 @@ import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
 
-import { customerById, customerStats, TABS } from "@/constant/customer-data";
-import { paymentsForSale, sales } from "@/constant/sale-data";
-
 import { CustomerProfileHeader } from "../components/customer-profile-header";
 import { AccountSummaryCard } from "../components/account-summary-card";
 import { SaleCard } from "../components/sale-card";
 import { PaymentHistoryTable } from "../components/payment-history-table";
+
+import { customerById, customerStats, TABS } from "@/constant/customer-data";
+import { paymentsForSale, sales } from "@/constant/sale-data";
 
 const CustomerDetailPage = () => {
   const { id } = useParams({ strict: false });

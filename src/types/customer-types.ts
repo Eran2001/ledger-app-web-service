@@ -1,3 +1,7 @@
+import type { UseFormRegister, Control, FieldErrors } from "react-hook-form";
+
+import type { NewCustomerFormValues } from "@/schemas/customer-schema";
+
 export type Tab = "all" | "active" | "overdue";
 
 export type Sale = {
@@ -42,4 +46,31 @@ export interface Customer {
   city: string;
   createdAt: string;
   email?: string;
+}
+
+export type SummaryProps = {
+  outstanding: number;
+  totalPaid: number;
+  activeSalesCount: number;
+  nextDue?: string;
+  customerSince: string;
+};
+
+export type ProfileProps = {
+  customer: {
+    fullName: string;
+    nic: string;
+    primary_phone: string;
+    secondary_phone?: string;
+    email?: string;
+    address: string;
+    city: string;
+    createdAt: string;
+  };
+};
+
+export interface NewCustomerFormFieldsProps {
+  register: UseFormRegister<NewCustomerFormValues>;
+  control: Control<NewCustomerFormValues>;
+  errors: FieldErrors<NewCustomerFormValues>;
 }

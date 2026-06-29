@@ -1,7 +1,3 @@
-import { productById } from "@/constant/product-data";
-import { sales } from "@/constant/sale-data";
-import { formatDate } from "@/utils/format-date";
-import { formatCurrency } from "@/utils/format-currency";
 import {
   Table,
   TableBody,
@@ -10,6 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import { productById } from "@/constant/product-data";
+import { sales } from "@/constant/sale-data";
+import { formatDate } from "@/utils/format-date";
+import { formatCurrency } from "@/utils/format-currency";
 import { Payment } from "@/types/customer-types";
 
 export const PaymentHistoryTable = ({ payments }: { payments: Payment[] }) => {

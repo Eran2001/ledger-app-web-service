@@ -5,14 +5,7 @@ import { Separator } from "@/components/ui/separator";
 
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-
-type Props = {
-  outstanding: number;
-  totalPaid: number;
-  activeSalesCount: number;
-  nextDue?: string;
-  customerSince: string;
-};
+import { SummaryProps } from "@/types/customer-types";
 
 export const AccountSummaryCard = ({
   outstanding,
@@ -20,7 +13,7 @@ export const AccountSummaryCard = ({
   activeSalesCount,
   nextDue,
   customerSince,
-}: Props) => {
+}: SummaryProps) => {
   const isOutstanding = outstanding > 0;
 
   return (

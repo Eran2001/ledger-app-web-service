@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";

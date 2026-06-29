@@ -9,21 +9,9 @@ import { StatInline, StatMeta } from "@/components/ui/stat";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { formatDate } from "@/utils/format-date";
 import { cn } from "@/lib/utils";
+import { ProfileProps } from "@/types/customer-types";
 
-type Props = {
-  customer: {
-    fullName: string;
-    nic: string;
-    primary_phone: string;
-    secondary_phone?: string;
-    email?: string;
-    address: string;
-    city: string;
-    createdAt: string;
-  };
-};
-
-export const CustomerProfileHeader = ({ customer }: Props) => {
+export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
   const navigate = useNavigate();
   const isMaxXs = useIsMobile(480);
 
@@ -56,19 +44,12 @@ export const CustomerProfileHeader = ({ customer }: Props) => {
               <h2 className="t-section text-main">{customer.fullName}</h2>
             </div>
           )}
-          {isMaxXs ? (
-            <div className="flex justify-center items-center">
-              <InitialsAvatar
-                name={customer.fullName}
-                size={isMaxXs ? "lg" : "auto"}
-              />
-            </div>
-          ) : (
+          <div className={cn(isMaxXs && "flex justify-center items-center")}>
             <InitialsAvatar
               name={customer.fullName}
               size={isMaxXs ? "lg" : "auto"}
             />
-          )}
+          </div>
           <div className="min-w-0 flex flex-col space-y-1">
             {!isMaxXs && (
               <h2 className="t-section text-main">{customer.fullName}</h2>
