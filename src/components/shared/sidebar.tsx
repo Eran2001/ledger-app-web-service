@@ -20,7 +20,7 @@ export function MobileSidebar() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side="left"
-        className="p-0 w-full sm:w-72 app-sidebar"
+        className="p-0 w-full xs:max-w-72 app-sidebar"
         style={{ borderColor: "var(--sidebar-border)" }}
         aria-describedby={undefined}
       >
