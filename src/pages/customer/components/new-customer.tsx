@@ -12,14 +12,14 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 
+import { NewCustomerFormFields } from "./new-customer-form-fields";
+
 import {
   newCustomerSchema,
   type NewCustomerFormValues,
 } from "@/schemas/customer-schema";
 import { useUIStore } from "@/stores/ui-store";
 import { Notification } from "@/utils/notification";
-
-import { NewCustomerFormFields } from "./new-customer-form-fields";
 
 export const NewCustomer = () => {
   const { newCustomerOpen, closeNewCustomer } = useUIStore();

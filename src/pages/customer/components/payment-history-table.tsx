@@ -37,12 +37,12 @@ export const PaymentHistoryTable = ({ payments }: { payments: Payment[] }) => {
             const sale = sales.find((s) => s.id === p.saleId);
             const prod = sale ? productById(sale.productId) : undefined;
             return (
-              <TableRow key={p.id}>
-                <TableCell>{formatDate(p.paidDate)}</TableCell>
+              <TableRow key={p?.id}>
+                <TableCell>{formatDate(p?.paidDate)}</TableCell>
                 <TableCell>{prod?.name}</TableCell>
-                <TableCell>{formatCurrency(p.paidAmount)}</TableCell>
-                <TableCell>{p.recordedBy}</TableCell>
-                <TableCell>{p.notes ?? "—"}</TableCell>
+                <TableCell>{formatCurrency(p?.paidAmount)}</TableCell>
+                <TableCell>{p?.recordedBy}</TableCell>
+                <TableCell>{p?.notes}</TableCell>
               </TableRow>
             );
           })

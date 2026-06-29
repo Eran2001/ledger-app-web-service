@@ -4,14 +4,6 @@ import type { NewCustomerFormValues } from "@/schemas/customer-schema";
 
 export type Tab = "all" | "active" | "overdue";
 
-export type Sale = {
-  id: string;
-  productId: string;
-  soldPrice: number;
-  downPayment: number;
-  monthlyAmount: number;
-};
-
 export type Payment = {
   id: string;
   saleId: string;

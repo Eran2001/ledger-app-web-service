@@ -46,7 +46,7 @@ export const AccountSummaryCard = ({
           value={`${activeSalesCount} sale${activeSalesCount !== 1 ? "s" : ""}`}
         />
         <Stat label="Total Paid" value={formatCurrency(totalPaid)} />
-        <Stat label="Next Due" value={nextDue ? formatDate(nextDue) : "—"} />
+        <Stat label="Next Due" value={formatDate(nextDue)} />
         <Stat label="Last Payment" value={formatDate(customerSince)} />
       </div>
     </Card>

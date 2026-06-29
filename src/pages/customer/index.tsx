@@ -3,8 +3,6 @@ import { useState } from "react";
 import * as Icon from "@/components/icons";
 import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
-import { useUIStore } from "@/stores/ui-store";
-
 import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EmptyState } from "@/components/shared/empty-state";
@@ -12,6 +10,7 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { NewCustomer } from "./components/new-customer";
 import { CustomersTable } from "./components/customers-table";
 
+import { useUIStore } from "@/stores/ui-store";
 import { customers, customerStats } from "@/constant/customer-data";
 import { Tab } from "@/types/customer-types";
 

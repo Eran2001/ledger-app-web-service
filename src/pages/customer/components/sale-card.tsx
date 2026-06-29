@@ -2,7 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { StatusBadge } from "@/components/shared/status-badge";
-import { StatPill } from "@/components/shared/stat-pill";
+import { CategoryPill } from "@/components/shared/category-pill";
 import { Progress } from "@/components/ui/progress";
 import { Stat, StatMeta } from "@/components/ui/stat";
 import { Card } from "@/components/ui/card";
@@ -13,18 +13,7 @@ import { productById } from "@/constant/product-data";
 import { saleStats } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-import { Sale } from "@/types/customer-types";
-
-const CATEGORY_PILL: Record<
-  string,
-  "indigo" | "teal" | "amber" | "purple" | "gray"
-> = {
-  Electronics: "indigo",
-  Appliances: "teal",
-  Furniture: "amber",
-  Hardware: "purple",
-  Other: "gray",
-};
+import type { Sale } from "@/types/sale-types";
 
 export const SaleCard = ({ sale }: { sale: Sale }) => {
   const navigate = useNavigate();
@@ -38,12 +27,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="t-section text-main truncate">{product?.name}</h3>
-          {product && (
-            <StatPill
-              label={product.category}
-              color={CATEGORY_PILL[product.category] ?? "gray"}
-            />
-          )}
+          {product && <CategoryPill category={product.category} />}
         </div>
         <StatusBadge status={stat.hasOverdue ? "OVERDUE" : "ACTIVE"} />
       </div>
@@ -69,10 +53,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
       <Separator />
 
       <div className="flex items-center justify-between">
-        <StatMeta
-          label="Next due"
-          value={stat.nextDue ? formatDate(stat.nextDue) : "N/A"}
-        />
+        <StatMeta label="Next due" value={formatDate(stat.nextDue)} />
         <Button
           variant="link"
           size="sm"
