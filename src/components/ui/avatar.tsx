@@ -4,7 +4,11 @@ import { cva } from "class-variance-authority";
 
 import { useWidth } from "@/hooks/use-width";
 import { cn } from "@/lib/utils";
-import { getResponsiveSize } from "@/utils/get-responsive-size";
+import { getAvatarColors } from "@/utils/get-avatar-colors";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 const avatarVariants = cva(
   "relative flex shrink-0 overflow-hidden xl-rounded",
@@ -24,17 +28,31 @@ const avatarVariants = cva(
   },
 );
 
+type AvatarSize = ResponsiveSize | "auto";
+
 function Avatar({
   className,
+  size,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+}: React.ComponentProps<typeof AvatarPrimitive.Root> & {
+  size?: AvatarSize;
+  border?: boolean;
+  shadow?: boolean;
+}) {
   const { width, breakpoints } = useWidth();
-  const resolvedSize = getResponsiveSize(width, breakpoints);
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
 
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
-      className={cn(avatarVariants({ size: resolvedSize }), className)}
+      className={cn(
+        avatarVariants({ size: resolvedSize }),
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
+        className,
+      )}
       {...props}
     />
   );
@@ -55,8 +73,14 @@ function AvatarImage({
 
 function AvatarFallback({
   className,
+  children,
+  style,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  const textContent =
+    typeof children === "string" ? children : typeof children === "number" ? String(children) : "";
+  const colors = textContent ? getAvatarColors(textContent) : null;
+
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
@@ -65,6 +89,16 @@ function AvatarFallback({
         "size-full items-center justify-center xl-rounded",
         className,
       )}
+      style={
+        colors
+          ? {
+              backgroundColor: colors.bg,
+              color: colors.fg,
+              ...style,
+            }
+          : style
+      }
+      children={children}
       {...props}
     />
   );

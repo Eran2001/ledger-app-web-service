@@ -2,6 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { getAvatarColors } from "@/utils/get-avatar-colors";
 import { getInitials } from "@/utils/get-initials";
 import { useAuthStore } from "@/stores/auth-store";
 
@@ -15,11 +16,18 @@ export function UserProfile({ collapsed }: UserProfileProps) {
   const logout = useAuthStore((s) => s.logout);
 
   const initials = user ? getInitials(user.name) : "U";
+  const avatarColors = getAvatarColors(initials);
 
   if (collapsed) {
     return (
       <div className="flex justify-center mb-2">
-        <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold">
+        <div
+          className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold"
+          style={{
+            backgroundColor: avatarColors.bg,
+            color: avatarColors.fg,
+          }}
+        >
           {initials}
         </div>
       </div>
@@ -28,7 +36,13 @@ export function UserProfile({ collapsed }: UserProfileProps) {
 
   return (
     <div className="app-sidebar-panel global-rounded p-3 flex items-center gap-3">
-      <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold shrink-0">
+      <div
+        className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold shrink-0"
+        style={{
+          backgroundColor: avatarColors.bg,
+          color: avatarColors.fg,
+        }}
+      >
         {initials}
       </div>
       <div className="flex-1 min-w-0">

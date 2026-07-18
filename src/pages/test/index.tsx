@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,12 +16,28 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="aspect ratio">
-        <AspectRatio ratio={1 / 1}>
-          <div className="flex h-full items-center justify-center t-title-md text-brand">
-            16:9
-          </div>
-        </AspectRatio>
+      <Block title="avatar">
+        <div className="flex items-center gap-4">
+          <Avatar border shadow>
+            <AvatarImage
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=320&q=80"
+              alt="Sophia Turner"
+            />
+            <AvatarFallback>ST</AvatarFallback>
+          </Avatar>
+
+          <Avatar border shadow>
+            <AvatarFallback>AL</AvatarFallback>
+          </Avatar>
+
+          <Avatar border shadow>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+
+          <Avatar border shadow>
+            <AvatarFallback>SM</AvatarFallback>
+          </Avatar>
+        </div>
       </Block>
     </div>
   );
