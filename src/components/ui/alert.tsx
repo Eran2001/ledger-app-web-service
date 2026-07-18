@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type AlertVariant = "default" | "success" | "info" | "warning" | "destructive";
 
 const alertVariants = cva(
-  "relative flex w-full items-start gap-3.5 border p-5 global-rounded",
+  "relative flex w-full items-start gap-3.5 p-5 global-rounded",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const alertVariants = cva(
 );
 
 const badgeVariants = cva(
-  "flex h-large w-large shrink-0 items-center justify-center global-rounded",
+  "alert-badge flex h-large w-large shrink-0 items-center justify-center global-rounded",
   {
     variants: {
       variant: {
@@ -70,11 +70,17 @@ const DEFAULT_ICONS: Record<AlertVariant, typeof Icon.Info> = {
 function Alert({
   className,
   variant,
+  border = false,
+  shadow = false,
   icon,
   children,
   ...props
 }: React.ComponentProps<"div"> &
-  VariantProps<typeof alertVariants> & { icon?: React.ReactNode }) {
+  VariantProps<typeof alertVariants> & {
+    border?: boolean;
+    shadow?: boolean;
+    icon?: React.ReactNode;
+  }) {
   const resolvedVariant = variant ?? "default";
   const ResolvedIcon = DEFAULT_ICONS[resolvedVariant];
 
@@ -83,19 +89,19 @@ function Alert({
       <div
         data-slot="alert"
         role="alert"
-        className={cn(alertVariants({ variant: resolvedVariant }), className)}
+        className={cn(
+          alertVariants({ variant: resolvedVariant }),
+          border && "border-stroke",
+          shadow && "shadow-card",
+          className,
+        )}
         {...props}
       >
         <span
           aria-hidden="true"
           className={cn(badgeVariants({ variant: resolvedVariant }))}
         >
-          {icon ?? (
-            <ResolvedIcon
-              className="global-rounded icon-default"
-              strokeWidth={3}
-            />
-          )}
+          {icon ?? <ResolvedIcon strokeWidth={3} />}
         </span>
         <div className="min-w-0 flex-1">{children}</div>
       </div>

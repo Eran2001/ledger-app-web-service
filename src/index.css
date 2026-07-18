@@ -1861,56 +1861,866 @@
 
   /* SEMANTIC FIELD HEIGHT & WIDTH */
   .h-small {
-    height: 1.75rem; /* h-7 */
+    height: 1.75rem; /* 28px */
   }
   .w-small {
-    width: 1.75rem; /* w-7 */
+    width: 1.75rem; /* 28px */
   }
   .h-compact {
-    height: 2rem; /* h-8 */
+    height: 2rem; /* 32px */
   }
   .w-compact {
-    width: 2rem; /* w-8 */
+    width: 2rem; /* 32px */
   }
   .h-field {
-    height: 2.25rem; /* h-9 */
+    height: 2.25rem; /* 36px */
   }
   .w-field {
-    width: 2.25rem; /* w-9 */
+    width: 2.25rem; /* 36px */
   }
   .h-large {
-    height: 2.5rem; /* h-10 */
+    height: 2.5rem; /* 40px */
   }
   .w-large {
-    width: 2.5rem; /* w-10 */
+    width: 2.5rem; /* 40px */
   }
   .h-medium-large {
-    height: 3rem; /* h-12 */
+    height: 3rem; /* 48px */
   }
   .w-medium-large {
-    width: 3rem; /* w-12 */
+    width: 3rem; /* 48px */
   }
   .h-extra-large {
-    height: 3.5rem; /* h-14 */
+    height: 3.5rem; /* 56px */
   }
   .w-extra-large {
-    width: 3.5rem; /* w-14 */
+    width: 3.5rem; /* 56px */
   }
   .min-h-textarea-compact {
-    min-height: 3rem; /* min-h-12 */
+    min-height: 3rem; /* 48px */
   }
   .min-h-textarea {
-    min-height: 4rem; /* min-h-16 */
+    min-height: 4rem; /* 64px */
   }
   .min-h-textarea-large {
-    min-height: 5rem; /* min-h-20 */
+    min-height: 5rem; /* 80px */
   }
   .min-h-textarea-extra-large {
-    min-height: 6rem; /* min-h-24 */
+    min-height: 6rem; /* 96px */
   }
   /* HIGHT FOR PROGRESS COMPO */
   .h-progress {
-    height: 0.5rem; /* h-2 */
+    height: 0.5rem; /* 8px */
+  }
+
+  @media (min-width: theme(--breakpoint-xxs)) {
+    .h-small {
+      height: 1.75rem; /* 28px */
+    }
+    .w-small {
+      width: 1.75rem; /* 28px */
+    }
+    .h-compact {
+      height: 2rem; /* 32px */
+    }
+    .w-compact {
+      width: 2rem; /* 32px */
+    }
+    .h-field {
+      height: 2.25rem; /* 36px */
+    }
+    .w-field {
+      width: 2.25rem; /* 36px */
+    }
+    .h-large {
+      height: 2.5rem; /* 40px */
+    }
+    .w-large {
+      width: 2.5rem; /* 40px */
+    }
+    .h-medium-large {
+      height: 3rem; /* 48px */
+    }
+    .w-medium-large {
+      width: 3rem; /* 48px */
+    }
+    .h-extra-large {
+      height: 3.5rem; /* 56px */
+    }
+    .w-extra-large {
+      width: 3.5rem; /* 56px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3rem; /* 48px */
+    }
+    .min-h-textarea {
+      min-height: 4rem; /* 64px */
+    }
+    .min-h-textarea-large {
+      min-height: 5rem; /* 80px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6rem; /* 96px */
+    }
+    .h-progress {
+      height: 0.5rem; /* 8px */
+    }
+  } /* 300px */
+
+  @media (min-width: theme(--breakpoint-xs)) {
+    .h-small {
+      height: 1.75rem; /* 28px */
+    }
+    .w-small {
+      width: 1.75rem; /* 28px */
+    }
+    .h-compact {
+      height: 2rem; /* 32px */
+    }
+    .w-compact {
+      width: 2rem; /* 32px */
+    }
+    .h-field {
+      height: 2.25rem; /* 36px */
+    }
+    .w-field {
+      width: 2.25rem; /* 36px */
+    }
+    .h-large {
+      height: 2.5rem; /* 40px */
+    }
+    .w-large {
+      width: 2.5rem; /* 40px */
+    }
+    .h-medium-large {
+      height: 3rem; /* 48px */
+    }
+    .w-medium-large {
+      width: 3rem; /* 48px */
+    }
+    .h-extra-large {
+      height: 3.5rem; /* 56px */
+    }
+    .w-extra-large {
+      width: 3.5rem; /* 56px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3rem; /* 48px */
+    }
+    .min-h-textarea {
+      min-height: 4rem; /* 64px */
+    }
+    .min-h-textarea-large {
+      min-height: 5rem; /* 80px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6rem; /* 96px */
+    }
+    .h-progress {
+      height: 0.5rem; /* 8px */
+    }
+  } /* 480px */
+
+  @media (min-width: theme(--breakpoint-sm)) {
+    .h-small {
+      height: 1.875rem; /* 30px */
+    }
+    .w-small {
+      width: 1.875rem; /* 30px */
+    }
+    .h-compact {
+      height: 2.125rem; /* 34px */
+    }
+    .w-compact {
+      width: 2.125rem; /* 34px */
+    }
+    .h-field {
+      height: 2.375rem; /* 38px */
+    }
+    .w-field {
+      width: 2.375rem; /* 38px */
+    }
+    .h-large {
+      height: 2.625rem; /* 42px */
+    }
+    .w-large {
+      width: 2.625rem; /* 42px */
+    }
+    .h-medium-large {
+      height: 3.125rem; /* 50px */
+    }
+    .w-medium-large {
+      width: 3.125rem; /* 50px */
+    }
+    .h-extra-large {
+      height: 3.625rem; /* 58px */
+    }
+    .w-extra-large {
+      width: 3.625rem; /* 58px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3.25rem; /* 52px */
+    }
+    .min-h-textarea {
+      min-height: 4.25rem; /* 68px */
+    }
+    .min-h-textarea-large {
+      min-height: 5.25rem; /* 84px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6.25rem; /* 100px */
+    }
+    .h-progress {
+      height: 0.5rem; /* 8px */
+    }
+  } /* 640px */
+
+  @media (min-width: theme(--breakpoint-md)) {
+    .h-small {
+      height: 2rem; /* 32px */
+    }
+    .w-small {
+      width: 2rem; /* 32px */
+    }
+    .h-compact {
+      height: 2.25rem; /* 36px */
+    }
+    .w-compact {
+      width: 2.25rem; /* 36px */
+    }
+    .h-field {
+      height: 2.5rem; /* 40px */
+    }
+    .w-field {
+      width: 2.5rem; /* 40px */
+    }
+    .h-large {
+      height: 2.75rem; /* 44px */
+    }
+    .w-large {
+      width: 2.75rem; /* 44px */
+    }
+    .h-medium-large {
+      height: 3.25rem; /* 52px */
+    }
+    .w-medium-large {
+      width: 3.25rem; /* 52px */
+    }
+    .h-extra-large {
+      height: 3.75rem; /* 60px */
+    }
+    .w-extra-large {
+      width: 3.75rem; /* 60px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3.5rem; /* 56px */
+    }
+    .min-h-textarea {
+      min-height: 4.5rem; /* 72px */
+    }
+    .min-h-textarea-large {
+      min-height: 5.5rem; /* 88px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6.5rem; /* 104px */
+    }
+    .h-progress {
+      height: 0.5625rem; /* 9px */
+    }
+  } /* 768px */
+
+  @media (min-width: theme(--breakpoint-lg)) {
+    .h-small {
+      height: 2rem; /* 32px */
+    }
+    .w-small {
+      width: 2rem; /* 32px */
+    }
+    .h-compact {
+      height: 2.25rem; /* 36px */
+    }
+    .w-compact {
+      width: 2.25rem; /* 36px */
+    }
+    .h-field {
+      height: 2.5rem; /* 40px */
+    }
+    .w-field {
+      width: 2.5rem; /* 40px */
+    }
+    .h-large {
+      height: 2.75rem; /* 44px */
+    }
+    .w-large {
+      width: 2.75rem; /* 44px */
+    }
+    .h-medium-large {
+      height: 3.25rem; /* 52px */
+    }
+    .w-medium-large {
+      width: 3.25rem; /* 52px */
+    }
+    .h-extra-large {
+      height: 3.75rem; /* 60px */
+    }
+    .w-extra-large {
+      width: 3.75rem; /* 60px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3.5rem; /* 56px */
+    }
+    .min-h-textarea {
+      min-height: 4.5rem; /* 72px */
+    }
+    .min-h-textarea-large {
+      min-height: 5.5rem; /* 88px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6.5rem; /* 104px */
+    }
+    .h-progress {
+      height: 0.5625rem; /* 9px */
+    }
+  } /* 1024px */
+
+  @media (min-width: theme(--breakpoint-xl)) {
+    .h-small {
+      height: 2.125rem; /* 34px */
+    }
+    .w-small {
+      width: 2.125rem; /* 34px */
+    }
+    .h-compact {
+      height: 2.375rem; /* 38px */
+    }
+    .w-compact {
+      width: 2.375rem; /* 38px */
+    }
+    .h-field {
+      height: 2.625rem; /* 42px */
+    }
+    .w-field {
+      width: 2.625rem; /* 42px */
+    }
+    .h-large {
+      height: 2.875rem; /* 46px */
+    }
+    .w-large {
+      width: 2.875rem; /* 46px */
+    }
+    .h-medium-large {
+      height: 3.375rem; /* 54px */
+    }
+    .w-medium-large {
+      width: 3.375rem; /* 54px */
+    }
+    .h-extra-large {
+      height: 3.875rem; /* 62px */
+    }
+    .w-extra-large {
+      width: 3.875rem; /* 62px */
+    }
+    .min-h-textarea-compact {
+      min-height: 3.75rem; /* 60px */
+    }
+    .min-h-textarea {
+      min-height: 4.75rem; /* 76px */
+    }
+    .min-h-textarea-large {
+      min-height: 5.75rem; /* 92px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 6.75rem; /* 108px */
+    }
+    .h-progress {
+      height: 0.625rem; /* 10px */
+    }
+  } /* 1280px */
+
+  @media (min-width: theme(--breakpoint-2xl)) {
+    .h-small {
+      height: 2.25rem; /* 36px */
+    }
+    .w-small {
+      width: 2.25rem; /* 36px */
+    }
+    .h-compact {
+      height: 2.5rem; /* 40px */
+    }
+    .w-compact {
+      width: 2.5rem; /* 40px */
+    }
+    .h-field {
+      height: 2.75rem; /* 44px */
+    }
+    .w-field {
+      width: 2.75rem; /* 44px */
+    }
+    .h-large {
+      height: 3rem; /* 48px */
+    }
+    .w-large {
+      width: 3rem; /* 48px */
+    }
+    .h-medium-large {
+      height: 3.5rem; /* 56px */
+    }
+    .w-medium-large {
+      width: 3.5rem; /* 56px */
+    }
+    .h-extra-large {
+      height: 4rem; /* 64px */
+    }
+    .w-extra-large {
+      width: 4rem; /* 64px */
+    }
+    .min-h-textarea-compact {
+      min-height: 4rem; /* 64px */
+    }
+    .min-h-textarea {
+      min-height: 5rem; /* 80px */
+    }
+    .min-h-textarea-large {
+      min-height: 6rem; /* 96px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 7rem; /* 112px */
+    }
+    .h-progress {
+      height: 0.625rem; /* 10px */
+    }
+  } /* 1536px */
+
+  @media (min-width: theme(--breakpoint-3xl)) {
+    .h-small {
+      height: 2.375rem; /* 38px */
+    }
+    .w-small {
+      width: 2.375rem; /* 38px */
+    }
+    .h-compact {
+      height: 2.625rem; /* 42px */
+    }
+    .w-compact {
+      width: 2.625rem; /* 42px */
+    }
+    .h-field {
+      height: 2.875rem; /* 46px */
+    }
+    .w-field {
+      width: 2.875rem; /* 46px */
+    }
+    .h-large {
+      height: 3.125rem; /* 50px */
+    }
+    .w-large {
+      width: 3.125rem; /* 50px */
+    }
+    .h-medium-large {
+      height: 3.75rem; /* 60px */
+    }
+    .w-medium-large {
+      width: 3.75rem; /* 60px */
+    }
+    .h-extra-large {
+      height: 4.25rem; /* 68px */
+    }
+    .w-extra-large {
+      width: 4.25rem; /* 68px */
+    }
+    .min-h-textarea-compact {
+      min-height: 4.25rem; /* 68px */
+    }
+    .min-h-textarea {
+      min-height: 5.25rem; /* 84px */
+    }
+    .min-h-textarea-large {
+      min-height: 6.25rem; /* 100px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 7.25rem; /* 116px */
+    }
+    .h-progress {
+      height: 0.6875rem; /* 11px */
+    }
+  } /* 1920px */
+
+  @media (min-width: theme(--breakpoint-4xl)) {
+    .h-small {
+      height: 2.5rem; /* 40px */
+    }
+    .w-small {
+      width: 2.5rem; /* 40px */
+    }
+    .h-compact {
+      height: 2.75rem; /* 44px */
+    }
+    .w-compact {
+      width: 2.75rem; /* 44px */
+    }
+    .h-field {
+      height: 3rem; /* 48px */
+    }
+    .w-field {
+      width: 3rem; /* 48px */
+    }
+    .h-large {
+      height: 3.25rem; /* 52px */
+    }
+    .w-large {
+      width: 3.25rem; /* 52px */
+    }
+    .h-medium-large {
+      height: 4rem; /* 64px */
+    }
+    .w-medium-large {
+      width: 4rem; /* 64px */
+    }
+    .h-extra-large {
+      height: 4.5rem; /* 72px */
+    }
+    .w-extra-large {
+      width: 4.5rem; /* 72px */
+    }
+    .min-h-textarea-compact {
+      min-height: 4.5rem; /* 72px */
+    }
+    .min-h-textarea {
+      min-height: 5.5rem; /* 88px */
+    }
+    .min-h-textarea-large {
+      min-height: 6.5rem; /* 104px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 7.5rem; /* 120px */
+    }
+    .h-progress {
+      height: 0.75rem; /* 12px */
+    }
+  } /* 2560px */
+
+  @media (min-width: theme(--breakpoint-5xl)) {
+    .h-small {
+      height: 2.625rem; /* 42px */
+    }
+    .w-small {
+      width: 2.625rem; /* 42px */
+    }
+    .h-compact {
+      height: 2.875rem; /* 46px */
+    }
+    .w-compact {
+      width: 2.875rem; /* 46px */
+    }
+    .h-field {
+      height: 3.125rem; /* 50px */
+    }
+    .w-field {
+      width: 3.125rem; /* 50px */
+    }
+    .h-large {
+      height: 3.5rem; /* 56px */
+    }
+    .w-large {
+      width: 3.5rem; /* 56px */
+    }
+    .h-medium-large {
+      height: 4.25rem; /* 68px */
+    }
+    .w-medium-large {
+      width: 4.25rem; /* 68px */
+    }
+    .h-extra-large {
+      height: 4.75rem; /* 76px */
+    }
+    .w-extra-large {
+      width: 4.75rem; /* 76px */
+    }
+    .min-h-textarea-compact {
+      min-height: 4.75rem; /* 76px */
+    }
+    .min-h-textarea {
+      min-height: 5.75rem; /* 92px */
+    }
+    .min-h-textarea-large {
+      min-height: 6.75rem; /* 108px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 7.75rem; /* 124px */
+    }
+    .h-progress {
+      height: 0.8125rem; /* 13px */
+    }
+  } /* 3840px */
+
+  @media (min-width: theme(--breakpoint-6xl)) {
+    .h-small {
+      height: 2.75rem; /* 44px */
+    }
+    .w-small {
+      width: 2.75rem; /* 44px */
+    }
+    .h-compact {
+      height: 3rem; /* 48px */
+    }
+    .w-compact {
+      width: 3rem; /* 48px */
+    }
+    .h-field {
+      height: 3.25rem; /* 52px */
+    }
+    .w-field {
+      width: 3.25rem; /* 52px */
+    }
+    .h-large {
+      height: 3.625rem; /* 58px */
+    }
+    .w-large {
+      width: 3.625rem; /* 58px */
+    }
+    .h-medium-large {
+      height: 4.5rem; /* 72px */
+    }
+    .w-medium-large {
+      width: 4.5rem; /* 72px */
+    }
+    .h-extra-large {
+      height: 5rem; /* 80px */
+    }
+    .w-extra-large {
+      width: 5rem; /* 80px */
+    }
+    .min-h-textarea-compact {
+      min-height: 5rem; /* 80px */
+    }
+    .min-h-textarea {
+      min-height: 6rem; /* 96px */
+    }
+    .min-h-textarea-large {
+      min-height: 7rem; /* 112px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 8rem; /* 128px */
+    }
+    .h-progress {
+      height: 0.875rem; /* 14px */
+    }
+  } /* 5120px */
+
+  @media (min-width: theme(--breakpoint-7xl)) {
+    .h-small {
+      height: 2.875rem; /* 46px */
+    }
+    .w-small {
+      width: 2.875rem; /* 46px */
+    }
+    .h-compact {
+      height: 3.125rem; /* 50px */
+    }
+    .w-compact {
+      width: 3.125rem; /* 50px */
+    }
+    .h-field {
+      height: 3.375rem; /* 54px */
+    }
+    .w-field {
+      width: 3.375rem; /* 54px */
+    }
+    .h-large {
+      height: 3.75rem; /* 60px */
+    }
+    .w-large {
+      width: 3.75rem; /* 60px */
+    }
+    .h-medium-large {
+      height: 4.75rem; /* 76px */
+    }
+    .w-medium-large {
+      width: 4.75rem; /* 76px */
+    }
+    .h-extra-large {
+      height: 5.25rem; /* 84px */
+    }
+    .w-extra-large {
+      width: 5.25rem; /* 84px */
+    }
+    .min-h-textarea-compact {
+      min-height: 5.25rem; /* 84px */
+    }
+    .min-h-textarea {
+      min-height: 6.25rem; /* 100px */
+    }
+    .min-h-textarea-large {
+      min-height: 7.25rem; /* 116px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 8.25rem; /* 132px */
+    }
+    .h-progress {
+      height: 0.9375rem; /* 15px */
+    }
+  } /* 7680px */
+
+  @media (min-width: theme(--breakpoint-8xl)) {
+    .h-small {
+      height: 3rem; /* 48px */
+    }
+    .w-small {
+      width: 3rem; /* 48px */
+    }
+    .h-compact {
+      height: 3.25rem; /* 52px */
+    }
+    .w-compact {
+      width: 3.25rem; /* 52px */
+    }
+    .h-field {
+      height: 3.5rem; /* 56px */
+    }
+    .w-field {
+      width: 3.5rem; /* 56px */
+    }
+    .h-large {
+      height: 4rem; /* 64px */
+    }
+    .w-large {
+      width: 4rem; /* 64px */
+    }
+    .h-medium-large {
+      height: 5rem; /* 80px */
+    }
+    .w-medium-large {
+      width: 5rem; /* 80px */
+    }
+    .h-extra-large {
+      height: 5.5rem; /* 88px */
+    }
+    .w-extra-large {
+      width: 5.5rem; /* 88px */
+    }
+    .min-h-textarea-compact {
+      min-height: 5.5rem; /* 88px */
+    }
+    .min-h-textarea {
+      min-height: 6.5rem; /* 104px */
+    }
+    .min-h-textarea-large {
+      min-height: 7.5rem; /* 120px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 8.5rem; /* 136px */
+    }
+    .h-progress {
+      height: 1rem; /* 16px */
+    }
+  } /* 10000px */
+
+  @media (min-width: theme(--breakpoint-9xl)) {
+    .h-small {
+      height: 3.125rem; /* 50px */
+    }
+    .w-small {
+      width: 3.125rem; /* 50px */
+    }
+    .h-compact {
+      height: 3.375rem; /* 54px */
+    }
+    .w-compact {
+      width: 3.375rem; /* 54px */
+    }
+    .h-field {
+      height: 3.75rem; /* 60px */
+    }
+    .w-field {
+      width: 3.75rem; /* 60px */
+    }
+    .h-large {
+      height: 4.25rem; /* 68px */
+    }
+    .w-large {
+      width: 4.25rem; /* 68px */
+    }
+    .h-medium-large {
+      height: 5.25rem; /* 84px */
+    }
+    .w-medium-large {
+      width: 5.25rem; /* 84px */
+    }
+    .h-extra-large {
+      height: 5.75rem; /* 92px */
+    }
+    .w-extra-large {
+      width: 5.75rem; /* 92px */
+    }
+    .min-h-textarea-compact {
+      min-height: 5.75rem; /* 92px */
+    }
+    .min-h-textarea {
+      min-height: 6.75rem; /* 108px */
+    }
+    .min-h-textarea-large {
+      min-height: 7.75rem; /* 124px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 8.75rem; /* 140px */
+    }
+    .h-progress {
+      height: 1.0625rem; /* 17px */
+    }
+  } /* 12000px */
+
+  @media (min-width: theme(--breakpoint-10xl)) {
+    .h-small {
+      height: 3.25rem; /* 52px */
+    }
+    .w-small {
+      width: 3.25rem; /* 52px */
+    }
+    .h-compact {
+      height: 3.5rem; /* 56px */
+    }
+    .w-compact {
+      width: 3.5rem; /* 56px */
+    }
+    .h-field {
+      height: 4rem; /* 64px */
+    }
+    .w-field {
+      width: 4rem; /* 64px */
+    }
+    .h-large {
+      height: 4.5rem; /* 72px */
+    }
+    .w-large {
+      width: 4.5rem; /* 72px */
+    }
+    .h-medium-large {
+      height: 5.5rem; /* 88px */
+    }
+    .w-medium-large {
+      width: 5.5rem; /* 88px */
+    }
+    .h-extra-large {
+      height: 6rem; /* 96px */
+    }
+    .w-extra-large {
+      width: 6rem; /* 96px */
+    }
+    .min-h-textarea-compact {
+      min-height: 6rem; /* 96px */
+    }
+    .min-h-textarea {
+      min-height: 7rem; /* 112px */
+    }
+    .min-h-textarea-large {
+      min-height: 8rem; /* 128px */
+    }
+    .min-h-textarea-extra-large {
+      min-height: 9rem; /* 144px */
+    }
+    .h-progress {
+      height: 1.125rem; /* 18px */
+    }
   }
 
   /* SEMANTIC ICON SIZE */
@@ -2654,6 +3464,12 @@
    override one property of a component without !important.
 */
 @layer components {
+  /* ALERT */
+  .alert-badge > svg {
+    width: var(--icon-size-default);
+    height: var(--icon-size-default);
+  }
+
   /* ACCORDION */
   .accordion-trigger {
     outline: var(--outline-none);
