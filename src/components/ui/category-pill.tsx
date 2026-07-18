@@ -14,8 +14,19 @@ const CATEGORY_COLOR: Record<
 
 interface CategoryPillProps {
   category: ProductCategory;
+  border?: boolean;
+  shadow?: boolean;
 }
 
-export const CategoryPill = ({ category }: CategoryPillProps) => (
-  <StatPill label={category} color={CATEGORY_COLOR[category]} />
+export const CategoryPill = ({
+  category,
+  border = false,
+  shadow = false,
+}: CategoryPillProps) => (
+  <StatPill
+    label={category}
+    color={CATEGORY_COLOR[category]}
+    border={border}
+    shadow={shadow}
+  />
 );
