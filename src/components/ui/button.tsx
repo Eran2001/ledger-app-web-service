@@ -10,10 +10,42 @@ import {
   type ResponsiveSize,
 } from "@/utils/get-responsive-size";
 
+type ButtonDimension =
+  | "small"
+  | "compact"
+  | "field"
+  | "large"
+  | "medium-large"
+  | "extra-large"
+  | "full"
+  | "auto";
+
+const BUTTON_HEIGHT_CLASSES: Record<ButtonDimension, string> = {
+  small: "h-small",
+  compact: "h-compact",
+  field: "h-field",
+  large: "h-large",
+  "medium-large": "h-medium-large",
+  "extra-large": "h-extra-large",
+  full: "h-full",
+  auto: "h-auto",
+};
+
+const BUTTON_WIDTH_CLASSES: Record<ButtonDimension, string> = {
+  small: "w-small",
+  compact: "w-compact",
+  field: "w-field",
+  large: "w-large",
+  "medium-large": "w-medium-large",
+  "extra-large": "w-extra-large",
+  full: "w-full",
+  auto: "w-auto",
+};
+
 const buttonVariants = cva(
   [
     "inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 cursor-pointer",
-    "xl-rounded transition-all btn-base",
+    "global-rounded transition-all btn-base",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
   ].join(" "),
@@ -27,23 +59,23 @@ const buttonVariants = cva(
         success:
           "surface-success text-on-success dark:text-[hsl(30_10%_11%)] btn-success",
         outline:
-          "border btn-outline dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
+          "border-stroke border-default btn-outline dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
         secondary: "btn-secondary",
         ghost:
           "btn-ghost dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
         cancel:
-          "border btn-cancel dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
+          "border-stroke btn-cancel dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
         link: "text-brand btn-link",
         "sidebar-icon": "app-sidebar-link app-sidebar-icon-btn",
       },
       size: {
         default: "h-field px-4 t-body-md has-[>svg]:px-3",
-        sm: "h-compact xl-rounded gap-1.5 px-3 t-label-md has-[>svg]:px-2.5",
-        lg: "h-large xl-rounded px-6 t-body-md has-[>svg]:px-4",
-        xl: "h-extra-large xl-rounded px-8 t-body-lg has-[>svg]:px-6",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10",
+        sm: "h-compact global-rounded gap-1.5 px-3 t-label-md has-[>svg]:px-2.5",
+        lg: "h-large global-rounded px-6 t-body-md has-[>svg]:px-4",
+        xl: "h-extra-large global-rounded px-8 t-body-lg has-[>svg]:px-6",
+        icon: "h-field w-field",
+        "icon-sm": "h-compact w-compact",
+        "icon-lg": "h-large w-large",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -64,6 +96,10 @@ const Button = ({
   className,
   variant,
   size,
+  border = false,
+  shadow = false,
+  width,
+  height,
   asChild = false,
   loading = false,
   disabled,
@@ -72,13 +108,20 @@ const Button = ({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
+    border?: boolean;
+    shadow?: boolean;
+    width?: ButtonDimension;
+    height?: ButtonDimension;
     loading?: boolean;
   }) => {
-  const { width, breakpoints } = useWidth();
+  const { width: viewportWidth, breakpoints } = useWidth();
   const resolvedSize =
-    size ?? RESPONSIVE_SIZE_MAP[getResponsiveSize(width, breakpoints)];
+    size ?? RESPONSIVE_SIZE_MAP[getResponsiveSize(viewportWidth, breakpoints)];
   const Comp = asChild ? Slot : "button";
-  const isRoll = variant === "default" || variant === undefined;
+  const resolvedVariant = variant ?? "default";
+  const isRoll = resolvedVariant === "default";
+  const hasVariantBorder =
+    resolvedVariant === "outline" || resolvedVariant === "cancel";
 
   const content = asChild ? (
     children
@@ -105,7 +148,12 @@ const Button = ({
       data-slot="button"
       className={cn(
         "relative",
-        buttonVariants({ variant, size: resolvedSize, className }),
+        buttonVariants({ variant: resolvedVariant, size: resolvedSize }),
+        (border || hasVariantBorder) && "border-stroke border-default",
+        shadow && "shadow-card",
+        width && BUTTON_WIDTH_CLASSES[width],
+        height && BUTTON_HEIGHT_CLASSES[height],
+        className,
       )}
       disabled={loading || disabled}
       {...props}
