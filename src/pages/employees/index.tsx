@@ -105,7 +105,7 @@ export default function UsersPage() {
                   >
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <InitialsAvatar name={u.name} size="sm" />
+                        <InitialsAvatar name={u.name} />
                         <span className="table-title-text">{u.name}</span>
                       </div>
                     </td>

@@ -46,7 +46,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
               <h2 className="t-title-xl text-main">{customer.fullName}</h2>
             </div>
             <div className="flex justify-center items-center">
-              <InitialsAvatar name={customer.fullName} size="lg" />
+              <InitialsAvatar name={customer.fullName} />
             </div>
             <div className="min-w-0 flex flex-col space-y-1">
               <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
@@ -60,7 +60,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
           </div>
         ) : (
           <SyncedHeightPair
-            left={<InitialsAvatar name={customer.fullName} size="auto" />}
+            left={<InitialsAvatar name={customer.fullName} className="h-full w-full" />}
             right={
               <div className="min-w-0 flex flex-col space-y-1">
                 <h2 className="t-title-xl text-main">{customer.fullName}</h2>

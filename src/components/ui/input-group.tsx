@@ -5,37 +5,17 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
-interface InputGroupProps extends React.ComponentProps<"div"> {
-  size?: ResponsiveSize;
-}
-
-function InputGroup({ className, size, ...props }: InputGroupProps) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-group"
       role="group"
       className={cn(
-        "group/input-group relative flex w-full items-center",
-        "xl-rounded border outline-none",
-        resolvedSize === "compact"
-          ? "h-compact"
-          : resolvedSize === "large"
-            ? "h-large"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large"
-              : "h-field",
+        "group/input-group relative flex h-field w-full items-center",
+        "global-rounded border-stroke outline-none",
         "has-[>textarea]:h-auto",
         "input-group-root",
-
         "has-[>[data-align=inline-start]]:[&>input]:pl-2",
         "has-[>[data-align=inline-end]]:[&>input]:pr-2",
         "has-[>[data-align=block-start]]:h-auto",
@@ -44,7 +24,6 @@ function InputGroup({ className, size, ...props }: InputGroupProps) {
         "has-[>[data-align=block-end]]:h-auto",
         "has-[>[data-align=block-end]]:flex-col",
         "has-[>[data-align=block-end]]:[&>input]:pt-3",
-
         className,
       )}
       {...props}
@@ -55,9 +34,9 @@ function InputGroup({ className, size, ...props }: InputGroupProps) {
 const inputGroupAddonVariants = cva(
   [
     "flex h-auto cursor-text items-center justify-center gap-2 py-1.5",
-    "t-body-md fw-medium select-none",
+    "t-body-md select-none",
     "[&>svg:not([class*='size-'])]:size-4",
-    "[&>kbd]:rounded-[calc(var(--radius)-5px)]",
+    "[&>kbd]:global-rounded",
     "group-data-[disabled=true]/input-group:opacity-50",
     "input-group-addon",
   ],
@@ -114,53 +93,20 @@ function InputGroupAddon({
   );
 }
 
-const inputGroupButtonVariants = cva(
-  ["t-body-md shadow-none flex gap-2 items-center"],
-  {
-    variants: {
-      size: {
-        xs: [
-          "h-6 gap-1 px-2",
-          "xl-rounded",
-          "[&>svg:not([class*='size-'])]:size-3.5",
-          "has-[>svg]:px-2",
-        ],
-        sm: ["h-8 px-2.5 gap-1.5", "xl-rounded", "has-[>svg]:px-2.5"],
-        "size-3.5": ["size-6 p-0", "xl-rounded", "has-[>svg]:p-0"],
-        "icon-sm": ["size-8 p-0", "xl-rounded", "has-[>svg]:p-0"],
-      },
-    },
-    defaultVariants: {
-      size: "xs",
-    },
-  },
-);
-
-const INPUT_GROUP_BUTTON_SIZE_MAP: Record<
-  NonNullable<VariantProps<typeof inputGroupButtonVariants>["size"]>,
-  NonNullable<React.ComponentProps<typeof Button>["size"]>
-> = {
-  xs: "sm",
-  sm: "sm",
-  "size-3.5": "icon-sm",
-  "icon-sm": "icon-sm",
-};
-
 function InputGroupButton({
   className,
   type = "button",
   variant = "ghost",
-  size = "xs",
   ...props
-}: Omit<React.ComponentProps<typeof Button>, "size"> &
-  VariantProps<typeof inputGroupButtonVariants>) {
+}: Omit<React.ComponentProps<typeof Button>, "size">) {
   return (
     <Button
       type={type}
-      data-size={size}
       variant={variant}
-      size={INPUT_GROUP_BUTTON_SIZE_MAP[size ?? "xs"]}
-      className={cn(inputGroupButtonVariants({ size }), className)}
+      className={cn(
+        "h-compact gap-1.5 px-2.5 t-body-md shadow-none global-rounded",
+        className,
+      )}
       {...props}
     />
   );

@@ -48,7 +48,7 @@ export const OverdueList = () => {
             className="surface-hover cursor-pointer flex items-center justify-between gap-3 px-6 py-3"
           >
             <div className="flex items-center gap-3 min-w-0">
-              <InitialsAvatar name={r.customer} size="sm" />
+              <InitialsAvatar name={r.customer} />
               <div className="min-w-0">
                 <p className="t-body-md-bold text-main truncate">
                   {r.customer}

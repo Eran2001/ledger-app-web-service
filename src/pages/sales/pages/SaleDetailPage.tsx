@@ -80,7 +80,7 @@ export default function SaleDetailPage() {
             Customer
           </p>
           <div className="flex items-start gap-4">
-            <InitialsAvatar name={customer?.fullName ?? ""} size="lg" />
+            <InitialsAvatar name={customer?.fullName ?? ""} />
             <div className="flex-1 min-w-0">
               <h3 className="t-title-xl text-main mb-1">
                 {customer?.fullName}

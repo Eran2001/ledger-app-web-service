@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
 
-import * as Icon from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemHeader,
+  ItemSeparator,
+  ItemTitle,
+} from "@/components/ui/item";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -24,23 +24,50 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 
 export default function Test() {
   return (
-    <div className="space-y-8 p-6">
-      <Block title="empty">
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <Icon.FileText />
-            </EmptyMedia>
-            <EmptyTitle>No invoices yet</EmptyTitle>
-            <EmptyDescription>
-              Create your first invoice to start tracking payments, due dates,
-              and customer balances.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>New invoice</Button>
-          </EmptyContent>
-        </Empty>
+    <div className="space-y-8">
+      <Block title="item">
+        <div className="surface-card global-rounded flex max-w-xl flex-col gap-4 p-5">
+          <ItemGroup>
+            <Item>
+              <ItemHeader>
+                <ItemTitle>Revenue Overview</ItemTitle>
+                <ItemActions>
+                  <span className="t-label-sm text-faint">Updated 2m ago</span>
+                </ItemActions>
+              </ItemHeader>
+              <ItemContent>
+                <ItemDescription>
+                  Track invoice performance, payment velocity, and top customer
+                  movement from a single row.
+                </ItemDescription>
+              </ItemContent>
+            </Item>
+
+            <ItemSeparator />
+
+            <Item variant="outline">
+              <ItemContent>
+                <ItemTitle>Collections Queue</ItemTitle>
+                <ItemDescription>
+                  Review customers that need a follow-up before the next due
+                  date.
+                </ItemDescription>
+              </ItemContent>
+            </Item>
+
+            <ItemSeparator />
+
+            <Item variant="muted">
+              <ItemContent>
+                <ItemTitle>Archived Customers</ItemTitle>
+                <ItemDescription>
+                  Old customer records can stay visible without competing with
+                  the active list.
+                </ItemDescription>
+              </ItemContent>
+            </Item>
+          </ItemGroup>
+        </div>
       </Block>
     </div>
   );

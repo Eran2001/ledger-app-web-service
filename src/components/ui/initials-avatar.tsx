@@ -5,29 +5,31 @@ import { getInitials } from "@/utils/get-initials";
 
 interface InitialsAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string;
-  size?: "sm" | "md" | "lg" | "auto";
+  border?: boolean;
+  shadow?: boolean;
 }
 
-const SIZE_MAP = {
-  sm: { box: "h-compact w-compact", text: "t-label-md-bold" },
-  md: { box: "h-field w-field", text: "t-body-md-bold" },
-  lg: { box: "h-extra-large w-extra-large", text: "t-body-md-bold" },
-  auto: { box: "h-full w-full", text: "t-body-md-bold" },
-};
-
 export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
-  ({ name, size = "md", className, ...props }, ref) => {
+  (
+    {
+      name,
+      border = false,
+      shadow = false,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
     const colors = getAvatarColors(name);
-    const sizing = SIZE_MAP[size];
     return (
       <div
         ref={ref}
         className={cn(
           "global-rounded flex items-center justify-center",
           "shrink-0 select-none cursor-pointer",
-          "w-20 aspect-square lg:w-auto lg:self-stretch",
-          sizing.box,
-          sizing.text,
+          "h-field w-field t-body-md-bold",
+          border && "border-stroke border-default",
+          shadow && "shadow-card",
           className,
         )}
         style={{ backgroundColor: colors.bg, color: colors.fg }}

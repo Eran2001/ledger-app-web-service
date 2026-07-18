@@ -228,17 +228,15 @@ interface TableCellMediaProps {
   name: string;
   title: string;
   subtitle?: string;
-  avatarSize?: "sm" | "md" | "lg";
 }
 function TableCellMedia({
   name,
   title,
   subtitle,
-  avatarSize = "sm",
 }: TableCellMediaProps) {
   return (
     <div className="flex items-center gap-3">
-      <InitialsAvatar name={name} size={avatarSize} />
+      <InitialsAvatar name={name} />
       {subtitle ? (
         <div className="flex flex-col">
           <span>{title}</span>
@@ -256,7 +254,6 @@ interface TableCellCustomerProps {
   countryFlag: string;
   country: string;
   sessionCount: number;
-  avatarSize?: "sm" | "md" | "lg";
 }
 
 function TableCellCustomer({
@@ -264,11 +261,10 @@ function TableCellCustomer({
   countryFlag,
   country,
   sessionCount,
-  avatarSize = "sm",
 }: TableCellCustomerProps) {
   return (
     <div className="flex items-center gap-3">
-      <InitialsAvatar name={name} size={avatarSize} />
+      <InitialsAvatar name={name} />
       <div className="flex flex-col">
         <span>{name}</span>
         <span className="table-text table-subtext">

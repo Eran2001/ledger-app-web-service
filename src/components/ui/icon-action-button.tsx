@@ -38,8 +38,7 @@ export function IconActionButton({
     <Button
       type="button"
       variant="ghost"
-      size="icon"
-      className={cn(TONE_CLASSNAME[tone])}
+      className={cn("h-field w-field", TONE_CLASSNAME[tone])}
       onClick={handleClick}
       disabled={loading}
       aria-label={label}

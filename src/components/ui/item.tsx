@@ -4,11 +4,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -16,7 +11,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
       role="list"
       data-slot="item-group"
       className={cn(
-        "group/item-group flex flex-col border xl-rounded",
+        "group/item-group global-rounded border-stroke flex flex-col",
         className,
       )}
       {...props}
@@ -41,7 +36,7 @@ function ItemSeparator({
 const itemVariants = cva(
   [
     "group/item flex items-center flex-wrap",
-    "border t-body-md xl-rounded outline-none",
+    "global-rounded border-stroke px-4 py-3 t-body-md outline-none",
     "item-root",
   ],
   {
@@ -51,16 +46,9 @@ const itemVariants = cva(
         outline: "item-outline",
         muted: "item-muted",
       },
-      size: {
-        compact: "py-2 px-3 gap-2",
-        default: "py-3 px-4 gap-2.5",
-        large: "p-4 gap-4",
-        "extra-large": "p-5 gap-5",
-      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
     },
   },
 );
@@ -68,21 +56,16 @@ const itemVariants = cva(
 function Item({
   className,
   variant = "default",
-  size,
   asChild = false,
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize: ResponsiveSize =
-    size ?? getResponsiveSize(width, breakpoints);
   const Comp = asChild ? Slot : "div";
   return (
     <Comp
       data-slot="item"
       data-variant={variant}
-      data-size={resolvedSize}
-      className={cn(itemVariants({ variant, size: resolvedSize, className }))}
+      className={cn(itemVariants({ variant, className }))}
       {...props}
     />
   );
@@ -100,12 +83,11 @@ const itemMediaVariants = cva(
       variant: {
         default: "",
         icon: [
-          "size-8 border xl-rounded",
-          "[&_svg:not([class*='size-'])]:size-4",
+          "global-rounded border-stroke h-compact w-compact",
           "item-media-icon",
         ],
         image: [
-          "size-10 xl-rounded overflow-hidden",
+          "global-rounded h-large w-large overflow-hidden",
           "[&_img]:size-full [&_img]:object-cover",
         ],
       },
@@ -150,7 +132,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "flex w-fit items-center gap-2 t-body-md item-title",
+        "item-title flex w-fit items-center gap-2 t-body-md",
         className,
       )}
       {...props}
@@ -163,7 +145,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "t-body-md fw-normal line-clamp-2 text-balance",
+        "t-label-md fw-normal line-clamp-2 text-balance",
         "[&>a]:underline [&>a]:underline-offset-4",
         "item-description",
         className,

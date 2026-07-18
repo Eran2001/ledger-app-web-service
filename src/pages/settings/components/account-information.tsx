@@ -25,7 +25,7 @@ export default function AccountInfoPage() {
   return (
     <div className="space-y-6">
       <div className="card-base p-6 flex items-center gap-5">
-        <InitialsAvatar name={form.name} size="lg" />
+        <InitialsAvatar name={form.name} />
         <div className="min-w-0 flex-1">
           <h1 className="t-title-xl text-main">{form.name}</h1>
           <div className="mt-2 flex items-center gap-2 flex-wrap">

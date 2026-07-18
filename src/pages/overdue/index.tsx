@@ -223,7 +223,7 @@ export default function OverduePage() {
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <InitialsAvatar name={r.customerName} size="sm" />
+                          <InitialsAvatar name={r.customerName} />
                           <div className="min-w-0">
                             <p className="table-title-text truncate">
                               {r.customerName}

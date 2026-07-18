@@ -5,8 +5,6 @@ import { BadgeIcon } from "@/components/ui/badge-icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
-import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
-import { useWidth } from "@/hooks/use-width";
 import { cn } from "@/lib/utils";
 
 function Grid({ className, ...props }: React.ComponentProps<"div">) {
@@ -19,12 +17,21 @@ function Grid({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function GridItem({ className, ...props }: React.ComponentProps<"div">) {
+function GridItem({
+  className,
+  border = false,
+  shadow = false,
+  ...props
+}: React.ComponentProps<"div"> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <Card
-      border
+      border={border}
+      shadow={shadow}
       data-slot="grid-item"
-      className={cn("gap-5 rounded-4xl px-4 py-4 sm:px-5", className)}
+      className={cn("gap-5 px-4 py-4 sm:px-5 global-rounded", className)}
       {...props}
     />
   );
@@ -75,21 +82,15 @@ function GridItemMedia({
   badgeLabel,
   className,
 }: GridItemMediaProps) {
-  const { width, breakpoints } = useWidth();
-  const isMaxXxs = width < breakpoints.xxs;
-  const isMaxSm = width < breakpoints.sm;
-  const detailCount =
-    1 + Number(Boolean(subtitle)) + Number(Boolean(phoneNumber));
-  const avatarSize = detailCount >= 3 ? "auto" : "lg";
   const badgeNode = badge ? (
     <div className="shrink-0">{badge}</div>
   ) : badgeLabel ? (
     <BadgeIcon
       variant={badgeVariant}
-      className={cn("shrink-0", isMaxSm && "px-1.5")}
+      className="shrink-0"
       aria-label={typeof badgeLabel === "string" ? badgeLabel : undefined}
     >
-      {isMaxSm ? null : badgeLabel}
+      {badgeLabel}
     </BadgeIcon>
   ) : null;
 
@@ -100,43 +101,9 @@ function GridItemMedia({
         className,
       )}
     >
-      {!isMaxXxs &&
-        (avatarSize === "auto" ? (
-          <SyncedHeightPair
-            left={<InitialsAvatar name={name} size="auto" />}
-            right={
-              <div className="min-w-0 space-y-1 pt-1">
-                <p className="truncate t-title-lg-soft text-main">{title}</p>
-                {subtitle && (
-                  <p className="truncate t-body-md text-faint">{subtitle}</p>
-                )}
-                {phoneNumber && (
-                  <p className="truncate t-label-md text-faint">
-                    {phoneNumber}
-                  </p>
-                )}
-              </div>
-            }
-            squareLeft
-            className="flex-1"
-          />
-        ) : (
-          <div className="flex min-w-0 items-start gap-4">
-            <InitialsAvatar name={name} size="lg" />
+      <div className="flex min-w-0 flex-1 items-start gap-4">
+        <InitialsAvatar name={name} />
 
-            <div className="min-w-0 space-y-1 pt-1">
-              <p className="truncate t-title-lg-soft text-main">{title}</p>
-              {subtitle && (
-                <p className="truncate t-body-md text-faint">{subtitle}</p>
-              )}
-              {phoneNumber && (
-                <p className="truncate t-label-md text-faint">{phoneNumber}</p>
-              )}
-            </div>
-          </div>
-        ))}
-
-      {isMaxXxs && (
         <div className="min-w-0 flex-1 space-y-1 pt-1">
           <p className="truncate t-title-lg-soft text-main">{title}</p>
           {subtitle && (
@@ -146,7 +113,7 @@ function GridItemMedia({
             <p className="truncate t-label-md text-faint">{phoneNumber}</p>
           )}
         </div>
-      )}
+      </div>
 
       {badgeNode}
     </div>
@@ -171,10 +138,9 @@ function GridItemAction({
     <Button
       type="button"
       variant="outline"
-      size="icon"
       data-slot="grid-item-action"
       className={cn(
-        "size-11 shrink-0 rounded-full border-default bg-background text-main shadow-none",
+        "h-large w-large shrink-0 full-rounded border-stroke border-default bg-background text-main shadow-none",
         className,
       )}
       {...props}
@@ -244,6 +210,8 @@ interface GridEmptyProps {
   description: string;
   actionLabel?: string;
   onRefresh?: () => void;
+  border?: boolean;
+  shadow?: boolean;
   className?: string;
 }
 
@@ -272,8 +240,10 @@ function GridEmptyState({
         className,
       )}
     >
-      <div className="surface-page mb-5 flex size-14 items-center justify-center full-rounded">
-        <EmptyIcon className="size-7 text-faint" />
+      <div className="surface-page mb-5 flex h-extra-large w-extra-large items-center justify-center full-rounded">
+        <span className="inline-flex items-center justify-center text-faint [&>svg]:size-7 [&>svg]:shrink-0">
+          <EmptyIcon />
+        </span>
       </div>
 
       <div className="max-w-3xl space-y-2">
@@ -281,8 +251,12 @@ function GridEmptyState({
         <p className="t-body-lg text-faint">{description}</p>
       </div>
 
-      <Button variant="outline" size="lg" className="mt-4" onClick={onRefresh}>
-        <Icon.RefreshCw className="size-4" />
+      <Button
+        variant="outline"
+        className="mt-4 h-large px-6 t-body-md"
+        onClick={onRefresh}
+      >
+        <Icon.RefreshCw />
         {actionLabel}
       </Button>
     </div>
@@ -295,10 +269,14 @@ function GridEmpty({
   description,
   actionLabel,
   onRefresh,
+  border = false,
+  shadow = false,
   className,
 }: GridEmptyProps) {
   return (
     <GridItem
+      border={border}
+      shadow={shadow}
       className={cn(
         "table-empty gap-0 overflow-hidden p-0 md:col-span-2",
         className,

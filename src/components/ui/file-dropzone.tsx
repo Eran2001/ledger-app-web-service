@@ -18,6 +18,8 @@ interface FileDropzoneProps {
   hint: string;
   accept?: string;
   onFileSelect: (file: File | null) => void;
+  border?: boolean;
+  shadow?: boolean;
   className?: string;
 }
 
@@ -33,6 +35,8 @@ export function FileDropzone({
   hint,
   accept = "image/*,.pdf",
   onFileSelect,
+  border = false,
+  shadow = false,
   className,
 }: FileDropzoneProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -92,14 +96,16 @@ export function FileDropzone({
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
         className={cn(
-          "border border-dashed lg-rounded cursor-pointer p-4 transition-colors",
+          "global-rounded cursor-pointer p-4 transition-colors",
           "flex flex-col gap-4 text-left",
+          border && "border-stroke border-default border-dashed",
+          shadow && "shadow-card",
           !file && "items-center justify-center py-6 text-center",
           dragOver && "border-brand bg-brand/5",
         )}
       >
         {previewUrl ? (
-          <div className="group relative overflow-hidden lg-rounded border border-default">
+          <div className="group relative overflow-hidden global-rounded border-stroke border-default">
             <img
               src={previewUrl}
               alt={file?.name ?? "Uploaded preview"}
@@ -133,13 +139,17 @@ export function FileDropzone({
             </div>
           </div>
         ) : file ? (
-          <div className="flex h-40 w-full items-center justify-center lg-rounded border border-default bg-muted/20">
+          <div className="flex h-40 w-full items-center justify-center global-rounded border-stroke border-default bg-muted/20">
             <div className="space-y-3 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center full-rounded border border-default bg-white">
+              <div className="mx-auto flex h-field w-field items-center justify-center full-rounded border-stroke border-default bg-white">
                 {DropIcon ? (
-                  <DropIcon className="size-5 text-brand" />
+                  <span className="inline-flex items-center justify-center text-brand [&>svg]:size-5 [&>svg]:shrink-0">
+                    <DropIcon />
+                  </span>
                 ) : (
-                  <Icon.FileText className="size-5 text-brand" />
+                  <span className="inline-flex items-center justify-center text-brand [&>svg]:size-5 [&>svg]:shrink-0">
+                    <Icon.FileText />
+                  </span>
                 )}
               </div>
               <p className="t-body-md text-main">File attached</p>
@@ -147,15 +157,19 @@ export function FileDropzone({
           </div>
         ) : (
           <>
-            <div className="flex h-14 w-14 items-center justify-center full-rounded border border-default bg-white">
+            <div className="flex h-extra-large w-extra-large items-center justify-center full-rounded border-stroke border-default bg-white">
               {DropIcon ? (
-                <DropIcon className="size-7 text-faint" />
+                <span className="inline-flex items-center justify-center text-faint [&>svg]:size-7 [&>svg]:shrink-0">
+                  <DropIcon />
+                </span>
               ) : (
-                <Icon.Upload className="size-7 text-faint" />
+                <span className="inline-flex items-center justify-center text-faint [&>svg]:size-7 [&>svg]:shrink-0">
+                  <Icon.Upload />
+                </span>
               )}
             </div>
             <div className="space-y-1">
-              <p className="t-title-xl text-main">Upload files</p>
+              <p className="t-title-lg-soft text-main">Upload files</p>
               <p className="t-body-md text-faint">{hint}</p>
             </div>
             <Button

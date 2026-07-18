@@ -123,12 +123,9 @@ export function TopBar({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <InitialsAvatar name={user?.name ?? "User"} size="md" />
+            <InitialsAvatar name={user?.name ?? "User"} />
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            className="w-60 surface-popover border border-default modal-rounded"
-          >
+          <DropdownMenuContent align="end" className="w-60" border shadow>
             <DropdownMenuLabel>
               <div className="flex flex-col">
                 <span className="t-body-md-bold text-main">{user?.name}</span>

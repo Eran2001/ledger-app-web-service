@@ -21,8 +21,13 @@ function HoverCardContent({
   className,
   align = "center",
   sideOffset = 4,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof HoverCardPrimitive.Content>) {
+}: React.ComponentProps<typeof HoverCardPrimitive.Content> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <HoverCardPrimitive.Portal data-slot="hover-card-portal">
       <HoverCardPrimitive.Content
@@ -31,7 +36,7 @@ function HoverCardContent({
         sideOffset={sideOffset}
         className={cn(
           "z-dropdown w-64 p-4",
-          "xl-rounded border outline-hidden",
+          "global-rounded outline-hidden",
           "origin-(--radix-hover-card-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -41,6 +46,8 @@ function HoverCardContent({
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
           "hover-card-content",
+          border && "border-stroke border-default",
+          shadow ? "shadow-card" : "no-shadow",
           className,
         )}
         {...props}
