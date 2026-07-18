@@ -6,9 +6,19 @@ import * as Icon from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 function Accordion({
+  className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
+  return (
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      className={cn(
+        "border-stroke border-default global-rounded overflow-hidden",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 function AccordionItem({
@@ -19,7 +29,7 @@ function AccordionItem({
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        "border-b-stroke border-default last:border-b-0",
+        "border-b-stroke border-default last:no-b-border",
         className,
       )}
       {...props}

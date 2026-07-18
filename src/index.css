@@ -2138,7 +2138,8 @@
   .no-t-border {
     border-top-width: 0;
   }
-  .no-b-border {
+  .no-b-border,
+  .last\:no-b-border:last-child {
     border-bottom-width: 0;
   }
   .border-default {

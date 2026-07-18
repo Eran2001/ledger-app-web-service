@@ -6,8 +6,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useWidth } from "@/hooks/use-width";
-import { getResponsiveBreakpoint } from "@/utils/get-responsive-size";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -21,9 +19,6 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 }
 
 export default function Test() {
-  const { width, breakpoints } = useWidth();
-  const activeBreakpoint = getResponsiveBreakpoint(width, breakpoints);
-
   return (
     <div className="space-y-8">
       <Block title="accordion">
