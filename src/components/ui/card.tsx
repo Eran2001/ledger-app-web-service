@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 type CardProps = React.ComponentProps<"div"> & {
   border?: boolean;
+  shadow?: boolean;
 };
 
 type CardHeaderProps = React.ComponentProps<"div"> & {
@@ -18,14 +19,20 @@ type CardEmptyProps = React.ComponentProps<"div"> & {
   description: string;
 };
 
-function Card({ className, border = false, ...props }: CardProps) {
+function Card({
+  className,
+  border = false,
+  shadow = true,
+  ...props
+}: CardProps) {
   return (
     <div
       data-slot="card"
       className={cn(
         "flex flex-col gap-6",
-        "xl-rounded p-6",
-        border && "border",
+        "global-rounded p-6",
+        border && "border-stroke border-default",
+        shadow ? "shadow-card" : "no-shadow",
         "card-root",
         className,
       )}
@@ -44,7 +51,7 @@ function CardHeader({ className, border = false, ...props }: CardHeaderProps) {
         "items-start gap-2",
         "px-6 py-4",
         "has-data-[slot=card-action]:grid-cols-[1fr_auto]",
-        border && "border-b",
+        border && "border-b-stroke border-default",
         className,
       )}
       {...props}
@@ -68,7 +75,11 @@ function CardTitle({
       )}
       {...props}
     >
-      {Icon && <Icon className="icon-compact text-brand" />}
+      {Icon && (
+        <span className="inline-flex items-center justify-center text-brand [&>svg]:size-4 [&>svg]:shrink-0">
+          <Icon />
+        </span>
+      )}
       {children}
     </div>
   );
@@ -78,7 +89,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("t-body-md fw-normal card-description", className)}
+      className={cn("t-body-md card-description", className)}
       {...props}
     />
   );
@@ -118,8 +129,10 @@ function CardEmpty({
       )}
       {...props}
     >
-      <div className="surface-page flex size-10 items-center justify-center full-rounded">
-        <Icon className="size-6 text-faint" />
+      <div className="surface-page flex h-large w-large items-center justify-center full-rounded">
+        <span className="inline-flex items-center justify-center text-faint [&>svg]:size-6 [&>svg]:shrink-0">
+          <Icon />
+        </span>
       </div>
 
       <div className="space-y-2">

@@ -15,5 +15,7 @@ export interface CardCaptionProps {
   actionLabel?: string;
   actionTo?: string;
   className?: string;
+  border?: boolean;
+  shadow?: boolean;
   children: ReactNode;
 }

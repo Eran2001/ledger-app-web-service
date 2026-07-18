@@ -12,16 +12,25 @@ export function CardCaption({
   actionLabel,
   actionTo,
   className,
+  border = false,
+  shadow = true,
   children,
 }: CardCaptionProps) {
   return (
-    <Card className={cn("p-0 gap-0 overflow-hidden", className)}>
-      <div className="flex items-center justify-between px-5 h-extra-large border-b border-default">
-        <span className="t-title-lg">{title}</span>
+    <Card
+      border={border}
+      shadow={shadow}
+      className={cn("p-0 gap-0 overflow-hidden", className)}
+    >
+      <div className="flex h-extra-large items-center justify-between border-b-stroke border-default px-5">
+        <span className="t-title-lg-soft">{title}</span>
         {actionLabel && actionTo && (
           <Button variant="link" size="sm" className="p-0">
-            <Link to={actionTo} className="inline-flex items-center gap-1">
-              {actionLabel} <Icon.ArrowRight className="icon-compact" />
+            <Link to={actionTo} className="inline-flex items-center gap-1 t-label-md">
+              {actionLabel}
+              <span className="inline-flex items-center justify-center text-brand [&>svg]:size-3.5 [&>svg]:shrink-0">
+                <Icon.ArrowRight />
+              </span>
             </Link>
           </Button>
         )}
