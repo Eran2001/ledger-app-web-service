@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
-import { BadgeIcon } from "@/components/ui/badge-icon";
+import * as Icon from "@/components/icons";
+import { ButtonGroup } from "@/components/ui/button-group";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,24 +17,41 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="badge icon">
-        <div className="flex flex-wrap items-center gap-3">
-          <BadgeIcon>Default</BadgeIcon>
-          <BadgeIcon variant="secondary">Secondary</BadgeIcon>
-          <BadgeIcon variant="success">Success</BadgeIcon>
-          <BadgeIcon variant="warning">Warning</BadgeIcon>
-          <BadgeIcon variant="info" iconPosition="right">
-            Info
-          </BadgeIcon>
-          <BadgeIcon variant="processing">Processing</BadgeIcon>
-          <BadgeIcon variant="overtime">Overtime</BadgeIcon>
-          <BadgeIcon variant="destructive">Destructive</BadgeIcon>
-          <BadgeIcon variant="outline" iconPosition="right">
-            Outline
-          </BadgeIcon>
-          <BadgeIcon border shadow variant="success">
-            Success
-          </BadgeIcon>
+      <Block title="button group">
+        <div className="space-y-4">
+          <ButtonGroup action="toggle" defaultValue="list" border shadow />
+
+          <ButtonGroup
+            action="split"
+            border
+            shadow
+            items={[
+              { icon: <Icon.Save />, label: "Save Invoice", onClick: () => {} },
+              {
+                icon: <Icon.FileText />,
+                label: "Save as Draft",
+                onClick: () => {},
+              },
+              { icon: <Icon.Send />, label: "Save & Send", onClick: () => {} },
+            ]}
+          />
+
+          <ButtonGroup
+            action="search"
+            border
+            shadow
+            placeholder="Search customers..."
+            onChange={() => {}}
+          />
+
+          <ButtonGroup
+            action="pagination"
+            border
+            shadow
+            label="Page 3 of 12"
+            onPrev={() => {}}
+            onNext={() => {}}
+          />
         </div>
       </Block>
     </div>

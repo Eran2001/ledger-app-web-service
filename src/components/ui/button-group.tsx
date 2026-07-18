@@ -55,8 +55,14 @@ type SplitItem = {
   onClick: () => void;
 };
 
+type ButtonGroupStyleProps = {
+  border?: boolean;
+  shadow?: boolean;
+};
+
 type ButtonGroupProps = React.ComponentProps<"div"> &
   VariantProps<typeof buttonGroupVariants> &
+  ButtonGroupStyleProps &
   (
     | {
         action: "toggle";
@@ -106,6 +112,8 @@ function ButtonGroup({
   defaultValue = "",
   items,
   label,
+  border = false,
+  shadow = false,
   onClick,
   placeholder,
   onChange,
@@ -130,10 +138,10 @@ function ButtonGroup({
           className={cn(buttonGroupVariants({ orientation }), className)}
           {...props}
         >
-          <ButtonGroupItem value="list">
+          <ButtonGroupItem value="list" border={border} shadow={shadow}>
             <List />
           </ButtonGroupItem>
-          <ButtonGroupItem value="grid">
+          <ButtonGroupItem value="grid" border={border} shadow={shadow}>
             <LayoutGrid />
           </ButtonGroupItem>
         </div>
@@ -150,7 +158,14 @@ function ButtonGroup({
         className={cn(buttonGroupVariants({ orientation }), className)}
         {...props}
       >
-        <Button onClick={primary.onClick}>
+        <Button
+          onClick={primary.onClick}
+          className={cn(
+            "h-field",
+            border ? "border-stroke border-default" : "no-border",
+            shadow && "shadow-card",
+          )}
+        >
           {primary.icon}
           {primary.label}
         </Button>
@@ -160,7 +175,14 @@ function ButtonGroup({
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button size="icon">
+            <Button
+              size="icon"
+              className={cn(
+                "h-field w-field",
+                border ? "border-stroke border-default" : "no-border",
+                shadow && "shadow-card",
+              )}
+            >
               <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -184,16 +206,24 @@ function ButtonGroup({
         data-slot="button-group"
         className={cn(
           buttonGroupVariants({ orientation }),
-          "h-field xl-rounded",
+          "h-field global-rounded",
           "btn-group-search",
           className,
         )}
         {...props}
       >
-        <ButtonGroupText>
+        <ButtonGroupText border={border} shadow={shadow}>
           <Search />
         </ButtonGroupText>
-        <Input placeholder={placeholder} onChange={onChange} />
+        <Input
+          className={cn(
+            "h-field",
+            border ? "border-stroke border-input-default" : "no-border",
+            shadow && "shadow-card",
+          )}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
       </div>
     );
   }
@@ -206,11 +236,31 @@ function ButtonGroup({
         className={cn(buttonGroupVariants({ orientation }), className)}
         {...props}
       >
-        <Button variant="outline" size="icon" onClick={onPrev}>
+        <Button
+          variant="outline"
+          size="icon"
+          className={cn(
+            "h-field w-field",
+            border ? "border-stroke border-default" : "no-border",
+            shadow && "shadow-card",
+          )}
+          onClick={onPrev}
+        >
           <ChevronLeft />
         </Button>
-        <ButtonGroupText>{label}</ButtonGroupText>
-        <Button variant="outline" size="icon" onClick={onNext}>
+        <ButtonGroupText border={border} shadow={shadow}>
+          {label}
+        </ButtonGroupText>
+        <Button
+          variant="outline"
+          size="icon"
+          className={cn(
+            "h-field w-field",
+            border ? "border-stroke border-default" : "no-border",
+            shadow && "shadow-card",
+          )}
+          onClick={onNext}
+        >
           <ChevronRight />
         </Button>
       </div>
@@ -233,8 +283,11 @@ function ButtonGroupItem({
   value,
   children,
   onClick,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<"button"> & { value: string }) {
+}: React.ComponentProps<"button"> &
+  ButtonGroupStyleProps & { value: string }) {
   const ctx = React.useContext(ButtonGroupContext);
   const isActive = ctx?.activeValue === value;
 
@@ -244,8 +297,10 @@ function ButtonGroupItem({
       data-slot="button-group-item"
       data-active={isActive}
       className={cn(
-        "btn-group-toggle-item xl-rounded",
-        "inline-flex items-center justify-center size-9 cursor-pointer",
+        "btn-group-toggle-item global-rounded",
+        "inline-flex h-field w-field items-center justify-center cursor-pointer",
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
         "[&>svg]:size-4 [&>svg]:pointer-events-none [&>svg]:shrink-0",
         className,
       )}
@@ -263,16 +318,20 @@ function ButtonGroupItem({
 function ButtonGroupText({
   className,
   asChild = false,
+  border = false,
+  shadow = false,
   ...props
 }: React.ComponentProps<"div"> & {
   asChild?: boolean;
-}) {
+} & ButtonGroupStyleProps) {
   const Comp = asChild ? Slot : "div";
 
   return (
     <Comp
       className={cn(
-        "surface-muted xl-rounded t-body-md border flex items-center gap-2 px-4 btn-group-text",
+        "surface-muted global-rounded h-field t-label-md flex items-center gap-2 px-4 btn-group-text",
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
         "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className,
       )}

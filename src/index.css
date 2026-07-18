@@ -3519,7 +3519,6 @@
 
   /* BUTTON-GROUP */
   .btn-group-toggle-item {
-    border: var(--border-width) var(--border-solid) var(--border);
     background-color: var(--background);
     color: var(--text-secondary);
     transition:
