@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type AlertVariant = "default" | "success" | "info" | "warning" | "destructive";
 
 const alertVariants = cva(
-  "relative flex w-full items-start gap-3.5 border p-5 xl-rounded",
+  "relative flex w-full items-start gap-3.5 border p-5 global-rounded",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const alertVariants = cva(
 );
 
 const badgeVariants = cva(
-  "flex h-large w-large shrink-0 items-center justify-center xl-rounded",
+  "flex h-large w-large shrink-0 items-center justify-center global-rounded",
   {
     variants: {
       variant: {
@@ -91,7 +91,10 @@ function Alert({
           className={cn(badgeVariants({ variant: resolvedVariant }))}
         >
           {icon ?? (
-            <ResolvedIcon className="xl-rounded icon-default" strokeWidth={3} />
+            <ResolvedIcon
+              className="global-rounded icon-default"
+              strokeWidth={3}
+            />
           )}
         </span>
         <div className="min-w-0 flex-1">{children}</div>

@@ -1,18 +1,10 @@
 import type { ReactNode } from "react";
 
-import * as Icon from "@/components/icons";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -28,31 +20,41 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="alert dialog">
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive">Delete customer</Button>
-          </AlertDialogTrigger>
+      <Block title="alert">
+        <Alert>
+          <AlertTitle>Default alert</AlertTitle>
+          <AlertDescription>
+            Use this for general status and neutral informational messages.
+          </AlertDescription>
+        </Alert>
 
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete customer record?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. The customer, linked sales, and
-                related activity history will be permanently removed.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
+        <Alert variant="success">
+          <AlertTitle>Payment collected</AlertTitle>
+          <AlertDescription>
+            The invoice was marked as paid and the customer balance is updated.
+          </AlertDescription>
+        </Alert>
 
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                variant="destructive"
-                icon={<Icon.Trash2 />}
-                text="Delete"
-              />
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Alert variant="info">
+          <AlertTitle>Sync in progress</AlertTitle>
+          <AlertDescription>
+            Ledger data is currently syncing from the external service.
+          </AlertDescription>
+        </Alert>
+
+        <Alert variant="warning">
+          <AlertTitle>Verification pending</AlertTitle>
+          <AlertDescription>
+            Some customer details still need review before approval.
+          </AlertDescription>
+        </Alert>
+
+        <Alert variant="destructive">
+          <AlertTitle>Delete failed</AlertTitle>
+          <AlertDescription>
+            The customer could not be removed because linked sales still exist.
+          </AlertDescription>
+        </Alert>
       </Block>
     </div>
   );
