@@ -2,20 +2,23 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
-type TabsHeight = "default" | "compact" | "large";
-
-const HeightContext = React.createContext<TabsHeight>("default");
+const HeightContext = React.createContext<ResponsiveSize>("default");
 
 function Tabs({
   className,
-  height = "default",
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root> & {
-  height?: TabsHeight;
-}) {
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  const { width, breakpoints } = useWidth();
+  const size = getResponsiveSize(width, breakpoints);
+
   return (
-    <HeightContext.Provider value={height}>
+    <HeightContext.Provider value={size}>
       <TabsPrimitive.Root
         data-slot="tabs"
         className={cn("flex flex-col gap-2 min-w-0", className)}
@@ -39,7 +42,11 @@ function TabsList({
     if (!list) return;
     const active = list.querySelector<HTMLElement>("[data-state=active]");
     if (!active) return;
-    setPill({ left: active.offsetLeft, width: active.offsetWidth, ready: true });
+    setPill({
+      left: active.offsetLeft,
+      width: active.offsetWidth,
+      ready: true,
+    });
   }, []);
 
   React.useEffect(() => {
@@ -47,7 +54,11 @@ function TabsList({
     const list = listRef.current;
     if (!list) return;
     const mo = new MutationObserver(updatePill);
-    mo.observe(list, { attributes: true, subtree: true, attributeFilter: ["data-state"] });
+    mo.observe(list, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: ["data-state"],
+    });
     const ro = new ResizeObserver(updatePill);
     ro.observe(list);
     return () => {
@@ -62,15 +73,21 @@ function TabsList({
         ref={listRef}
         data-slot="tabs-list"
         className={cn(
-          "relative inline-flex w-fit items-center justify-center global-rounded tabs-list",
-          height === "compact" ? "p-0.75" : height === "large" ? "p-1.5" : "p-1",
+          "relative inline-flex w-fit items-center justify-center xl-rounded tabs-list p-1",
+          height === "compact"
+            ? "h-compact"
+            : height === "large"
+              ? "h-large"
+              : height === "extra-large"
+                ? "h-extra-large"
+                : "h-field",
           className,
         )}
         {...props}
       >
         <div
           aria-hidden
-          className="tabs-slide-indicator absolute top-1 bottom-1"
+          className="tabs-slide-indicator md-rounded absolute top-1 bottom-1"
           style={{
             left: pill.left,
             width: pill.width,
@@ -93,8 +110,27 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "relative z-tabs-trigger inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer global-rounded tabs-trigger",
-        height === "compact" ? "px-3 py-1 t-caption" : height === "large" ? "px-5 py-2.5 t-body" : "px-4 py-1.5 t-meta",
+        "relative z-tabs-trigger inline-flex h-full items-center justify-center gap-2 whitespace-nowrap cursor-pointer xl-rounded tabs-trigger",
+        height === "compact"
+          ? "px-3 t-caption"
+          : height === "large"
+            ? "px-5 t-meta"
+            : height === "extra-large"
+              ? "px-6 t-body"
+              : "px-4 t-meta",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsCount({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="tabs-count"
+      className={cn(
+        "t-caption-bold pill-gray px-1.5 py-0.5 xl-rounded",
         className,
       )}
       {...props}
@@ -115,4 +151,4 @@ function TabsContent({
   );
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsList, TabsTrigger, TabsCount, TabsContent };

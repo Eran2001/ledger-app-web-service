@@ -3,6 +3,11 @@ import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 function InputOTP({
   className,
@@ -36,15 +41,17 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
 
 interface InputOTPSlotProps extends React.ComponentProps<"div"> {
   index: number;
-  size?: "default" | "compact" | "large";
+  size?: ResponsiveSize;
 }
 
 function InputOTPSlot({
   index,
   className,
-  size = "default",
+  size,
   ...props
 }: InputOTPSlotProps) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
   const inputOTPContext = React.useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 
@@ -54,7 +61,13 @@ function InputOTPSlot({
       data-active={isActive}
       className={cn(
         "relative flex aspect-square items-center justify-center",
-        size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
+        resolvedSize === "compact"
+          ? "h-compact t-caption"
+          : resolvedSize === "large"
+            ? "h-large t-meta"
+            : resolvedSize === "extra-large"
+              ? "h-extra-large t-body"
+              : "h-field t-meta",
         "otp-slot",
         className,
       )}

@@ -184,7 +184,7 @@ function ButtonGroup({
         data-slot="button-group"
         className={cn(
           buttonGroupVariants({ orientation }),
-          "h-field global-rounded",
+          "h-field xl-rounded",
           "btn-group-search",
           className,
         )}
@@ -244,7 +244,7 @@ function ButtonGroupItem({
       data-slot="button-group-item"
       data-active={isActive}
       className={cn(
-        "btn-group-toggle-item global-rounded",
+        "btn-group-toggle-item xl-rounded",
         "inline-flex items-center justify-center size-9 cursor-pointer",
         "[&>svg]:size-4 [&>svg]:pointer-events-none [&>svg]:shrink-0",
         className,
@@ -272,7 +272,7 @@ function ButtonGroupText({
   return (
     <Comp
       className={cn(
-        "surface-muted global-rounded t-meta border flex items-center gap-2 px-4 btn-group-text",
+        "surface-muted xl-rounded t-meta border flex items-center gap-2 px-4 btn-group-text",
         "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className,
       )}

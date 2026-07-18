@@ -7,7 +7,10 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("skeleton-base relative overflow-hidden", className)}
+      className={cn(
+        "skeleton-base xl-rounded relative overflow-hidden",
+        className,
+      )}
       {...props}
     />
   );

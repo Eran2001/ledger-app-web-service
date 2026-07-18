@@ -16,11 +16,16 @@ import {
 } from "@/components/ui/select";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 interface TimePickerProps {
   value: string; // "HH:mm" 24h
   onChange: (value: string) => void;
-  size?: "default" | "compact" | "large";
+  size?: ResponsiveSize;
   className?: string;
   disabled?: boolean;
 }
@@ -67,11 +72,13 @@ function formatDisplay(
 export function TimePicker({
   value,
   onChange,
-  size = "default",
+  size,
   className,
   disabled,
 }: TimePickerProps) {
   const [open, setOpen] = useState(false);
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
   const { hour, minute, period } = to12h(value ?? "00:00");
 
   const handleHour = (v: string) =>
@@ -90,30 +97,36 @@ export function TimePicker({
           aria-disabled={disabled}
           data-state={open ? "open" : "closed"}
           className={cn(
-            "flex items-center justify-between w-full px-3 gap-2 cursor-pointer",
-            size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
-            "global-rounded border",
+            "flex items-center justify-between w-full gap-2 cursor-pointer",
+            resolvedSize === "compact"
+              ? "h-compact px-2.5 t-caption"
+              : resolvedSize === "large"
+                ? "h-large px-4 t-meta"
+                : resolvedSize === "extra-large"
+                  ? "h-extra-large px-5 t-body"
+                  : "h-field px-3 t-meta",
+            "xl-rounded border",
             "picker-trigger",
             disabled && "opacity-50 pointer-events-none",
             !value && "picker-trigger-empty",
             className,
           )}
         >
-          <span className="truncate tabular-nums">
+          <span className="flex-1 min-w-0 truncate tabular-nums">
             {formatDisplay(hour, minute, period)}
           </span>
-          <Icon.Clock className="h-4 w-4 shrink-0" />
+          <Icon.Clock className="h-4 w-4 shrink-0 ml-auto" />
         </div>
       </PopoverTrigger>
 
       <PopoverContent
-        className={cn("w-auto p-3 global-rounded dropdown-shadow picker-content")}
+        className={cn("w-auto p-3 xl-rounded dropdown-shadow picker-content")}
         align="start"
         sideOffset={6}
       >
         <div className="flex items-center gap-1.5">
           <Select value={String(hour)} onValueChange={handleHour}>
-            <SelectTrigger className="w-20 tabular-nums">
+            <SelectTrigger className="w-24 tabular-nums">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -128,7 +141,7 @@ export function TimePicker({
           <span className="picker-separator">:</span>
 
           <Select value={String(minute)} onValueChange={handleMinute}>
-            <SelectTrigger className="w-20 tabular-nums">
+            <SelectTrigger className="w-24 tabular-nums">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="max-h-60">
@@ -141,7 +154,7 @@ export function TimePicker({
           </Select>
 
           <Select value={period} onValueChange={handlePeriod}>
-            <SelectTrigger className="w-20">
+            <SelectTrigger className="w-24">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

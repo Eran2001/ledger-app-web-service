@@ -31,7 +31,7 @@ function HoverCardContent({
         sideOffset={sideOffset}
         className={cn(
           "z-dropdown w-64 p-4",
-          "global-rounded border outline-hidden",
+          "xl-rounded border outline-hidden",
           "origin-(--radix-hover-card-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",

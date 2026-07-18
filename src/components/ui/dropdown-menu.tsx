@@ -3,6 +3,11 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 function DropdownMenu({
   ...props
@@ -42,7 +47,7 @@ function DropdownMenuContent({
         className={cn(
           "z-dropdown",
           "min-w-32 p-1",
-          "global-rounded border",
+          "xl-rounded border",
           "max-h-(--radix-dropdown-menu-content-available-height)",
           "origin-(--radix-dropdown-menu-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
@@ -73,11 +78,16 @@ function DropdownMenuItem({
   className,
   inset,
   variant = "default",
+  size,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
+  size?: ResponsiveSize;
 }) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
@@ -85,8 +95,14 @@ function DropdownMenuItem({
       data-variant={variant}
       className={cn(
         "relative flex items-center gap-2",
-        "px-2 py-1.5",
-        "t-meta global-rounded outline-hidden select-none",
+        resolvedSize === "compact"
+          ? "px-1.5 py-1 t-caption"
+          : resolvedSize === "large"
+            ? "px-3 py-2 t-meta"
+            : resolvedSize === "extra-large"
+              ? "px-4 py-2.5 t-body"
+              : "px-2 py-1.5 t-meta",
+        "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-inset:pl-8",
@@ -104,15 +120,28 @@ function DropdownMenuCheckboxItem({
   className,
   children,
   checked,
+  size,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
         "relative flex items-center gap-2",
-        "py-1.5 pr-2 pl-8",
-        "t-meta global-rounded outline-hidden select-none",
+        "pr-2 pl-8",
+        resolvedSize === "compact"
+          ? "py-1 t-caption"
+          : resolvedSize === "large"
+            ? "py-2 t-meta"
+            : resolvedSize === "extra-large"
+              ? "py-2.5 t-body"
+              : "py-1.5 t-meta",
+        "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -147,15 +176,28 @@ function DropdownMenuRadioGroup({
 function DropdownMenuRadioItem({
   className,
   children,
+  size,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
         "relative flex items-center gap-2",
-        "py-1.5 pr-2 pl-8",
-        "t-meta global-rounded outline-hidden select-none",
+        "pr-2 pl-8",
+        resolvedSize === "compact"
+          ? "py-1 t-caption"
+          : resolvedSize === "large"
+            ? "py-2 t-meta"
+            : resolvedSize === "extra-large"
+              ? "py-2.5 t-body"
+              : "py-1.5 t-meta",
+        "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -233,19 +275,30 @@ function DropdownMenuSub({
 function DropdownMenuSubTrigger({
   className,
   inset,
+  size,
   children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
   inset?: boolean;
+  size?: ResponsiveSize;
 }) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
         "flex items-center gap-2",
-        "px-2 py-1.5",
-        "t-meta global-rounded outline-hidden select-none",
+        resolvedSize === "compact"
+          ? "px-1.5 py-1 t-caption"
+          : resolvedSize === "large"
+            ? "px-3 py-2 t-meta"
+            : resolvedSize === "extra-large"
+              ? "px-4 py-2.5 t-body"
+              : "px-2 py-1.5 t-meta",
+        "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-inset:pl-8",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",

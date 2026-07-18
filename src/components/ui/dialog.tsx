@@ -66,7 +66,7 @@ function DialogContent({
           "z-dropdown grid w-full",
           "max-w-[calc(100%-2rem)] sm:max-w-lg",
           "gap-4 p-6",
-          "global-rounded border",
+          "xl-rounded border",
           "dialog-content",
           "duration-200",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
@@ -82,7 +82,8 @@ function DialogContent({
             data-slot="dialog-close"
             className={cn(
               "absolute top-4 right-4",
-              "global-rounded",
+              "flex size-8 items-center justify-center",
+              "xl-rounded",
               "cursor-pointer",
               "disabled:pointer-events-none",
               "[&_svg]:pointer-events-none [&_svg]:shrink-0",

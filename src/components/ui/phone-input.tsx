@@ -4,6 +4,11 @@ import type { Value, Country } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 interface PhoneInputProps {
   id?: string;
@@ -14,7 +19,7 @@ interface PhoneInputProps {
   placeholder?: string;
   defaultCountry?: Country;
   disabled?: boolean;
-  size?: "default" | "compact" | "large";
+  size?: ResponsiveSize;
 }
 
 export const PhoneInput = ({
@@ -26,8 +31,11 @@ export const PhoneInput = ({
   placeholder = "Enter your phone number",
   defaultCountry = "LK",
   disabled,
-  size = "default",
+  size,
 }: PhoneInputProps) => {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <PhoneInputPrimitive
       id={id}
@@ -39,12 +47,15 @@ export const PhoneInput = ({
       disabled={disabled}
       autoComplete="tel"
       className={cn(
-        size === "compact"
-          ? "h-compact"
-          : size === "large"
-            ? "h-large"
-            : "h-field",
+        resolvedSize === "compact"
+          ? "h-compact px-2.5 t-caption"
+          : resolvedSize === "large"
+            ? "h-large px-4 t-meta"
+            : resolvedSize === "extra-large"
+              ? "h-extra-large px-5 t-body"
+              : "h-field px-3 t-meta",
         ariaInvalid && "phone-input-invalid",
+        "xl-rounded",
         className,
       )}
     />

@@ -10,11 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Notification } from "@/components/ui/custom-toast";
+
 import { products as initialProducts } from "@/constant/product-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import type { Product } from "@/types/product-types";
-import { Notification } from "@/utils/notification";
 
 const TABS = [
   "All",

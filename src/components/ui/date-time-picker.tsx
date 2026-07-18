@@ -13,12 +13,27 @@ import {
 } from "@/components/ui/popover";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
+
+const DATE_BUTTON_SIZE_MAP: Record<
+  ResponsiveSize,
+  NonNullable<React.ComponentProps<typeof Button>["size"]>
+> = {
+  compact: "sm",
+  default: "default",
+  large: "lg",
+  "extra-large": "xl",
+};
 
 interface DateTimePickerProps {
   value?: Date;
   onChange?: (date: Date | undefined) => void;
   minDate?: Date;
-  size?: "default" | "compact" | "large";
+  size?: ResponsiveSize;
   className?: string;
   error?: boolean;
 }
@@ -27,11 +42,13 @@ export function DateTimePicker({
   value,
   onChange,
   minDate,
-  size = "default",
+  size,
   className,
   error,
 }: DateTimePickerProps) {
   const [open, setOpen] = React.useState(false);
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
 
   const timeValue = value
     ? `${String(value.getHours()).padStart(2, "0")}:${String(
@@ -65,13 +82,13 @@ export function DateTimePicker({
             <Button
               type="button"
               variant="outline"
+              size={DATE_BUTTON_SIZE_MAP[resolvedSize]}
               data-state={open ? "open" : "closed"}
               className={cn(
                 "w-full justify-between gap-2",
-                size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
                 "[&>span]:flex [&>span]:w-full",
                 "[&>span]:items-center [&>span]:justify-between",
-                "t-meta global-rounded picker-trigger",
+                "xl-rounded picker-trigger",
                 !value && "picker-trigger-empty",
                 error && "form-validation",
               )}
@@ -83,7 +100,7 @@ export function DateTimePicker({
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-auto p-0 global-rounded dropdown-shadow picker-content"
+            className="w-auto p-0 xl-rounded dropdown-shadow picker-content"
             align="start"
             sideOffset={6}
           >
@@ -99,12 +116,12 @@ export function DateTimePicker({
         </Popover>
       </div>
 
-      <div className="w-32 space-y-1.5">
+      <div className="w-40 space-y-1.5">
         <Label className="datetime-field-label">Time</Label>
         <TimePicker
           value={timeValue}
           onChange={handleTimeChange}
-          size={size}
+          size={resolvedSize}
         />
       </div>
     </div>

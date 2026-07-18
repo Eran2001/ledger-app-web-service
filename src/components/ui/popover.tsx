@@ -29,7 +29,7 @@ function PopoverContent({
         sideOffset={sideOffset}
         className={cn(
           "z-dropdown w-72 p-4",
-          "global-rounded border",
+          "xl-rounded border",
           "popover-content",
           "origin-(--radix-popover-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",

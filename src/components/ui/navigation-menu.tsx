@@ -4,6 +4,11 @@ import { cva } from "class-variance-authority";
 import { ChevronDownIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 function NavigationMenu({
   className,
@@ -60,21 +65,39 @@ function NavigationMenuItem({
   );
 }
 
-const navigationMenuTriggerStyle = cva([
-  "group inline-flex h-field w-max items-center justify-center",
-  "global-rounded px-4 py-2 t-meta fw-medium",
-  "nav-menu-trigger",
-]);
+const navigationMenuTriggerStyle = (size: ResponsiveSize = "default") =>
+  cn(
+    "group inline-flex w-max items-center justify-center",
+    "xl-rounded fw-medium",
+    size === "compact"
+      ? "h-compact px-3 py-1.5 t-caption"
+      : size === "large"
+        ? "h-large px-5 py-2.5 t-meta"
+        : size === "extra-large"
+          ? "h-extra-large px-6 py-3 t-body"
+          : "h-field px-4 py-2 t-meta",
+    "nav-menu-trigger",
+  );
 
 function NavigationMenuTrigger({
   className,
+  size,
   children,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
-      className={cn(navigationMenuTriggerStyle(), "group", className)}
+      className={cn(
+        navigationMenuTriggerStyle(resolvedSize),
+        "group",
+        className,
+      )}
       {...props}
     >
       {children}{" "}
@@ -124,7 +147,7 @@ function NavigationMenuContent({
         "group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95",
         "group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0",
         "group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0",
-        "nav-menu-content",
+        "nav-menu-content xl-rounded",
         className,
       )}
       {...props}
@@ -157,7 +180,7 @@ function NavigationMenuViewport({
         data-slot="navigation-menu-viewport"
         className={cn(
           "relative mt-1.5 w-full overflow-hidden",
-          "global-rounded",
+          "xl-rounded",
           "origin-top-center",
           "h-(--radix-navigation-menu-viewport-height)",
           "md:w-(--radix-navigation-menu-viewport-width)",
@@ -174,13 +197,26 @@ function NavigationMenuViewport({
 
 function NavigationMenuLink({
   className,
+  size,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Link> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "flex flex-col gap-1 global-rounded p-2 t-meta",
+        "flex flex-col gap-1 md-rounded",
+        resolvedSize === "compact"
+          ? "p-1.5 t-caption"
+          : resolvedSize === "large"
+            ? "p-2.5 t-meta"
+            : resolvedSize === "extra-large"
+              ? "p-3 t-body"
+              : "p-2 t-meta",
         "[&_svg:not([class*='size-'])]:size-4",
         "nav-menu-link",
         className,

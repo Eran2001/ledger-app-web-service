@@ -58,8 +58,12 @@ export function DatePickerInput({
               "w-full justify-between text-left gap-2",
               "[&>span]:flex [&>span]:w-full",
               "[&>span]:items-center [&>span]:justify-between",
-              size === "compact" ? "h-compact" : size === "large" ? "h-large" : "h-field",
-              "t-meta global-rounded picker-trigger",
+              size === "compact"
+                ? "h-compact"
+                : size === "large"
+                  ? "h-large"
+                  : "h-field",
+              "t-meta xl-rounded picker-trigger",
               !value && "picker-trigger-empty",
             )}
           >
@@ -73,7 +77,7 @@ export function DatePickerInput({
         <PopoverContent
           className={cn(
             "w-auto p-0",
-            "global-rounded",
+            "xl-rounded",
             "dropdown-shadow picker-content",
           )}
           align="start"

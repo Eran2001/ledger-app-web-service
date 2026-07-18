@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 import { XIcon } from "lucide-react";
@@ -95,13 +94,15 @@ function DrawerContent({
       >
         <VisuallyHidden>
           <DrawerPrimitive.Title>Drawer</DrawerPrimitive.Title>
-          <DrawerPrimitive.Description>Drawer panel</DrawerPrimitive.Description>
+          <DrawerPrimitive.Description>
+            Drawer panel
+          </DrawerPrimitive.Description>
         </VisuallyHidden>
         <div
           className={cn(
             "mx-auto mt-4 hidden",
             "h-2 w-25 shrink-0",
-            "drawer-handle",
+            "drawer-handle xl-rounded",
             "group-data-[vaul-drawer-direction=bottom]/drawer-content:block",
           )}
         />
@@ -110,7 +111,8 @@ function DrawerContent({
             data-slot="drawer-close"
             className={cn(
               "absolute top-4 right-4",
-              "global-rounded",
+              "flex size-8 items-center justify-center",
+              "xl-rounded",
               "cursor-pointer",
               "disabled:pointer-events-none",
               "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -148,10 +150,7 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="drawer-footer"
-      className={cn(
-        "mt-auto flex flex-col gap-2 p-4",
-        className,
-      )}
+      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
       {...props}
     />
   );
@@ -164,10 +163,7 @@ function DrawerTitle({
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn(
-        "t-display-soft drawer-title",
-        className,
-      )}
+      className={cn("t-display-soft drawer-title", className)}
       {...props}
     />
   );
@@ -180,10 +176,7 @@ function DrawerDescription({
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn(
-        "t-meta fw-normal drawer-description",
-        className,
-      )}
+      className={cn("t-meta fw-normal drawer-description", className)}
       {...props}
     />
   );

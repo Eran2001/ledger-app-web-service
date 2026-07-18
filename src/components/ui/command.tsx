@@ -3,6 +3,11 @@ import { Command as CommandPrimitive } from "cmdk";
 import { SearchIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 import {
   Dialog,
   DialogContent,
@@ -19,7 +24,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden global-rounded border",
+        "flex h-full w-full flex-col overflow-hidden md-rounded border",
         "command-root has-focus-ring",
         className,
       )}
@@ -72,19 +77,39 @@ function CommandDialog({
 
 function CommandInput({
   className,
+  size,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) {
+}: React.ComponentProps<typeof CommandPrimitive.Input> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <div
       data-slot="command-input-wrapper"
-      className="flex h-field items-center gap-2 border-b px-3"
+      className={cn(
+        "flex items-center gap-2 border-b",
+        resolvedSize === "compact"
+          ? "h-compact px-2.5"
+          : resolvedSize === "large"
+            ? "h-large px-4"
+            : resolvedSize === "extra-large"
+              ? "h-extra-large px-5"
+              : "h-field px-3",
+      )}
     >
       <SearchIcon className="size-4 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
           "flex h-full w-full",
-          "t-meta no-outline",
+          resolvedSize === "compact"
+            ? "t-caption"
+            : resolvedSize === "extra-large"
+              ? "t-body"
+              : "t-meta",
+          "no-outline",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "command-input",
           className,
@@ -157,16 +182,28 @@ function CommandSeparator({
 
 function CommandItem({
   className,
+  size,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Item>) {
+}: React.ComponentProps<typeof CommandPrimitive.Item> & {
+  size?: ResponsiveSize;
+}) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
         "relative flex cursor-pointer select-none",
         "items-center gap-2",
-        "global-rounded px-2 py-1.5",
-        "t-meta no-outline",
+        "md-rounded no-outline",
+        resolvedSize === "compact"
+          ? "px-2 py-1 t-caption"
+          : resolvedSize === "large"
+            ? "px-3 py-2 t-meta"
+            : resolvedSize === "extra-large"
+              ? "px-4 py-2.5 t-body"
+              : "px-2 py-1.5 t-meta",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "command-item",

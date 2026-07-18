@@ -31,7 +31,7 @@ function Calendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        "group/calendar surface-background p-3 global-rounded border [--cell-size:2rem]",
+        "group/calendar surface-background p-3 xl-rounded border [--cell-size:2rem]",
         "in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
@@ -55,13 +55,13 @@ function Calendar({
           defaultClassNames.nav,
         ),
         button_previous: cn(
-          buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
+          buttonVariants({ variant: buttonVariant, size: "icon-sm" }),
+          "size-(--cell-size) p-0 shrink-0 xl-rounded select-none aria-disabled:opacity-50",
           defaultClassNames.button_previous,
         ),
         button_next: cn(
-          buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
+          buttonVariants({ variant: buttonVariant, size: "icon-sm" }),
+          "size-(--cell-size) p-0 shrink-0 xl-rounded select-none aria-disabled:opacity-50",
           defaultClassNames.button_next,
         ),
         month_caption: cn(
@@ -73,7 +73,7 @@ function Calendar({
           defaultClassNames.dropdowns,
         ),
         dropdown_root: cn(
-          "relative global-rounded border border-default shadow-card-hover has-focus-ring",
+          "relative xl-rounded border border-default shadow-card-hover has-focus-ring",
           defaultClassNames.dropdown_root,
         ),
         dropdown: cn(
@@ -84,13 +84,13 @@ function Calendar({
           "fw-medium select-none",
           captionLayout === "label"
             ? "t-meta"
-            : "flex h-8 items-center gap-1 global-rounded pr-1 pl-2 t-meta",
+            : "flex h-8 items-center gap-1 xl-rounded pr-1 pl-2 t-meta",
           "[&>svg]:size-3.5 [&>svg]:text-faint",
           defaultClassNames.caption_label,
         ),
         weekdays: cn("flex", defaultClassNames.weekdays),
         weekday: cn(
-          "flex-1 global-rounded t-caption fw-normal text-faint select-none",
+          "flex-1 xl-rounded t-caption fw-normal text-faint select-none",
           defaultClassNames.weekday,
         ),
         week: cn("mt-2 flex w-full", defaultClassNames.week),

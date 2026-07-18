@@ -1,20 +1,21 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
+import * as Icon from "@/components/icons";
 import { cn } from "@/lib/utils";
 
+type AlertVariant = "default" | "success" | "info" | "warning" | "destructive";
+
 const alertVariants = cva(
-  "relative w-full lg-rounded border px-4 py-3 grid gap-y-1",
+  "relative flex w-full items-start gap-3.5 border p-5 xl-rounded",
   {
     variants: {
       variant: {
-        default: [
-          "surface-card text-main",
-          "[&_[data-slot=alert-description]]:text-faint",
-        ].join(" "),
-        info: "surface-brand-soft text-brand border-info-soft",
-        warning: "surface-warning-soft text-warning-role border-warning-soft",
-        destructive: "surface-danger-soft text-danger border-danger-soft",
+        default: "surface-card border-default text-main",
+        success: "surface-success-soft border-success-muted text-main",
+        info: "surface-info-soft border-info-muted text-main",
+        warning: "surface-warning-soft border-warning-soft text-main",
+        destructive: "surface-danger-soft border-danger-soft text-main",
       },
     },
     defaultVariants: {
@@ -23,36 +24,96 @@ const alertVariants = cva(
   },
 );
 
+const badgeVariants = cva(
+  "flex h-large w-large shrink-0 items-center justify-center xl-rounded",
+  {
+    variants: {
+      variant: {
+        default: "surface-muted text-soft",
+        success: "surface-success text-on-success",
+        info: "surface-info text-on-success",
+        warning: "surface-warning text-on-success",
+        destructive: "surface-danger text-on-destructive",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+const titleVariants = cva("t-meta-bold", {
+  variants: {
+    variant: {
+      default: "text-main",
+      success: "text-success-role",
+      info: "text-info-role",
+      warning: "text-warning-role",
+      destructive: "text-danger",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+const alertVariantContext = React.createContext<AlertVariant>("default");
+
+const DEFAULT_ICONS: Record<AlertVariant, typeof Icon.Info> = {
+  default: Icon.Info,
+  success: Icon.CircleCheckBig,
+  info: Icon.Info,
+  warning: Icon.TriangleAlert,
+  destructive: Icon.CircleX,
+};
+
 function Alert({
   className,
   variant,
+  icon,
+  children,
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof alertVariants> & { icon?: React.ReactNode }) {
+  const resolvedVariant = variant ?? "default";
+  const ResolvedIcon = DEFAULT_ICONS[resolvedVariant];
+
   return (
-    <div
-      data-slot="alert"
-      role="alert"
-      className={cn(alertVariants({ variant }), className)}
-      {...props}
-    />
+    <alertVariantContext.Provider value={resolvedVariant}>
+      <div
+        data-slot="alert"
+        role="alert"
+        className={cn(alertVariants({ variant: resolvedVariant }), className)}
+        {...props}
+      >
+        <span
+          aria-hidden="true"
+          className={cn(badgeVariants({ variant: resolvedVariant }))}
+        >
+          {icon ?? (
+            <ResolvedIcon className="xl-rounded icon-default" strokeWidth={3} />
+          )}
+        </span>
+        <div className="min-w-0 flex-1">{children}</div>
+      </div>
+    </alertVariantContext.Provider>
   );
 }
 
 function AlertTitle({
   className,
-  icon,
-  children,
+  variant,
   ...props
-}: React.ComponentProps<"div"> & { icon?: React.ReactNode }) {
+}: React.ComponentProps<"div"> & { variant?: AlertVariant }) {
+  const contextVariant = React.useContext(alertVariantContext);
+  const resolvedVariant = variant ?? contextVariant;
+
   return (
     <div
       data-slot="alert-title"
-      className={cn("flex items-center gap-2 t-meta-bold", className)}
+      className={cn(titleVariants({ variant: resolvedVariant }), className)}
       {...props}
-    >
-      {icon && <span className="shrink-0 [&>svg]:size-5">{icon}</span>}
-      <span className="line-clamp-1">{children}</span>
-    </div>
+    />
   );
 }
 
@@ -63,7 +124,7 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn("t-caption grid justify-items-start gap-1 pl-7", className)}
+      className={cn("mt-1 t-caption text-soft", className)}
       {...props}
     />
   );

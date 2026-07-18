@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import { getResponsiveSize } from "@/utils/get-responsive-size";
 
 interface SearchFieldProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -15,7 +17,6 @@ interface SearchFieldProps extends Omit<
   onClear?: () => void;
   onSearch?: () => void;
   containerClassName?: string;
-  size?: "default" | "compact" | "large";
 }
 
 export function SearchField({
@@ -26,9 +27,10 @@ export function SearchField({
   placeholder = "Search…",
   containerClassName,
   className,
-  size = "default",
   ...props
 }: SearchFieldProps) {
+  const { width, breakpoints } = useWidth();
+  const size = getResponsiveSize(width, breakpoints);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleClear = () => {
@@ -47,12 +49,14 @@ export function SearchField({
   return (
     <div
       className={cn(
-        "flex items-center w-full cursor-text search-field-root global-rounded",
+        "flex items-center w-full cursor-text search-field-root xl-rounded",
         size === "compact"
           ? "h-compact gap-1.5 px-2.5"
           : size === "large"
             ? "h-large gap-2.5 px-4"
-            : "h-field gap-2 px-3",
+            : size === "extra-large"
+              ? "h-extra-large gap-3 px-5"
+              : "h-field gap-2 px-3",
         containerClassName,
       )}
       onClick={() => inputRef.current?.focus()}
@@ -71,7 +75,9 @@ export function SearchField({
         >
           <Icon.Search
             className={cn(
-              size === "large" ? "icon-large" : "icon-default",
+              size === "large" || size === "extra-large"
+                ? "icon-large"
+                : "icon-default",
               "search-field-icon",
             )}
           />
@@ -79,7 +85,9 @@ export function SearchField({
       ) : (
         <Icon.Search
           className={cn(
-            size === "large" ? "icon-large" : "icon-default",
+            size === "large" || size === "extra-large"
+              ? "icon-large"
+              : "icon-default",
             "shrink-0 search-field-icon",
           )}
         />
@@ -96,7 +104,8 @@ export function SearchField({
           "surface-transparent no-border no-rounded no-shadow no-outline",
           "t-meta search-field-input",
           size === "compact" && "search-field-input-compact",
-          size === "large" && "search-field-input-large",
+          (size === "large" || size === "extra-large") &&
+            "search-field-input-large",
           className,
         )}
         {...props}
@@ -104,7 +113,7 @@ export function SearchField({
       {value && (
         <Icon.X
           className={cn(
-            size === "large"
+            size === "large" || size === "extra-large"
               ? "icon-large"
               : size === "compact"
                 ? "icon-compact"

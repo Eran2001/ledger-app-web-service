@@ -7,7 +7,7 @@ interface LoadingProps {
 export function Loading({ label = "Loading" }: LoadingProps) {
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center surface-page"
+      className="h-full min-h-full w-full flex items-center justify-center surface-background"
       aria-live="polite"
       aria-busy="true"
     >

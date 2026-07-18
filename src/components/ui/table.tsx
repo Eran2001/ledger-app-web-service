@@ -1,12 +1,39 @@
 import * as React from "react";
 
+import * as Icon from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 import { CardCaption } from "@/components/shared/card-caption";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { CategoryLabel } from "@/components/shared/category-label";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 import type { ProductCategory } from "@/types/product-types";
+
+type Breakpoints = ReturnType<typeof useWidth>["breakpoints"];
+
+// TableCell keeps its own (roomier) row-height thresholds, independent of
+// the shared getResponsiveSize scale, so tbody rows don't get cramped when
+// that shared scale shifts for other components.
+function getTableCellSize(
+  width: number,
+  breakpoints: Breakpoints,
+): ResponsiveSize {
+  if (width >= breakpoints["5xl"]) return "extra-large";
+  if (width >= breakpoints.xl) return "large";
+  if (width >= breakpoints.xs) return "default";
+  return "compact";
+}
 
 function Table({
   className,
@@ -21,16 +48,21 @@ function Table({
   actionLabel?: string;
   actionTo?: string;
 }) {
+  const isSimple = variant === "simple";
+
   const tableEl = (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className={cn(
+        "relative w-full overflow-x-auto",
+        !isSimple && "table-main-bleed",
+      )}
     >
       <table
         data-slot="table"
         className={cn(
           "w-full t-meta",
-          variant === "simple" ? "table-simple" : "table-striped",
+          isSimple ? "table-simple" : "table-main",
           className,
         )}
         {...props}
@@ -38,7 +70,7 @@ function Table({
     </div>
   );
 
-  if (variant === "simple") {
+  if (isSimple) {
     if (caption) {
       return (
         <CardCaption
@@ -51,10 +83,14 @@ function Table({
       );
     }
 
-    return <Card className="p-0 gap-0 overflow-hidden">{tableEl}</Card>;
+    return (
+      <Card border className="p-0 gap-0 overflow-hidden">
+        {tableEl}
+      </Card>
+    );
   }
 
-  return <Card className="card-base overflow-hidden p-0 gap-0">{tableEl}</Card>;
+  return tableEl;
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
@@ -102,20 +138,26 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
 }
 
 interface TableHeadProps extends React.ComponentProps<"th"> {
-  variant?: "striped" | "simple";
+  size?: ResponsiveSize;
 }
 
-function TableHead({
-  className,
-  variant = "striped",
-  ...props
-}: TableHeadProps) {
+function TableHead({ className, size, ...props }: TableHeadProps) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize: ResponsiveSize =
+    size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <th
       data-slot="table-head"
       className={cn(
         "text-left align-middle whitespace-nowrap border-b border-default table-head",
-        variant === "simple" ? "h-large px-4" : "h-extra-large px-4",
+        resolvedSize === "compact"
+          ? "h-compact px-3 t-micro-bold"
+          : resolvedSize === "large"
+            ? "h-large px-4 t-caption-bold"
+            : resolvedSize === "extra-large"
+              ? "h-medium-large px-5 t-meta-bold"
+              : "h-field px-4 t-caption-bold",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -125,24 +167,34 @@ function TableHead({
 }
 
 interface TableCellProps extends React.ComponentProps<"td"> {
-  variant?: "striped" | "simple";
+  size?: ResponsiveSize;
   accentBar?: boolean;
 }
 
 function TableCell({
   className,
-  variant = "striped",
+  size,
   accentBar = false,
   children,
   ...props
 }: TableCellProps) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize: ResponsiveSize =
+    size ?? getTableCellSize(width, breakpoints);
+
   return (
     <td
       data-slot="table-cell"
       className={cn(
         "align-middle whitespace-nowrap",
         accentBar && "relative",
-        variant === "simple" ? "h-extra-large px-4" : "h-extra-large px-4",
+        resolvedSize === "compact"
+          ? "h-field px-3 t-caption"
+          : resolvedSize === "large"
+            ? "h-medium-large px-4 t-meta"
+            : resolvedSize === "extra-large"
+              ? "h-extra-large px-5 t-body"
+              : "h-medium-large px-4 t-meta",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -159,13 +211,25 @@ function TableCell({
   );
 }
 
+function TableCellTruncate({ className, children, ...props }: TableCellProps) {
+  return (
+    <TableCell className={cn("max-w-70", className)} {...props}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="block truncate">{children}</span>
+        </TooltipTrigger>
+        <TooltipContent>{children}</TooltipContent>
+      </Tooltip>
+    </TableCell>
+  );
+}
+
 interface TableCellMediaProps {
   name: string;
   title: string;
   subtitle?: string;
   avatarSize?: "sm" | "md" | "lg";
 }
-
 function TableCellMedia({
   name,
   title,
@@ -178,11 +242,40 @@ function TableCellMedia({
       {subtitle ? (
         <div className="flex flex-col">
           <span>{title}</span>
-          <span className="table-text">{subtitle}</span>
+          <span className="table-text table-subtext">{subtitle}</span>
         </div>
       ) : (
         <span>{title}</span>
       )}
+    </div>
+  );
+}
+
+interface TableCellCustomerProps {
+  name: string;
+  countryFlag: string;
+  country: string;
+  sessionCount: number;
+  avatarSize?: "sm" | "md" | "lg";
+}
+
+function TableCellCustomer({
+  name,
+  countryFlag,
+  country,
+  sessionCount,
+  avatarSize = "sm",
+}: TableCellCustomerProps) {
+  return (
+    <div className="flex items-center gap-3">
+      <InitialsAvatar name={name} size={avatarSize} />
+      <div className="flex flex-col">
+        <span>{name}</span>
+        <span className="table-text table-subtext">
+          {countryFlag} {country} · {sessionCount} session
+          {sessionCount === 1 ? "" : "s"}
+        </span>
+      </div>
     </div>
   );
 }
@@ -198,6 +291,116 @@ function TableCellProduct({ name, category }: TableCellProductProps) {
       <span className="table-title-text">{name}</span>
       {category && <CategoryLabel category={category} />}
     </div>
+  );
+}
+
+interface TableCellStackedProps {
+  title: string;
+  subtitle?: string;
+}
+
+function TableCellStacked({ title, subtitle }: TableCellStackedProps) {
+  return (
+    <div className="flex flex-col">
+      <span className="">{title}</span>
+      {subtitle && <span className="table-text table-subtext">{subtitle}</span>}
+    </div>
+  );
+}
+
+interface TableCellInlineProps {
+  icon?: React.ElementType;
+  text: string;
+  iconClassName?: string;
+  textClassName?: string;
+  className?: string;
+}
+
+function TableCellInline({
+  icon: IconComponent,
+  text,
+  iconClassName,
+  textClassName,
+  className,
+}: TableCellInlineProps) {
+  return (
+    <div className={cn("flex items-center gap-2", className)}>
+      {IconComponent && <IconComponent className={cn("size-4", iconClassName)} />}
+      <span className={textClassName}>{text}</span>
+    </div>
+  );
+}
+
+interface TableEmptyProps {
+  colSpan: number;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  actionLabel?: string;
+  onRefresh?: () => void;
+}
+
+interface TableEmptyStateProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  actionLabel?: string;
+  onRefresh?: () => void;
+  className?: string;
+}
+
+function TableEmptyState({
+  icon: EmptyIcon,
+  title,
+  description,
+  actionLabel = "Refresh",
+  onRefresh,
+  className,
+}: TableEmptyStateProps) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center py-8 text-center",
+        className,
+      )}
+    >
+      <div className="surface-page mb-5 flex size-14 items-center justify-center full-rounded">
+        <EmptyIcon className="size-7 text-faint" />
+      </div>
+
+      <div className="max-w-3xl space-y-2">
+        <p className="t-display-soft text-main">{title}</p>
+        <p className="t-body text-faint">{description}</p>
+      </div>
+
+      <Button variant="outline" size="lg" className="mt-4" onClick={onRefresh}>
+        <Icon.RefreshCw className="size-4" />
+        {actionLabel}
+      </Button>
+    </div>
+  );
+}
+
+function TableEmpty({
+  colSpan,
+  icon,
+  title,
+  description,
+  actionLabel,
+  onRefresh,
+}: TableEmptyProps) {
+  return (
+    <TableRow className="hover:bg-transparent">
+      <TableCell colSpan={colSpan} className="table-empty p-0">
+        <TableEmptyState
+          icon={icon}
+          title={title}
+          description={description}
+          actionLabel={actionLabel}
+          onRefresh={onRefresh}
+        />
+      </TableCell>
+    </TableRow>
   );
 }
 
@@ -222,7 +425,13 @@ export {
   TableHead,
   TableRow,
   TableCell,
+  TableCellTruncate,
   TableCellMedia,
+  TableCellCustomer,
   TableCellProduct,
+  TableCellStacked,
+  TableCellInline,
+  TableEmpty,
+  TableEmptyState,
   TableCaption,
 };

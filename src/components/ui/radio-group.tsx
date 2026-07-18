@@ -19,14 +19,26 @@ function RadioGroup({
 }
 
 function RadioGroupItem({
+  id,
+  label,
   className,
+  containerClassName,
+  labelClassName,
   ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
-  return (
+}: React.ComponentProps<typeof RadioGroupPrimitive.Item> & {
+  label?: React.ReactNode
+  containerClassName?: string
+  labelClassName?: string
+}) {
+  const generatedId = React.useId()
+  const radioId = id ?? generatedId
+
+  const radioControl = (
     <RadioGroupPrimitive.Item
+      id={radioId}
       data-slot="radio-group-item"
       className={cn(
-        'aspect-square size-4 shrink-0 border',
+        'aspect-square size-4 shrink-0 border cursor-pointer',
         'full-rounded radio-group-item',
         className,
       )}
@@ -39,6 +51,22 @@ function RadioGroupItem({
         <CircleIcon className="radio-group-dot absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
+  )
+
+  if (!label) {
+    return radioControl
+  }
+
+  return (
+    <label
+      htmlFor={radioId}
+      className={cn('flex items-center gap-3 cursor-pointer', containerClassName)}
+    >
+      {radioControl}
+      <span className={cn('t-meta-bold text-main', labelClassName)}>
+        {label}
+      </span>
+    </label>
   )
 }
 

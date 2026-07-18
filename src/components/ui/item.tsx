@@ -4,13 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       role="list"
       data-slot="item-group"
-      className={cn("group/item-group flex flex-col border global-rounded", className)}
+      className={cn(
+        "group/item-group flex flex-col border xl-rounded",
+        className,
+      )}
       {...props}
     />
   );
@@ -33,7 +41,7 @@ function ItemSeparator({
 const itemVariants = cva(
   [
     "group/item flex items-center flex-wrap",
-    "border t-meta global-rounded outline-none",
+    "border t-meta xl-rounded outline-none",
     "item-root",
   ],
   {
@@ -44,8 +52,10 @@ const itemVariants = cva(
         muted: "item-muted",
       },
       size: {
-        default: "p-4 gap-4",
-        sm: "py-3 px-4 gap-2.5",
+        compact: "py-2 px-3 gap-2",
+        default: "py-3 px-4 gap-2.5",
+        large: "p-4 gap-4",
+        "extra-large": "p-5 gap-5",
       },
     },
     defaultVariants: {
@@ -58,18 +68,21 @@ const itemVariants = cva(
 function Item({
   className,
   variant = "default",
-  size = "default",
+  size,
   asChild = false,
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize: ResponsiveSize =
+    size ?? getResponsiveSize(width, breakpoints);
   const Comp = asChild ? Slot : "div";
   return (
     <Comp
       data-slot="item"
       data-variant={variant}
-      data-size={size}
-      className={cn(itemVariants({ variant, size, className }))}
+      data-size={resolvedSize}
+      className={cn(itemVariants({ variant, size: resolvedSize, className }))}
       {...props}
     />
   );
@@ -87,12 +100,12 @@ const itemMediaVariants = cva(
       variant: {
         default: "",
         icon: [
-          "size-8 border global-rounded",
+          "size-8 border xl-rounded",
           "[&_svg:not([class*='size-'])]:size-4",
           "item-media-icon",
         ],
         image: [
-          "size-10 global-rounded overflow-hidden",
+          "size-10 xl-rounded overflow-hidden",
           "[&_img]:size-full [&_img]:object-cover",
         ],
       },

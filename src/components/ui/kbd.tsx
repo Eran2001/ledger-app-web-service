@@ -9,7 +9,7 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
       className={cn(
         "pointer-events-none inline-flex w-fit select-none",
         "h-5 min-w-5 items-center justify-center gap-1",
-        "global-rounded px-1 font-sans t-caption",
+        "xl-rounded px-1 font-sans t-caption",
         "[&_svg:not([class*='size-'])]:size-3",
         "kbd",
         className,

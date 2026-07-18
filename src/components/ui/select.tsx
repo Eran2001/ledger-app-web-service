@@ -3,6 +3,11 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWidth } from "@/hooks/use-width";
+import {
+  getResponsiveSize,
+  type ResponsiveSize,
+} from "@/utils/get-responsive-size";
 
 function Select({
   ...props
@@ -24,21 +29,30 @@ function SelectValue({
 
 function SelectTrigger({
   className,
-  size = "default",
+  size,
   children,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
-  size?: "sm" | "default";
+  size?: ResponsiveSize;
 }) {
+  const { width, breakpoints } = useWidth();
+  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
+
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
-      data-size={size}
+      data-size={resolvedSize}
       className={cn(
-        "t-meta global-rounded border",
+        "xl-rounded border",
         "flex w-fit items-center justify-between gap-2",
-        "px-3 py-2 whitespace-nowrap cursor-pointer",
-        size === "sm" ? "h-compact" : "h-field",
+        "whitespace-nowrap cursor-pointer",
+        resolvedSize === "compact"
+          ? "h-compact px-2.5 t-caption"
+          : resolvedSize === "large"
+            ? "h-large px-4 t-meta"
+            : resolvedSize === "extra-large"
+              ? "h-extra-large px-5 t-body"
+              : "h-field px-3 t-meta",
         "*:data-[slot=select-value]:line-clamp-1",
         "*:data-[slot=select-value]:flex",
         "*:data-[slot=select-value]:items-center",
@@ -79,7 +93,7 @@ function SelectContent({
           "relative z-dropdown overflow-x-hidden overflow-y-auto",
           "max-h-(--radix-select-content-available-height)",
           "min-w-32 origin-(--radix-select-content-transform-origin)",
-          "global-rounded border",
+          "md-rounded border",
           "select-content",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
@@ -128,7 +142,7 @@ function SelectItem({
       className={cn(
         "relative flex w-full cursor-pointer select-none",
         "items-center gap-2",
-        "global-rounded",
+        "md-rounded",
         "py-1.5 pr-8 pl-2",
         "t-meta",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -156,7 +170,11 @@ function SelectSeparator({
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn("pointer-events-none -mx-1 my-1 h-px", "select-separator", className)}
+      className={cn(
+        "pointer-events-none -mx-1 my-1 h-px",
+        "select-separator",
+        className,
+      )}
       {...props}
     />
   );
