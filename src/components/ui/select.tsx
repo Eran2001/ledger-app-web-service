@@ -3,11 +3,6 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
 function Select({
   ...props
@@ -29,30 +24,16 @@ function SelectValue({
 
 function SelectTrigger({
   className,
-  size,
   children,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof SelectPrimitive.Trigger>) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
-      data-size={resolvedSize}
       className={cn(
-        "xl-rounded border",
-        "flex w-fit items-center justify-between gap-2",
+        "global-rounded border-stroke flex h-field w-fit items-center justify-between gap-2 px-3",
         "whitespace-nowrap cursor-pointer",
-        resolvedSize === "compact"
-          ? "h-compact px-2.5 t-label-md"
-          : resolvedSize === "large"
-            ? "h-large px-4 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body-lg"
-              : "h-field px-3 t-body-md",
+        "t-body-md",
         "*:data-[slot=select-value]:line-clamp-1",
         "*:data-[slot=select-value]:flex",
         "*:data-[slot=select-value]:items-center",
@@ -93,7 +74,7 @@ function SelectContent({
           "relative z-dropdown overflow-x-hidden overflow-y-auto",
           "max-h-(--radix-select-content-available-height)",
           "min-w-32 origin-(--radix-select-content-transform-origin)",
-          "md-rounded border",
+          "global-rounded border-stroke",
           "select-content",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
@@ -125,7 +106,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.Label
       data-slot="select-label"
-      className={cn("t-label-md px-2 py-1.5", "select-label", className)}
+      className={cn("t-label-md-bold px-2 py-1.5", "select-label", className)}
       {...props}
     />
   );
@@ -142,7 +123,7 @@ function SelectItem({
       className={cn(
         "relative flex w-full cursor-pointer select-none",
         "items-center gap-2",
-        "md-rounded",
+        "global-rounded",
         "py-1.5 pr-8 pl-2",
         "t-body-md",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",

@@ -1,10 +1,16 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import {
-  RadioGroup,
-  RadioGroupItem,
-} from "@/components/ui/radio-group";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -18,26 +24,49 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 }
 
 export default function Test() {
-  const [value, setValue] = useState("daily");
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="space-y-8">
-      <Block title="radio group">
+      <Block title="sheet">
         <div className="surface-card global-rounded flex max-w-xl flex-col gap-5 p-5">
-          <RadioGroup value={value} onValueChange={setValue}>
-            <RadioGroupItem
-              value="daily"
-              label="Daily reminders"
-            />
-            <RadioGroupItem
-              value="weekly"
-              label="Weekly summaries"
-            />
-            <RadioGroupItem
-              value="monthly"
-              label="Monthly statements"
-            />
-          </RadioGroup>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button>Open sheet</Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Customer summary</SheetTitle>
+                <SheetDescription>
+                  Review recent invoice activity, payment velocity, and follow-up
+                  notes in a compact side panel.
+                </SheetDescription>
+              </SheetHeader>
+
+              <div className="space-y-4 px-4">
+                <div className="space-y-1">
+                  <p className="t-label-sm-bold text-faint text-uppercase tracking-label">
+                    Open invoices
+                  </p>
+                  <p className="t-body-md">18 active records need review.</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="t-label-sm-bold text-faint text-uppercase tracking-label">
+                    Payment velocity
+                  </p>
+                  <p className="t-body-md">
+                    Average settlement time is 12 days this month.
+                  </p>
+                </div>
+              </div>
+
+              <SheetFooter>
+                <Button variant="secondary" onClick={() => setOpen(false)}>
+                  Close panel
+                </Button>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
         </div>
       </Block>
     </div>

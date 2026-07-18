@@ -4849,7 +4849,6 @@
 
   /* SEARCH FIELD */
   .search-field-root {
-    border: var(--border-width-1) var(--border-solid) var(--border);
     background-color: var(--background);
     transition:
       border-color var(--duration-fast),
@@ -4875,14 +4874,6 @@
       box-shadow: var(--shadow-none) !important;
       border-color: transparent !important;
     }
-  }
-
-  .search-field-input-compact {
-    font-size: var(--font-size-md) !important;
-  }
-  .search-field-input-large {
-    font-size: var(--font-size-xl) !important;
-    font-weight: var(--font-weight-normal) !important;
   }
 
   .search-field-icon-btn {

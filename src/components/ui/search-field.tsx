@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import { getResponsiveSize } from "@/utils/get-responsive-size";
 
 interface SearchFieldProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -29,8 +27,6 @@ export function SearchField({
   className,
   ...props
 }: SearchFieldProps) {
-  const { width, breakpoints } = useWidth();
-  const size = getResponsiveSize(width, breakpoints);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleClear = () => {
@@ -49,14 +45,7 @@ export function SearchField({
   return (
     <div
       className={cn(
-        "flex items-center w-full cursor-text search-field-root xl-rounded",
-        size === "compact"
-          ? "h-compact gap-1.5 px-2.5"
-          : size === "large"
-            ? "h-large gap-2.5 px-4"
-            : size === "extra-large"
-              ? "h-extra-large gap-3 px-5"
-              : "h-field gap-2 px-3",
+        "search-field-root global-rounded border-stroke flex h-field w-full cursor-text items-center gap-2 px-3",
         containerClassName,
       )}
       onClick={() => inputRef.current?.focus()}
@@ -65,32 +54,21 @@ export function SearchField({
         <Button
           type="button"
           variant="ghost"
-          size="icon-sm"
-          className="shrink-0 search-field-icon-btn"
+          className="search-field-icon-btn h-compact w-compact shrink-0"
           onClick={(event) => {
             event.stopPropagation();
             onSearch();
           }}
           aria-label="Search"
         >
-          <Icon.Search
-            className={cn(
-              size === "large" || size === "extra-large"
-                ? "icon-large"
-                : "icon-default",
-              "search-field-icon",
-            )}
-          />
+          <span className="search-field-icon flex items-center justify-center">
+            <Icon.Search />
+          </span>
         </Button>
       ) : (
-        <Icon.Search
-          className={cn(
-            size === "large" || size === "extra-large"
-              ? "icon-large"
-              : "icon-default",
-            "shrink-0 search-field-icon",
-          )}
-        />
+        <span className="search-field-icon flex shrink-0 items-center justify-center">
+          <Icon.Search />
+        </span>
       )}
       <Input
         ref={inputRef}
@@ -103,28 +81,20 @@ export function SearchField({
           "flex-1 min-w-0 h-full p-0",
           "surface-transparent no-border no-rounded no-shadow no-outline",
           "t-body-md search-field-input",
-          size === "compact" && "search-field-input-compact",
-          (size === "large" || size === "extra-large") &&
-            "search-field-input-large",
           className,
         )}
         {...props}
       />
       {value && (
-        <Icon.X
-          className={cn(
-            size === "large" || size === "extra-large"
-              ? "icon-large"
-              : size === "compact"
-                ? "icon-compact"
-                : "icon-default",
-            "shrink-0 search-field-clear cursor-pointer",
-          )}
+        <span
+          className="search-field-clear flex shrink-0 cursor-pointer items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();
             handleClear();
           }}
-        />
+        >
+          <Icon.X />
+        </span>
       )}
     </div>
   );

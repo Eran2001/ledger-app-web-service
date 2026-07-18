@@ -12,7 +12,7 @@ function ResizablePanelGroup({
     <ResizablePrimitive.PanelGroup
       data-slot="resizable-panel-group"
       className={cn(
-        "flex w-full overflow-hidden border xl-rounded resizable-root",
+        "global-rounded border-stroke flex w-full overflow-hidden resizable-root",
         "data-[panel-group-direction=vertical]:flex-col",
         className,
       )}
@@ -50,7 +50,7 @@ function ResizableHandle({
       {...props}
     >
       {withHandle && (
-        <div className="resizable-handle-grip z-tabs-trigger flex h-4 w-3 items-center justify-center xl-rounded border">
+        <div className="resizable-handle-grip global-rounded z-tabs-trigger flex h-4 w-3 items-center justify-center border-stroke">
           <GripVerticalIcon className="size-2.5" />
         </div>
       )}

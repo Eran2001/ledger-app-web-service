@@ -11,7 +11,10 @@ function ScrollArea({
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      className={cn("relative border xl-rounded scroll-area-root", className)}
+      className={cn(
+        "relative global-rounded border-stroke scroll-area-root",
+        className,
+      )}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
@@ -37,15 +40,15 @@ function ScrollBar({
       orientation={orientation}
       className={cn(
         "scroll-area-scrollbar flex touch-none p-px select-none",
-        orientation === "vertical" && "h-full w-2.5 border-l",
-        orientation === "horizontal" && "h-2.5 flex-col border-t",
+        orientation === "vertical" && "h-full w-2.5 border-l-stroke",
+        orientation === "horizontal" && "h-2.5 flex-col border-t-stroke",
         className,
       )}
       {...props}
     >
       <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
-        className="scroll-area-thumb relative flex-1 xl-rounded"
+        className="scroll-area-thumb full-rounded relative flex-1"
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
