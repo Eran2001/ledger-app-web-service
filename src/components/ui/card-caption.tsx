@@ -22,7 +22,12 @@ export function CardCaption({
       shadow={shadow}
       className={cn("p-0 gap-0 overflow-hidden", className)}
     >
-      <div className="flex h-extra-large items-center justify-between border-b-stroke border-default px-5">
+      <div
+        className={cn(
+          "flex h-extra-large items-center justify-between px-5",
+          border && "border-b-stroke border-default",
+        )}
+      >
         <span className="t-title-lg-soft">{title}</span>
         {actionLabel && actionTo && (
           <Button variant="link" size="sm" className="p-0">

@@ -3086,8 +3086,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    border: var(--border-width-1) var(--border-solid)
-      var(--border-transparent);
+    border: var(--border-width-1) var(--border-solid) var(--border-transparent);
     background: var(--bg-transparent);
   }
   .app-sidebar-collapsed-link:hover {
@@ -3140,8 +3139,7 @@
   /* NOTIFICATION DOT */
   .notification-dot {
     background-color: var(--destructive);
-    border: calc(var(--border-width-1) * 2) var(--border-solid)
-      var(--card-bg);
+    border: calc(var(--border-width-1) * 2) var(--border-solid) var(--card-bg);
   }
 
   /* AUTH GRADIENT */

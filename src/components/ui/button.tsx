@@ -52,12 +52,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "surface-brand text-inverse dark:text-[hsl(30_10%_11%)] btn-roll",
-        destructive:
-          "surface-danger text-on-destructive dark:text-[hsl(30_10%_11%)] btn-destructive",
-        success:
-          "surface-success text-on-success dark:text-[hsl(30_10%_11%)] btn-success",
+        default: "surface-brand text-inverse btn-roll",
+        destructive: "surface-danger text-on-destructive btn-destructive",
+        success: "surface-success text-on-success btn-success",
         outline:
           "border-stroke border-default btn-outline dark:text-[var(--foreground)] dark:hover:text-[var(--foreground)]",
         secondary: "btn-secondary",

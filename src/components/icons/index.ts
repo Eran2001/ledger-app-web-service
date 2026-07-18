@@ -17,6 +17,7 @@ export {
   ChevronLeft,
   Lightbulb,
   Settings,
+  ReceiptText,
   ChartColumn,
   MessageSquare,
   Puzzle,
