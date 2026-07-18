@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,27 +16,33 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="avatar">
-        <div className="flex items-center gap-4">
-          <Avatar border shadow>
-            <AvatarImage
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=320&q=80"
-              alt="Sophia Turner"
-            />
-            <AvatarFallback>ST</AvatarFallback>
-          </Avatar>
-
-          <Avatar border shadow>
-            <AvatarFallback>AL</AvatarFallback>
-          </Avatar>
-
-          <Avatar border shadow>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-
-          <Avatar border shadow>
-            <AvatarFallback>SM</AvatarFallback>
-          </Avatar>
+      <Block title="badge">
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge border shadow>
+            Default
+          </Badge>
+          <Badge variant="secondary" border shadow>
+            Secondary
+          </Badge>
+          <Badge variant="success">Success</Badge>
+          <Badge variant="warning" border shadow>
+            Warning
+          </Badge>
+          <Badge variant="info" border shadow>
+            Info
+          </Badge>
+          <Badge variant="processing" border shadow>
+            Processing
+          </Badge>
+          <Badge variant="overtime" border shadow>
+            Overtime
+          </Badge>
+          <Badge variant="destructive" border shadow>
+            Destructive
+          </Badge>
+          <Badge variant="outline" border shadow>
+            Outline
+          </Badge>
         </div>
       </Block>
     </div>
