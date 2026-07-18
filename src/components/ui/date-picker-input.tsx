@@ -18,7 +18,6 @@ type DatePickerInputProps = {
   onChange?: (date: Date | undefined) => void;
   placeholder?: string;
   disabled?: boolean;
-  size?: "default" | "compact" | "large";
   className?: string;
 };
 
@@ -37,7 +36,6 @@ export function DatePickerInput({
   onChange,
   placeholder = "Select date",
   disabled,
-  size = "default",
   className,
 }: DatePickerInputProps) {
   const [open, setOpen] = React.useState(false);
@@ -58,26 +56,23 @@ export function DatePickerInput({
               "w-full justify-between text-left gap-2",
               "[&>span]:flex [&>span]:w-full",
               "[&>span]:items-center [&>span]:justify-between",
-              size === "compact"
-                ? "h-compact"
-                : size === "large"
-                  ? "h-large"
-                  : "h-field",
-              "t-body-md xl-rounded picker-trigger",
+              "h-field",
+              "t-body-md picker-trigger",
               !value && "picker-trigger-empty",
             )}
           >
             <span className="truncate">
               {value ? formatDate(value) : placeholder}
             </span>
-            <Icon.CalendarIcon className="h-4 w-4 shrink-0" />
+            <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+              <Icon.CalendarIcon />
+            </span>
           </Button>
         </PopoverTrigger>
 
         <PopoverContent
           className={cn(
             "w-auto p-0",
-            "xl-rounded",
             "dropdown-shadow picker-content",
           )}
           align="start"

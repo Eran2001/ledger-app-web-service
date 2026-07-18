@@ -3,11 +3,6 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
 function DropdownMenu({
   ...props
@@ -24,11 +19,22 @@ function DropdownMenuPortal({
 }
 
 function DropdownMenuTrigger({
+  className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <DropdownMenuPrimitive.Trigger
       data-slot="dropdown-menu-trigger"
+      className={cn(
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
+        className,
+      )}
       {...props}
     />
   );
@@ -37,8 +43,13 @@ function DropdownMenuTrigger({
 function DropdownMenuContent({
   className,
   sideOffset = 4,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Content>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Content> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
@@ -47,7 +58,7 @@ function DropdownMenuContent({
         className={cn(
           "z-dropdown",
           "min-w-32 p-1",
-          "xl-rounded border",
+          "global-rounded",
           "max-h-(--radix-dropdown-menu-content-available-height)",
           "origin-(--radix-dropdown-menu-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
@@ -58,6 +69,8 @@ function DropdownMenuContent({
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
           "dropdown-menu-content",
+          border && "border-stroke border-default",
+          shadow ? "shadow-card" : "no-shadow",
           className,
         )}
         {...props}
@@ -78,16 +91,11 @@ function DropdownMenuItem({
   className,
   inset,
   variant = "default",
-  size,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
-  size?: ResponsiveSize;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
@@ -95,13 +103,7 @@ function DropdownMenuItem({
       data-variant={variant}
       className={cn(
         "relative flex items-center gap-2",
-        resolvedSize === "compact"
-          ? "px-1.5 py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "px-3 py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body-lg"
-              : "px-2 py-1.5 t-body-md",
+        "px-2 py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -120,27 +122,14 @@ function DropdownMenuCheckboxItem({
   className,
   children,
   checked,
-  size,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {
   return (
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
         "relative flex items-center gap-2",
-        "pr-2 pl-8",
-        resolvedSize === "compact"
-          ? "py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "py-2.5 t-body-lg"
-              : "py-1.5 t-body-md",
+        "px-2 py-1.5 pl-8 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -176,27 +165,14 @@ function DropdownMenuRadioGroup({
 function DropdownMenuRadioItem({
   className,
   children,
-  size,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {
   return (
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
         "relative flex items-center gap-2",
-        "pr-2 pl-8",
-        resolvedSize === "compact"
-          ? "py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "py-2.5 t-body-lg"
-              : "py-1.5 t-body-md",
+        "px-2 py-1.5 pl-8 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -230,7 +206,7 @@ function DropdownMenuLabel({
       data-inset={inset}
       className={cn(
         "px-2 py-1.5",
-        "t-body-md fw-medium",
+        "t-label-md-bold",
         "data-inset:pl-8",
         "dropdown-menu-label",
         className,
@@ -275,29 +251,18 @@ function DropdownMenuSub({
 function DropdownMenuSubTrigger({
   className,
   inset,
-  size,
   children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
   inset?: boolean;
-  size?: ResponsiveSize;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
         "flex items-center gap-2",
-        resolvedSize === "compact"
-          ? "px-1.5 py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "px-3 py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body-lg"
-              : "px-2 py-1.5 t-body-md",
+        "px-2 py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-inset:pl-8",
@@ -316,15 +281,20 @@ function DropdownMenuSubTrigger({
 
 function DropdownMenuSubContent({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
         "z-dropdown",
         "min-w-32 p-1",
-        "overflow-hidden global-rounded border",
+        "overflow-hidden global-rounded",
         "origin-(--radix-dropdown-menu-content-transform-origin)",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -334,6 +304,8 @@ function DropdownMenuSubContent({
         "data-[side=right]:slide-in-from-left-2",
         "data-[side=top]:slide-in-from-bottom-2",
         "dropdown-menu-content",
+        border && "border-stroke border-default",
+        shadow ? "shadow-card" : "no-shadow",
         className,
       )}
       {...props}

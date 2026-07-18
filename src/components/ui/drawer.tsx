@@ -71,23 +71,24 @@ function DrawerContent({
           "group/drawer-content fixed z-dropdown",
           "flex h-auto flex-col",
           "max-w-4/5",
+          "border-stroke",
           "drawer-content",
           "data-[vaul-drawer-direction=top]:inset-x-0",
           "data-[vaul-drawer-direction=top]:top-0",
           "data-[vaul-drawer-direction=top]:mb-24",
           "data-[vaul-drawer-direction=top]:max-h-[80vh]",
-          "data-[vaul-drawer-direction=top]:border-b",
+          "data-[vaul-drawer-direction=top]:border-b-stroke",
           "data-[vaul-drawer-direction=bottom]:inset-x-0",
           "data-[vaul-drawer-direction=bottom]:bottom-0",
           "data-[vaul-drawer-direction=bottom]:mt-24",
           "data-[vaul-drawer-direction=bottom]:max-h-[80vh]",
-          "data-[vaul-drawer-direction=bottom]:border-t",
+          "data-[vaul-drawer-direction=bottom]:border-t-stroke",
           "data-[vaul-drawer-direction=right]:inset-y-0",
           "data-[vaul-drawer-direction=right]:right-0",
-          "data-[vaul-drawer-direction=right]:border-l",
+          "data-[vaul-drawer-direction=right]:border-l-stroke",
           "data-[vaul-drawer-direction=left]:inset-y-0",
           "data-[vaul-drawer-direction=left]:left-0",
-          "data-[vaul-drawer-direction=left]:border-r",
+          "data-[vaul-drawer-direction=left]:border-r-stroke",
           className,
         )}
         {...props}
@@ -102,7 +103,7 @@ function DrawerContent({
           className={cn(
             "mx-auto mt-4 hidden",
             "h-2 w-25 shrink-0",
-            "drawer-handle xl-rounded",
+            "drawer-handle global-rounded",
             "group-data-[vaul-drawer-direction=bottom]/drawer-content:block",
           )}
         />
@@ -111,8 +112,8 @@ function DrawerContent({
             data-slot="drawer-close"
             className={cn(
               "absolute top-4 right-4",
-              "flex size-8 items-center justify-center",
-              "xl-rounded",
+              "flex h-field w-field items-center justify-center",
+              "global-rounded",
               "cursor-pointer",
               "disabled:pointer-events-none",
               "[&_svg]:pointer-events-none [&_svg]:shrink-0",

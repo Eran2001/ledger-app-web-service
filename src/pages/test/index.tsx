@@ -1,6 +1,15 @@
 import type { ReactNode } from "react";
 
-import { CustomToast } from "@/components/ui/custom-toast";
+import * as Icon from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,13 +25,22 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8 p-6">
-      <Block title="custom toast">
-        <div className="flex flex-col gap-4">
-          <CustomToast id="toast-success" message="Invoice marked as paid." variant="success" />
-          <CustomToast id="toast-info" message="Customer profile updated." variant="info" />
-          <CustomToast id="toast-warning" message="Payment reminder queued." variant="warning" />
-          <CustomToast id="toast-error" message="Unable to save product details." variant="destructive" />
-        </div>
+      <Block title="empty">
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Icon.FileText />
+            </EmptyMedia>
+            <EmptyTitle>No invoices yet</EmptyTitle>
+            <EmptyDescription>
+              Create your first invoice to start tracking payments, due dates,
+              and customer balances.
+            </EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
+            <Button>New invoice</Button>
+          </EmptyContent>
+        </Empty>
       </Block>
     </div>
   );

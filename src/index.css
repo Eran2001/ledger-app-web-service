@@ -4130,7 +4130,6 @@
     background-color: var(--popover);
     color: var(--popover-foreground);
     border-color: var(--border);
-    box-shadow: var(--shadow-card);
   }
 
   .dropdown-menu-item {

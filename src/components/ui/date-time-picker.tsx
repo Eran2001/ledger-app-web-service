@@ -13,27 +13,11 @@ import {
 } from "@/components/ui/popover";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
-
-const DATE_BUTTON_SIZE_MAP: Record<
-  ResponsiveSize,
-  NonNullable<React.ComponentProps<typeof Button>["size"]>
-> = {
-  compact: "sm",
-  default: "default",
-  large: "lg",
-  "extra-large": "xl",
-};
 
 interface DateTimePickerProps {
   value?: Date;
   onChange?: (date: Date | undefined) => void;
   minDate?: Date;
-  size?: ResponsiveSize;
   className?: string;
   error?: boolean;
 }
@@ -42,13 +26,10 @@ export function DateTimePicker({
   value,
   onChange,
   minDate,
-  size,
   className,
   error,
 }: DateTimePickerProps) {
   const [open, setOpen] = React.useState(false);
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
 
   const timeValue = value
     ? `${String(value.getHours()).padStart(2, "0")}:${String(
@@ -82,13 +63,12 @@ export function DateTimePicker({
             <Button
               type="button"
               variant="outline"
-              size={DATE_BUTTON_SIZE_MAP[resolvedSize]}
               data-state={open ? "open" : "closed"}
               className={cn(
-                "w-full justify-between gap-2",
+                "h-field w-full justify-between gap-2",
                 "[&>span]:flex [&>span]:w-full",
                 "[&>span]:items-center [&>span]:justify-between",
-                "xl-rounded picker-trigger",
+                "picker-trigger",
                 !value && "picker-trigger-empty",
                 error && "form-validation",
               )}
@@ -96,11 +76,13 @@ export function DateTimePicker({
               <span className="truncate">
                 {value ? format(value, "dd MMM yyyy") : "Select date"}
               </span>
-              <Icon.ChevronDown className="h-4 w-4 shrink-0" />
+              <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+                <Icon.ChevronDown />
+              </span>
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-auto p-0 xl-rounded dropdown-shadow picker-content"
+            className="w-auto p-0 dropdown-shadow picker-content"
             align="start"
             sideOffset={6}
           >
@@ -121,7 +103,6 @@ export function DateTimePicker({
         <TimePicker
           value={timeValue}
           onChange={handleTimeChange}
-          size={resolvedSize}
         />
       </div>
     </div>
