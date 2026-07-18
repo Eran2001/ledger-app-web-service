@@ -10,8 +10,8 @@ interface RouteTopBarConfig extends TopBarProps {
 const ROUTE_TOP_BAR_CONFIGS: RouteTopBarConfig[] = [
   {
     match: "/test",
-    pageTitle: "test",
-    pageSubtitle: "Tests",
+    pageTitle: "Shared Components",
+    pageSubtitle: "Visual test page for shared UI components",
   },
   {
     match: "/dashboard",

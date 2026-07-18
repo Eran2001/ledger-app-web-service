@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const breakpoints = {
+  xxs: 300,
   xs: 480,
   sm: 640,
   md: 768,
@@ -13,6 +14,8 @@ const breakpoints = {
   "6xl": 5120,
   "7xl": 7680,
   "8xl": 10000,
+  "9xl": 12000,
+  "10xl": 14000,
 } as const;
 
 export const useWidth = () => {
@@ -40,7 +43,7 @@ export const useWidth = () => {
  *   const isDesktop = width >= breakpoints.lg;
  *
  *   // named breakpoints available:
- *   // xs · sm · md · lg · xl · 2xl · 3xl · 4xl · 5xl · 6xl · 7xl · 8xl
+ *   // xxs · xs · sm · md · lg · xl · 2xl · 3xl · 4xl · 5xl · 6xl · 7xl · 8xl · 9xl · 10xl
  *
  *   // quoted keys for numbered breakpoints:
  *   if (width >= breakpoints["2xl"]) { ... }

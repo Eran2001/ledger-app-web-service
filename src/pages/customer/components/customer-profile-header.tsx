@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import * as Icon from "@/components/icons";
 import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { Button } from "@/components/ui/button";
 import { StatInline, StatMeta } from "@/components/ui/stat";
 
@@ -39,36 +40,43 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
           </Button>
         </div>
 
-        <div className="flex flex-col gap-6 pb-2 xs:grid xs:grid-cols-[auto_1fr] xs:gap-6">
-          {isMaxXs && (
+        {isMaxXs ? (
+          <div className="flex flex-col gap-6 pb-2">
             <div className="flex justify-center items-center">
               <h2 className="t-section text-main">{customer.fullName}</h2>
             </div>
-          )}
-          <div className={cn(isMaxXs && "flex justify-center items-center")}>
-            <InitialsAvatar
-              name={customer.fullName}
-              size={isMaxXs ? "lg" : "auto"}
-            />
-          </div>
-          <div className="min-w-0 flex flex-col space-y-1">
-            {!isMaxXs && (
-              <h2 className="t-section text-main">{customer.fullName}</h2>
-            )}
-            <div
-              className={cn(
-                "flex flex-wrap gap-x-4 gap-y-1",
-                isMaxXs && "flex justify-center items-center",
-              )}
-            >
-              <StatMeta label="NIC" value={customer.nic} />
-              <StatMeta label="Phone" value={customer.primary_phone} />
-              {customer.email && (
-                <StatMeta label="Email" value={customer.email} />
-              )}
+            <div className="flex justify-center items-center">
+              <InitialsAvatar name={customer.fullName} size="lg" />
+            </div>
+            <div className="min-w-0 flex flex-col space-y-1">
+              <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
+                <StatMeta label="NIC" value={customer.nic} />
+                <StatMeta label="Phone" value={customer.primary_phone} />
+                {customer.email && (
+                  <StatMeta label="Email" value={customer.email} />
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <SyncedHeightPair
+            left={<InitialsAvatar name={customer.fullName} size="auto" />}
+            right={
+              <div className="min-w-0 flex flex-col space-y-1">
+                <h2 className="t-section text-main">{customer.fullName}</h2>
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <StatMeta label="NIC" value={customer.nic} />
+                  <StatMeta label="Phone" value={customer.primary_phone} />
+                  {customer.email && (
+                    <StatMeta label="Email" value={customer.email} />
+                  )}
+                </div>
+              </div>
+            }
+            squareLeft
+            className="gap-6 pb-2"
+          />
+        )}
 
         <div
           className={cn(

@@ -5,6 +5,7 @@ import { BadgeIcon } from "@/components/ui/badge-icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { useWidth } from "@/hooks/use-width";
 import { cn } from "@/lib/utils";
 
@@ -99,22 +100,49 @@ function GridItemMedia({
         className,
       )}
     >
-      <div
-        className={cn(
-          "flex min-w-0 gap-4",
-          avatarSize === "auto" ? "items-stretch" : "items-start",
-        )}
-      >
-        {!isMaxXxs && <InitialsAvatar name={name} size={avatarSize} />}
+      {!isMaxXxs &&
+        (avatarSize === "auto" ? (
+          <SyncedHeightPair
+            left={<InitialsAvatar name={name} size="auto" />}
+            right={
+              <div className="min-w-0 space-y-1 pt-1">
+                <p className="truncate t-display-soft text-main">{title}</p>
+                {subtitle && (
+                  <p className="truncate t-meta text-faint">{subtitle}</p>
+                )}
+                {phoneNumber && (
+                  <p className="truncate t-caption text-faint">{phoneNumber}</p>
+                )}
+              </div>
+            }
+            squareLeft
+            className="flex-1"
+          />
+        ) : (
+          <div className="flex min-w-0 items-start gap-4">
+            <InitialsAvatar name={name} size="lg" />
 
-        <div className="min-w-0 space-y-1 pt-1">
+            <div className="min-w-0 space-y-1 pt-1">
+              <p className="truncate t-display-soft text-main">{title}</p>
+              {subtitle && (
+                <p className="truncate t-meta text-faint">{subtitle}</p>
+              )}
+              {phoneNumber && (
+                <p className="truncate t-caption text-faint">{phoneNumber}</p>
+              )}
+            </div>
+          </div>
+        ))}
+
+      {isMaxXxs && (
+        <div className="min-w-0 flex-1 space-y-1 pt-1">
           <p className="truncate t-display-soft text-main">{title}</p>
           {subtitle && <p className="truncate t-meta text-faint">{subtitle}</p>}
           {phoneNumber && (
             <p className="truncate t-caption text-faint">{phoneNumber}</p>
           )}
         </div>
-      </div>
+      )}
 
       {badgeNode}
     </div>

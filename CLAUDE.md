@@ -48,6 +48,13 @@
 | Icon size        | `h-4 w-4 size-4`             | `icon-compact` `icon-large` etc.           |
 | Field h/w        | `h-7 h-8 h-9`                | `h-small` `h-compact` etc.           |
 
+### Length Units
+
+- Never use fixed units like `px` in new code
+- Use `rem` for scalable sizing and spacing
+- Use `%` for proportional widths/heights when layout should follow the parent
+- Prefer existing tokens/utilities first; if a custom value is required, convert it to `rem` or `%`
+
 ### Allowed in Component JSX
 
 | Category         | Allowed classes                           |

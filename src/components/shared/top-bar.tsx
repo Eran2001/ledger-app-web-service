@@ -4,6 +4,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { NotificationDot } from "@/components/ui/notification-dot";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -117,7 +118,7 @@ export function TopBar({
           aria-label="Notifications"
         >
           <Icon.Bell className="h-5 w-5" />
-          <span className="notification-dot absolute top-1.5 right-1.5 h-2.5 w-2.5" />
+          <NotificationDot />
         </Button>
 
         <DropdownMenu>
