@@ -56,7 +56,7 @@ function CustomToast({ id, message, variant }: CustomToastProps) {
       <span aria-hidden="true" className="md-rounded custom-toast__icon">
         {icon}
       </span>
-      <span className="custom-toast__message t-meta-bold text-main">
+      <span className="custom-toast__message t-body-md-bold text-main">
         {message}
       </span>
       <button

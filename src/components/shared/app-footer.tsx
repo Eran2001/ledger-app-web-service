@@ -12,7 +12,7 @@ export function AppFooter() {
           "px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 3xl:px-20 4xl:px-24",
           "5xl:px-32 6xl:px-40 7xl:px-48 8xl:px-56",
           "flex flex-col",
-          "t-meta text-soft",
+          "t-body-md text-soft",
           "md:flex-row md:items-center md:justify-between",
         ].join(" ")}
       >

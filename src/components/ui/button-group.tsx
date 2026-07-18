@@ -272,7 +272,7 @@ function ButtonGroupText({
   return (
     <Comp
       className={cn(
-        "surface-muted xl-rounded t-meta border flex items-center gap-2 px-4 btn-group-text",
+        "surface-muted xl-rounded t-body-md border flex items-center gap-2 px-4 btn-group-text",
         "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className,
       )}

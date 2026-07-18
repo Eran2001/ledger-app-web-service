@@ -48,12 +48,12 @@ export const PhoneInput = ({
       autoComplete="tel"
       className={cn(
         resolvedSize === "compact"
-          ? "h-compact px-2.5 t-caption"
+          ? "h-compact px-2.5 t-label-md"
           : resolvedSize === "large"
-            ? "h-large px-4 t-meta"
+            ? "h-large px-4 t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body"
-              : "h-field px-3 t-meta",
+              ? "h-extra-large px-5 t-body-lg"
+              : "h-field px-3 t-body-md",
         ariaInvalid && "phone-input-invalid",
         "xl-rounded",
         className,

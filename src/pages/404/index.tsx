@@ -177,7 +177,7 @@ const NotFound = () => {
           "gap-6 px-6 py-20 md:py-24 text-center min-h-dvh w-full max-w-4xl",
         )}
       >
-        <div className="unauthorized-hero-code t-error-code">404</div>
+        <div className="unauthorized-hero-code t-display-code">404</div>
 
         <div
           className={cn(
@@ -185,8 +185,8 @@ const NotFound = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading t-hero">Page Not Found</h1>
-          <p className="unauthorized-body t-body mx-auto max-w-2xl">
+          <h1 className="unauthorized-heading t-display-2xl">Page Not Found</h1>
+          <p className="unauthorized-body t-body-lg mx-auto max-w-2xl">
             The resource you are looking for might have been removed, renamed,
             or is temporarily unavailable in the portal.
           </p>

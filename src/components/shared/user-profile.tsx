@@ -19,7 +19,7 @@ export function UserProfile({ collapsed }: UserProfileProps) {
   if (collapsed) {
     return (
       <div className="flex justify-center mb-2">
-        <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-caption-bold">
+        <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold">
           {initials}
         </div>
       </div>
@@ -28,7 +28,7 @@ export function UserProfile({ collapsed }: UserProfileProps) {
 
   return (
     <div className="app-sidebar-panel global-rounded p-3 flex items-center gap-3">
-      <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-caption-bold shrink-0">
+      <div className="app-sidebar-avatar global-rounded h-9 w-9 flex items-center justify-center t-label-md-bold shrink-0">
         {initials}
       </div>
       <div className="flex-1 min-w-0">

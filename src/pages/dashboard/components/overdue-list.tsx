@@ -1,7 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
-import { CardCaption } from "@/components/shared/card-caption";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
+import { CardCaption } from "@/components/ui/card-caption";
 
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
@@ -50,22 +50,24 @@ export const OverdueList = () => {
             <div className="flex items-center gap-3 min-w-0">
               <InitialsAvatar name={r.customer} size="sm" />
               <div className="min-w-0">
-                <p className="t-meta-bold text-main truncate">{r.customer}</p>
-                <p className="t-micro text-faint truncate">{r.product}</p>
+                <p className="t-body-md-bold text-main truncate">
+                  {r.customer}
+                </p>
+                <p className="t-label-sm text-faint truncate">{r.product}</p>
               </div>
             </div>
             <div className="text-right shrink-0">
-              <p className="t-micro-bold text-danger text-uppercase">
+              <p className="t-label-sm-bold text-danger text-uppercase">
                 {r.days}
               </p>
-              <p className="t-meta-bold text-main">
+              <p className="t-body-md-bold text-main">
                 {formatCurrency(r.amount)}
               </p>
             </div>
           </li>
         ))}
       </ul>
-      <div className="surface-page px-6 py-3 text-center t-micro text-faint">
+      <div className="surface-page px-6 py-3 text-center t-label-sm text-faint">
         Manual reminders recommended for 60+ days
       </div>
     </CardCaption>

@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { StatPill } from "@/components/shared/stat-pill";
+import { StatPill } from "@/components/ui/stat-pill";
 import { Stat } from "@/components/ui/stat";
 import { Separator } from "@/components/ui/separator";
 
@@ -19,15 +19,15 @@ export const AccountSummaryCard = ({
   return (
     <Card>
       <div className="flex items-center justify-between">
-        <p className="t-caption text-uppercase text-faint">Account Summary</p>
+        <p className="t-label-md text-uppercase text-faint">Account Summary</p>
         <StatPill
           label={isOutstanding ? "Outstanding" : "Clear"}
           color={isOutstanding ? "amber" : "green"}
         />
       </div>
 
-      <p className="t-kpi-lg text-main">{formatCurrency(outstanding)}</p>
-      <p className="t-caption text-faint">Outstanding balance</p>
+      <p className="t-display-xl text-main">{formatCurrency(outstanding)}</p>
+      <p className="t-label-md text-faint">Outstanding balance</p>
 
       <div className="flex flex-wrap gap-2">
         <StatPill label={`${activeSalesCount} Active Sales`} color="indigo" />

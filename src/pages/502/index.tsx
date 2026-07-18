@@ -177,7 +177,7 @@ const SubscriptionError = () => {
           "gap-6 px-6 py-20 md:py-24 text-center min-h-dvh w-full max-w-4xl",
         )}
       >
-        <div className="unauthorized-hero-code t-error-code">502</div>
+        <div className="unauthorized-hero-code t-display-code">502</div>
 
         <div
           className={cn(
@@ -185,8 +185,8 @@ const SubscriptionError = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading t-hero">Subscription Required</h1>
-          <p className="unauthorized-body t-body mx-auto max-w-2xl">
+          <h1 className="unauthorized-heading t-display-2xl">Subscription Required</h1>
+          <p className="unauthorized-body t-body-lg mx-auto max-w-2xl">
             Your subscription has expired or is not active. Please renew your
             plan to continue accessing the portal.
           </p>

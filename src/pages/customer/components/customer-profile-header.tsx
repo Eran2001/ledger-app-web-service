@@ -2,7 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { Card } from "@/components/ui/card";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { Button } from "@/components/ui/button";
 import { StatInline, StatMeta } from "@/components/ui/stat";
@@ -28,7 +28,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
           <Button
             variant="link"
             size="sm"
-            className="p-0 t-meta-bold group"
+            className="p-0 t-body-md-bold group"
             onClick={() => navigate({ to: "/customers" })}
           >
             <Icon.ArrowLeft className="icon-back-hover" />
@@ -43,7 +43,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
         {isMaxXs ? (
           <div className="flex flex-col gap-6 pb-2">
             <div className="flex justify-center items-center">
-              <h2 className="t-section text-main">{customer.fullName}</h2>
+              <h2 className="t-title-xl text-main">{customer.fullName}</h2>
             </div>
             <div className="flex justify-center items-center">
               <InitialsAvatar name={customer.fullName} size="lg" />
@@ -63,7 +63,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
             left={<InitialsAvatar name={customer.fullName} size="auto" />}
             right={
               <div className="min-w-0 flex flex-col space-y-1">
-                <h2 className="t-section text-main">{customer.fullName}</h2>
+                <h2 className="t-title-xl text-main">{customer.fullName}</h2>
                 <div className="flex flex-wrap gap-x-4 gap-y-1">
                   <StatMeta label="NIC" value={customer.nic} />
                   <StatMeta label="Phone" value={customer.primary_phone} />

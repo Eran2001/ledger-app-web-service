@@ -103,7 +103,7 @@ function AlertDialogTitle({
   return (
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
-      className={cn("t-heading", className)}
+      className={cn("t-title-lg-soft", className)}
       {...props}
     />
   );
@@ -116,7 +116,7 @@ function AlertDialogDescription({
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      className={cn("t-meta text-faint", className)}
+      className={cn("t-body-md text-faint", className)}
       {...props}
     />
   );

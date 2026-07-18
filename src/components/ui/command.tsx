@@ -105,10 +105,10 @@ function CommandInput({
         className={cn(
           "flex h-full w-full",
           resolvedSize === "compact"
-            ? "t-caption"
+            ? "t-label-md"
             : resolvedSize === "extra-large"
-              ? "t-body"
-              : "t-meta",
+              ? "t-body-lg"
+              : "t-body-md",
           "no-outline",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "command-input",
@@ -142,7 +142,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className="t-meta py-6 text-center"
+      className="t-body-md py-6 text-center"
       {...props}
     />
   );
@@ -198,12 +198,12 @@ function CommandItem({
         "items-center gap-2",
         "md-rounded no-outline",
         resolvedSize === "compact"
-          ? "px-2 py-1 t-caption"
+          ? "px-2 py-1 t-label-md"
           : resolvedSize === "large"
-            ? "px-3 py-2 t-meta"
+            ? "px-3 py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body"
-              : "px-2 py-1.5 t-meta",
+              ? "px-4 py-2.5 t-body-lg"
+              : "px-2 py-1.5 t-body-md",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "command-item",
@@ -222,7 +222,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "ml-auto t-caption",
+        "ml-auto t-label-md",
         "[letter-spacing:var(--tracking-widest)]",
         "command-shortcut",
         className,

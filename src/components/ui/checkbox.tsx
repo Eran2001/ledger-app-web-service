@@ -103,7 +103,7 @@ function Checkbox({
           </Label>
         )}
         {description && (
-          <p className={cn("t-caption text-soft", descriptionClassName)}>
+          <p className={cn("t-label-md text-soft", descriptionClassName)}>
             {description}
           </p>
         )}

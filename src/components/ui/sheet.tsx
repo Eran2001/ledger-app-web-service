@@ -130,7 +130,7 @@ function SheetTitle({
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
-      className={cn("t-heading sheet-title", className)}
+      className={cn("t-title-lg-soft sheet-title", className)}
       {...props}
     />
   );
@@ -143,7 +143,7 @@ function SheetDescription({
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
-      className={cn("t-meta sheet-description", className)}
+      className={cn("t-body-md sheet-description", className)}
       {...props}
     />
   );

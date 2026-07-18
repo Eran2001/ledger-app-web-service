@@ -4,7 +4,7 @@ import * as Icon from "@/components/icons";
 import { BadgeIcon } from "@/components/ui/badge-icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { useWidth } from "@/hooks/use-width";
 import { cn } from "@/lib/utils";
@@ -106,12 +106,14 @@ function GridItemMedia({
             left={<InitialsAvatar name={name} size="auto" />}
             right={
               <div className="min-w-0 space-y-1 pt-1">
-                <p className="truncate t-display-soft text-main">{title}</p>
+                <p className="truncate t-title-lg-soft text-main">{title}</p>
                 {subtitle && (
-                  <p className="truncate t-meta text-faint">{subtitle}</p>
+                  <p className="truncate t-body-md text-faint">{subtitle}</p>
                 )}
                 {phoneNumber && (
-                  <p className="truncate t-caption text-faint">{phoneNumber}</p>
+                  <p className="truncate t-label-md text-faint">
+                    {phoneNumber}
+                  </p>
                 )}
               </div>
             }
@@ -123,12 +125,12 @@ function GridItemMedia({
             <InitialsAvatar name={name} size="lg" />
 
             <div className="min-w-0 space-y-1 pt-1">
-              <p className="truncate t-display-soft text-main">{title}</p>
+              <p className="truncate t-title-lg-soft text-main">{title}</p>
               {subtitle && (
-                <p className="truncate t-meta text-faint">{subtitle}</p>
+                <p className="truncate t-body-md text-faint">{subtitle}</p>
               )}
               {phoneNumber && (
-                <p className="truncate t-caption text-faint">{phoneNumber}</p>
+                <p className="truncate t-label-md text-faint">{phoneNumber}</p>
               )}
             </div>
           </div>
@@ -136,10 +138,12 @@ function GridItemMedia({
 
       {isMaxXxs && (
         <div className="min-w-0 flex-1 space-y-1 pt-1">
-          <p className="truncate t-display-soft text-main">{title}</p>
-          {subtitle && <p className="truncate t-meta text-faint">{subtitle}</p>}
+          <p className="truncate t-title-lg-soft text-main">{title}</p>
+          {subtitle && (
+            <p className="truncate t-body-md text-faint">{subtitle}</p>
+          )}
           {phoneNumber && (
-            <p className="truncate t-caption text-faint">{phoneNumber}</p>
+            <p className="truncate t-label-md text-faint">{phoneNumber}</p>
           )}
         </div>
       )}
@@ -224,9 +228,9 @@ function GridItemStacked({
     <div
       className={cn("space-y-1", align === "right" && "text-right", className)}
     >
-      <p className={cn("t-body text-faint", titleClassName)}>{title}</p>
+      <p className={cn("t-body-lg text-faint", titleClassName)}>{title}</p>
       {subtitle && (
-        <p className={cn("t-caption text-faint", subtitleClassName)}>
+        <p className={cn("t-label-md text-faint", subtitleClassName)}>
           {subtitle}
         </p>
       )}
@@ -273,8 +277,8 @@ function GridEmptyState({
       </div>
 
       <div className="max-w-3xl space-y-2">
-        <p className="t-display-soft text-main">{title}</p>
-        <p className="t-body text-faint">{description}</p>
+        <p className="t-title-lg-soft text-main">{title}</p>
+        <p className="t-body-lg text-faint">{description}</p>
       </div>
 
       <Button variant="outline" size="lg" className="mt-4" onClick={onRefresh}>

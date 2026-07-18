@@ -33,8 +33,8 @@ export default function SecurityPanel({
   return (
     <div className="space-y-4 max-w-2xl">
       <form onSubmit={changePassword} className="card-base p-6">
-        <h2 className="t-display text-main mb-1">Change Password</h2>
-        <p className="t-caption text-soft mb-6">
+        <h2 className="t-title-lg text-main mb-1">Change Password</h2>
+        <p className="t-label-md text-soft mb-6">
           Use at least 8 characters with a mix of letters and numbers.
         </p>
         <div className="space-y-4">
@@ -84,8 +84,8 @@ export default function SecurityPanel({
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="t-display text-main">Two-Factor Authentication</h2>
-              <p className="t-caption text-soft mt-1 max-w-md">
+              <h2 className="t-title-lg text-main">Two-Factor Authentication</h2>
+              <p className="t-label-md text-soft mt-1 max-w-md">
                 Add an extra layer of security by requiring a code from your
                 authenticator app at sign in.
               </p>

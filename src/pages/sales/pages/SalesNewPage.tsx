@@ -67,7 +67,7 @@ export default function NewSalePage() {
     <div>
       <Link
         to="/sales"
-        className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
+        className="inline-flex items-center gap-2 t-body-md-bold text-brand mb-6 group"
       >
         <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
         Back to sales
@@ -80,7 +80,7 @@ export default function NewSalePage() {
               {/* Customer & Product */}
               <SectionHeader>Customer & Product</SectionHeader>
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">Select customer</Label>
+                <Label className="t-body-md-bold text-main">Select customer</Label>
                 <Select value={customerId} onValueChange={setCustomerId}>
                   <SelectTrigger className="h-11 control-rounded border-default text-main">
                     <SelectValue placeholder="Choose a customer…" />
@@ -95,7 +95,7 @@ export default function NewSalePage() {
                 </Select>
                 <button
                   type="button"
-                  className="t-caption-bold text-brand inline-flex items-center gap-1 self-start mt-1"
+                  className="t-label-md-bold text-brand inline-flex items-center gap-1 self-start mt-1"
                 >
                   <UserPlus className="h-3.5 w-3.5" />
                   Add New Customer
@@ -103,7 +103,7 @@ export default function NewSalePage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">Select product</Label>
+                <Label className="t-body-md-bold text-main">Select product</Label>
                 <Select value={productId} onValueChange={onProductChange}>
                   <SelectTrigger className="h-11 control-rounded border-default text-main">
                     <SelectValue placeholder="Choose a product…" />
@@ -117,7 +117,7 @@ export default function NewSalePage() {
                   </SelectContent>
                 </Select>
                 {product && (
-                  <p className="t-caption text-soft">
+                  <p className="t-label-md text-soft">
                     Standard price:{" "}
                     <span className="fw-bold text-main">
                       {formatCurrency(product.basePrice)}
@@ -130,7 +130,7 @@ export default function NewSalePage() {
               <SectionHeader>Sale Terms</SectionHeader>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-2">
-                  <Label className="t-meta-bold text-main">
+                  <Label className="t-body-md-bold text-main">
                     Sold price (LKR)
                   </Label>
                   <Input
@@ -141,7 +141,7 @@ export default function NewSalePage() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Label className="t-meta-bold text-main">
+                  <Label className="t-body-md-bold text-main">
                     Down payment (LKR)
                   </Label>
                   <Input
@@ -152,7 +152,7 @@ export default function NewSalePage() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Label className="t-meta-bold text-main">
+                  <Label className="t-body-md-bold text-main">
                     Number of months
                   </Label>
                   <div className="flex items-center gap-2">
@@ -183,7 +183,7 @@ export default function NewSalePage() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Label className="t-meta-bold text-main">Sale date</Label>
+                  <Label className="t-body-md-bold text-main">Sale date</Label>
                   <Input
                     type="date"
                     value={saleDate}
@@ -194,7 +194,7 @@ export default function NewSalePage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">
+                <Label className="t-body-md-bold text-main">
                   Notes (optional)
                 </Label>
                 <Textarea
@@ -207,7 +207,7 @@ export default function NewSalePage() {
 
               <Button
                 type="submit"
-                className="w-full h-14 surface-brand text-inverse t-display-soft control-rounded surface-brand-strong-hover"
+                className="w-full h-14 surface-brand text-inverse t-title-lg-soft control-rounded surface-brand-strong-hover"
               >
                 Create Sale & Generate Schedule
               </Button>
@@ -221,30 +221,30 @@ export default function NewSalePage() {
                 <div className="surface-brand-soft circle-rounded h-8 w-8 flex items-center justify-center">
                   <Calculator className="h-4 w-4 text-brand" />
                 </div>
-                <h3 className="t-heading text-main">Installment Preview</h3>
+                <h3 className="t-title-lg-soft text-main">Installment Preview</h3>
               </div>
 
               <div className="flex flex-col">
                 <Row label="Sold Price" value={formatCurrency(soldPrice)} />
                 <div className="flex justify-between items-center py-3 border-y border-dashed border-success-soft">
-                  <span className="t-meta text-soft">Down Payment</span>
-                  <span className="t-meta-bold text-success-role">
+                  <span className="t-body-md text-soft">Down Payment</span>
+                  <span className="t-body-md-bold text-success-role">
                     −{formatCurrency(downPayment)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-default">
-                  <span className="t-meta-bold text-main">
+                  <span className="t-body-md-bold text-main">
                     Remaining Balance
                   </span>
-                  <span className="t-display text-main">
+                  <span className="t-title-lg text-main">
                     {formatCurrency(remaining)}
                   </span>
                 </div>
                 <div className="surface-brand-soft global-rounded p-4 mt-4 mb-3 flex justify-between items-center">
-                  <span className="t-meta-bold text-brand">
+                  <span className="t-body-md-bold text-brand">
                     Monthly Payment
                   </span>
-                  <span className="t-section text-brand">
+                  <span className="t-title-xl text-brand">
                     {formatCurrency(monthly)}
                   </span>
                 </div>
@@ -252,13 +252,13 @@ export default function NewSalePage() {
               </div>
 
               <div className="mt-5 pt-5 border-t border-default">
-                <p className="t-micro-bold text-soft text-uppercase tracking-label mb-2">
+                <p className="t-label-sm-bold text-soft text-uppercase tracking-label mb-2">
                   Generated Schedule
                 </p>
                 <div className="max-h-75 overflow-y-auto -mx-2">
                   <table className="w-full">
                     <thead>
-                      <tr className="t-micro text-faint text-uppercase tracking-label">
+                      <tr className="t-label-sm text-faint text-uppercase tracking-label">
                         <th className="px-2 py-1.5 text-left">#</th>
                         <th className="px-2 py-1.5 text-left">Due Date</th>
                         <th className="px-2 py-1.5 text-right">Amount</th>
@@ -269,7 +269,7 @@ export default function NewSalePage() {
                         <tr>
                           <td
                             colSpan={3}
-                            className="px-2 py-6 text-center t-caption text-faint"
+                            className="px-2 py-6 text-center t-label-md text-faint"
                           >
                             Enter sale details to preview schedule
                           </td>
@@ -277,13 +277,13 @@ export default function NewSalePage() {
                       ) : (
                         schedule.map((s) => (
                           <tr key={s.n} className="border-t border-default">
-                            <td className="px-2 py-2 t-caption text-faint">
+                            <td className="px-2 py-2 t-label-md text-faint">
                               {s.n}
                             </td>
-                            <td className="px-2 py-2 t-caption text-soft">
+                            <td className="px-2 py-2 t-label-md text-soft">
                               {formatDate(s.due)}
                             </td>
-                            <td className="px-2 py-2 text-right t-caption-bold text-main">
+                            <td className="px-2 py-2 text-right t-label-md-bold text-main">
                               {formatCurrency(s.amount)}
                             </td>
                           </tr>
@@ -303,7 +303,7 @@ export default function NewSalePage() {
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <div className="border-l-4 border-brand pl-4">
-      <h3 className="t-section text-main">{children}</h3>
+      <h3 className="t-title-xl text-main">{children}</h3>
     </div>
   );
 }
@@ -311,8 +311,8 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between items-center py-3">
-      <span className="t-meta text-soft">{label}</span>
-      <span className="t-meta-bold text-main">{value}</span>
+      <span className="t-body-md text-soft">{label}</span>
+      <span className="t-body-md-bold text-main">{value}</span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/components/shared/status-badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableHeader,

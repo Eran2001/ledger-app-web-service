@@ -129,7 +129,7 @@ function Switch({
       {switchControl}
       <Label
         htmlFor={switchId}
-        className={cn("t-meta text-main cursor-pointer", labelClassName)}
+        className={cn("t-body-md text-main cursor-pointer", labelClassName)}
       >
         {label}
       </Label>

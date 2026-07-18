@@ -22,12 +22,12 @@ const Input = ({ className, type, size, ...props }: InputProps) => {
       className={cn(
         "xl-rounded border w-full min-w-0",
         resolvedSize === "compact"
-          ? "h-compact px-2.5 t-caption"
+          ? "h-compact px-2.5 t-label-md"
           : resolvedSize === "large"
-            ? "h-large px-4 t-meta"
+            ? "h-large px-4 t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body"
-              : "h-field px-3 t-meta",
+              ? "h-extra-large px-5 t-body-lg"
+              : "h-field px-3 t-body-md",
         "file:inline-flex file:h-small file:no-border file:surface-transparent file:t-input",
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
         "input-field",

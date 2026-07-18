@@ -177,7 +177,7 @@ const Unauthorized = () => {
           "gap-6 px-6 py-20 md:py-24 text-center min-h-dvh w-full max-w-4xl",
         )}
       >
-        <div className="unauthorized-hero-code t-error-code">401</div>
+        <div className="unauthorized-hero-code t-display-code">401</div>
 
         <div
           className={cn(
@@ -185,8 +185,8 @@ const Unauthorized = () => {
             "unauthorized-fade unauthorized-stagger-2",
           )}
         >
-          <h1 className="unauthorized-heading t-hero">Access Denied</h1>
-          <p className="unauthorized-body t-body mx-auto max-w-2xl">
+          <h1 className="unauthorized-heading t-display-2xl">Access Denied</h1>
+          <p className="unauthorized-body t-body-lg mx-auto max-w-2xl">
             You don&apos;t have permission to access this resource. Contact your
             administrator if you believe this is a mistake.
           </p>

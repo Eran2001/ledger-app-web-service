@@ -8,7 +8,7 @@ const badgeVariants = cva(
   [
     "inline-flex items-center justify-center gap-1",
     "xl-rounded border px-2 py-0.5 w-fit",
-    "t-caption whitespace-nowrap shrink-0 overflow-hidden",
+    "t-label-md whitespace-nowrap shrink-0 overflow-hidden",
     "[&>svg]:size-3 [&>svg]:pointer-events-none",
     "aria-invalid:border-destructive",
   ].join(" "),

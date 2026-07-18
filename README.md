@@ -91,30 +91,38 @@ The app runs at `http://localhost:5173` by default.
 
 ### Typography Scale (`t-*`)
 
-| Class            | Description                          | Example                                                  |
-| ---------------- | ------------------------------------ | -------------------------------------------------------- |
-| `t-hero`         | 2.25rem bold — hero numbers          | `<p className="t-hero">₱120,000</p>`                     |
-| `t-kpi-lg`       | 1.875rem bold — large KPI values     | `<p className="t-kpi-lg">340</p>`                        |
-| `t-kpi`          | 1.5rem bold — KPI numbers            | `<p className="t-kpi">₱48,500</p>`                       |
-| `t-section`      | 1.25rem bold — section titles        | `<h2 className="t-section">Sales Overview</h2>`          |
-| `t-display`      | 1.125rem bold — card titles          | `<h3 className="t-display">Payment Schedule</h3>`        |
-| `t-display-soft` | 1.125rem semibold — softer headings  | `<h3 className="t-display-soft">Recent Activity</h3>`    |
-| `t-heading`      | 1.125rem semibold — general headings | `<h4 className="t-heading">Filters</h4>`                 |
-| `t-title`        | 1rem bold — page titles              | `<h1 className="t-title">Customers</h1>`                 |
-| `t-nav`          | 1rem medium — nav items              | `<span className="t-nav">Dashboard</span>`               |
-| `t-body`         | 1rem normal — body text              | `<p className="t-body">Payment is due on the 5th.</p>`   |
-| `t-meta`         | 0.875rem medium — table cells        | `<td className="t-meta">Jan 5, 2025</td>`                |
-| `t-meta-bold`    | 0.875rem bold — emphasized metadata  | `<td className="t-meta-bold">Overdue</td>`               |
-| `t-caption`      | 12px medium — captions               | `<span className="t-caption">Last updated 2h ago</span>` |
-| `t-caption-bold` | 12px bold — emphasized captions      | `<span className="t-caption-bold">3 items</span>`        |
-| `t-micro`        | 11px medium — micro labels           | `<span className="t-micro">ADMIN</span>`                 |
-| `t-micro-bold`   | 11px bold — emphasized micro text    | `<span className="t-micro-bold">NEW</span>`              |
+Naming rule:
+- `display` = biggest text
+- `title` = heading text
+- `body` = reading / metadata text
+- `label` = smallest UI text
+
+| Class              | Description                     | Example                                                     |
+| ------------------ | ------------------------------- | ----------------------------------------------------------- |
+| `t-display-code`   | Largest decorative numeral      | `<div className="t-display-code">404</div>`                 |
+| `t-display-max`    | Largest display headline        | `<h1 className="t-display-max">Coming Soon</h1>`            |
+| `t-display-2xl`    | Hero display                    | `<p className="t-display-2xl">₱120,000</p>`                 |
+| `t-display-xl`     | Large stat display              | `<p className="t-display-xl">340</p>`                       |
+| `t-display-lg`     | Standard stat display           | `<p className="t-display-lg">₱48,500</p>`                   |
+| `t-title-xl`       | Section title                   | `<h2 className="t-title-xl">Sales Overview</h2>`            |
+| `t-title-lg`       | Card or modal title             | `<h3 className="t-title-lg">Payment Schedule</h3>`          |
+| `t-title-lg-soft`  | Softer heading                  | `<h4 className="t-title-lg-soft">Filters</h4>`              |
+| `t-title-md`       | Page title                      | `<h1 className="t-title-md">Customers</h1>`                 |
+| `t-input`          | Form control text               | `<input className="t-input" />`                             |
+| `t-body-lg-medium` | Strong body text                | `<span className="t-body-lg-medium">Dashboard</span>`       |
+| `t-body-lg`        | Primary body text               | `<p className="t-body-lg">Payment is due on the 5th.</p>`   |
+| `t-body-md`        | Metadata text                   | `<td className="t-body-md">Jan 5, 2025</td>`                |
+| `t-body-md-bold`   | Strong metadata text            | `<td className="t-body-md-bold">Overdue</td>`               |
+| `t-label-md`       | Caption text                    | `<span className="t-label-md">Last updated 2h ago</span>`   |
+| `t-label-md-bold`  | Strong caption text             | `<span className="t-label-md-bold">3 items</span>`          |
+| `t-label-sm`       | Micro label                     | `<span className="t-label-sm">ADMIN</span>`                 |
+| `t-label-sm-bold`  | Strong micro label              | `<span className="t-label-sm-bold">NEW</span>`              |
 
 ### Text Transform
 
 | Class             | Effect        | Example                                                     |
 | ----------------- | ------------- | ----------------------------------------------------------- |
-| `text-uppercase`  | ALL CAPS      | `<span className="t-micro text-uppercase">overdue</span>`   |
+| `text-uppercase`  | ALL CAPS      | `<span className="t-label-sm text-uppercase">overdue</span>`   |
 | `text-lowercase`  | all lowercase | `<span className="text-lowercase">EMAIL@EXAMPLE.COM</span>` |
 | `text-capitalize` | Title Case    | `<span className="text-capitalize">john doe</span>`         |
 
@@ -183,23 +191,23 @@ The app runs at `http://localhost:5173` by default.
 
 | Class            | Color    | Example                                                                                     |
 | ---------------- | -------- | ------------------------------------------------------------------------------------------- |
-| `status-success` | Green    | `<span className="status-success border full-rounded px-2 py-0.5 t-caption">Paid</span>`    |
-| `status-warning` | Amber    | `<span className="status-warning border full-rounded px-2 py-0.5 t-caption">Partial</span>` |
-| `status-error`   | Red      | `<span className="status-error border full-rounded px-2 py-0.5 t-caption">Overdue</span>`   |
-| `status-info`    | Sky blue | `<span className="status-info border full-rounded px-2 py-0.5 t-caption">Info</span>`       |
-| `status-pending` | Gray     | `<span className="status-pending border full-rounded px-2 py-0.5 t-caption">Pending</span>` |
+| `status-success` | Green    | `<span className="status-success border full-rounded px-2 py-0.5 t-label-md">Paid</span>`    |
+| `status-warning` | Amber    | `<span className="status-warning border full-rounded px-2 py-0.5 t-label-md">Partial</span>` |
+| `status-error`   | Red      | `<span className="status-error border full-rounded px-2 py-0.5 t-label-md">Overdue</span>`   |
+| `status-info`    | Sky blue | `<span className="status-info border full-rounded px-2 py-0.5 t-label-md">Info</span>`       |
+| `status-pending` | Gray     | `<span className="status-pending border full-rounded px-2 py-0.5 t-label-md">Pending</span>` |
 
 ### Pill Variants
 
 | Class         | Color  | Example                                                                           |
 | ------------- | ------ | --------------------------------------------------------------------------------- |
-| `pill-indigo` | Blue   | `<span className="pill-indigo circle-rounded px-2 py-0.5 t-micro">Active</span>`  |
-| `pill-green`  | Green  | `<span className="pill-green circle-rounded px-2 py-0.5 t-micro">Paid</span>`     |
-| `pill-amber`  | Amber  | `<span className="pill-amber circle-rounded px-2 py-0.5 t-micro">Partial</span>`  |
-| `pill-red`    | Red    | `<span className="pill-red circle-rounded px-2 py-0.5 t-micro">Overdue</span>`    |
-| `pill-gray`   | Gray   | `<span className="pill-gray circle-rounded px-2 py-0.5 t-micro">Pending</span>`   |
-| `pill-teal`   | Teal   | `<span className="pill-teal circle-rounded px-2 py-0.5 t-micro">Service</span>`   |
-| `pill-purple` | Purple | `<span className="pill-purple circle-rounded px-2 py-0.5 t-micro">Premium</span>` |
+| `pill-indigo` | Blue   | `<span className="pill-indigo circle-rounded px-2 py-0.5 t-label-sm">Active</span>`  |
+| `pill-green`  | Green  | `<span className="pill-green circle-rounded px-2 py-0.5 t-label-sm">Paid</span>`     |
+| `pill-amber`  | Amber  | `<span className="pill-amber circle-rounded px-2 py-0.5 t-label-sm">Partial</span>`  |
+| `pill-red`    | Red    | `<span className="pill-red circle-rounded px-2 py-0.5 t-label-sm">Overdue</span>`    |
+| `pill-gray`   | Gray   | `<span className="pill-gray circle-rounded px-2 py-0.5 t-label-sm">Pending</span>`   |
+| `pill-teal`   | Teal   | `<span className="pill-teal circle-rounded px-2 py-0.5 t-label-sm">Service</span>`   |
+| `pill-purple` | Purple | `<span className="pill-purple circle-rounded px-2 py-0.5 t-label-sm">Premium</span>` |
 
 ### Buttons
 

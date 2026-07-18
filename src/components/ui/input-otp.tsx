@@ -62,12 +62,12 @@ function InputOTPSlot({
       className={cn(
         "relative flex aspect-square items-center justify-center",
         resolvedSize === "compact"
-          ? "h-compact t-caption"
+          ? "h-compact t-label-md"
           : resolvedSize === "large"
-            ? "h-large t-meta"
+            ? "h-large t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large t-body"
-              : "h-field t-meta",
+              ? "h-extra-large t-body-lg"
+              : "h-field t-body-md",
         "otp-slot",
         className,
       )}

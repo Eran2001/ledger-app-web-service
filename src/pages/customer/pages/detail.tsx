@@ -51,7 +51,7 @@ const CustomerDetailPage = () => {
       <TabSelect tabs={TABS} value={tab} onValueChange={setTab}>
         <TabPanel value="active" active={tab}>
           {activeSales.length === 0 ? (
-            <p className="t-body text-faint">No active sales.</p>
+            <p className="t-body-lg text-faint">No active sales.</p>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
               {activeSales.map((sale) => (

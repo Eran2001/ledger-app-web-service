@@ -24,7 +24,7 @@ function ContextMenuTrigger({
       data-slot="context-menu-trigger"
       className={cn(
         "xl-rounded border",
-        "t-meta cursor-context-menu",
+        "t-body-md cursor-context-menu",
         className,
       )}
       {...props}
@@ -86,12 +86,12 @@ function ContextMenuSubTrigger({
         "flex cursor-pointer select-none items-center",
         "md-rounded no-outline",
         resolvedSize === "compact"
-          ? "px-1.5 py-1 t-caption"
+          ? "px-1.5 py-1 t-label-md"
           : resolvedSize === "large"
-            ? "px-3 py-2 t-meta"
+            ? "px-3 py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body"
-              : "px-2 py-1.5 t-meta",
+              ? "px-4 py-2.5 t-body-lg"
+              : "px-2 py-1.5 t-body-md",
         "data-inset:pl-8",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -185,12 +185,12 @@ function ContextMenuItem({
         "relative flex cursor-pointer select-none items-center gap-2",
         "md-rounded no-outline",
         resolvedSize === "compact"
-          ? "px-1.5 py-1 t-caption"
+          ? "px-1.5 py-1 t-label-md"
           : resolvedSize === "large"
-            ? "px-3 py-2 t-meta"
+            ? "px-3 py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body"
-              : "px-2 py-1.5 t-meta",
+              ? "px-4 py-2.5 t-body-lg"
+              : "px-2 py-1.5 t-body-md",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-inset:pl-8",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -221,12 +221,12 @@ function ContextMenuCheckboxItem({
         "relative flex cursor-pointer select-none items-center gap-2",
         "md-rounded pr-2 pl-8 no-outline",
         resolvedSize === "compact"
-          ? "py-1 t-caption"
+          ? "py-1 t-label-md"
           : resolvedSize === "large"
-            ? "py-2 t-meta"
+            ? "py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "py-2.5 t-body"
-              : "py-1.5 t-meta",
+              ? "py-2.5 t-body-lg"
+              : "py-1.5 t-body-md",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -263,12 +263,12 @@ function ContextMenuRadioItem({
         "relative flex cursor-pointer select-none items-center gap-2",
         "md-rounded pr-2 pl-8 no-outline",
         resolvedSize === "compact"
-          ? "py-1 t-caption"
+          ? "py-1 t-label-md"
           : resolvedSize === "large"
-            ? "py-2 t-meta"
+            ? "py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "py-2.5 t-body"
-              : "py-1.5 t-meta",
+              ? "py-2.5 t-body-lg"
+              : "py-1.5 t-body-md",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -299,7 +299,7 @@ function ContextMenuLabel({
       data-inset={inset}
       className={cn(
         "px-2 py-1.5",
-        "t-meta",
+        "t-body-md",
         "data-inset:pl-8",
         "context-menu-label",
         className,
@@ -330,7 +330,7 @@ function ContextMenuShortcut({
     <span
       data-slot="context-menu-shortcut"
       className={cn(
-        "ml-auto t-caption",
+        "ml-auto t-label-md",
         "[letter-spacing:var(--tracking-widest)]",
         "context-menu-shortcut",
         className,

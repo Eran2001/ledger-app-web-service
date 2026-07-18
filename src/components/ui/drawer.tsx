@@ -163,7 +163,7 @@ function DrawerTitle({
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn("t-display-soft drawer-title", className)}
+      className={cn("t-title-lg-soft drawer-title", className)}
       {...props}
     />
   );
@@ -176,7 +176,7 @@ function DrawerDescription({
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn("t-meta fw-normal drawer-description", className)}
+      className={cn("t-body-md fw-normal drawer-description", className)}
       {...props}
     />
   );

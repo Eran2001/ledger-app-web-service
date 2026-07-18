@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Notification } from "@/components/ui/custom-toast";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { customerById, customers } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById } from "@/constant/sale-data";
@@ -114,24 +114,24 @@ export default function OverduePage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="card-base p-5 border-l-4 border-start-danger">
           <p className="text-uppercase">Overdue Customers</p>
-          <p className="t-kpi-lg text-main mt-2">{overdueCustomersCount}</p>
-          <p className="t-caption text-faint mt-1">No trend data</p>
+          <p className="t-display-xl text-main mt-2">{overdueCustomersCount}</p>
+          <p className="t-label-md text-faint mt-1">No trend data</p>
         </div>
         <div className="card-base p-5 border-l-4 border-start-danger">
           <p className="text-uppercase">Total Overdue Amount</p>
-          <p className="t-kpi-lg text-danger mt-2">
+          <p className="t-display-xl text-danger mt-2">
             {formatCurrency(totalOverdue)}
           </p>
-          <p className="t-caption text-faint mt-1">
+          <p className="t-label-md text-faint mt-1">
             Across {allRows.length} installments
           </p>
         </div>
         <div className="card-base p-5 border-l-4 border-start-danger">
           <p className="text-uppercase">Longest Overdue</p>
-          <p className="t-kpi-lg text-main mt-2">
+          <p className="t-display-xl text-main mt-2">
             {longest ? `${longest.daysOverdue} Days` : "—"}
           </p>
-          <p className="t-caption text-soft mt-1">
+          <p className="t-label-md text-soft mt-1">
             {longest?.customerName ?? "No overdues"}
           </p>
         </div>
@@ -175,151 +175,150 @@ export default function OverduePage() {
       <div className="card-base overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-              <thead>
+            <thead>
+              <tr>
+                <th className="table-header px-4 py-3 w-10">
+                  <Checkbox
+                    checked={allSelected}
+                    onCheckedChange={toggleAll}
+                    aria-label="Select all"
+                  />
+                </th>
+                <th className="table-header text-left px-4 py-3">Customer</th>
+                <th className="table-header text-left px-4 py-3">Product</th>
+                <th className="table-header text-left px-4 py-3">Due Date</th>
+                <th className="table-header text-left px-4 py-3">
+                  Days Overdue
+                </th>
+                <th className="table-header text-left px-4 py-3">Expected</th>
+                <th className="table-header text-right px-4 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
                 <tr>
-                  <th className="table-header px-4 py-3 w-10">
-                    <Checkbox
-                      checked={allSelected}
-                      onCheckedChange={toggleAll}
-                      aria-label="Select all"
-                    />
-                  </th>
-                  <th className="table-header text-left px-4 py-3">Customer</th>
-                  <th className="table-header text-left px-4 py-3">Product</th>
-                  <th className="table-header text-left px-4 py-3">Due Date</th>
-                  <th className="table-header text-left px-4 py-3">
-                    Days Overdue
-                  </th>
-                  <th className="table-header text-left px-4 py-3">Expected</th>
-                  <th className="table-header text-right px-4 py-3">Actions</th>
+                  <td
+                    colSpan={7}
+                    className="px-4 py-12 text-center text-faint t-body-md"
+                  >
+                    No overdue payments in this range.
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {filtered.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={7}
-                      className="px-4 py-12 text-center text-faint t-meta"
+              ) : (
+                filtered.map((r) => {
+                  const sev = severityFor(r.daysOverdue);
+                  const checked = selected.has(r.scheduleId);
+                  return (
+                    <tr
+                      key={r.scheduleId}
+                      className={`border-t ${sev.row}`}
+                      style={{ borderColor: "var(--border)" }}
                     >
-                      No overdue payments in this range.
-                    </td>
-                  </tr>
-                ) : (
-                  filtered.map((r) => {
-                    const sev = severityFor(r.daysOverdue);
-                    const checked = selected.has(r.scheduleId);
-                    return (
-                      <tr
-                        key={r.scheduleId}
-                        className={`border-t ${sev.row}`}
-                        style={{ borderColor: "var(--border)" }}
-                      >
-                        <td className="px-4 py-3">
-                          <Checkbox
-                            checked={checked}
-                            onCheckedChange={() => toggle(r.scheduleId)}
-                            aria-label={`Select ${r.customerName}`}
-                          />
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-3">
-                            <InitialsAvatar name={r.customerName} size="sm" />
-                            <div className="min-w-0">
-                              <p className="table-title-text truncate">
-                                {r.customerName}
-                              </p>
-                              <p className="t-micro text-faint font-mono">
-                                {r.customerPhone}
-                              </p>
-                            </div>
+                      <td className="px-4 py-3">
+                        <Checkbox
+                          checked={checked}
+                          onCheckedChange={() => toggle(r.scheduleId)}
+                          aria-label={`Select ${r.customerName}`}
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <InitialsAvatar name={r.customerName} size="sm" />
+                          <div className="min-w-0">
+                            <p className="table-title-text truncate">
+                              {r.customerName}
+                            </p>
+                            <p className="t-label-sm text-faint font-mono">
+                              {r.customerPhone}
+                            </p>
                           </div>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-text">{r.productName}</span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-text">
-                            {formatDate(r.dueDate)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className={`fw-black ${sev.text}`}>
-                            {r.daysOverdue} days
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-title-text fw-bold">
-                            {formatCurrency(r.expectedAmount)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-1 justify-end">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() =>
-                                Notification.success(
-                                  `Reminder sent to ${r.customerName}`,
-                                )
-                              }
-                            >
-                              <Bell />
-                              Remind
-                            </Button>
-                            <Button size="sm" variant="ghost">
-                              <Link to="/sales/$id" params={{ id: r.saleId }}>
-                                <Eye />
-                                View
-                              </Link>
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="table-text">{r.productName}</span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="table-text">
+                          {formatDate(r.dueDate)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className={`fw-black ${sev.text}`}>
+                          {r.daysOverdue} days
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="table-title-text fw-bold">
+                          {formatCurrency(r.expectedAmount)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-1 justify-end">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() =>
+                              Notification.success(
+                                `Reminder sent to ${r.customerName}`,
+                              )
+                            }
+                          >
+                            <Bell />
+                            Remind
+                          </Button>
+                          <Button size="sm" variant="ghost">
+                            <Link to="/sales/$id" params={{ id: r.saleId }}>
+                              <Eye />
+                              View
+                            </Link>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        {selected.size > 0 ? (
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-4">
-            <div className="app-sidebar modal-rounded shadow-2xl px-4 py-3 flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="circle-rounded surface-brand h-8 w-8 flex items-center justify-center">
-                  <span className="t-meta-bold text-inverse">
-                    {selected.size}
-                  </span>
-                </div>
-                <span className="t-meta-bold app-sidebar-text">
-                  {selected.size}{" "}
-                  {selected.size === 1 ? "Customer" : "Customers"} selected for
-                  reminders
+      {selected.size > 0 ? (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-4">
+          <div className="app-sidebar modal-rounded shadow-2xl px-4 py-3 flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="circle-rounded surface-brand h-8 w-8 flex items-center justify-center">
+                <span className="t-body-md-bold text-inverse">
+                  {selected.size}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Button variant="link" onClick={() => setSelected(new Set())}>
-                  Cancel
-                </Button>
-                <Button
-                  onClick={() => {
-                    Notification.success(
-                      `WhatsApp reminders sent to ${selected.size} customers`,
-                    );
-                    setSelected(new Set());
-                  }}
-                >
-                  <Send />
-                  Send WhatsApp Reminders
-                </Button>
-              </div>
+              <span className="t-body-md-bold app-sidebar-text">
+                {selected.size} {selected.size === 1 ? "Customer" : "Customers"}{" "}
+                selected for reminders
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button variant="link" onClick={() => setSelected(new Set())}>
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  Notification.success(
+                    `WhatsApp reminders sent to ${selected.size} customers`,
+                  );
+                  setSelected(new Set());
+                }}
+              >
+                <Send />
+                Send WhatsApp Reminders
+              </Button>
             </div>
           </div>
-        ) : null}
+        </div>
+      ) : null}
 
-        {/* Customer count for the count summary uses customers length only when needed */}
-        <span className="sr-only">{customers.length} customers in system</span>
+      {/* Customer count for the count summary uses customers length only when needed */}
+      <span className="sr-only">{customers.length} customers in system</span>
     </div>
   );
 }

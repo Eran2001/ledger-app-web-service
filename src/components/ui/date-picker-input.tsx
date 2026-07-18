@@ -63,7 +63,7 @@ export function DatePickerInput({
                 : size === "large"
                   ? "h-large"
                   : "h-field",
-              "t-meta xl-rounded picker-trigger",
+              "t-body-md xl-rounded picker-trigger",
               !value && "picker-trigger-empty",
             )}
           >

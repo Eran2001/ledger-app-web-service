@@ -17,7 +17,7 @@ import {
   TableCell,
   TableCellMedia,
 } from "@/components/ui/table";
-import { StatusBadge } from "@/components/shared/status-badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 
 import { useWidth } from "@/hooks/use-width";
 import { formatCurrency } from "@/utils/format-currency";

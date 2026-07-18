@@ -142,7 +142,7 @@ export function FileDropzone({
                   <Icon.FileText className="size-5 text-brand" />
                 )}
               </div>
-              <p className="t-meta text-main">File attached</p>
+              <p className="t-body-md text-main">File attached</p>
             </div>
           </div>
         ) : (
@@ -155,8 +155,8 @@ export function FileDropzone({
               )}
             </div>
             <div className="space-y-1">
-              <p className="t-section text-main">Upload files</p>
-              <p className="t-meta text-faint">{hint}</p>
+              <p className="t-title-xl text-main">Upload files</p>
+              <p className="t-body-md text-faint">{hint}</p>
             </div>
             <Button
               type="button"
@@ -182,8 +182,8 @@ export function FileDropzone({
                   : "File attached"}
             </Badge>
             <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-              <p className="t-meta text-main break-all">{file.name}</p>
-              <p className="t-micro text-faint">
+              <p className="t-body-md text-main break-all">{file.name}</p>
+              <p className="t-label-sm text-faint">
                 {(file.type || "Unknown type").replace("image/", "")} •{" "}
                 {formatFileSize(file.size)}
               </p>

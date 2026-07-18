@@ -24,8 +24,8 @@ export default function BusinessForm() {
 
   return (
     <form onSubmit={handleSave} className="card-base p-6 max-w-3xl">
-      <h2 className="t-display text-main mb-1">Business Information</h2>
-      <p className="t-caption text-soft mb-6">
+      <h2 className="t-title-lg text-main mb-1">Business Information</h2>
+      <p className="t-label-md text-soft mb-6">
         Used on receipts, reminders, and customer communications.
       </p>
 

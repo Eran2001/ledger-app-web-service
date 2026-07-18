@@ -47,12 +47,12 @@ function SelectTrigger({
         "flex w-fit items-center justify-between gap-2",
         "whitespace-nowrap cursor-pointer",
         resolvedSize === "compact"
-          ? "h-compact px-2.5 t-caption"
+          ? "h-compact px-2.5 t-label-md"
           : resolvedSize === "large"
-            ? "h-large px-4 t-meta"
+            ? "h-large px-4 t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body"
-              : "h-field px-3 t-meta",
+              ? "h-extra-large px-5 t-body-lg"
+              : "h-field px-3 t-body-md",
         "*:data-[slot=select-value]:line-clamp-1",
         "*:data-[slot=select-value]:flex",
         "*:data-[slot=select-value]:items-center",
@@ -125,7 +125,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.Label
       data-slot="select-label"
-      className={cn("t-caption px-2 py-1.5", "select-label", className)}
+      className={cn("t-label-md px-2 py-1.5", "select-label", className)}
       {...props}
     />
   );
@@ -144,7 +144,7 @@ function SelectItem({
         "items-center gap-2",
         "md-rounded",
         "py-1.5 pr-8 pl-2",
-        "t-meta",
+        "t-body-md",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",

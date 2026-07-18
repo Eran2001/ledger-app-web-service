@@ -8,9 +8,9 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
-import { CardCaption } from "@/components/shared/card-caption";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
-import { CategoryLabel } from "@/components/shared/category-label";
+import { CardCaption } from "@/components/ui/card-caption";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
+import { CategoryLabel } from "@/components/ui/category-label";
 
 import { cn } from "@/lib/utils";
 import { useWidth } from "@/hooks/use-width";
@@ -61,7 +61,7 @@ function Table({
       <table
         data-slot="table"
         className={cn(
-          "w-full t-meta",
+          "w-full t-body-md",
           isSimple ? "table-simple" : "table-main",
           className,
         )}
@@ -152,12 +152,12 @@ function TableHead({ className, size, ...props }: TableHeadProps) {
       className={cn(
         "text-left align-middle whitespace-nowrap border-b border-default table-head",
         resolvedSize === "compact"
-          ? "h-compact px-3 t-micro-bold"
+          ? "h-compact px-3 t-label-sm-bold"
           : resolvedSize === "large"
-            ? "h-large px-4 t-caption-bold"
+            ? "h-large px-4 t-label-md-bold"
             : resolvedSize === "extra-large"
-              ? "h-medium-large px-5 t-meta-bold"
-              : "h-field px-4 t-caption-bold",
+              ? "h-medium-large px-5 t-body-md-bold"
+              : "h-field px-4 t-label-md-bold",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -189,12 +189,12 @@ function TableCell({
         "align-middle whitespace-nowrap",
         accentBar && "relative",
         resolvedSize === "compact"
-          ? "h-field px-3 t-caption"
+          ? "h-field px-3 t-label-md"
           : resolvedSize === "large"
-            ? "h-medium-large px-4 t-meta"
+            ? "h-medium-large px-4 t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body"
-              : "h-medium-large px-4 t-meta",
+              ? "h-extra-large px-5 t-body-lg"
+              : "h-medium-large px-4 t-body-md",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -325,7 +325,9 @@ function TableCellInline({
 }: TableCellInlineProps) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      {IconComponent && <IconComponent className={cn("size-4", iconClassName)} />}
+      {IconComponent && (
+        <IconComponent className={cn("size-4", iconClassName)} />
+      )}
       <span className={textClassName}>{text}</span>
     </div>
   );
@@ -369,8 +371,8 @@ function TableEmptyState({
       </div>
 
       <div className="max-w-3xl space-y-2">
-        <p className="t-display-soft text-main">{title}</p>
-        <p className="t-body text-faint">{description}</p>
+        <p className="t-title-lg-soft text-main">{title}</p>
+        <p className="t-body-lg text-faint">{description}</p>
       </div>
 
       <Button variant="outline" size="lg" className="mt-4" onClick={onRefresh}>
@@ -411,7 +413,7 @@ function TableCaption({
   return (
     <caption
       data-slot="table-caption"
-      className={cn("mt-4 t-meta table-caption", className)}
+      className={cn("mt-4 t-body-md table-caption", className)}
       {...props}
     />
   );

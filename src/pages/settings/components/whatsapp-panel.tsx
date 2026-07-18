@@ -33,11 +33,11 @@ export default function WhatsAppPanel({
           <Icon.MessageCircle className="h-5 w-5 text-success-role" />
         </div>
         <div className="flex-1 min-w-0">
-          <h2 className="t-display text-main flex items-center gap-2">
+          <h2 className="t-title-lg text-main flex items-center gap-2">
             WhatsApp Connected
             <Icon.CheckCircle2 className="h-4 w-4 text-success-role" />
           </h2>
-          <p className="t-caption text-soft">
+          <p className="t-label-md text-soft">
             Connected to <span className="font-mono">+94 77 123 4567</span> ·
             Active templates will be used for reminders.
           </p>
@@ -55,8 +55,8 @@ export default function WhatsAppPanel({
           className="px-5 py-4 border-b"
           style={{ borderColor: "var(--border)" }}
         >
-          <h2 className="t-display text-main">Message Templates</h2>
-          <p className="t-caption text-soft">
+          <h2 className="t-title-lg text-main">Message Templates</h2>
+          <p className="t-label-md text-soft">
             Toggle which templates are available for reminders.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function WhatsAppPanel({
                 style={{ borderColor: "var(--border)" }}
               >
                 <td className="px-4 py-3 table-title-text">{t.name}</td>
-                <td className="px-4 py-3 t-meta text-soft font-mono">
+                <td className="px-4 py-3 t-body-md text-soft font-mono">
                   {t.preview}
                 </td>
                 <td className="px-4 py-3">

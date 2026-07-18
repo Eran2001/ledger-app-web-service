@@ -34,7 +34,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "t-meta flex flex-1 items-start justify-between gap-4 global-rounded py-4 text-left cursor-pointer accordion-trigger",
+          "t-body-md flex flex-1 items-start justify-between gap-4 global-rounded py-4 text-left cursor-pointer accordion-trigger",
           className,
         )}
         {...props}
@@ -57,7 +57,7 @@ function AccordionContent({
       className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden"
       {...props}
     >
-      <div className={cn("t-meta text-soft pt-0 pb-4", className)}>
+      <div className={cn("t-body-md text-soft pt-0 pb-4", className)}>
         {children}
       </div>
     </AccordionPrimitive.Content>

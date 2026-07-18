@@ -32,12 +32,12 @@ function CollapsibleTrigger({
         "xl-rounded border",
         "cursor-pointer",
         resolvedSize === "compact"
-          ? "h-compact px-2.5 t-caption"
+          ? "h-compact px-2.5 t-label-md"
           : resolvedSize === "large"
-            ? "h-large px-4 t-meta"
+            ? "h-large px-4 t-body-md"
             : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body"
-              : "h-field px-3 t-meta",
+              ? "h-extra-large px-5 t-body-lg"
+              : "h-field px-3 t-body-md",
         className,
       )}
       {...props}
@@ -52,7 +52,7 @@ function CollapsibleContent({
   return (
     <CollapsiblePrimitive.CollapsibleContent
       data-slot="collapsible-content"
-      className={cn("px-3 py-2 t-meta", className)}
+      className={cn("px-3 py-2 t-body-md", className)}
       {...props}
     />
   );

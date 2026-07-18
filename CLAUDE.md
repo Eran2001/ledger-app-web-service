@@ -99,26 +99,35 @@ When adding new CSS, find the matching section below — don't append randomly o
 ---
 ## Semantic Typography Classes (`src/index.css @layer utilities`)
 
-### Size + weight combos (`t-*`) — use these first
+### Typography Utilities (`t-*`) — use these first
 
-| Class            | Size     | Weight   | Use for                            |
-| ---------------- | -------- | -------- | ---------------------------------- |
-| `t-hero`         | 2.25rem  | bold     | Hero numbers                       |
-| `t-kpi-lg`       | 1.875rem | bold     | Large KPI values                   |
-| `t-kpi`          | 1.5rem   | bold     | KPI numbers, page stats            |
-| `t-section`      | 1.25rem  | bold     | Section titles                     |
-| `t-display`      | 1.125rem | bold     | Card titles, modal headings        |
-| `t-display-soft` | 1.125rem | semibold | Softer display headings            |
-| `t-heading`      | 1.125rem | semibold | General headings                   |
-| `t-title`        | 1rem     | bold     | Page titles                        |
-| `t-nav`          | 1rem     | medium   | Nav items                          |
-| `t-body`         | 1rem     | normal   | Primary body text                  |
-| `t-meta`         | 0.875rem | medium   | Table cells, metadata              |
-| `t-meta-bold`    | 0.875rem | bold     | Emphasized metadata                |
-| `t-caption`      | 12px     | medium   | Captions, timestamps, small labels |
-| `t-caption-bold` | 12px     | bold     | Emphasized captions                |
-| `t-micro`        | 11px     | medium   | Micro labels, role tags            |
-| `t-micro-bold`   | 11px     | bold     | Emphasized micro text              |
+Naming rule:
+- `display` = biggest text
+- `title` = heading text
+- `body` = reading / metadata text
+- `label` = smallest UI text
+- `-bold`, `-medium`, `-soft` describe weight/style when needed
+
+| Class               | Use for                                  |
+| ------------------- | ---------------------------------------- |
+| `t-display-code`    | Largest decorative numerals              |
+| `t-display-max`     | Largest display headline                 |
+| `t-display-2xl`     | Hero display                             |
+| `t-display-xl`      | Large stat display                       |
+| `t-display-lg`      | Standard stat display                    |
+| `t-title-xl`        | Section titles                           |
+| `t-title-lg`        | Card and modal titles                    |
+| `t-title-lg-soft`   | Softer section or card headings          |
+| `t-title-md`        | Page titles                              |
+| `t-input`           | Form control text                        |
+| `t-body-lg-medium`  | Strong body text like nav or list labels |
+| `t-body-lg`         | Primary body text                        |
+| `t-body-md`         | Metadata text                            |
+| `t-body-md-bold`    | Strong metadata text                     |
+| `t-label-md`        | Captions and helper labels               |
+| `t-label-md-bold`   | Strong captions                          |
+| `t-label-sm`        | Micro labels                             |
+| `t-label-sm-bold`   | Strong micro labels                      |
 
 ### Weight overrides (`fw-*`)
 

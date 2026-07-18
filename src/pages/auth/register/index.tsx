@@ -44,8 +44,8 @@ export default function RegisterPage() {
             ST
           </div>
           <div>
-            <p className="t-display text-main">Silva Traders</p>
-            <p className="t-caption text-soft">Request Admin Panel Access</p>
+            <p className="t-title-lg text-main">Silva Traders</p>
+            <p className="t-label-md text-soft">Request Admin Panel Access</p>
           </div>
         </div>
 
@@ -57,25 +57,25 @@ export default function RegisterPage() {
                 strokeWidth={2}
               />
             </div>
-            <h2 className="t-section text-main mb-2">Request submitted</h2>
-            <p className="t-body text-soft mb-6 max-w-sm mx-auto">
+            <h2 className="t-title-xl text-main mb-2">Request submitted</h2>
+            <p className="t-body-lg text-soft mb-6 max-w-sm mx-auto">
               Your request has been submitted. Admin will review it shortly.
             </p>
-            <Link to="/login" className="t-meta-bold text-brand">
+            <Link to="/login" className="t-body-md-bold text-brand">
               ← Back to sign in
             </Link>
           </div>
         ) : (
           <>
-            <h2 className="t-kpi text-main mb-2">Request Access</h2>
-            <p className="t-body text-soft mb-8">
+            <h2 className="t-display-lg text-main mb-2">Request Access</h2>
+            <p className="t-body-lg text-soft mb-8">
               Fill in your details and an administrator will review your
               request.
             </p>
 
             <form onSubmit={handleSubmit} className="grid gap-5">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="name" className="t-meta-bold text-main">
+                <Label htmlFor="name" className="t-body-md-bold text-main">
                   Full name
                 </Label>
                 <Input
@@ -88,7 +88,7 @@ export default function RegisterPage() {
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="email" className="t-meta-bold text-main">
+                  <Label htmlFor="email" className="t-body-md-bold text-main">
                     Email
                   </Label>
                   <Input
@@ -100,7 +100,7 @@ export default function RegisterPage() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="phone" className="t-meta-bold text-main">
+                  <Label htmlFor="phone" className="t-body-md-bold text-main">
                     Phone
                   </Label>
                   <Input
@@ -113,7 +113,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="role" className="t-meta-bold text-main">
+                <Label htmlFor="role" className="t-body-md-bold text-main">
                   Requested role
                 </Label>
                 <Select defaultValue="STAFF">
@@ -132,7 +132,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="message" className="t-meta-bold text-main">
+                <Label htmlFor="message" className="t-body-md-bold text-main">
                   Message
                 </Label>
                 <Textarea
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                 Submit Request
               </Button>
 
-              <p className="t-meta text-soft text-center mt-2">
+              <p className="t-body-md text-soft text-center mt-2">
                 Already have access?{" "}
                 <Link to="/login" className="text-brand fw-bold">
                   Sign in

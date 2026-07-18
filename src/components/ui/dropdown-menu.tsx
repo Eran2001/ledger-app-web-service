@@ -96,12 +96,12 @@ function DropdownMenuItem({
       className={cn(
         "relative flex items-center gap-2",
         resolvedSize === "compact"
-          ? "px-1.5 py-1 t-caption"
+          ? "px-1.5 py-1 t-label-md"
           : resolvedSize === "large"
-            ? "px-3 py-2 t-meta"
+            ? "px-3 py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body"
-              : "px-2 py-1.5 t-meta",
+              ? "px-4 py-2.5 t-body-lg"
+              : "px-2 py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -135,12 +135,12 @@ function DropdownMenuCheckboxItem({
         "relative flex items-center gap-2",
         "pr-2 pl-8",
         resolvedSize === "compact"
-          ? "py-1 t-caption"
+          ? "py-1 t-label-md"
           : resolvedSize === "large"
-            ? "py-2 t-meta"
+            ? "py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "py-2.5 t-body"
-              : "py-1.5 t-meta",
+              ? "py-2.5 t-body-lg"
+              : "py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -191,12 +191,12 @@ function DropdownMenuRadioItem({
         "relative flex items-center gap-2",
         "pr-2 pl-8",
         resolvedSize === "compact"
-          ? "py-1 t-caption"
+          ? "py-1 t-label-md"
           : resolvedSize === "large"
-            ? "py-2 t-meta"
+            ? "py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "py-2.5 t-body"
-              : "py-1.5 t-meta",
+              ? "py-2.5 t-body-lg"
+              : "py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -230,7 +230,7 @@ function DropdownMenuLabel({
       data-inset={inset}
       className={cn(
         "px-2 py-1.5",
-        "t-meta fw-medium",
+        "t-body-md fw-medium",
         "data-inset:pl-8",
         "dropdown-menu-label",
         className,
@@ -260,7 +260,7 @@ function DropdownMenuShortcut({
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      className={cn("ml-auto t-caption", "dropdown-menu-shortcut", className)}
+      className={cn("ml-auto t-label-md", "dropdown-menu-shortcut", className)}
       {...props}
     />
   );
@@ -292,12 +292,12 @@ function DropdownMenuSubTrigger({
       className={cn(
         "flex items-center gap-2",
         resolvedSize === "compact"
-          ? "px-1.5 py-1 t-caption"
+          ? "px-1.5 py-1 t-label-md"
           : resolvedSize === "large"
-            ? "px-3 py-2 t-meta"
+            ? "px-3 py-2 t-body-md"
             : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body"
-              : "px-2 py-1.5 t-meta",
+              ? "px-4 py-2.5 t-body-lg"
+              : "px-2 py-1.5 t-body-md",
         "global-rounded outline-hidden select-none",
         "cursor-pointer",
         "data-inset:pl-8",

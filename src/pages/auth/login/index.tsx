@@ -41,19 +41,19 @@ export default function LoginPage() {
               ST
             </div>
             <div>
-              <p className="t-display text-main">Silva Traders</p>
-              <p className="t-caption text-soft">Installment Management</p>
+              <p className="t-title-lg text-main">Silva Traders</p>
+              <p className="t-label-md text-soft">Installment Management</p>
             </div>
           </div>
 
-          <h2 className="t-kpi text-main mb-2">Welcome back</h2>
-          <p className="t-body text-soft mb-8">
+          <h2 className="t-display-lg text-main mb-2">Welcome back</h2>
+          <p className="t-body-lg text-soft mb-8">
             Sign in to your admin panel to manage your business.
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="email" className="t-meta-bold text-main">
+              <Label htmlFor="email" className="t-body-md-bold text-main">
                 Email
               </Label>
               <Input
@@ -69,12 +69,12 @@ export default function LoginPage() {
 
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="t-meta-bold text-main">
+                <Label htmlFor="password" className="t-body-md-bold text-main">
                   Password
                 </Label>
                 <Link
                   to="/setup-password"
-                  className="t-caption-bold text-brand"
+                  className="t-label-md-bold text-brand"
                 >
                   Forgot password?
                 </Link>
@@ -113,7 +113,7 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <p className="mt-8 t-meta text-soft text-center">
+          <p className="mt-8 t-body-md text-soft text-center">
             Need access?{" "}
             <Link to="/register" className="text-brand fw-bold">
               Request access →
@@ -153,12 +153,12 @@ export default function LoginPage() {
                 style={{ backgroundColor: "#22c55e" }}
               />
             </span>
-            <span className="t-micro-bold text-inverse text-uppercase tracking-label">
+            <span className="t-label-sm-bold text-inverse text-uppercase tracking-label">
               System Operational
             </span>
           </div>
 
-          <h2 className="t-hero text-inverse text-balance mb-10 leading-tight">
+          <h2 className="t-display-2xl text-inverse text-balance mb-10 leading-tight">
             Manage your store&apos;s installment plans with confidence
           </h2>
 
@@ -181,7 +181,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <p className="absolute bottom-6 left-12 font-mono t-micro text-inverse-faint text-uppercase tracking-label">
+        <p className="absolute bottom-6 left-12 font-mono t-label-sm text-inverse-faint text-uppercase tracking-label">
           SILVA TRADERS v1.0.0 · © 2026 Admin Panel
         </p>
       </div>
@@ -207,8 +207,8 @@ function FeatureCard({
         <Icon className="h-5 w-5 text-inverse" />
       </div>
       <div>
-        <p className="t-meta-bold text-inverse mb-1">{title}</p>
-        <p className="t-caption text-inverse-muted">{copy}</p>
+        <p className="t-body-md-bold text-inverse mb-1">{title}</p>
+        <p className="t-label-md text-inverse-muted">{copy}</p>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ interface CategoryLabelProps {
 }
 
 export const CategoryLabel = ({ category }: CategoryLabelProps) => (
-  <span className={`t-micro-bold text-uppercase tracking-label ${CATEGORY_TEXT[category]}`}>
+  <span className={`t-label-sm-bold text-uppercase tracking-label ${CATEGORY_TEXT[category]}`}>
     {category}
   </span>
 );

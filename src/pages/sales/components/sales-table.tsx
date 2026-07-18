@@ -18,7 +18,7 @@ import {
   TableCellMedia,
   TableCellProduct,
 } from "@/components/ui/table";
-import { StatusBadge } from "@/components/shared/status-badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 
 import { formatCurrency } from "@/utils/format-currency";
 import { formatDate } from "@/utils/format-date";

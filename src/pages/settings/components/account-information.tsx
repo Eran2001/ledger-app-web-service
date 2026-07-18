@@ -3,7 +3,7 @@ import { Save, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { Notification } from "@/components/ui/custom-toast";
 
 import { useAuthStore } from "@/stores/auth-store";
@@ -27,19 +27,19 @@ export default function AccountInfoPage() {
       <div className="card-base p-6 flex items-center gap-5">
         <InitialsAvatar name={form.name} size="lg" />
         <div className="min-w-0 flex-1">
-          <h1 className="t-section text-main">{form.name}</h1>
+          <h1 className="t-title-xl text-main">{form.name}</h1>
           <div className="mt-2 flex items-center gap-2 flex-wrap">
-            <span className="pill-indigo t-caption-bold px-2.5 py-0.5 global-rounded">
+            <span className="pill-indigo t-label-md-bold px-2.5 py-0.5 global-rounded">
               {user?.role ?? "ADMIN"}
             </span>
-            <span className="t-meta text-soft font-mono">{form.email}</span>
+            <span className="t-body-md text-soft font-mono">{form.email}</span>
           </div>
         </div>
       </div>
 
       <form onSubmit={save} className="card-base p-6">
-        <h2 className="t-display text-main mb-1">Account Details</h2>
-        <p className="t-caption text-soft mb-6">
+        <h2 className="t-title-lg text-main mb-1">Account Details</h2>
+        <p className="t-label-md text-soft mb-6">
           Your basic profile information.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -82,8 +82,8 @@ export default function AccountInfoPage() {
             "color-mix(in srgb, var(--destructive) 30%, transparent)",
         }}
       >
-        <h2 className="t-display text-danger mb-1">Danger Zone</h2>
-        <p className="t-caption text-soft mb-4">
+        <h2 className="t-title-lg text-danger mb-1">Danger Zone</h2>
+        <p className="t-label-md text-soft mb-4">
           Deleting your account is permanent and cannot be undone.
         </p>
         <Button

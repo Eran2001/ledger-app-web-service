@@ -22,8 +22,8 @@ export default function SetupPasswordPage() {
 
         {done ? (
           <>
-            <h2 className="t-kpi text-main mb-2">Password updated</h2>
-            <p className="t-body text-soft mb-6">
+            <h2 className="t-display-lg text-main mb-2">Password updated</h2>
+            <p className="t-body-lg text-soft mb-6">
               Your new password is set. You can now sign in to your account.
             </p>
             <Link to="/login">
@@ -34,14 +34,14 @@ export default function SetupPasswordPage() {
           </>
         ) : (
           <>
-            <h2 className="t-kpi text-main mb-2">Set your password</h2>
-            <p className="t-body text-soft mb-8">
+            <h2 className="t-display-lg text-main mb-2">Set your password</h2>
+            <p className="t-body-lg text-soft mb-8">
               Choose a strong password with at least 8 characters.
             </p>
 
             <form onSubmit={submit} className="grid gap-5">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="password" className="t-meta-bold text-main">
+                <Label htmlFor="password" className="t-body-md-bold text-main">
                   New password
                 </Label>
                 <Input
@@ -52,7 +52,7 @@ export default function SetupPasswordPage() {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="confirm" className="t-meta-bold text-main">
+                <Label htmlFor="confirm" className="t-body-md-bold text-main">
                   Confirm password
                 </Label>
                 <Input

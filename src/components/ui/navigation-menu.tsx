@@ -70,12 +70,12 @@ const navigationMenuTriggerStyle = (size: ResponsiveSize = "default") =>
     "group inline-flex w-max items-center justify-center",
     "xl-rounded fw-medium",
     size === "compact"
-      ? "h-compact px-3 py-1.5 t-caption"
+      ? "h-compact px-3 py-1.5 t-label-md"
       : size === "large"
-        ? "h-large px-5 py-2.5 t-meta"
+        ? "h-large px-5 py-2.5 t-body-md"
         : size === "extra-large"
-          ? "h-extra-large px-6 py-3 t-body"
-          : "h-field px-4 py-2 t-meta",
+          ? "h-extra-large px-6 py-3 t-body-lg"
+          : "h-field px-4 py-2 t-body-md",
     "nav-menu-trigger",
   );
 
@@ -157,8 +157,8 @@ function NavigationMenuContent({
           {items.map((item) => (
             <li key={item.to}>
               <NavigationMenuLink href={item.to}>
-                <div className="t-meta fw-medium">{item.title}</div>
-                <p className="t-caption">{item.desc}</p>
+                <div className="t-body-md fw-medium">{item.title}</div>
+                <p className="t-label-md">{item.desc}</p>
               </NavigationMenuLink>
             </li>
           ))}
@@ -211,12 +211,12 @@ function NavigationMenuLink({
       className={cn(
         "flex flex-col gap-1 md-rounded",
         resolvedSize === "compact"
-          ? "p-1.5 t-caption"
+          ? "p-1.5 t-label-md"
           : resolvedSize === "large"
-            ? "p-2.5 t-meta"
+            ? "p-2.5 t-body-md"
             : resolvedSize === "extra-large"
-              ? "p-3 t-body"
-              : "p-2 t-meta",
+              ? "p-3 t-body-lg"
+              : "p-2 t-body-md",
         "[&_svg:not([class*='size-'])]:size-4",
         "nav-menu-link",
         className,

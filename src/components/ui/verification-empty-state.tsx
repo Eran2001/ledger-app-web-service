@@ -17,8 +17,8 @@ export function VerificationEmptyState({
           <Icon.FlaskConical className="icon-large text-brand" />
         </div>
         <div className="space-y-2">
-          <p className="t-section text-main">{title}</p>
-          <p className="t-meta text-faint">{description}</p>
+          <p className="t-title-xl text-main">{title}</p>
+          <p className="t-body-md text-faint">{description}</p>
         </div>
       </CardContent>
     </Card>

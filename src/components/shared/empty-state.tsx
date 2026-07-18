@@ -54,7 +54,7 @@ export function EmptyState({
       </div>
       <p
         className={cn(
-          "t-body fw-semibold text-main",
+          "t-body-lg fw-semibold text-main",
           "mb-1 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2",
           "3xl:mb-3 4xl:mb-3 5xl:mb-4 6xl:mb-4 7xl:mb-5 8xl:mb-5",
         )}
@@ -63,7 +63,7 @@ export function EmptyState({
       </p>
       <p
         className={cn(
-          "t-body text-faint",
+          "t-body-lg text-faint",
           "max-w-sm sm:max-w-md md:max-w-lg lg:max-w-sm 2xl:max-w-2xl",
           "3xl:max-w-3xl 4xl:max-w-3xl 5xl:max-w-4xl 6xl:max-w-4xl 7xl:max-w-5xl 8xl:max-w-5xl",
         )}

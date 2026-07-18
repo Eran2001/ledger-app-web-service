@@ -44,7 +44,7 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          "z-dropdown w-fit max-w-60 px-4 py-3 t-caption text-center text-balance xl-rounded",
+          "z-dropdown w-fit max-w-60 px-4 py-3 t-label-md text-center text-balance xl-rounded",
           "origin-(--radix-tooltip-content-transform-origin)",
           "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
           "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",

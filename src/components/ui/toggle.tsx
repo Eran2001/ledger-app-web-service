@@ -10,7 +10,7 @@ import {
 } from "@/utils/get-responsive-size";
 
 const toggleVariants = cva(
-  "inline-flex items-center justify-center gap-2 xl-rounded t-meta whitespace-nowrap cursor-pointer [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 toggle-base",
+  "inline-flex items-center justify-center gap-2 xl-rounded t-body-md whitespace-nowrap cursor-pointer [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 toggle-base",
   {
     variants: {
       variant: {

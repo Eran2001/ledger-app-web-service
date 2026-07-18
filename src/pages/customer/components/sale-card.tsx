@@ -1,8 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
-import { StatusBadge } from "@/components/shared/status-badge";
-import { CategoryPill } from "@/components/shared/category-pill";
+import { StatusBadge } from "@/components/ui/status-badge";
+import { CategoryPill } from "@/components/ui/category-pill";
 import { Progress } from "@/components/ui/progress";
 import { Stat, StatMeta } from "@/components/ui/stat";
 import { Card } from "@/components/ui/card";
@@ -26,7 +26,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
     <Card>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="t-section text-main truncate">{product?.name}</h3>
+          <h3 className="t-title-xl text-main truncate">{product?.name}</h3>
           {product && <CategoryPill category={product.category} />}
         </div>
         <StatusBadge status={stat.hasOverdue ? "OVERDUE" : "ACTIVE"} />
@@ -39,7 +39,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
       </div>
 
       <div>
-        <div className="flex items-center justify-between t-caption text-soft mb-1.5">
+        <div className="flex items-center justify-between t-label-md text-soft mb-1.5">
           <span>
             {stat.paidCount} of {stat.totalCount} installments paid
           </span>
@@ -57,7 +57,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
         <Button
           variant="link"
           size="sm"
-          className="p-0 t-meta-bold group"
+          className="p-0 t-body-md-bold group"
           onClick={() =>
             navigate({
               to: "/sales/$id",

@@ -62,7 +62,7 @@ function CardTitle({
     <div
       data-slot="card-title"
       className={cn(
-        "t-display-soft",
+        "t-title-lg-soft",
         Icon && "flex items-center gap-2",
         className,
       )}
@@ -78,7 +78,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("t-meta fw-normal card-description", className)}
+      className={cn("t-body-md fw-normal card-description", className)}
       {...props}
     />
   );
@@ -123,8 +123,8 @@ function CardEmpty({
       </div>
 
       <div className="space-y-2">
-        <p className="t-meta-bold text-main">{title}</p>
-        <p className="t-caption text-faint">{description}</p>
+        <p className="t-body-md-bold text-main">{title}</p>
+        <p className="t-label-md text-faint">{description}</p>
       </div>
     </CardContent>
   );

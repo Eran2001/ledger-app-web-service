@@ -112,12 +112,12 @@ function TabsTrigger({
       className={cn(
         "relative z-tabs-trigger inline-flex h-full items-center justify-center gap-2 whitespace-nowrap cursor-pointer xl-rounded tabs-trigger",
         height === "compact"
-          ? "px-3 t-caption"
+          ? "px-3 t-label-md"
           : height === "large"
-            ? "px-5 t-meta"
+            ? "px-5 t-body-md"
             : height === "extra-large"
-              ? "px-6 t-body"
-              : "px-4 t-meta",
+              ? "px-6 t-body-lg"
+              : "px-4 t-body-md",
         className,
       )}
       {...props}
@@ -130,7 +130,7 @@ function TabsCount({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="tabs-count"
       className={cn(
-        "t-caption-bold pill-gray px-1.5 py-0.5 xl-rounded",
+        "t-label-md-bold pill-gray px-1.5 py-0.5 xl-rounded",
         className,
       )}
       {...props}

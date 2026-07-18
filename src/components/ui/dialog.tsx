@@ -135,7 +135,7 @@ function DialogTitle({
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn("t-display-soft", className)}
+      className={cn("t-title-lg-soft", className)}
       {...props}
     />
   );
@@ -148,7 +148,7 @@ function DialogDescription({
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
-      className={cn("t-meta fw-normal dialog-description", className)}
+      className={cn("t-body-md fw-normal dialog-description", className)}
       {...props}
     />
   );

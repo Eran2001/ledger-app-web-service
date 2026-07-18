@@ -123,29 +123,29 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="card-base p-5">
           <p className="text-uppercase">Total Outstanding</p>
-          <p className="t-kpi-lg text-main mt-2">
+          <p className="t-display-xl text-main mt-2">
             {formatCurrency(stats.totalOutstanding)}
           </p>
-          <p className="t-caption text-soft mt-1">All active sales</p>
+          <p className="t-label-md text-soft mt-1">All active sales</p>
         </div>
         <div className="card-base p-5">
           <p className="text-uppercase">Collected This Month</p>
-          <p className="t-kpi-lg text-success-role mt-2">
+          <p className="t-display-xl text-success-role mt-2">
             {formatCurrency(stats.collectedThisMonth)}
           </p>
-          <p className="t-caption text-soft mt-1">
+          <p className="t-label-md text-soft mt-1">
             {format(new Date(), "MMMM yyyy")}
           </p>
         </div>
         <div className="card-base p-5">
           <p className="text-uppercase">Collection Rate</p>
-          <p className="t-kpi-lg text-main mt-2">{stats.collectionRate}%</p>
-          <p className="t-caption text-soft mt-1">This month</p>
+          <p className="t-display-xl text-main mt-2">{stats.collectionRate}%</p>
+          <p className="t-label-md text-soft mt-1">This month</p>
         </div>
         <div className="card-base p-5">
           <p className="text-uppercase">Active Sales</p>
-          <p className="t-kpi-lg text-main mt-2">{stats.activeSalesCount}</p>
-          <p className="t-caption text-soft mt-1">In progress</p>
+          <p className="t-display-xl text-main mt-2">{stats.activeSalesCount}</p>
+          <p className="t-label-md text-soft mt-1">In progress</p>
         </div>
       </div>
 
@@ -153,8 +153,8 @@ export default function ReportsPage() {
         <div className="card-base p-5 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="t-display text-main">Monthly Collections</h2>
-              <p className="t-caption text-soft">Last 6 months</p>
+              <h2 className="t-title-lg text-main">Monthly Collections</h2>
+              <p className="t-label-md text-soft">Last 6 months</p>
             </div>
           </div>
           <div className="h-72 chart-frame">
@@ -203,8 +203,8 @@ export default function ReportsPage() {
         </div>
         <div className="card-base p-5">
           <div className="mb-4">
-            <h2 className="t-display text-main">Collection Status</h2>
-            <p className="t-caption text-soft">By installment</p>
+            <h2 className="t-title-lg text-main">Collection Status</h2>
+            <p className="t-label-md text-soft">By installment</p>
           </div>
           <div className="h-72 chart-frame">
             <ResponsiveContainer width="100%" height="100%">
@@ -251,8 +251,8 @@ export default function ReportsPage() {
             className="px-5 py-4 border-b"
             style={{ borderColor: "var(--border)" }}
           >
-            <h2 className="t-display text-main">Overdue Aging</h2>
-            <p className="t-caption text-soft">
+            <h2 className="t-title-lg text-main">Overdue Aging</h2>
+            <p className="t-label-md text-soft">
               Customers with unpaid past-due installments
             </p>
           </div>
@@ -274,7 +274,7 @@ export default function ReportsPage() {
                   <tr>
                     <td
                       colSpan={5}
-                      className="px-4 py-12 text-center t-meta text-faint"
+                      className="px-4 py-12 text-center t-body-md text-faint"
                     >
                       No overdue installments.
                     </td>

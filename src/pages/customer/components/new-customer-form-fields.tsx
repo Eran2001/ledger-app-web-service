@@ -24,7 +24,7 @@ export const NewCustomerFormFields = ({
         {...register("firstName")}
       />
       {errors.firstName && (
-        <p className="t-caption text-danger">{errors.firstName.message}</p>
+        <p className="t-label-md text-danger">{errors.firstName.message}</p>
       )}
     </div>
 
@@ -39,7 +39,7 @@ export const NewCustomerFormFields = ({
         {...register("lastName")}
       />
       {errors.lastName && (
-        <p className="t-caption text-danger">{errors.lastName.message}</p>
+        <p className="t-label-md text-danger">{errors.lastName.message}</p>
       )}
     </div>
 
@@ -54,13 +54,13 @@ export const NewCustomerFormFields = ({
         {...register("nic")}
       />
       {errors.nic && (
-        <p className="t-caption text-danger">{errors.nic.message}</p>
+        <p className="t-label-md text-danger">{errors.nic.message}</p>
       )}
     </div>
 
     <div className="flex flex-col gap-1.5">
       <Label htmlFor="email">
-        Email <span className="t-caption text-faint">(optional)</span>
+        Email <span className="t-label-md text-faint">(optional)</span>
       </Label>
       <Input
         id="email"
@@ -70,7 +70,7 @@ export const NewCustomerFormFields = ({
         {...register("email")}
       />
       {errors.email && (
-        <p className="t-caption text-danger">{errors.email.message}</p>
+        <p className="t-label-md text-danger">{errors.email.message}</p>
       )}
     </div>
 
@@ -91,13 +91,13 @@ export const NewCustomerFormFields = ({
         )}
       />
       {errors.primaryPhone && (
-        <p className="t-caption text-danger">{errors.primaryPhone.message}</p>
+        <p className="t-label-md text-danger">{errors.primaryPhone.message}</p>
       )}
     </div>
 
     <div className="flex flex-col gap-1.5">
       <Label htmlFor="secondary_phone">
-        Secondary phone <span className="t-caption text-faint">(optional)</span>
+        Secondary phone <span className="t-label-md text-faint">(optional)</span>
       </Label>
       <Controller
         name="secondaryPhone"
@@ -123,13 +123,13 @@ export const NewCustomerFormFields = ({
         {...register("addressLine1")}
       />
       {errors.addressLine1 && (
-        <p className="t-caption text-danger">{errors.addressLine1.message}</p>
+        <p className="t-label-md text-danger">{errors.addressLine1.message}</p>
       )}
     </div>
 
     <div className="flex flex-col gap-1.5 sm:col-span-2">
       <Label htmlFor="address_line2">
-        Address line 2 <span className="t-caption text-faint">(optional)</span>
+        Address line 2 <span className="t-label-md text-faint">(optional)</span>
       </Label>
       <Input
         id="address_line2"
@@ -149,7 +149,7 @@ export const NewCustomerFormFields = ({
         {...register("city")}
       />
       {errors.city && (
-        <p className="t-caption text-danger">{errors.city.message}</p>
+        <p className="t-label-md text-danger">{errors.city.message}</p>
       )}
     </div>
 
@@ -164,13 +164,13 @@ export const NewCustomerFormFields = ({
         {...register("province")}
       />
       {errors.province && (
-        <p className="t-caption text-danger">{errors.province.message}</p>
+        <p className="t-label-md text-danger">{errors.province.message}</p>
       )}
     </div>
 
     <div className="flex flex-col gap-1.5 sm:col-span-2">
       <Label htmlFor="notes">
-        Notes <span className="t-caption text-faint">(optional)</span>
+        Notes <span className="t-label-md text-faint">(optional)</span>
       </Label>
       <Textarea
         id="notes"

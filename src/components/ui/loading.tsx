@@ -13,7 +13,7 @@ export function Loading({ label = "Loading" }: LoadingProps) {
     >
       <div className="flex flex-col items-center gap-3 text-soft">
         <Spinner className="size-6" />
-        <span className="t-meta">{label}</span>
+        <span className="t-body-md">{label}</span>
       </div>
     </div>
   );

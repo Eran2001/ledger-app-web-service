@@ -63,7 +63,7 @@ function RadioGroupItem({
       className={cn('flex items-center gap-3 cursor-pointer', containerClassName)}
     >
       {radioControl}
-      <span className={cn('t-meta-bold text-main', labelClassName)}>
+      <span className={cn('t-body-md-bold text-main', labelClassName)}>
         {label}
       </span>
     </label>

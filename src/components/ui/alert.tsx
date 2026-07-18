@@ -42,7 +42,7 @@ const badgeVariants = cva(
   },
 );
 
-const titleVariants = cva("t-meta-bold", {
+const titleVariants = cva("t-body-md-bold", {
   variants: {
     variant: {
       default: "text-main",
@@ -124,7 +124,7 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn("mt-1 t-caption text-soft", className)}
+      className={cn("mt-1 t-label-md text-soft", className)}
       {...props}
     />
   );

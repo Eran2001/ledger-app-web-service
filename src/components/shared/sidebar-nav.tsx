@@ -62,7 +62,7 @@ export function SidebarNav({
               className={cn("mb-4", collapsed && "px-2")}
             >
               {!collapsed ? (
-                <div className="px-5 mb-2 t-micro-bold app-sidebar-text-faint text-uppercase [letter-spacing:var(--tracking-label-wide)]">
+                <div className="px-5 mb-2 t-label-sm-bold app-sidebar-text-faint text-uppercase [letter-spacing:var(--tracking-label-wide)]">
                   {section.label}
                 </div>
               ) : i > 0 ? (
@@ -94,7 +94,7 @@ export function SidebarNav({
                           </TooltipTrigger>
                           <TooltipContent
                             side="right"
-                            className="t-meta fw-semibold px-3.5 py-2.5"
+                            className="t-body-md fw-semibold px-3.5 py-2.5"
                           >
                             {item.label}
                           </TooltipContent>
@@ -108,7 +108,7 @@ export function SidebarNav({
                         to={item.href}
                         onClick={onItemClick}
                         className={cn(
-                          "app-sidebar-link flex items-center gap-3 px-3 h-10 global-rounded t-meta transition-colors",
+                          "app-sidebar-link flex items-center gap-3 px-3 h-10 global-rounded t-body-md transition-colors",
                           active &&
                             "app-sidebar-link-active border-l-[3px] border-start-brand pl-2.25",
                         )}
@@ -135,7 +135,7 @@ export function SidebarNav({
           <Button
             variant="ghost"
             onClick={onToggleCollapse}
-            className="mt-2 w-full app-sidebar-link app-sidebar-icon-btn t-caption"
+            className="mt-2 w-full app-sidebar-link app-sidebar-icon-btn t-label-md"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             <Icon.ChevronLeft

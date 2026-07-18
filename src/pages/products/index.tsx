@@ -193,7 +193,7 @@ export default function ProductsPage() {
                   <tr>
                     <td
                       colSpan={6}
-                      className="px-4 py-12 text-center text-faint t-meta"
+                      className="px-4 py-12 text-center text-faint t-body-md"
                     >
                       No products found.
                     </td>
@@ -246,7 +246,7 @@ export default function ProductsPage() {
                             </Select>
                           ) : (
                             <span
-                              className={`${categoryPillClass(p.category)} t-caption-bold px-2.5 py-0.5 global-rounded`}
+                              className={`${categoryPillClass(p.category)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
                             >
                               {p.category}
                             </span>

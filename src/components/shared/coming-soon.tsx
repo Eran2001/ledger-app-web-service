@@ -15,15 +15,15 @@ const ComingSoon = () => {
         <div className="coming-soon-accent-left coming-soon-drift absolute bottom-[16%] left-[10%] h-16 w-16 xl-rounded" />
         <div className="coming-soon-accent-right coming-soon-drift-reverse absolute right-[12%] bottom-[22%] h-14 w-8 full-rounded" />
 
-        <p className="t-section text-uppercase text-main">
+        <p className="t-title-xl text-uppercase text-main">
           Business Verifications.
         </p>
 
-        <h1 className="mt-4 t-coming-soon text-primary">Coming Soon</h1>
+        <h1 className="mt-4 t-display-max text-primary">Coming Soon</h1>
 
         <div className="mt-8 space-y-2">
-          <p className="t-body text-soft">This page is still in progress.</p>
-          <p className="t-body text-soft">
+          <p className="t-body-lg text-soft">This page is still in progress.</p>
+          <p className="t-body-lg text-soft">
             Business verifications will be available here soon.
           </p>
         </div>

@@ -75,7 +75,7 @@ function MenubarTrigger({
       data-slot="menubar-trigger"
       className={cn(
         "flex items-center px-2 py-1 outline-hidden select-none cursor-pointer",
-        "md-rounded t-meta fw-medium",
+        "md-rounded t-body-md fw-medium",
         "menubar-trigger",
         className,
       )}
@@ -134,7 +134,7 @@ function MenubarItem({
       data-variant={variant}
       className={cn(
         "relative flex cursor-default items-center gap-2 px-2 py-1.5",
-        "md-rounded t-meta outline-hidden select-none cursor-pointer",
+        "md-rounded t-body-md outline-hidden select-none cursor-pointer",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -158,7 +158,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       className={cn(
         "relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
-        "md-rounded t-meta outline-hidden select-none",
+        "md-rounded t-body-md outline-hidden select-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -188,7 +188,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       className={cn(
         "relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
-        "full-rounded t-meta outline-hidden select-none",
+        "full-rounded t-body-md outline-hidden select-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -219,7 +219,7 @@ function MenubarLabel({
       data-slot="menubar-label"
       data-inset={inset}
       className={cn(
-        "px-2 py-1.5 t-meta fw-medium",
+        "px-2 py-1.5 t-body-md fw-medium",
         "data-inset:pl-8",
         className,
       )}
@@ -248,7 +248,7 @@ function MenubarShortcut({
   return (
     <span
       data-slot="menubar-shortcut"
-      className={cn("ml-auto t-caption menubar-shortcut", className)}
+      className={cn("ml-auto t-label-md menubar-shortcut", className)}
       {...props}
     />
   );
@@ -274,7 +274,7 @@ function MenubarSubTrigger({
       data-inset={inset}
       className={cn(
         "flex cursor-default items-center px-2 py-1.5",
-        "md-rounded t-meta outline-none select-none",
+        "md-rounded t-body-md outline-none select-none",
         "data-inset:pl-8",
         "menubar-sub-trigger",
         className,

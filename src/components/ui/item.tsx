@@ -41,7 +41,7 @@ function ItemSeparator({
 const itemVariants = cva(
   [
     "group/item flex items-center flex-wrap",
-    "border t-meta xl-rounded outline-none",
+    "border t-body-md xl-rounded outline-none",
     "item-root",
   ],
   {
@@ -150,7 +150,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "flex w-fit items-center gap-2 t-meta item-title",
+        "flex w-fit items-center gap-2 t-body-md item-title",
         className,
       )}
       {...props}
@@ -163,7 +163,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "t-meta fw-normal line-clamp-2 text-balance",
+        "t-body-md fw-normal line-clamp-2 text-balance",
         "[&>a]:underline [&>a]:underline-offset-4",
         "item-description",
         className,

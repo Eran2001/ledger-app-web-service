@@ -65,27 +65,27 @@ export function RecordPaymentModal({
       <DialogContent className="max-w-120 auth-rounded border-0 p-0 surface-card data-[state=open]:zoom-in-95">
         {installment && (
           <form onSubmit={submit} className="p-8 pb-0">
-            <DialogTitle className="t-section text-main fw-bold mb-1">
+            <DialogTitle className="t-title-xl text-main fw-bold mb-1">
               Record Payment
             </DialogTitle>
-            <DialogDescription className="t-caption text-soft mb-5">
+            <DialogDescription className="t-label-md text-soft mb-5">
               Confirm the amount received from your customer.
             </DialogDescription>
 
             <div className="surface-brand-soft modal-rounded p-5 flex justify-between items-start mb-5">
               <div>
-                <p className="t-micro-bold text-brand text-uppercase tracking-label">
+                <p className="t-label-sm-bold text-brand text-uppercase tracking-label">
                   Installment {installment.installmentNumber} of {total}
                 </p>
-                <p className="t-caption text-soft mt-1">
+                <p className="t-label-md text-soft mt-1">
                   Due: {formatDate(installment.dueDate)}
                 </p>
               </div>
               <div className="text-right">
-                <p className="t-micro-bold text-faint text-uppercase tracking-label">
+                <p className="t-label-sm-bold text-faint text-uppercase tracking-label">
                   Remaining
                 </p>
-                <p className="t-section fw-black text-brand">
+                <p className="t-title-xl fw-black text-brand">
                   {formatCurrency(remaining)}
                 </p>
               </div>
@@ -93,23 +93,23 @@ export function RecordPaymentModal({
 
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">
+                <Label className="t-body-md-bold text-main">
                   Paid amount (LKR)
                 </Label>
                 <Input
                   type="number"
                   value={paidAmount || ""}
                   onChange={(e) => setPaidAmount(Number(e.target.value))}
-                  className="h-12 control-rounded border-default t-section fw-black text-main"
+                  className="h-12 control-rounded border-default t-title-xl fw-black text-main"
                 />
-                <p className="t-caption text-faint">
+                <p className="t-label-md text-faint">
                   Expected {formatCurrency(installment.expectedAmount)} ·
                   Already paid {formatCurrency(installment.paidAmount)}
                 </p>
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">Payment date</Label>
+                <Label className="t-body-md-bold text-main">Payment date</Label>
                 <Input
                   type="date"
                   value={paidDate}
@@ -119,7 +119,7 @@ export function RecordPaymentModal({
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="t-meta-bold text-main">
+                <Label className="t-body-md-bold text-main">
                   Notes (optional)
                 </Label>
                 <Textarea
@@ -136,10 +136,10 @@ export function RecordPaymentModal({
                     <MessageCircle className="h-5 w-5 text-success-role" />
                   </div>
                   <div className="min-w-0">
-                    <p className="t-meta-bold text-main">
+                    <p className="t-body-md-bold text-main">
                       Payment confirmation
                     </p>
-                    <p className="t-micro text-faint text-uppercase tracking-label truncate">
+                    <p className="t-label-sm text-faint text-uppercase tracking-label truncate">
                       Send to {customerPhone ?? "customer"}
                     </p>
                   </div>

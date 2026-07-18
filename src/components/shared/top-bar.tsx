@@ -3,7 +3,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { NotificationDot } from "@/components/ui/notification-dot";
 import {
   DropdownMenu,
@@ -56,11 +56,11 @@ export function TopBar({
       </Button>
 
       <div className="flex items-baseline gap-2 min-w-0 flex-1">
-        <h1 className="t-heading text-main truncate">{pageTitle}</h1>
+        <h1 className="t-title-lg-soft text-main truncate">{pageTitle}</h1>
         {pageSubtitle && (
           <>
-            <span className="text-faint t-body hidden sm:inline">/</span>
-            <span className="t-body text-soft truncate hidden sm:inline">
+            <span className="text-faint t-body-lg hidden sm:inline">/</span>
+            <span className="t-body-lg text-soft truncate hidden sm:inline">
               {pageSubtitle}
             </span>
           </>
@@ -131,21 +131,24 @@ export function TopBar({
           >
             <DropdownMenuLabel>
               <div className="flex flex-col">
-                <span className="t-meta-bold text-main">{user?.name}</span>
-                <span className="t-caption text-soft">{user?.email}</span>
+                <span className="t-body-md-bold text-main">{user?.name}</span>
+                <span className="t-label-md text-soft">{user?.email}</span>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link
                 to="/settings/profile"
-                className="flex items-center gap-2 t-meta"
+                className="flex items-center gap-2 t-body-md"
               >
                 <Icon.User className="h-4 w-4" /> Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to="/settings" className="flex items-center gap-2 t-meta">
+              <Link
+                to="/settings"
+                className="flex items-center gap-2 t-body-md"
+              >
                 <Icon.Settings className="h-4 w-4" /> Settings
               </Link>
             </DropdownMenuItem>
@@ -156,7 +159,7 @@ export function TopBar({
                 logout();
                 navigate({ to: "/login" });
               }}
-              className="flex items-center gap-2 t-meta"
+              className="flex items-center gap-2 t-body-md"
             >
               <Icon.LogOut className="h-4 w-4" /> Logout
             </DropdownMenuItem>

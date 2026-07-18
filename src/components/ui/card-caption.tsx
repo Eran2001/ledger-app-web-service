@@ -17,7 +17,7 @@ export function CardCaption({
   return (
     <Card className={cn("p-0 gap-0 overflow-hidden", className)}>
       <div className="flex items-center justify-between px-5 h-extra-large border-b border-default">
-        <span className="t-display">{title}</span>
+        <span className="t-title-lg">{title}</span>
         {actionLabel && actionTo && (
           <Button variant="link" size="sm" className="p-0">
             <Link to={actionTo} className="inline-flex items-center gap-1">

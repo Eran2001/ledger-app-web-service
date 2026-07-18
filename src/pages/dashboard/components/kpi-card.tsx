@@ -9,15 +9,15 @@ export const KpiCard = ({ label, value, sub, trend, danger }: KpiCardProps) => {
         danger ? "border-start-danger" : "border-start-brand",
       )}
     >
-      <p className="t-micro-bold text-soft text-uppercase mb-2">{label}</p>
-      <p className="t-kpi text-main">{value}</p>
+      <p className="t-label-sm-bold text-soft text-uppercase mb-2">{label}</p>
+      <p className="t-display-lg text-main">{value}</p>
       <div className="mt-2 flex items-center gap-2">
         {trend && (
-          <span className={cn("t-micro fw-bold", trend.color)}>
+          <span className={cn("t-label-sm fw-bold", trend.color)}>
             {trend.label}
           </span>
         )}
-        {sub && <span className="t-micro text-faint">{sub}</span>}
+        {sub && <span className="t-label-sm text-faint">{sub}</span>}
       </div>
     </div>
   );

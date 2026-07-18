@@ -3,17 +3,17 @@ import type { ReactNode } from "react";
 import * as Icon from "@/components/icons";
 import { AppFooter } from "@/components/shared/app-footer";
 import { BusinessHeader } from "@/components/shared/business-header";
-import { CardCaption } from "@/components/shared/card-caption";
-import { CategoryLabel } from "@/components/shared/category-label";
-import { CategoryPill } from "@/components/shared/category-pill";
+import { CardCaption } from "@/components/ui/card-caption";
+import { CategoryLabel } from "@/components/ui/category-label";
+import { CategoryPill } from "@/components/ui/category-pill";
 import ComingSoon from "@/components/shared/coming-soon";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Fallback } from "@/components/ui/fallback";
-import { InitialsAvatar } from "@/components/shared/initials-avatar";
+import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { SidebarNav } from "@/components/shared/sidebar-nav";
-import { StatPill } from "@/components/shared/stat-pill";
-import { StatusBadge } from "@/components/shared/status-badge";
+import { StatPill } from "@/components/ui/stat-pill";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { TopBar } from "@/components/shared/top-bar";
 import { UserProfile } from "@/components/shared/user-profile";
 import type { ProductCategory } from "@/types/product-types";
@@ -49,7 +49,7 @@ const STATUS_VALUES = [
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="space-y-3">
-      <p className="t-micro-bold text-faint text-uppercase tracking-label">
+      <p className="t-label-sm-bold text-faint text-uppercase tracking-label">
         {title}
       </p>
       {children}
@@ -71,8 +71,8 @@ export default function Test() {
             left={<InitialsAvatar name="Silva Traders" size="auto" />}
             right={
               <div className="min-w-0">
-                <p className="t-meta-bold text-main">Auto Small</p>
-                <p className="t-caption text-soft">Single line content</p>
+                <p className="t-body-md-bold text-main">Auto Small</p>
+                <p className="t-label-md text-soft">Single line content</p>
               </div>
             }
             squareLeft
@@ -83,8 +83,8 @@ export default function Test() {
               left={<InitialsAvatar name="Silva Traders" size="auto" />}
               right={
                 <div className="min-w-0 space-y-1">
-                  <p className="t-meta-bold text-main">Auto Medium</p>
-                  <p className="t-caption text-soft">
+                  <p className="t-body-md-bold text-main">Auto Medium</p>
+                  <p className="t-label-md text-soft">
                     Two lines of content to test how the avatar inherits height
                     from the right side block.
                   </p>
@@ -99,8 +99,8 @@ export default function Test() {
               left={<InitialsAvatar name="Silva Traders" size="auto" />}
               right={
                 <div className="min-w-0 space-y-2">
-                  <p className="t-meta-bold text-main">Auto Large</p>
-                  <p className="t-caption text-soft">
+                  <p className="t-body-md-bold text-main">Auto Large</p>
+                  <p className="t-label-md text-soft">
                     This example has more vertical content.
                   </p>
                   <div className="flex flex-wrap gap-2">

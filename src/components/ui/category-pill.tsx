@@ -1,7 +1,10 @@
-import { StatPill } from "@/components/shared/stat-pill";
+import { StatPill } from "@/components/ui/stat-pill";
 import type { ProductCategory } from "@/types/product-types";
 
-const CATEGORY_COLOR: Record<ProductCategory, "indigo" | "teal" | "amber" | "purple" | "gray"> = {
+const CATEGORY_COLOR: Record<
+  ProductCategory,
+  "indigo" | "teal" | "amber" | "purple" | "gray"
+> = {
   Electronics: "indigo",
   Appliances: "teal",
   Furniture: "amber",
