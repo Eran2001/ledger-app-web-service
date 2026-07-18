@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-
-import { Notification } from "@/utils/notification";
+import { Notification } from "@/components/ui/custom-toast";
 
 export default function BusinessForm() {
   const [form, setForm] = useState({

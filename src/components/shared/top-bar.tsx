@@ -17,14 +17,14 @@ import { useUIStore } from "@/stores/ui-store";
 import { useThemeStore } from "@/stores/theme-store";
 import { useAuthStore } from "@/stores/auth-store";
 
-interface PrimaryAction {
+export interface PrimaryAction {
   to?: string;
   onClick?: () => void;
   icon: ComponentType<{ className?: string }>;
   label: string;
 }
 
-interface TopBarProps {
+export interface TopBarProps {
   pageTitle: string;
   pageSubtitle?: string;
   primaryAction?: PrimaryAction;

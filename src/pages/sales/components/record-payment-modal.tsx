@@ -8,6 +8,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Notification } from "@/components/ui/custom-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -15,7 +16,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { installmentSchedules, schedulesForSale } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-import { Notification } from "@/utils/notification";
 
 interface Props {
   open: boolean;

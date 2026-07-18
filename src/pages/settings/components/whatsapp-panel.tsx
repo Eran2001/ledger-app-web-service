@@ -3,8 +3,7 @@ import { useState } from "react";
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-
-import { Notification } from "@/utils/notification";
+import { Notification } from "@/components/ui/custom-toast";
 
 interface WhatsAppTemplate {
   id: string;

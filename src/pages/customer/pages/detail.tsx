@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useParams, Navigate } from "@tanstack/react-router";
 
-import * as Icon from "@/components/icons";
-import { TopBar } from "@/components/shared/top-bar";
 import { TabSelect, TabPanel } from "@/components/ui/tab-select";
 
 import { CustomerProfileHeader } from "../components/customer-profile-header";
@@ -12,12 +10,20 @@ import { PaymentHistoryTable } from "../components/payment-history-table";
 
 import { customerById, customerStats, TABS } from "@/constant/customer-data";
 import { paymentsForSale, sales } from "@/constant/sale-data";
+import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
 const CustomerDetailPage = () => {
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
   const customer = customerById(id ?? "");
+  const topBarOverride = useMemo(
+    () => (customer ? { pageTitle: customer.fullName } : null),
+    [customer],
+  );
+
+  useTopBarOverride(topBarOverride);
+
   if (!customer) return <Navigate to="/customers" />;
 
   const stats = customerStats(customer.id);
@@ -30,42 +36,35 @@ const CustomerDetailPage = () => {
     );
 
   return (
-    <div>
-      <TopBar
-        pageTitle={customer.fullName}
-        pageSubtitle="Customer profile"
-        primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
-      />
-      <div className="p-6 space-y-6 overflow-y-auto">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          <CustomerProfileHeader customer={customer} />
-          <AccountSummaryCard
-            outstanding={stats.outstanding}
-            totalPaid={stats.totalPaid}
-            activeSalesCount={stats.activeSalesCount}
-            nextDue={stats.nextDue}
-            customerSince={customer.createdAt}
-          />
-        </div>
-
-        <TabSelect tabs={TABS} value={tab} onValueChange={setTab}>
-          <TabPanel value="active" active={tab}>
-            {activeSales.length === 0 ? (
-              <p className="t-body text-faint">No active sales.</p>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2">
-                {activeSales.map((sale) => (
-                  <SaleCard key={sale.id} sale={sale} />
-                ))}
-              </div>
-            )}
-          </TabPanel>
-
-          <TabPanel value="payments" active={tab}>
-            <PaymentHistoryTable payments={allPayments} />
-          </TabPanel>
-        </TabSelect>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <CustomerProfileHeader customer={customer} />
+        <AccountSummaryCard
+          outstanding={stats.outstanding}
+          totalPaid={stats.totalPaid}
+          activeSalesCount={stats.activeSalesCount}
+          nextDue={stats.nextDue}
+          customerSince={customer.createdAt}
+        />
       </div>
+
+      <TabSelect tabs={TABS} value={tab} onValueChange={setTab}>
+        <TabPanel value="active" active={tab}>
+          {activeSales.length === 0 ? (
+            <p className="t-body text-faint">No active sales.</p>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2">
+              {activeSales.map((sale) => (
+                <SaleCard key={sale.id} sale={sale} />
+              ))}
+            </div>
+          )}
+        </TabPanel>
+
+        <TabPanel value="payments" active={tab}>
+          <PaymentHistoryTable payments={allPayments} />
+        </TabPanel>
+      </TabSelect>
     </div>
   );
 };

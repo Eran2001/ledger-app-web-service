@@ -2,17 +2,16 @@ import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { differenceInDays } from "date-fns";
 import { Bell, Download, Eye, Search, Send } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { Notification } from "@/components/ui/custom-toast";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { customerById, customers } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-import { Notification } from "@/utils/notification";
 
 const TABS = ["All", "1-30 days", "31-60 days", "60+ days"] as const;
 type Tab = (typeof TABS)[number];
@@ -111,82 +110,71 @@ export default function OverduePage() {
   const longest = allRows[0];
 
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="Overdue Payments"
-        pageSubtitle="Track and follow up on customers who have missed installment due dates"
-        primaryAction={{
-          onClick: () =>
-            Notification.success("Reminders queued for all overdue customers"),
-          icon: Send,
-          label: "Send All Reminders",
-        }}
-      />
-      <div className="p-6 overflow-y-auto space-y-6 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="text-uppercase">Overdue Customers</p>
-            <p className="t-kpi-lg text-main mt-2">{overdueCustomersCount}</p>
-            <p className="t-caption text-faint mt-1">No trend data</p>
-          </div>
-          <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="text-uppercase">Total Overdue Amount</p>
-            <p className="t-kpi-lg text-danger mt-2">
-              {formatCurrency(totalOverdue)}
-            </p>
-            <p className="t-caption text-faint mt-1">
-              Across {allRows.length} installments
-            </p>
-          </div>
-          <div className="card-base p-5 border-l-4 border-start-danger">
-            <p className="text-uppercase">Longest Overdue</p>
-            <p className="t-kpi-lg text-main mt-2">
-              {longest ? `${longest.daysOverdue} Days` : "—"}
-            </p>
-            <p className="t-caption text-soft mt-1">
-              {longest?.customerName ?? "No overdues"}
-            </p>
-          </div>
+    <div className="space-y-6 pb-32">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="card-base p-5 border-l-4 border-start-danger">
+          <p className="text-uppercase">Overdue Customers</p>
+          <p className="t-kpi-lg text-main mt-2">{overdueCustomersCount}</p>
+          <p className="t-caption text-faint mt-1">No trend data</p>
         </div>
-
-        <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
-          {TABS.map((t) => {
-            const active = tab === t;
-            return (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setTab(t)}
-                data-state={active ? "active" : "inactive"}
-                className={`tabs-trigger px-3 py-1.5 tab-rounded ${
-                  active ? "surface-card text-main shadow-sm" : ""
-                }`}
-              >
-                {t}
-              </button>
-            );
-          })}
+        <div className="card-base p-5 border-l-4 border-start-danger">
+          <p className="text-uppercase">Total Overdue Amount</p>
+          <p className="t-kpi-lg text-danger mt-2">
+            {formatCurrency(totalOverdue)}
+          </p>
+          <p className="t-caption text-faint mt-1">
+            Across {allRows.length} installments
+          </p>
         </div>
-
-        <div className="flex items-center gap-3">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search customer or product..."
-              className="pl-9"
-            />
-          </div>
-          <Button variant="outline" className="gap-2 bg-transparent">
-            <Download className="h-4 w-4" />
-            Export
-          </Button>
+        <div className="card-base p-5 border-l-4 border-start-danger">
+          <p className="text-uppercase">Longest Overdue</p>
+          <p className="t-kpi-lg text-main mt-2">
+            {longest ? `${longest.daysOverdue} Days` : "—"}
+          </p>
+          <p className="t-caption text-soft mt-1">
+            {longest?.customerName ?? "No overdues"}
+          </p>
         </div>
+      </div>
 
-        <div className="card-base overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
+      <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
+        {TABS.map((t) => {
+          const active = tab === t;
+          return (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              data-state={active ? "active" : "inactive"}
+              className={`tabs-trigger px-3 py-1.5 tab-rounded ${
+                active ? "surface-card text-main shadow-sm" : ""
+              }`}
+            >
+              {t}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search customer or product..."
+            className="pl-9"
+          />
+        </div>
+        <Button variant="outline" className="gap-2 bg-transparent">
+          <Download className="h-4 w-4" />
+          Export
+        </Button>
+      </div>
+
+      <div className="card-base overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
               <thead>
                 <tr>
                   <th className="table-header px-4 py-3 w-10">
@@ -332,7 +320,6 @@ export default function OverduePage() {
 
         {/* Customer count for the count summary uses customers length only when needed */}
         <span className="sr-only">{customers.length} customers in system</span>
-      </div>
     </div>
   );
 }

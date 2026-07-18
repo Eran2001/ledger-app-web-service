@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { addMonths, format } from "date-fns";
 import { ArrowLeft, Calculator, Minus, Plus, UserPlus } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,11 +13,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Notification } from "@/components/ui/custom-toast";
 import { customers } from "@/constant/customer-data";
 import { products } from "@/constant/product-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-import { Notification } from "@/utils/notification";
 
 export default function NewSalePage() {
   const navigate = useNavigate();
@@ -65,21 +64,16 @@ export default function NewSalePage() {
   }
 
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="New Sale"
-        pageSubtitle="Create a new installment sale"
-      />
-      <div className="p-6 overflow-y-auto">
-        <Link
-          to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
-        >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Back to sales
-        </Link>
+    <div>
+      <Link
+        to="/sales"
+        className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
+      >
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+        Back to sales
+      </Link>
 
-        <form onSubmit={submit} className="grid gap-6 xl:grid-cols-5">
+      <form onSubmit={submit} className="grid gap-6 xl:grid-cols-5">
           {/* FORM */}
           <div className="xl:col-span-3">
             <div className="surface-card modal-rounded border border-default p-8 shadow-sm flex flex-col gap-7">
@@ -301,8 +295,7 @@ export default function NewSalePage() {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+      </form>
     </div>
   );
 }

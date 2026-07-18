@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Check, Edit2, X } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { Notification } from "@/components/ui/custom-toast";
+
 import {
   pendingRegistrations,
   employees as initialUsers,
 } from "@/constant/employee-data";
 import { formatDate } from "@/utils/format-date";
 import type { Employee, Role } from "@/types/employee-types";
-import { Notification } from "@/utils/notification";
 
 const TABS = ["Team Members", "Pending Requests"] as const;
 type Tab = (typeof TABS)[number];
@@ -55,40 +55,34 @@ export default function UsersPage() {
   }
 
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="Users"
-        pageSubtitle="Manage your team members and pending access requests"
-      />
-      <div className="p-6 overflow-y-auto space-y-6">
-        <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
-          {TABS.map((t) => {
-            const active = tab === t;
-            const count =
-              t === "Pending Requests" ? pending.length : users.length;
-            return (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setTab(t)}
-                data-state={active ? "active" : "inactive"}
-                className={`tabs-trigger px-3 py-1.5 tab-rounded flex items-center gap-2 ${
-                  active ? "surface-card text-main shadow-sm" : ""
-                }`}
-              >
-                {t}
-                <span className="t-caption-bold pill-gray px-1.5 py-0.5 global-rounded">
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+    <div className="space-y-6">
+      <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
+        {TABS.map((t) => {
+          const active = tab === t;
+          const count = t === "Pending Requests" ? pending.length : users.length;
+          return (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              data-state={active ? "active" : "inactive"}
+              className={`tabs-trigger px-3 py-1.5 tab-rounded flex items-center gap-2 ${
+                active ? "surface-card text-main shadow-sm" : ""
+              }`}
+            >
+              {t}
+              <span className="t-caption-bold pill-gray px-1.5 py-0.5 global-rounded">
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
 
-        {tab === "Team Members" ? (
-          <div className="card-base overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
+      {tab === "Team Members" ? (
+        <div className="card-base overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
                 <thead>
                   <tr>
                     <th className="table-header text-left px-4 py-3">Name</th>
@@ -152,13 +146,13 @@ export default function UsersPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
-            </div>
+            </table>
           </div>
-        ) : (
-          <div className="card-base overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
+        </div>
+      ) : (
+        <div className="card-base overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
                 <thead>
                   <tr>
                     <th className="table-header text-left px-4 py-3">Name</th>
@@ -239,11 +233,10 @@ export default function UsersPage() {
                     ))
                   )}
                 </tbody>
-              </table>
-            </div>
+            </table>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

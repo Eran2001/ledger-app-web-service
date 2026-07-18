@@ -1,7 +1,6 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "@tanstack/react-router";
 import { ArrowLeft, Wallet } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/shared/initials-avatar";
 import { StatusBadge } from "@/components/shared/status-badge";
@@ -15,6 +14,7 @@ import {
 } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
+import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
 import { RecordPaymentModal } from "@/pages/sales/components/record-payment-modal";
 
@@ -22,6 +22,7 @@ export default function SaleDetailPage() {
   const { id } = useParams({ strict: false });
   const sale = saleById(id ?? "");
   const schedules = sale ? schedulesForSale(sale.id) : [];
+  const product = sale ? productById(sale.productId) : undefined;
   const firstUnpaid = useMemo(
     () => schedules.find((s) => s.status !== "PAID"),
     [schedules],
@@ -30,42 +31,46 @@ export default function SaleDetailPage() {
     null,
   );
 
+  const openPaymentModal = useCallback((installmentId?: string) => {
+    setActiveInstallmentId(installmentId ?? firstUnpaid?.id ?? null);
+  }, [firstUnpaid?.id]);
+
+  const topBarOverride = useMemo(
+    () =>
+      sale
+        ? {
+            pageSubtitle: product?.name ?? "",
+            primaryAction: firstUnpaid
+              ? {
+                  onClick: () => openPaymentModal(),
+                  icon: Wallet,
+                  label: "Record Payment",
+                }
+              : undefined,
+          }
+        : null,
+    [firstUnpaid, openPaymentModal, product?.name, sale],
+  );
+
+  useTopBarOverride(topBarOverride);
+
   if (!sale) return <Navigate to="/sales" />;
 
   const customer = customerById(sale.customerId);
-  const product = productById(sale.productId);
   const stat = saleStats(sale.id);
   const history = paymentsForSale(sale.id);
 
-  function openPaymentModal(installmentId?: string) {
-    setActiveInstallmentId(installmentId ?? firstUnpaid?.id ?? null);
-  }
-
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="Sale Details"
-        pageSubtitle={product?.name ?? ""}
-        primaryAction={
-          firstUnpaid
-            ? {
-                onClick: () => openPaymentModal(),
-                icon: Wallet,
-                label: "Record Payment",
-              }
-            : undefined
-        }
-      />
-      <div className="p-6 overflow-y-auto">
-        <Link
-          to="/sales"
-          className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
-        >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Back to list
-        </Link>
+    <div>
+      <Link
+        to="/sales"
+        className="inline-flex items-center gap-2 t-meta-bold text-brand mb-6 group"
+      >
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+        Back to list
+      </Link>
 
-        <div className="grid gap-6 lg:grid-cols-2 mb-6">
+      <div className="grid gap-6 lg:grid-cols-2 mb-6">
           {/* Customer */}
           <div className="surface-card global-rounded border border-default p-6 shadow-sm">
             <p className="t-micro-bold text-soft text-uppercase tracking-label mb-4">
@@ -128,10 +133,10 @@ export default function SaleDetailPage() {
               Sold on {formatDate(sale.saleDate)}
             </p>
           </div>
-        </div>
+      </div>
 
-        {/* Installment Schedule */}
-        <section className="surface-card modal-rounded border border-default shadow-sm mb-6 overflow-hidden">
+      {/* Installment Schedule */}
+      <section className="surface-card modal-rounded border border-default shadow-sm mb-6 overflow-hidden">
           <div className="flex items-center justify-between px-6 h-14 border-b border-default">
             <h2 className="t-title text-main">Installment Schedule</h2>
             <span className="surface-brand-soft text-brand t-caption-bold px-3 py-1 circle-rounded">
@@ -211,10 +216,10 @@ export default function SaleDetailPage() {
               </tbody>
             </table>
           </div>
-        </section>
+      </section>
 
-        {/* Payment timeline */}
-        <section className="surface-card modal-rounded border border-default p-8 shadow-sm">
+      {/* Payment timeline */}
+      <section className="surface-card modal-rounded border border-default p-8 shadow-sm">
           <h2 className="t-title text-main mb-6">Payment History</h2>
           {history.length === 0 ? (
             <p className="t-body text-faint">No payments recorded yet.</p>
@@ -264,8 +269,7 @@ export default function SaleDetailPage() {
               </ul>
             </div>
           )}
-        </section>
-      </div>
+      </section>
 
       <RecordPaymentModal
         open={!!activeInstallmentId}

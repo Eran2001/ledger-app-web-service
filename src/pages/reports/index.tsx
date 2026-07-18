@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { differenceInDays, format, subMonths } from "date-fns";
-import { Download, Eye } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
+import { Eye } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -22,7 +21,6 @@ import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById, sales } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
-import { Notification } from "@/utils/notification";
 
 interface MonthlyPoint {
   month: string;
@@ -121,143 +119,132 @@ export default function ReportsPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col surface-page">
-      <TopBar
-        pageTitle="Reports"
-        pageSubtitle="Financial performance, collections, and overdue analytics"
-        primaryAction={{
-          onClick: () => Notification.success("Report exported as PDF"),
-          icon: Download,
-          label: "Export PDF",
-        }}
-      />
-      <div className="flex-1 space-y-6 p-6 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="card-base p-5">
-            <p className="text-uppercase">Total Outstanding</p>
-            <p className="t-kpi-lg text-main mt-2">
-              {formatCurrency(stats.totalOutstanding)}
-            </p>
-            <p className="t-caption text-soft mt-1">All active sales</p>
+    <div className="space-y-6 pb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="card-base p-5">
+          <p className="text-uppercase">Total Outstanding</p>
+          <p className="t-kpi-lg text-main mt-2">
+            {formatCurrency(stats.totalOutstanding)}
+          </p>
+          <p className="t-caption text-soft mt-1">All active sales</p>
+        </div>
+        <div className="card-base p-5">
+          <p className="text-uppercase">Collected This Month</p>
+          <p className="t-kpi-lg text-success-role mt-2">
+            {formatCurrency(stats.collectedThisMonth)}
+          </p>
+          <p className="t-caption text-soft mt-1">
+            {format(new Date(), "MMMM yyyy")}
+          </p>
+        </div>
+        <div className="card-base p-5">
+          <p className="text-uppercase">Collection Rate</p>
+          <p className="t-kpi-lg text-main mt-2">{stats.collectionRate}%</p>
+          <p className="t-caption text-soft mt-1">This month</p>
+        </div>
+        <div className="card-base p-5">
+          <p className="text-uppercase">Active Sales</p>
+          <p className="t-kpi-lg text-main mt-2">{stats.activeSalesCount}</p>
+          <p className="t-caption text-soft mt-1">In progress</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="card-base p-5 lg:col-span-2">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="t-display text-main">Monthly Collections</h2>
+              <p className="t-caption text-soft">Last 6 months</p>
+            </div>
           </div>
-          <div className="card-base p-5">
-            <p className="text-uppercase">Collected This Month</p>
-            <p className="t-kpi-lg text-success-role mt-2">
-              {formatCurrency(stats.collectedThisMonth)}
-            </p>
-            <p className="t-caption text-soft mt-1">
-              {format(new Date(), "MMMM yyyy")}
-            </p>
-          </div>
-          <div className="card-base p-5">
-            <p className="text-uppercase">Collection Rate</p>
-            <p className="t-kpi-lg text-main mt-2">{stats.collectionRate}%</p>
-            <p className="t-caption text-soft mt-1">This month</p>
-          </div>
-          <div className="card-base p-5">
-            <p className="text-uppercase">Active Sales</p>
-            <p className="t-kpi-lg text-main mt-2">{stats.activeSalesCount}</p>
-            <p className="t-caption text-soft mt-1">In progress</p>
+          <div className="h-72 chart-frame">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={monthly}
+                margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
+              >
+                <CartesianGrid
+                  stroke="var(--border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey="month"
+                  stroke="var(--text-muted)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="var(--text-muted)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
+                />
+                <Tooltip
+                  cursor={{ fill: "var(--primary-light)" }}
+                  contentStyle={{
+                    backgroundColor: "var(--popover)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.525rem",
+                    color: "var(--text-primary)",
+                  }}
+                  formatter={(v: number) => formatCurrency(v)}
+                />
+                <Bar
+                  dataKey="collected"
+                  fill="var(--primary)"
+                  radius={[6, 6, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="card-base p-5 lg:col-span-2">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="t-display text-main">Monthly Collections</h2>
-                <p className="t-caption text-soft">Last 6 months</p>
-              </div>
-            </div>
-            <div className="h-72 chart-frame">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={monthly}
-                  margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
+        <div className="card-base p-5">
+          <div className="mb-4">
+            <h2 className="t-display text-main">Collection Status</h2>
+            <p className="t-caption text-soft">By installment</p>
+          </div>
+          <div className="h-72 chart-frame">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={85}
+                  paddingAngle={2}
+                  stroke="var(--card-bg)"
+                  strokeWidth={3}
                 >
-                  <CartesianGrid
-                    stroke="var(--border)"
-                    strokeDasharray="3 3"
-                    vertical={false}
-                  />
-                  <XAxis
-                    dataKey="month"
-                    stroke="var(--text-muted)"
-                    fontSize={12}
-                    tickLine={false}
-                    axisLine={false}
-                  />
-                  <YAxis
-                    stroke="var(--text-muted)"
-                    fontSize={12}
-                    tickLine={false}
-                    axisLine={false}
-                    tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
-                  />
-                  <Tooltip
-                    cursor={{ fill: "var(--primary-light)" }}
-                    contentStyle={{
-                      backgroundColor: "var(--popover)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "0.525rem",
-                      color: "var(--text-primary)",
-                    }}
-                    formatter={(v: number) => formatCurrency(v)}
-                  />
-                  <Bar
-                    dataKey="collected"
-                    fill="var(--primary)"
-                    radius={[6, 6, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className="card-base p-5">
-            <div className="mb-4">
-              <h2 className="t-display text-main">Collection Status</h2>
-              <p className="t-caption text-soft">By installment</p>
-            </div>
-            <div className="h-72 chart-frame">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={50}
-                    outerRadius={85}
-                    paddingAngle={2}
-                    stroke="var(--card-bg)"
-                    strokeWidth={3}
-                  >
-                    {pieData.map((entry) => (
-                      <Cell key={entry.name} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "var(--popover)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "0.525rem",
-                      color: "var(--text-primary)",
-                    }}
-                  />
-                  <Legend
-                    iconType="circle"
-                    wrapperStyle={{
-                      fontSize: "0.75rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+                  {pieData.map((entry) => (
+                    <Cell key={entry.name} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--popover)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.525rem",
+                    color: "var(--text-primary)",
+                  }}
+                />
+                <Legend
+                  iconType="circle"
+                  wrapperStyle={{
+                    fontSize: "0.75rem",
+                    color: "var(--text-secondary)",
+                  }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
+      </div>
 
         <div className="card-base overflow-hidden">
           <div
@@ -340,8 +327,7 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <p className="sr-only">{formatDate(new Date())}</p>
-      </div>
+      <p className="sr-only">{formatDate(new Date())}</p>
     </div>
   );
 }

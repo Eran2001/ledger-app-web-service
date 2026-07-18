@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import * as Icon from "@/components/icons";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { SearchField } from "@/components/ui/search-field";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -48,16 +47,6 @@ const CustomersPage = () => {
   return (
     <>
       <NewCustomer />
-      <TopBar
-        pageTitle="Customers"
-        pageSubtitle={`${customers.length} customers`}
-        primaryAction={{
-          onClick: openNewCustomer,
-          icon: Icon.Plus,
-          label: "New Customer",
-        }}
-      />
-
       {customers.length === 0 ? (
         <EmptyState
           icon={Icon.Users}
@@ -68,8 +57,8 @@ const CustomersPage = () => {
           onAction={openNewCustomer}
         />
       ) : (
-        <div className="p-6 overflow-y-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+        <div className="space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <SearchField
               value={search}
               onChange={setSearch}

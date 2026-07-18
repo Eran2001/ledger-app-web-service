@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Archive, Check, Edit2, Plus, Search, X } from "lucide-react";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,6 +12,7 @@ import {
 import { Notification } from "@/components/ui/custom-toast";
 
 import { products as initialProducts } from "@/constant/product-data";
+import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import type { Product } from "@/types/product-types";
@@ -105,7 +105,7 @@ export default function ProductsPage() {
     Notification.success("Product archived");
   }
 
-  function addProduct() {
+  const addProduct = useCallback(() => {
     const id = `p${Date.now()}`;
     const newP: Product = {
       id,
@@ -116,54 +116,62 @@ export default function ProductsPage() {
       createdAt: new Date().toISOString(),
     };
     setList((prev) => [newP, ...prev]);
-    startEdit(newP);
+    setEditingId(newP.id);
+    setDraft({
+      name: newP.name,
+      category: newP.category,
+      basePrice: newP.basePrice,
+    });
     Notification.success("New product added — edit details");
-  }
+  }, []);
+
+  const topBarOverride = useMemo(
+    () => ({
+      primaryAction: {
+        onClick: addProduct,
+        icon: Plus,
+        label: "Add Product",
+      },
+    }),
+    [addProduct],
+  );
+
+  useTopBarOverride(topBarOverride);
 
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="Products"
-        pageSubtitle="Manage your product catalog and base prices"
-        primaryAction={{
-          onClick: addProduct,
-          icon: Plus,
-          label: "Add Product",
-        }}
-      />
-      <div className="p-6 overflow-y-auto space-y-6">
-        <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
-          {TABS.map((t) => {
-            const active = tab === t;
-            return (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setTab(t)}
-                className={`tabs-trigger px-3 py-1.5 tab-rounded transition-colors ${
-                  active ? "surface-card text-main shadow-sm" : ""
-                }`}
-                data-state={active ? "active" : "inactive"}
-              >
-                {t}
-              </button>
-            );
-          })}
-        </div>
+    <div className="space-y-6">
+      <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
+        {TABS.map((t) => {
+          const active = tab === t;
+          return (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              className={`tabs-trigger px-3 py-1.5 tab-rounded transition-colors ${
+                active ? "surface-card text-main shadow-sm" : ""
+              }`}
+              data-state={active ? "active" : "inactive"}
+            >
+              {t}
+            </button>
+          );
+        })}
+      </div>
 
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search products..."
-            className="pl-9"
-          />
-        </div>
+      <div className="relative max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search products..."
+          className="pl-9"
+        />
+      </div>
 
-        <div className="card-base overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
+      <div className="card-base overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
               <thead>
                 <tr>
                   <th className="table-header text-left px-4 py-3">
@@ -325,8 +333,7 @@ export default function ProductsPage() {
                   })
                 )}
               </tbody>
-            </table>
-          </div>
+          </table>
         </div>
       </div>
     </div>

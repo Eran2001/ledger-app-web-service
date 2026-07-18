@@ -328,7 +328,7 @@ Always use `Notification` from `@/utils/notification`. Never import `toast` dire
 
 ```ts
 // ✅ Correct
-import { Notification } from "@/utils/notification";
+import { Notification } from "@/components/ui/custom-toast";
 Notification.success("Sale created.");
 Notification.error("Something went wrong.");
 

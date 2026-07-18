@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import * as Icon from "@/components/icons";
-import { TopBar } from "@/components/shared/top-bar";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SearchField } from "@/components/ui/search-field";
@@ -46,46 +45,39 @@ const SalesPage = () => {
   });
 
   return (
-    <div className="flex flex-col h-full surface-page">
-      <TopBar
-        pageTitle="Sales"
-        pageSubtitle={`${sales.length} total sales`}
-        primaryAction={{ to: "/sales/new", icon: Icon.Plus, label: "New Sale" }}
-      />
-      <div className="p-6 overflow-y-auto space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
-          <SearchField
-            value={search}
-            onChange={setSearch}
-            placeholder="Search by name, NIC, or phone…"
-            size={width >= breakpoints.xl ? "large" : "default"}
-            containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
-          />
-          <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
-            <Tabs
-              value={tab}
-              onValueChange={(v) => setTab(v as SaleTab)}
-              className="w-full xs:w-auto"
-            >
-              <TabsList>
-                {SALE_TABS.map((t) => (
-                  <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
+    <div className="space-y-6">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <SearchField
+          value={search}
+          onChange={setSearch}
+          placeholder="Search by name, NIC, or phone…"
+          size={width >= breakpoints.xl ? "large" : "default"}
+          containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+        />
+        <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+          <Tabs
+            value={tab}
+            onValueChange={(v) => setTab(v as SaleTab)}
+            className="w-full xs:w-auto"
+          >
+            <TabsList>
+              {SALE_TABS.map((t) => (
+                <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
 
-            <Button
-              size={width >= breakpoints.xl ? "lg" : "default"}
-              variant="secondary"
-              className="shrink-0"
-            >
-              <Icon.ArrowUpFromLine /> Export
-            </Button>
-          </div>
+          <Button
+            size={width >= breakpoints.xl ? "lg" : "default"}
+            variant="secondary"
+            className="shrink-0"
+          >
+            <Icon.ArrowUpFromLine /> Export
+          </Button>
         </div>
-
-        <SalesTable rows={filtered} />
       </div>
+
+      <SalesTable rows={filtered} />
     </div>
   );
 };
