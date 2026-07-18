@@ -1,15 +1,10 @@
 import type { ReactNode } from "react";
+import { useState } from "react";
 
 import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemHeader,
-  ItemSeparator,
-  ItemTitle,
-} from "@/components/ui/item";
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/radio-group";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -23,50 +18,26 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 }
 
 export default function Test() {
+  const [value, setValue] = useState("daily");
+
   return (
     <div className="space-y-8">
-      <Block title="item">
-        <div className="surface-card global-rounded flex max-w-xl flex-col gap-4 p-5">
-          <ItemGroup>
-            <Item>
-              <ItemHeader>
-                <ItemTitle>Revenue Overview</ItemTitle>
-                <ItemActions>
-                  <span className="t-label-sm text-faint">Updated 2m ago</span>
-                </ItemActions>
-              </ItemHeader>
-              <ItemContent>
-                <ItemDescription>
-                  Track invoice performance, payment velocity, and top customer
-                  movement from a single row.
-                </ItemDescription>
-              </ItemContent>
-            </Item>
-
-            <ItemSeparator />
-
-            <Item variant="outline">
-              <ItemContent>
-                <ItemTitle>Collections Queue</ItemTitle>
-                <ItemDescription>
-                  Review customers that need a follow-up before the next due
-                  date.
-                </ItemDescription>
-              </ItemContent>
-            </Item>
-
-            <ItemSeparator />
-
-            <Item variant="muted">
-              <ItemContent>
-                <ItemTitle>Archived Customers</ItemTitle>
-                <ItemDescription>
-                  Old customer records can stay visible without competing with
-                  the active list.
-                </ItemDescription>
-              </ItemContent>
-            </Item>
-          </ItemGroup>
+      <Block title="radio group">
+        <div className="surface-card global-rounded flex max-w-xl flex-col gap-5 p-5">
+          <RadioGroup value={value} onValueChange={setValue}>
+            <RadioGroupItem
+              value="daily"
+              label="Daily reminders"
+            />
+            <RadioGroupItem
+              value="weekly"
+              label="Weekly summaries"
+            />
+            <RadioGroupItem
+              value="monthly"
+              label="Monthly statements"
+            />
+          </RadioGroup>
         </div>
       </Block>
     </div>

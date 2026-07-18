@@ -3,35 +3,16 @@ import * as MenubarPrimitive from "@radix-ui/react-menubar";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
-interface MenubarProps extends React.ComponentProps<
-  typeof MenubarPrimitive.Root
-> {
-  size?: ResponsiveSize;
-}
-
-function Menubar({ className, size, ...props }: MenubarProps) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+function Menubar({
+  className,
+  ...props
+}: React.ComponentProps<typeof MenubarPrimitive.Root>) {
   return (
     <MenubarPrimitive.Root
       data-slot="menubar"
       className={cn(
-        "flex items-center gap-1 p-1",
-        "xl-rounded border",
-        resolvedSize === "compact"
-          ? "h-compact"
-          : resolvedSize === "large"
-            ? "h-large"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large"
-              : "h-field",
+        "global-rounded border-stroke flex h-field items-center gap-1 p-1",
         "menubar-root",
         className,
       )}
@@ -74,8 +55,8 @@ function MenubarTrigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center px-2 py-1 outline-hidden select-none cursor-pointer",
-        "md-rounded t-body-md fw-medium",
+        "global-rounded flex cursor-pointer items-center px-2 py-1 outline-hidden select-none",
+        "t-body-md fw-medium",
         "menubar-trigger",
         className,
       )}
@@ -99,8 +80,7 @@ function MenubarContent({
         alignOffset={alignOffset}
         sideOffset={sideOffset}
         className={cn(
-          "z-dropdown min-w-48 p-1 cursor-pointer",
-          "xl-rounded border",
+          "global-rounded border-stroke z-dropdown min-w-48 p-1",
           "origin-(--radix-menubar-content-transform-origin)",
           "data-[state=open]:animate-in",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -133,8 +113,8 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "relative flex cursor-default items-center gap-2 px-2 py-1.5",
-        "md-rounded t-body-md outline-hidden select-none cursor-pointer",
+        "global-rounded relative flex cursor-pointer items-center gap-2 px-2 py-1.5",
+        "t-body-md outline-hidden select-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -157,8 +137,8 @@ function MenubarCheckboxItem({
     <MenubarPrimitive.CheckboxItem
       data-slot="menubar-checkbox-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
-        "md-rounded t-body-md outline-hidden select-none",
+        "global-rounded relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
+        "t-body-md outline-hidden select-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -187,8 +167,8 @@ function MenubarRadioItem({
     <MenubarPrimitive.RadioItem
       data-slot="menubar-radio-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
-        "full-rounded t-body-md outline-hidden select-none",
+        "global-rounded relative flex cursor-pointer items-center gap-2 py-1.5 pr-2 pl-8",
+        "t-body-md outline-hidden select-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='size-'])]:size-4",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -219,7 +199,7 @@ function MenubarLabel({
       data-slot="menubar-label"
       data-inset={inset}
       className={cn(
-        "px-2 py-1.5 t-body-md fw-medium",
+        "px-2 py-1.5 t-label-md-bold",
         "data-inset:pl-8",
         className,
       )}
@@ -273,8 +253,8 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-default items-center px-2 py-1.5",
-        "md-rounded t-body-md outline-none select-none",
+        "global-rounded flex cursor-pointer items-center px-2 py-1.5",
+        "t-body-md outline-none select-none",
         "data-inset:pl-8",
         "menubar-sub-trigger",
         className,
@@ -297,8 +277,7 @@ function MenubarSubContent({
       data-slot="menubar-sub-content"
       sideOffset={sideOffset}
       className={cn(
-        "z-dropdown min-w-32 p-1",
-        "md-rounded border",
+        "global-rounded border-stroke z-dropdown min-w-32 p-1",
         "origin-(--radix-menubar-content-transform-origin)",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",

@@ -38,7 +38,7 @@ function RadioGroupItem({
       id={radioId}
       data-slot="radio-group-item"
       className={cn(
-        'aspect-square size-4 shrink-0 border cursor-pointer',
+        'shrink-0 border-stroke cursor-pointer',
         'full-rounded radio-group-item',
         className,
       )}
@@ -48,7 +48,7 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
-        <CircleIcon className="radio-group-dot absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
+        <CircleIcon className="radio-group-dot absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )
@@ -63,7 +63,7 @@ function RadioGroupItem({
       className={cn('flex items-center gap-3 cursor-pointer', containerClassName)}
     >
       {radioControl}
-      <span className={cn('t-body-md-bold text-main', labelClassName)}>
+      <span className={cn('t-label-md-bold text-main', labelClassName)}>
         {label}
       </span>
     </label>

@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -39,13 +39,11 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & Pick<React.ComponentProps<typeof Button>, "size"> &
-  React.ComponentProps<"a">;
+} & React.ComponentProps<"a">;
 
 function PaginationLink({
   className,
   isActive,
-  size = "icon",
   ...props
 }: PaginationLinkProps) {
   return (
@@ -54,7 +52,8 @@ function PaginationLink({
       data-slot="pagination-link"
       data-active={isActive}
       className={cn(
-        buttonVariants({ variant: isActive ? "outline" : "ghost", size }),
+        buttonVariants({ variant: isActive ? "outline" : "ghost" }),
+        "h-field w-field px-0",
         className,
       )}
       {...props}
@@ -69,7 +68,6 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="icon"
       className={cn(className)}
       {...props}
     >
@@ -85,7 +83,6 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="icon"
       className={cn(className)}
       {...props}
     >
@@ -102,10 +99,10 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex h-field w-field items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontalIcon className="size-4" />
+      <MoreHorizontalIcon />
       <span className="sr-only">More pages</span>
     </span>
   );

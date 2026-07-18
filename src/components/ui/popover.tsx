@@ -19,8 +19,13 @@ function PopoverContent({
   className,
   align = "center",
   sideOffset = 4,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+}: React.ComponentProps<typeof PopoverPrimitive.Content> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
@@ -29,7 +34,9 @@ function PopoverContent({
         sideOffset={sideOffset}
         className={cn(
           "z-dropdown w-72 p-4",
-          "xl-rounded border",
+          "global-rounded",
+          border && "border-stroke",
+          shadow ? "shadow-card" : "no-shadow",
           "popover-content",
           "origin-(--radix-popover-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",

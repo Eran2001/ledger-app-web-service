@@ -221,7 +221,7 @@
 
   /* Radius */
   --radius: 0.375rem;
-  --radius-full: 50%;
+  --radius-full: 999rem; /* effectively full */
 
   /* Border */
   --border-width-1: 0.0625rem; /* 1px */
@@ -4708,7 +4708,6 @@
     background-color: var(--popover);
     color: var(--popover-foreground);
     border-color: var(--border);
-    box-shadow: var(--shadow-card);
     outline: var(--outline-none);
   }
 
@@ -4750,11 +4749,13 @@
 
   .progress-indicator {
     background-color: var(--primary);
-    transition: transform var(--duration-slower) ease;
+    transition: width var(--duration-slower) ease;
   }
 
   /* RADIO_GROUP */
   .radio-group-item {
+    width: 1rem;
+    height: 1rem;
     color: var(--primary);
     border-color: var(--input);
     box-shadow: var(--shadow-xs);
@@ -4792,6 +4793,8 @@
   }
 
   .radio-group-dot {
+    width: 0.5rem;
+    height: 0.5rem;
     fill: var(--primary);
   }
 
