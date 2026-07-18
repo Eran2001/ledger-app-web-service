@@ -9,7 +9,7 @@ export function BusinessHeader({ collapsed }: BusinessHeaderProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 px-4 h-16 border-b shrink-0",
+        "flex items-center gap-3 px-4 h-14 border-b shrink-0",
         collapsed && "justify-center px-0",
       )}
       style={{ borderColor: "var(--sidebar-border)" }}

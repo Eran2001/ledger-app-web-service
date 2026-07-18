@@ -43,7 +43,7 @@ export function TopBar({
   const navigate = useNavigate();
 
   return (
-    <header className="surface-card border-b border-default h-16 shrink-0 px-4 sm:px-6 flex items-center gap-3 sticky top-0 z-topbar">
+    <header className="surface-card border-b border-default h-14 shrink-0 px-4 sm:px-6 flex items-center gap-3 sticky top-0 z-topbar">
       <Button
         variant="ghost"
         size="icon"

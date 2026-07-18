@@ -15,6 +15,7 @@ const LoginPage = lazy(() => import("./pages/auth/login"));
 const RegisterPage = lazy(() => import("./pages/auth/register"));
 const SetupPasswordPage = lazy(() => import("./pages/auth/setup-password"));
 
+const Test = lazy(() => import("./pages/test"));
 const DashboardPage = lazy(() => import("./pages/dashboard"));
 const SalesPage = lazy(() => import("./pages/sales"));
 const SalesNewPage = lazy(() => import("./pages/sales/pages/SalesNewPage"));
@@ -76,6 +77,11 @@ const indexRoute = createRoute({
   beforeLoad: () => {
     throw redirect({ to: "/dashboard" });
   },
+});
+const testRoute = createRoute({
+  getParentRoute: () => shellRoute,
+  path: "/test",
+  component: Test,
 });
 const dashboardRoute = createRoute({
   getParentRoute: () => shellRoute,
@@ -158,6 +164,7 @@ const routeTree = rootRoute.addChildren([
   authRoute.addChildren([loginRoute, registerRoute, setupPasswordRoute]),
   shellRoute.addChildren([
     indexRoute,
+    testRoute,
     dashboardRoute,
     salesRoute,
     salesNewRoute,
