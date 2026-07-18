@@ -2105,6 +2105,27 @@
   }
 
   /* SEMANTIC BORDERS */
+  .border-stroke {
+    border-style: var(--border-solid);
+    border-width: var(--border-width-1);
+  }
+  .border-t-stroke {
+    border-top-style: var(--border-solid);
+    border-top-width: var(--border-width-1);
+  }
+  .border-r-stroke {
+    border-right-style: var(--border-solid);
+    border-right-width: var(--border-width-1);
+  }
+  .border-b-stroke {
+    border-bottom-style: var(--border-solid);
+    border-bottom-width: var(--border-width-1);
+  }
+  .border-l-stroke {
+    border-left-style: var(--border-solid);
+    border-left-width: var(--border-width-1);
+  }
+
   .no-border {
     border: none !important;
   }

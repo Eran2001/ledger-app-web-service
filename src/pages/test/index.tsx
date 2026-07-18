@@ -1,50 +1,13 @@
 import type { ReactNode } from "react";
 
-import * as Icon from "@/components/icons";
-import { AppFooter } from "@/components/shared/app-footer";
-import { BusinessHeader } from "@/components/shared/business-header";
-import { CardCaption } from "@/components/ui/card-caption";
-import { CategoryLabel } from "@/components/ui/category-label";
-import { CategoryPill } from "@/components/ui/category-pill";
-import ComingSoon from "@/components/shared/coming-soon";
-import { EmptyState } from "@/components/shared/empty-state";
-import { Fallback } from "@/components/ui/fallback";
-import { InitialsAvatar } from "@/components/ui/initials-avatar";
-import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
-import { SidebarNav } from "@/components/shared/sidebar-nav";
-import { StatPill } from "@/components/ui/stat-pill";
-import { StatusBadge } from "@/components/ui/status-badge";
-import { TopBar } from "@/components/shared/top-bar";
-import { UserProfile } from "@/components/shared/user-profile";
-import type { ProductCategory } from "@/types/product-types";
-
-const CATEGORIES: ProductCategory[] = [
-  "Electronics",
-  "Appliances",
-  "Furniture",
-  "Hardware",
-  "Other",
-];
-
-const STAT_PILL_COLORS = [
-  "indigo",
-  "amber",
-  "gray",
-  "green",
-  "red",
-  "teal",
-  "purple",
-] as const;
-
-const STATUS_VALUES = [
-  "PAID",
-  "PARTIALLY_PAID",
-  "OVERDUE",
-  "PENDING",
-  "ACTIVE",
-  "COMPLETED",
-  "WRITTEN_OFF",
-] as const;
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { useWidth } from "@/hooks/use-width";
+import { getResponsiveBreakpoint } from "@/utils/get-responsive-size";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -58,174 +21,41 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 }
 
 export default function Test() {
+  const { width, breakpoints } = useWidth();
+  const activeBreakpoint = getResponsiveBreakpoint(width, breakpoints);
+
   return (
     <div className="space-y-8">
-      <Block title="InitialsAvatar">
-        <div className="flex flex-wrap items-end gap-4">
-          <InitialsAvatar name="Silva Traders" size="sm" />
-          <InitialsAvatar name="Silva Traders" size="md" />
-          <InitialsAvatar name="Silva Traders" size="lg" />
-        </div>
-        <div className="grid gap-4 lg:grid-cols-3">
-          <SyncedHeightPair
-            left={<InitialsAvatar name="Silva Traders" size="auto" />}
-            right={
-              <div className="min-w-0">
-                <p className="t-body-md-bold text-main">Auto Small</p>
-                <p className="t-label-md text-soft">Single line content</p>
-              </div>
-            }
-            squareLeft
-            className="gap-3"
-          />
-          <div className="rounded-xl border border-default p-4">
-            <SyncedHeightPair
-              left={<InitialsAvatar name="Silva Traders" size="auto" />}
-              right={
-                <div className="min-w-0 space-y-1">
-                  <p className="t-body-md-bold text-main">Auto Medium</p>
-                  <p className="t-label-md text-soft">
-                    Two lines of content to test how the avatar inherits height
-                    from the right side block.
-                  </p>
-                </div>
-              }
-              squareLeft
-              className="gap-3"
-            />
-          </div>
-          <div className="rounded-xl border border-default p-4">
-            <SyncedHeightPair
-              left={<InitialsAvatar name="Silva Traders" size="auto" />}
-              right={
-                <div className="min-w-0 space-y-2">
-                  <p className="t-body-md-bold text-main">Auto Large</p>
-                  <p className="t-label-md text-soft">
-                    This example has more vertical content.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <StatusBadge status="ACTIVE" />
-                    <CategoryPill category="Electronics" />
-                  </div>
-                </div>
-              }
-              squareLeft
-              className="gap-3"
-            />
-          </div>
-        </div>
-      </Block>
+      <Block title="accordion">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>What changed in accordion?</AccordionTrigger>
+            <AccordionContent>
+              Accordion item borders now use semantic responsive border-width
+              utilities instead of fixed Tailwind `border-b`.
+            </AccordionContent>
+          </AccordionItem>
 
-      <Block title="BusinessHeader">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="app-sidebar border border-default overflow-hidden rounded-xl">
-            <BusinessHeader collapsed={false} />
-          </div>
-          <div className="app-sidebar border border-default overflow-hidden rounded-xl">
-            <BusinessHeader collapsed />
-          </div>
-        </div>
-      </Block>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>What helper should I use now?</AccordionTrigger>
+            <AccordionContent>
+              Keep `getResponsiveSize` for the existing four semantic sizes. Use
+              `getResponsiveBreakpoint` when you need exact breakpoint-aware
+              width, height, or border behavior.
+            </AccordionContent>
+          </AccordionItem>
 
-      <Block title="UserProfile">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="app-sidebar border border-default p-4 rounded-xl">
-            <UserProfile collapsed={false} />
-          </div>
-          <div className="app-sidebar border border-default p-4 rounded-xl flex justify-center">
-            <UserProfile collapsed />
-          </div>
-        </div>
-      </Block>
-
-      <Block title="CategoryLabel">
-        <div className="flex flex-wrap gap-4">
-          {CATEGORIES.map((category) => (
-            <CategoryLabel key={category} category={category} />
-          ))}
-        </div>
-      </Block>
-
-      <Block title="CategoryPill">
-        <div className="flex flex-wrap gap-3">
-          {CATEGORIES.map((category) => (
-            <CategoryPill key={category} category={category} />
-          ))}
-        </div>
-      </Block>
-
-      <Block title="StatPill">
-        <div className="flex flex-wrap gap-3">
-          {STAT_PILL_COLORS.map((color) => (
-            <StatPill key={color} label={color} color={color} />
-          ))}
-        </div>
-      </Block>
-
-      <Block title="StatusBadge">
-        <div className="flex flex-wrap gap-3">
-          {STATUS_VALUES.map((status) => (
-            <StatusBadge key={status} status={status} />
-          ))}
-        </div>
-      </Block>
-
-      <Block title="CardCaption">
-        <CardCaption
-          title="Card Caption"
-          actionLabel="Reports"
-          actionTo="/reports"
-        >
-          <div className="p-4">Card content</div>
-        </CardCaption>
-      </Block>
-
-      <Block title="TopBar">
-        <div className="surface-card border border-default overflow-hidden rounded-xl">
-          <TopBar
-            pageTitle="Top Bar"
-            pageSubtitle="Preview"
-            primaryAction={{
-              to: "/sales/new",
-              icon: Icon.Plus,
-              label: "New Sale",
-            }}
-          />
-        </div>
-      </Block>
-
-      <Block title="SidebarNav">
-        <div className="grid gap-4 xl:grid-cols-[4rem_minmax(0,1fr)]">
-          <div className="h-136 overflow-hidden rounded-xl border border-default">
-            <SidebarNav collapsed onToggleCollapse={() => undefined} />
-          </div>
-          <div className="h-136 overflow-hidden rounded-xl border border-default">
-            <SidebarNav collapsed={false} onToggleCollapse={() => undefined} />
-          </div>
-        </div>
-      </Block>
-
-      <Block title="EmptyState">
-        <EmptyState
-          icon={Icon.Package}
-          title="No products"
-          subtitle="Nothing here yet."
-          actionLabel="Create"
-          actionIcon={Icon.Plus}
-          onAction={() => undefined}
-        />
-      </Block>
-
-      <Block title="ComingSoon">
-        <div className="h-112 overflow-hidden rounded-xl border border-default">
-          <ComingSoon />
-        </div>
-      </Block>
-
-      <Block title="AppFooter">
-        <div className="overflow-hidden rounded-xl border border-default">
-          <AppFooter />
-        </div>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>
+              Does this cover all breakpoints?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. The exact helper now covers `base`, `xxs`, `xs`, `sm`, `md`,
+              `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `7xl`, `8xl`,
+              `9xl`, and `10xl`.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </Block>
     </div>
   );
