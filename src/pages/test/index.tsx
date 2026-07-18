@@ -1,6 +1,17 @@
 import type { ReactNode } from "react";
 
-import { CardCaption } from "@/components/ui/card-caption";
+import * as Icon from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardEmpty,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,44 +27,62 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="card caption">
-        <CardCaption
-          title="Recent Reports"
-          actionLabel="View all"
-          actionTo="/reports"
-          border
-          shadow
-        >
-          <div className="space-y-0">
-            <div className="flex items-center justify-between px-5 py-4 border-b-stroke border-default">
-              <div className="space-y-1">
-                <p className="t-body-md-bold">Revenue Summary</p>
-                <p className="t-label-md text-faint">Updated 2 hours ago</p>
-              </div>
-              <p className="t-label-md-bold text-brand">Ready</p>
-            </div>
+      <Block title="card">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <CardHeader border>
+              <CardTitle icon={Icon.ChartColumn}>Quarterly Revenue</CardTitle>
+              <CardDescription>
+                Performance summary for the current reporting window.
+              </CardDescription>
+              <CardAction>
+                <Button size="sm">Export</Button>
+              </CardAction>
+            </CardHeader>
 
-            <div className="flex items-center justify-between px-5 py-4 border-b-stroke border-default">
+            <CardContent className="space-y-4 px-6 pb-0">
               <div className="space-y-1">
-                <p className="t-body-md-bold">Outstanding Invoices</p>
+                <p className="t-display-lg">$128,400</p>
                 <p className="t-label-md text-faint">
-                  Needs review before export
+                  Up 12% compared to last month
                 </p>
               </div>
-              <p className="t-label-md-bold text-warning-role">Review</p>
-            </div>
 
-            <div className="flex items-center justify-between px-5 py-4">
-              <div className="space-y-1">
-                <p className="t-body-md-bold">Customer Aging</p>
-                <p className="t-label-md text-faint">
-                  Prepared for leadership sync
-                </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="surface-muted global-rounded px-4 py-3">
+                  <p className="t-label-sm text-faint">Paid invoices</p>
+                  <p className="t-body-md-bold">342</p>
+                </div>
+                <div className="surface-muted global-rounded px-4 py-3">
+                  <p className="t-label-sm text-faint">Average ticket</p>
+                  <p className="t-body-md-bold">$375</p>
+                </div>
               </div>
-              <p className="t-label-md-bold text-success-role">Done</p>
-            </div>
-          </div>
-        </CardCaption>
+            </CardContent>
+
+            <CardFooter className="justify-between px-6 py-4">
+              <p className="t-label-md text-faint">Updated 10 minutes ago</p>
+              <Button variant="link" size="sm">
+                Open report
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card border shadow>
+            <CardHeader border>
+              <CardTitle>Empty State</CardTitle>
+              <CardDescription>
+                Example of the empty slot inside the shared card primitive.
+              </CardDescription>
+            </CardHeader>
+
+            <CardEmpty
+              icon={Icon.FileSearch}
+              title="No reports found"
+              description="Create a new report or adjust your current filters to see results here."
+            />
+          </Card>
+        </div>
       </Block>
     </div>
   );

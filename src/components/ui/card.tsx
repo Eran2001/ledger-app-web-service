@@ -22,7 +22,7 @@ type CardEmptyProps = React.ComponentProps<"div"> & {
 function Card({
   className,
   border = false,
-  shadow = true,
+  shadow = false,
   ...props
 }: CardProps) {
   return (
@@ -129,7 +129,7 @@ function CardEmpty({
       )}
       {...props}
     >
-      <div className="surface-page flex h-large w-large items-center justify-center full-rounded">
+      <div className="surface-page flex h-large w-large items-center justify-center global-rounded">
         <span className="inline-flex items-center justify-center text-faint [&>svg]:size-6 [&>svg]:shrink-0">
           <Icon />
         </span>

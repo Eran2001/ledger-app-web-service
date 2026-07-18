@@ -13,7 +13,7 @@ export function CardCaption({
   actionTo,
   className,
   border = false,
-  shadow = true,
+  shadow = false,
   children,
 }: CardCaptionProps) {
   return (

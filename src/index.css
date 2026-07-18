@@ -3852,7 +3852,6 @@
     background-color: var(--card);
     color: var(--card-foreground);
     border-color: var(--border);
-    box-shadow: var(--shadow-card);
   }
   .card-description {
     color: var(--muted-foreground);
