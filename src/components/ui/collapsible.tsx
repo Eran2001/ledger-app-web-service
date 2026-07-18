@@ -2,11 +2,6 @@ import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
 function Collapsible({
   ...props
@@ -16,28 +11,22 @@ function Collapsible({
 
 function CollapsibleTrigger({
   className,
-  size,
+  border = false,
+  shadow = false,
   ...props
 }: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger> & {
-  size?: ResponsiveSize;
+  border?: boolean;
+  shadow?: boolean;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <CollapsiblePrimitive.CollapsibleTrigger
       data-slot="collapsible-trigger"
       className={cn(
-        "flex w-full items-center",
-        "xl-rounded border",
-        "cursor-pointer",
-        resolvedSize === "compact"
-          ? "h-compact px-2.5 t-label-md"
-          : resolvedSize === "large"
-            ? "h-large px-4 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body-lg"
-              : "h-field px-3 t-body-md",
+        "surface-card flex h-field w-full items-center px-3",
+        "global-rounded",
+        "cursor-pointer t-body-md",
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
         className,
       )}
       {...props}
@@ -47,12 +36,22 @@ function CollapsibleTrigger({
 
 function CollapsibleContent({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
+}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <CollapsiblePrimitive.CollapsibleContent
       data-slot="collapsible-content"
-      className={cn("px-3 py-2 t-body-md", className)}
+      className={cn(
+        "surface-card global-rounded px-3 py-2 t-body-md",
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
+        className,
+      )}
       {...props}
     />
   );

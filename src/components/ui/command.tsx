@@ -3,11 +3,6 @@ import { Command as CommandPrimitive } from "cmdk";
 import { SearchIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 import {
   Dialog,
   DialogContent,
@@ -18,14 +13,21 @@ import {
 
 function Command({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive>) {
+}: React.ComponentProps<typeof CommandPrimitive> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden md-rounded border",
+        "surface-card flex h-full w-full flex-col overflow-hidden global-rounded",
         "command-root has-focus-ring",
+        border && "border-stroke border-input-default",
+        shadow && "shadow-card",
         className,
       )}
       {...props}
@@ -38,12 +40,16 @@ function CommandDialog({
   description = "Search for a command to run...",
   children,
   className,
+  border = false,
+  shadow = false,
   showCloseButton = true,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
+  border?: boolean;
+  shadow?: boolean;
   showCloseButton?: boolean;
 }) {
   return (
@@ -57,6 +63,8 @@ function CommandDialog({
         showCloseButton={showCloseButton}
       >
         <Command
+          border={border}
+          shadow={shadow}
           className={cn(
             "**:[[cmdk-group-heading]]:px-2",
             "**:[[cmdk-group]]:px-2",
@@ -77,38 +85,18 @@ function CommandDialog({
 
 function CommandInput({
   className,
-  size,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div
       data-slot="command-input-wrapper"
-      className={cn(
-        "flex items-center gap-2 border-b",
-        resolvedSize === "compact"
-          ? "h-compact px-2.5"
-          : resolvedSize === "large"
-            ? "h-large px-4"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large px-5"
-              : "h-field px-3",
-      )}
+      className="flex h-field items-center gap-2 border-b-stroke border-input-default px-3"
     >
       <SearchIcon className="size-4 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-full w-full",
-          resolvedSize === "compact"
-            ? "t-label-md"
-            : resolvedSize === "extra-large"
-              ? "t-body-lg"
-              : "t-body-md",
+          "flex h-full w-full t-body-md",
           "no-outline",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "command-input",
@@ -182,28 +170,16 @@ function CommandSeparator({
 
 function CommandItem({
   className,
-  size,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Item> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof CommandPrimitive.Item>) {
   return (
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
         "relative flex cursor-pointer select-none",
         "items-center gap-2",
-        "md-rounded no-outline",
-        resolvedSize === "compact"
-          ? "px-2 py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "px-3 py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body-lg"
-              : "px-2 py-1.5 t-body-md",
+        "global-rounded no-outline",
+        "px-2 py-1.5 t-body-md",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "command-item",

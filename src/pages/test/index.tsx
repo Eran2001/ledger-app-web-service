@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Checkbox } from "@/components/ui/checkbox";
+import { CustomToast } from "@/components/ui/custom-toast";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,19 +16,12 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8 p-6">
-      <Block title="checkbox">
-        <div className="surface-card global-rounded space-y-4 p-5">
-          <Checkbox label="Default checkbox" />
-          <Checkbox
-            label="With description"
-            description="This row helps verify label spacing and description styling."
-          />
-          <Checkbox
-            defaultChecked
-            label="Checked state"
-            description="Confirm checked background, border, and icon sizing."
-          />
-          <Checkbox disabled label="Disabled state" />
+      <Block title="custom toast">
+        <div className="flex flex-col gap-4">
+          <CustomToast id="toast-success" message="Invoice marked as paid." variant="success" />
+          <CustomToast id="toast-info" message="Customer profile updated." variant="info" />
+          <CustomToast id="toast-warning" message="Payment reminder queued." variant="warning" />
+          <CustomToast id="toast-error" message="Unable to save product details." variant="destructive" />
         </div>
       </Block>
     </div>

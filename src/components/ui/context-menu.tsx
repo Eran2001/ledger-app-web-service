@@ -3,11 +3,6 @@ import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 
 function ContextMenu({
   ...props
@@ -17,14 +12,21 @@ function ContextMenu({
 
 function ContextMenuTrigger({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Trigger>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.Trigger> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <ContextMenuPrimitive.Trigger
       data-slot="context-menu-trigger"
       className={cn(
-        "xl-rounded border",
+        "global-rounded",
         "t-body-md cursor-context-menu",
+        border && "border-stroke border-default",
+        shadow && "shadow-card",
         className,
       )}
       {...props}
@@ -68,30 +70,18 @@ function ContextMenuRadioGroup({
 function ContextMenuSubTrigger({
   className,
   inset,
-  size,
   children,
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.SubTrigger> & {
   inset?: boolean;
-  size?: ResponsiveSize;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <ContextMenuPrimitive.SubTrigger
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
         "flex cursor-pointer select-none items-center",
-        "md-rounded no-outline",
-        resolvedSize === "compact"
-          ? "px-1.5 py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "px-3 py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body-lg"
-              : "px-2 py-1.5 t-body-md",
+        "global-rounded px-2 py-1.5 t-body-md no-outline",
         "data-inset:pl-8",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -107,15 +97,20 @@ function ContextMenuSubTrigger({
 
 function ContextMenuSubContent({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.SubContent>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.SubContent> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.SubContent
         data-slot="context-menu-sub-content"
         className={cn(
           "z-dropdown min-w-32 overflow-hidden p-1",
-          "md-rounded border",
+          "global-rounded",
           "origin-(--radix-context-menu-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -125,6 +120,8 @@ function ContextMenuSubContent({
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
           "context-menu-content",
+          border && "border-stroke border-default",
+          shadow && "shadow-card",
           className,
         )}
         {...props}
@@ -135,8 +132,13 @@ function ContextMenuSubContent({
 
 function ContextMenuContent({
   className,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Content>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.Content> & {
+  border?: boolean;
+  shadow?: boolean;
+}) {
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Content
@@ -144,7 +146,7 @@ function ContextMenuContent({
         className={cn(
           "z-dropdown min-w-32 overflow-x-hidden overflow-y-auto p-1",
           "max-h-(--radix-context-menu-content-available-height)",
-          "xl-rounded border",
+          "global-rounded",
           "origin-(--radix-context-menu-content-transform-origin)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -154,6 +156,8 @@ function ContextMenuContent({
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
           "context-menu-content",
+          border && "border-stroke border-default",
+          shadow && "shadow-card",
           className,
         )}
         {...props}
@@ -166,16 +170,11 @@ function ContextMenuItem({
   className,
   inset,
   variant = "default",
-  size,
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Item> & {
   inset?: boolean;
   variant?: "default" | "destructive";
-  size?: ResponsiveSize;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <ContextMenuPrimitive.Item
       data-slot="context-menu-item"
@@ -183,14 +182,7 @@ function ContextMenuItem({
       data-variant={variant}
       className={cn(
         "relative flex cursor-pointer select-none items-center gap-2",
-        "md-rounded no-outline",
-        resolvedSize === "compact"
-          ? "px-1.5 py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "px-3 py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "px-4 py-2.5 t-body-lg"
-              : "px-2 py-1.5 t-body-md",
+        "global-rounded px-2 py-1.5 t-body-md no-outline",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-inset:pl-8",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -206,27 +198,14 @@ function ContextMenuCheckboxItem({
   className,
   children,
   checked,
-  size,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem>) {
   return (
     <ContextMenuPrimitive.CheckboxItem
       data-slot="context-menu-checkbox-item"
       className={cn(
         "relative flex cursor-pointer select-none items-center gap-2",
-        "md-rounded pr-2 pl-8 no-outline",
-        resolvedSize === "compact"
-          ? "py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "py-2.5 t-body-lg"
-              : "py-1.5 t-body-md",
+        "global-rounded px-2 py-1.5 pl-8 t-body-md no-outline",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -248,27 +227,14 @@ function ContextMenuCheckboxItem({
 function ContextMenuRadioItem({
   className,
   children,
-  size,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.RadioItem> & {
-  size?: ResponsiveSize;
-}) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
+}: React.ComponentProps<typeof ContextMenuPrimitive.RadioItem>) {
   return (
     <ContextMenuPrimitive.RadioItem
       data-slot="context-menu-radio-item"
       className={cn(
         "relative flex cursor-pointer select-none items-center gap-2",
-        "md-rounded pr-2 pl-8 no-outline",
-        resolvedSize === "compact"
-          ? "py-1 t-label-md"
-          : resolvedSize === "large"
-            ? "py-2 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "py-2.5 t-body-lg"
-              : "py-1.5 t-body-md",
+        "global-rounded px-2 py-1.5 pl-8 t-body-md no-outline",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         "context-menu-item",
@@ -299,7 +265,7 @@ function ContextMenuLabel({
       data-inset={inset}
       className={cn(
         "px-2 py-1.5",
-        "t-body-md",
+        "t-label-md-bold",
         "data-inset:pl-8",
         "context-menu-label",
         className,
