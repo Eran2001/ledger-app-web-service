@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const badgeVariants = cva(
   [
     "inline-flex items-center justify-center gap-1",
-    "xl-rounded px-2 py-0.5",
+    "global-rounded px-2 py-0.5",
     "t-label-md whitespace-nowrap shrink-0 overflow-hidden",
     "[&>svg]:size-3 [&>svg]:pointer-events-none",
     "aria-invalid:border-destructive",

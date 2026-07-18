@@ -3470,6 +3470,11 @@
     height: var(--icon-size-default);
   }
 
+  .badge-icon-slot > svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
   /* ACCORDION */
   .accordion-trigger {
     outline: var(--outline-none);

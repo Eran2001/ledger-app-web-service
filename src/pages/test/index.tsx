@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Badge } from "@/components/ui/badge";
+import { BadgeIcon } from "@/components/ui/badge-icon";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,33 +16,24 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="badge">
+      <Block title="badge icon">
         <div className="flex flex-wrap items-center gap-3">
-          <Badge border shadow>
-            Default
-          </Badge>
-          <Badge variant="secondary" border shadow>
-            Secondary
-          </Badge>
-          <Badge variant="success">Success</Badge>
-          <Badge variant="warning" border shadow>
-            Warning
-          </Badge>
-          <Badge variant="info" border shadow>
+          <BadgeIcon>Default</BadgeIcon>
+          <BadgeIcon variant="secondary">Secondary</BadgeIcon>
+          <BadgeIcon variant="success">Success</BadgeIcon>
+          <BadgeIcon variant="warning">Warning</BadgeIcon>
+          <BadgeIcon variant="info" iconPosition="right">
             Info
-          </Badge>
-          <Badge variant="processing" border shadow>
-            Processing
-          </Badge>
-          <Badge variant="overtime" border shadow>
-            Overtime
-          </Badge>
-          <Badge variant="destructive" border shadow>
-            Destructive
-          </Badge>
-          <Badge variant="outline" border shadow>
+          </BadgeIcon>
+          <BadgeIcon variant="processing">Processing</BadgeIcon>
+          <BadgeIcon variant="overtime">Overtime</BadgeIcon>
+          <BadgeIcon variant="destructive">Destructive</BadgeIcon>
+          <BadgeIcon variant="outline" iconPosition="right">
             Outline
-          </Badge>
+          </BadgeIcon>
+          <BadgeIcon border shadow variant="success">
+            Success
+          </BadgeIcon>
         </div>
       </Block>
     </div>

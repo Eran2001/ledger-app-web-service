@@ -78,7 +78,11 @@ function AvatarFallback({
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
   const textContent =
-    typeof children === "string" ? children : typeof children === "number" ? String(children) : "";
+    typeof children === "string"
+      ? children
+      : typeof children === "number"
+        ? String(children)
+        : "";
   const colors = textContent ? getAvatarColors(textContent) : null;
 
   return (
@@ -86,7 +90,7 @@ function AvatarFallback({
       data-slot="avatar-fallback"
       className={cn(
         "app-sidebar-logo sidebar-brand-logo flex",
-        "size-full items-center justify-center xl-rounded",
+        "t-label-md-bold size-full items-center justify-center global-rounded",
         className,
       )}
       style={

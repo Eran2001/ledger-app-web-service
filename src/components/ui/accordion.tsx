@@ -47,7 +47,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "t-body-md flex flex-1 items-start justify-between gap-4 global-rounded py-4 text-left cursor-pointer accordion-trigger",
+          "t-body-md-bold flex flex-1 items-start justify-between gap-4 global-rounded py-4 text-left cursor-pointer accordion-trigger",
           className,
         )}
         {...props}

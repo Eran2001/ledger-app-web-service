@@ -1,5 +1,4 @@
 import * as React from "react";
-import { type VariantProps } from "class-variance-authority";
 
 import * as Icon from "@/components/icons";
 import { Badge, badgeVariants } from "@/components/ui/badge";
@@ -17,6 +16,12 @@ type BadgeIconVariant =
   | "processing"
   | "overtime"
   | "sky";
+
+type BadgeIconProps = Omit<React.ComponentProps<typeof Badge>, "variant"> & {
+  variant?: BadgeIconVariant;
+  iconPosition?: BadgeIconPosition;
+  iconStrokeWidth?: number;
+};
 
 const BADGE_ICONS: Record<BadgeIconVariant, typeof Icon.Info> = {
   default: Icon.Info,
@@ -38,33 +43,35 @@ function BadgeIcon({
   iconStrokeWidth = 2.5,
   children,
   ...props
-}: React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & {
-    iconPosition?: BadgeIconPosition;
-    iconStrokeWidth?: number;
-  }) {
+}: BadgeIconProps) {
   const resolvedVariant = (variant ?? "default") as BadgeIconVariant;
   const ResolvedIcon = BADGE_ICONS[resolvedVariant];
-  const iconClassName = cn(
-    "icon-compact",
-    resolvedVariant === "processing" && "animate-spin",
-  );
 
   return (
     <Badge
-      className={cn("xl-rounded", className)}
+      className={cn("global-rounded", className)}
       variant={resolvedVariant}
       {...props}
     >
       {iconPosition === "left" && (
-        <span className="inline-flex items-center [&>svg]:size-3 pt-0.5">
-          <ResolvedIcon className={iconClassName} strokeWidth={iconStrokeWidth} />
+        <span
+          className={cn(
+            "badge-icon-slot inline-flex items-center pt-0.5",
+            resolvedVariant === "processing" && "animate-spin",
+          )}
+        >
+          <ResolvedIcon strokeWidth={iconStrokeWidth} />
         </span>
       )}
       {children}
       {iconPosition === "right" && (
-        <span className="inline-flex items-center [&>svg]:size-3 pt-0.5">
-          <ResolvedIcon className={iconClassName} strokeWidth={iconStrokeWidth} />
+        <span
+          className={cn(
+            "badge-icon-slot inline-flex items-center pt-0.5",
+            resolvedVariant === "processing" && "animate-spin",
+          )}
+        >
+          <ResolvedIcon strokeWidth={iconStrokeWidth} />
         </span>
       )}
     </Badge>
