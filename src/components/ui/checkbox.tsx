@@ -61,7 +61,7 @@ function Checkbox({
       className={cn(
         "peer shrink-0",
         CHECKBOX_CONTROL_CLASS[resolvedSize],
-        "xl-rounded border",
+        "global-rounded border-stroke border-input-default",
         "cursor-pointer",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "checkbox-root",

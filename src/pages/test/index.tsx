@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { CategoryPill } from "@/components/ui/category-pill";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -16,13 +16,19 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8 p-6">
-      <Block title="category pill">
-        <div className="surface-card global-rounded flex flex-wrap items-center gap-4 p-5">
-          <CategoryPill category="Electronics" shadow />
-          <CategoryPill category="Appliances" border shadow />
-          <CategoryPill category="Furniture" border shadow />
-          <CategoryPill category="Hardware" border shadow />
-          <CategoryPill category="Other" border shadow />
+      <Block title="checkbox">
+        <div className="surface-card global-rounded space-y-4 p-5">
+          <Checkbox label="Default checkbox" />
+          <Checkbox
+            label="With description"
+            description="This row helps verify label spacing and description styling."
+          />
+          <Checkbox
+            defaultChecked
+            label="Checked state"
+            description="Confirm checked background, border, and icon sizing."
+          />
+          <Checkbox disabled label="Disabled state" />
         </div>
       </Block>
     </div>
