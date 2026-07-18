@@ -1,11 +1,18 @@
 import type { ReactNode } from "react";
 
+import * as Icon from "@/components/icons";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -21,36 +28,31 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function Test() {
   return (
     <div className="space-y-8">
-      <Block title="accordion">
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>What changed in accordion?</AccordionTrigger>
-            <AccordionContent>
-              Accordion item borders now use semantic responsive border-width
-              utilities instead of fixed Tailwind `border-b`.
-            </AccordionContent>
-          </AccordionItem>
+      <Block title="alert dialog">
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="destructive">Delete customer</Button>
+          </AlertDialogTrigger>
 
-          <AccordionItem value="item-2">
-            <AccordionTrigger>What helper should I use now?</AccordionTrigger>
-            <AccordionContent>
-              Keep `getResponsiveSize` for the existing four semantic sizes. Use
-              `getResponsiveBreakpoint` when you need exact breakpoint-aware
-              width, height, or border behavior.
-            </AccordionContent>
-          </AccordionItem>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete customer record?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. The customer, linked sales, and
+                related activity history will be permanently removed.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
 
-          <AccordionItem value="item-3">
-            <AccordionTrigger>
-              Does this cover all breakpoints?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. The exact helper now covers `base`, `xxs`, `xs`, `sm`, `md`,
-              `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `7xl`, `8xl`,
-              `9xl`, and `10xl`.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                variant="destructive"
+                icon={<Icon.Trash2 />}
+                text="Delete"
+              />
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </Block>
     </div>
   );
