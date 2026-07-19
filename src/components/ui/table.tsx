@@ -21,12 +21,16 @@ function Table({
   caption,
   actionLabel,
   actionTo,
+  border = false,
+  shadow = false,
   ...props
-}: React.ComponentProps<"table"> & {
+}: Omit<React.ComponentProps<"table">, "border"> & {
   variant?: "main" | "simple";
   caption?: string;
   actionLabel?: string;
   actionTo?: string;
+  border?: boolean;
+  shadow?: boolean;
 }) {
   const isSimple = variant === "simple";
 
@@ -57,6 +61,8 @@ function Table({
           title={caption}
           actionLabel={actionLabel}
           actionTo={actionTo}
+          border={border}
+          shadow={shadow}
         >
           {tableEl}
         </CardCaption>
@@ -64,7 +70,11 @@ function Table({
     }
 
     return (
-      <Card border className="p-0 gap-0 overflow-hidden">
+      <Card
+        border={border}
+        shadow={shadow}
+        className="p-0 gap-0 overflow-hidden"
+      >
         {tableEl}
       </Card>
     );

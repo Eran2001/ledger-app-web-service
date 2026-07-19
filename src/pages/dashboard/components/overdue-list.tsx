@@ -36,6 +36,8 @@ export const OverdueList = () => {
       className="xl:col-span-2"
       actionLabel="View All"
       actionTo="/overdue"
+      shadow
+      border
     >
       <ul className="flex-1 divide-y divide-border">
         {overdueRows.map((r) => (

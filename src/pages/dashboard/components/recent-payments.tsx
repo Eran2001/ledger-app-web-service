@@ -19,7 +19,7 @@ const recentPayments = [...payments]
   .sort(
     (a, b) => new Date(b.paidDate).getTime() - new Date(a.paidDate).getTime(),
   )
-  .slice(0, 6)
+  .slice(0, 8)
   .map((p) => {
     const sched = installmentSchedules.find(
       (s) => s.id === p.installmentScheduleId,
@@ -50,6 +50,8 @@ export const RecentPayments = () => {
         caption="Recent Payments"
         actionLabel="View All"
         actionTo="/sales"
+        border
+        shadow
       >
         <TableHeader>
           <TableRow>
