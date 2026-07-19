@@ -270,6 +270,21 @@ Never run build commands (`npm run build`, `vite build`, `tsc`, etc.). Only run 
 **Exception:** importing a local component, sub-page, or util that lives inside the same page folder (e.g. `src/pages/customer/**`) may use a relative path instead. This keeps a page folder portable/movable without rewriting imports.
 
 ```ts
+// ✅ — follow like this
+import { lazy, Suspense } from "react";
+import { Outlet, useLocation } from "@tanstack/react-router";
+
+import AuthLayout from "@/layouts/auth-layout";
+
+import { Button } from "@/components/ui/button";
+import { AppFooter } from "@/components/shared/app-footer";
+
+import { useTopBarStore } from "@/stores/top-bar-store";
+
+import { SaleCard } from "../components/sale-card";
+```
+
+```ts
 // ✅ — cross-folder import, always @/
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth-store";

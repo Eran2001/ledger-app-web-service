@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import {
   createRootRoute,
   createRoute,
@@ -5,16 +6,18 @@ import {
   Outlet,
   redirect,
 } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
 
-import { Loading } from "@/components/ui/loading";
 import AuthLayout from "@/layouts/auth-layout";
 import DefaultLayout from "@/layouts/default-layout";
 
+import { Loading } from "@/components/ui/loading";
+
+/* AUTH */
 const LoginPage = lazy(() => import("./pages/auth/login"));
 const RegisterPage = lazy(() => import("./pages/auth/register"));
 const SetupPasswordPage = lazy(() => import("./pages/auth/setup-password"));
 
+/* DEFAULT */
 const Test = lazy(() => import("./pages/test"));
 const DashboardPage = lazy(() => import("./pages/dashboard"));
 const SalesPage = lazy(() => import("./pages/sales"));
@@ -31,10 +34,12 @@ const ProfilePage = lazy(
   () => import("./pages/settings/components/account-information"),
 );
 
+/* ERROR */
 const NotFoundPage = lazy(() => import("./pages/404"));
 const UnauthorizedPage = lazy(() => import("./pages/401"));
 const SubscriptionErrorPage = lazy(() => import("./pages/502"));
 
+/* ROOT */
 const rootRoute = createRootRoute({
   component: () => (
     <Suspense fallback={<Loading />}>
@@ -43,6 +48,7 @@ const rootRoute = createRootRoute({
   ),
 });
 
+/* AUTH */
 const authRoute = createRoute({
   getParentRoute: () => rootRoute,
   id: "auth",
@@ -65,6 +71,7 @@ const setupPasswordRoute = createRoute({
   component: SetupPasswordPage,
 });
 
+/* DEFAULT */
 const shellRoute = createRoute({
   getParentRoute: () => rootRoute,
   id: "shell",
@@ -144,6 +151,7 @@ const profileRoute = createRoute({
   component: ProfilePage,
 });
 
+/* ERROR */
 const notFoundRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/404",
@@ -162,6 +170,7 @@ const subscriptionErrorRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([
   authRoute.addChildren([loginRoute, registerRoute, setupPasswordRoute]),
+
   shellRoute.addChildren([
     indexRoute,
     testRoute,
@@ -178,6 +187,7 @@ const routeTree = rootRoute.addChildren([
     settingsRoute,
     profileRoute,
   ]),
+
   notFoundRoute,
   unauthorizedRoute,
   subscriptionErrorRoute,
