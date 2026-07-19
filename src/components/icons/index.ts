@@ -15,6 +15,7 @@ export {
   ChevronRight,
   Rocket,
   ChevronLeft,
+  Loader2Icon,
   Lightbulb,
   Settings,
   ReceiptText,

@@ -2,7 +2,6 @@ import * as React from "react";
 
 import * as Icon from "@/components/icons";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 
@@ -50,26 +49,16 @@ export function SearchField({
       )}
       onClick={() => inputRef.current?.focus()}
     >
-      {onSearch ? (
-        <Button
-          type="button"
-          variant="ghost"
-          className="search-field-icon-btn h-compact w-compact shrink-0"
-          onClick={(event) => {
-            event.stopPropagation();
-            onSearch();
-          }}
-          aria-label="Search"
-        >
-          <span className="search-field-icon flex items-center justify-center">
-            <Icon.Search />
-          </span>
-        </Button>
-      ) : (
-        <span className="search-field-icon flex shrink-0 items-center justify-center">
-          <Icon.Search />
-        </span>
-      )}
+      <span
+        className="search-field-icon flex shrink-0 items-center justify-center cursor-pointer"
+        onClick={(event) => {
+          if (!onSearch) return;
+          event.stopPropagation();
+          onSearch();
+        }}
+      >
+        <Icon.Search size={18} />
+      </span>
       <Input
         ref={inputRef}
         type="text"
@@ -78,7 +67,7 @@ export function SearchField({
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className={cn(
-          "flex-1 min-w-0 h-full p-0",
+          "flex-1 min-w-0 h-field p-0",
           "surface-transparent no-border no-rounded no-shadow no-outline",
           "t-body-md search-field-input",
           className,
@@ -87,13 +76,13 @@ export function SearchField({
       />
       {value && (
         <span
-          className="search-field-clear flex shrink-0 cursor-pointer items-center justify-center"
+          className="search-field-clear flex shrink-0 items-center justify-center cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             handleClear();
           }}
         >
-          <Icon.X />
+          <Icon.X size={18} />
         </span>
       )}
     </div>

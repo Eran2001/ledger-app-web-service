@@ -13,27 +13,7 @@ import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { CategoryLabel } from "@/components/ui/category-label";
 
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
 import type { ProductCategory } from "@/types/product-types";
-
-type Breakpoints = ReturnType<typeof useWidth>["breakpoints"];
-
-// TableCell keeps its own (roomier) row-height thresholds, independent of
-// the shared getResponsiveSize scale, so tbody rows don't get cramped when
-// that shared scale shifts for other components.
-function getTableCellSize(
-  width: number,
-  breakpoints: Breakpoints,
-): ResponsiveSize {
-  if (width >= breakpoints["5xl"]) return "extra-large";
-  if (width >= breakpoints.xl) return "large";
-  if (width >= breakpoints.xs) return "default";
-  return "compact";
-}
 
 function Table({
   className,
@@ -95,22 +75,12 @@ function Table({
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
-    <thead
-      data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
-      {...props}
-    />
+    <thead data-slot="table-header" className={cn(className)} {...props} />
   );
 }
 
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  );
+  return <tbody data-slot="table-body" className={cn(className)} {...props} />;
 }
 
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
@@ -118,8 +88,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "border-t fw-medium table-footer",
-        "[&>tr]:last:border-b-0",
+        "border-t-stroke border-default fw-medium table-footer",
         className,
       )}
       {...props}
@@ -137,27 +106,19 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   );
 }
 
-interface TableHeadProps extends React.ComponentProps<"th"> {
-  size?: ResponsiveSize;
-}
-
-function TableHead({ className, size, ...props }: TableHeadProps) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize: ResponsiveSize =
-    size ?? getResponsiveSize(width, breakpoints);
-
+function TableHead({
+  className,
+  variant,
+  ...props
+}: React.ComponentProps<"th"> & {
+  variant?: "main" | "simple";
+}) {
   return (
     <th
       data-slot="table-head"
+      data-variant={variant}
       className={cn(
-        "text-left align-middle whitespace-nowrap border-b border-default table-head",
-        resolvedSize === "compact"
-          ? "h-compact px-3 t-label-sm-bold"
-          : resolvedSize === "large"
-            ? "h-large px-4 t-label-md-bold"
-            : resolvedSize === "extra-large"
-              ? "h-medium-large px-5 t-body-md-bold"
-              : "h-field px-4 t-label-md-bold",
+        "text-left align-middle whitespace-nowrap border-b-stroke border-default table-head h-field px-4 t-label-md-bold",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -167,34 +128,24 @@ function TableHead({ className, size, ...props }: TableHeadProps) {
 }
 
 interface TableCellProps extends React.ComponentProps<"td"> {
-  size?: ResponsiveSize;
   accentBar?: boolean;
+  variant?: "main" | "simple";
 }
 
 function TableCell({
   className,
-  size,
   accentBar = false,
   children,
+  variant,
   ...props
 }: TableCellProps) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize: ResponsiveSize =
-    size ?? getTableCellSize(width, breakpoints);
-
   return (
     <td
       data-slot="table-cell"
+      data-variant={variant}
       className={cn(
-        "align-middle whitespace-nowrap",
+        "align-middle whitespace-nowrap h-medium-large px-4 t-body-md",
         accentBar && "relative",
-        resolvedSize === "compact"
-          ? "h-field px-3 t-label-md"
-          : resolvedSize === "large"
-            ? "h-medium-large px-4 t-body-md"
-            : resolvedSize === "extra-large"
-              ? "h-extra-large px-5 t-body-lg"
-              : "h-medium-large px-4 t-body-md",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}

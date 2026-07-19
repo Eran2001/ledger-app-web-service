@@ -16,7 +16,7 @@ export function TabSelect({
 }) {
   return (
     <div>
-      <div role="tablist" className="flex border-b border-default">
+      <div role="tablist" className="flex border-b-stroke border-default">
         {tabs.map((t) => (
           <button
             key={t.value}
@@ -25,7 +25,7 @@ export function TabSelect({
             aria-selected={value === t.value}
             onClick={() => onValueChange(t.value)}
             className={cn(
-              "py-3 px-5 t-body-md-bold tab-trigger border-b-2",
+              "px-5 py-3 t-body-md-bold tab-trigger border-b-stroke",
               value === t.value && "surface-card",
             )}
           >

@@ -2,7 +2,6 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -45,12 +44,12 @@ const inputGroupAddonVariants = cva(
       align: {
         "inline-start": [
           "order-first pl-3",
-          "has-[>button]:ml-[-0.45rem]",
+          "has-[>[data-slot=input-group-button]]:ml-[-0.45rem]",
           "has-[>kbd]:ml-[-0.35rem]",
         ],
         "inline-end": [
           "order-last pr-3",
-          "has-[>button]:mr-[-0.4rem]",
+          "has-[>[data-slot=input-group-button]]:mr-[-0.4rem]",
           "has-[>kbd]:mr-[-0.35rem]",
         ],
         "block-start": [
@@ -83,7 +82,9 @@ function InputGroupAddon({
       data-align={align}
       className={cn(inputGroupAddonVariants({ align }), className)}
       onClick={(e) => {
-        if ((e.target as HTMLElement).closest("button")) {
+        if (
+          (e.target as HTMLElement).closest('[data-slot="input-group-button"]')
+        ) {
           return;
         }
         e.currentTarget.parentElement?.querySelector("input")?.focus();
@@ -95,16 +96,13 @@ function InputGroupAddon({
 
 function InputGroupButton({
   className,
-  type = "button",
-  variant = "ghost",
   ...props
-}: Omit<React.ComponentProps<typeof Button>, "size">) {
+}: React.ComponentProps<"span">) {
   return (
-    <Button
-      type={type}
-      variant={variant}
+    <span
+      data-slot="input-group-button"
       className={cn(
-        "h-compact gap-1.5 px-2.5 t-body-md shadow-none global-rounded",
+        "flex h-field items-center justify-center gap-1.5 px-2.5 t-body-md shadow-none global-rounded cursor-pointer",
         className,
       )}
       {...props}

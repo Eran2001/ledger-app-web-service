@@ -40,7 +40,7 @@ function Slider({
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          "relative grow overflow-hidden xl-rounded slider-track",
+          "relative grow overflow-hidden full-rounded slider-track",
           "data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full",
           "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
         )}
@@ -54,7 +54,7 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
-          className="block size-4 shrink-0 border xl-rounded slider-thumb"
+          className="slider-thumb full-rounded border-stroke block shrink-0"
         />
       ))}
     </SliderPrimitive.Root>

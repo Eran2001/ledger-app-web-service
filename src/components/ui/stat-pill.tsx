@@ -35,7 +35,7 @@ export function StatPill({
   return (
     <span
       className={cn(
-        "t-label-sm fw-bold px-3 py-1.5 global-rounded inline-block whitespace-nowrap text-uppercase tracking-label",
+        "t-label-sm-bold inline-block whitespace-nowrap px-3 py-1.5 global-rounded text-uppercase tracking-label",
         COLOR_CLASS[color],
         border && "border-stroke",
         shadow && "shadow-card",

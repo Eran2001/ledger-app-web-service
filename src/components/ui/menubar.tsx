@@ -70,6 +70,7 @@ function MenubarContent({
   align = "start",
   alignOffset = -4,
   sideOffset = 8,
+  collisionPadding = 16,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Content>) {
   return (
@@ -79,6 +80,7 @@ function MenubarContent({
         align={align}
         alignOffset={alignOffset}
         sideOffset={sideOffset}
+        collisionPadding={collisionPadding}
         className={cn(
           "global-rounded border-stroke z-dropdown min-w-48 p-1",
           "origin-(--radix-menubar-content-transform-origin)",
@@ -270,12 +272,14 @@ function MenubarSubTrigger({
 function MenubarSubContent({
   className,
   sideOffset = 8,
+  collisionPadding = 16,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.SubContent>) {
   return (
     <MenubarPrimitive.SubContent
       data-slot="menubar-sub-content"
       sideOffset={sideOffset}
+      collisionPadding={collisionPadding}
       className={cn(
         "global-rounded border-stroke z-dropdown min-w-32 p-1",
         "origin-(--radix-menubar-content-transform-origin)",

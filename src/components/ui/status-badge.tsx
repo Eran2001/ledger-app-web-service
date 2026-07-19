@@ -37,9 +37,13 @@ const VAR_MAP: Record<Status, { bg: string; text: string }> = {
 
 export function StatusBadge({
   status,
+  border = false,
+  shadow = false,
   className,
 }: {
   status: Status;
+  border?: boolean;
+  shadow?: boolean;
   className?: string;
 }) {
   const colors = VAR_MAP[status];
@@ -47,6 +51,8 @@ export function StatusBadge({
     <span
       className={cn(
         "badge-text px-2.5 py-0.5 global-rounded whitespace-nowrap inline-block",
+        border && "border-stroke",
+        shadow && "shadow-card",
         className,
       )}
       style={{ backgroundColor: colors.bg, color: colors.text }}
