@@ -9,10 +9,13 @@ export function BusinessHeader({ collapsed }: BusinessHeaderProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 px-4 h-14 border-b shrink-0",
+        "flex items-center gap-3 px-4 h-14 border-b-stroke border-r-stroke shrink-0",
         collapsed && "justify-center px-0",
       )}
-      style={{ borderColor: "var(--sidebar-border)" }}
+      style={{
+        borderColor:
+          "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+      }}
     >
       <Avatar>
         <AvatarFallback>ST</AvatarFallback>

@@ -4,7 +4,13 @@ export function AppFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="surface-card border-t border-default shrink-0">
+    <footer
+      className="surface-card border-t-stroke shrink-0"
+      style={{
+        borderColor:
+          "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+      }}
+    >
       <div
         className={[
           "min-h-10 sm:min-h-11 md:min-h-12 lg:min-h-12 xl:min-h-14 2xl:min-h-14 3xl:min-h-16",

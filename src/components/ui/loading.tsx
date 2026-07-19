@@ -9,7 +9,7 @@ interface LoadingProps {
 export function Loading({ label = "Loading" }: LoadingProps) {
   return (
     <div
-      className="relative flex-1 min-h-full w-full surface-background"
+      className="relative flex-1 min-h-full w-full"
       aria-live="polite"
       aria-busy="true"
     >

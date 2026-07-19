@@ -21,7 +21,10 @@ export function MobileSidebar() {
       <SheetContent
         side="left"
         className="p-0 w-full xs:max-w-72 app-sidebar"
-        style={{ borderColor: "var(--sidebar-border)" }}
+        style={{
+          borderColor:
+            "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+        }}
         aria-describedby={undefined}
       >
         <SheetTitle className="sr-only">Navigation menu</SheetTitle>

@@ -21,7 +21,7 @@ export default function DefaultLayout() {
       : null;
 
   return (
-    <div className="flex min-h-screen w-full surface-page">
+    <div className="flex min-h-screen w-full surface-background">
       <Sidebar />
       <MobileSidebar />
       <main className="flex-1 min-w-0 min-h-screen flex flex-col">

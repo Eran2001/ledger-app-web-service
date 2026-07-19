@@ -1,5 +1,8 @@
 import { create } from "zustand";
 
+const SIDEBAR_COLLAPSED_KEY = "sidebarCollapsed";
+const NEW_CUSTOMER_OPEN_KEY = "newCustomerOpen";
+
 interface UIState {
   sidebarCollapsed: boolean;
   mobileSidebarOpen: boolean;
@@ -19,25 +22,30 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-  sidebarCollapsed: true,
+  sidebarCollapsed: localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === "true",
   mobileSidebarOpen: false,
   activeModal: null,
   selectedInstallmentId: null,
 
   /* New Customer */
-  newCustomerOpen: sessionStorage.getItem("newCustomerOpen") === "true",
+  newCustomerOpen: sessionStorage.getItem(NEW_CUSTOMER_OPEN_KEY) === "true",
 
-  toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
+  toggleSidebar: () =>
+    set((s) => {
+      const nextCollapsed = !s.sidebarCollapsed;
+      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(nextCollapsed));
+      return { sidebarCollapsed: nextCollapsed };
+    }),
   setMobileSidebarOpen: (open) => set({ mobileSidebarOpen: open }),
   openModal: (name) => set({ activeModal: name }),
   closeModal: () => set({ activeModal: null, selectedInstallmentId: null }),
   setSelectedInstallment: (id) => set({ selectedInstallmentId: id }),
   openNewCustomer: () => {
-    sessionStorage.setItem("newCustomerOpen", "true");
+    sessionStorage.setItem(NEW_CUSTOMER_OPEN_KEY, "true");
     set({ newCustomerOpen: true });
   },
   closeNewCustomer: () => {
-    sessionStorage.removeItem("newCustomerOpen");
+    sessionStorage.removeItem(NEW_CUSTOMER_OPEN_KEY);
     set({ newCustomerOpen: false });
   },
 }));

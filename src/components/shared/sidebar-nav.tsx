@@ -45,11 +45,14 @@ export function SidebarNav({
   return (
     <aside
       className={cn(
-        "app-sidebar h-full min-h-0 flex flex-col transition-[width] duration-300 overflow-hidden border-r",
+        "app-sidebar border-r-stroke h-full min-h-0 flex flex-col transition-[width] duration-300 overflow-hidden",
         collapsed ? "w-16" : "w-55",
         className,
       )}
-      style={{ borderColor: "var(--sidebar-border)" }}
+      style={{
+        borderColor:
+          "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+      }}
       aria-label="Main sidebar"
     >
       <BusinessHeader collapsed={collapsed} />
@@ -66,7 +69,13 @@ export function SidebarNav({
                   {section.label}
                 </div>
               ) : i > 0 ? (
-                <div className="mb-3 border-t" />
+                <div
+                  className="mb-3 border-t-stroke"
+                  style={{
+                    borderColor:
+                      "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+                  }}
+                />
               ) : null}
               <ul className={cn("space-y-1", !collapsed && "px-3")}>
                 {section.items.map((item) => {
@@ -136,8 +145,11 @@ export function SidebarNav({
       </nav>
 
       <div
-        className="border-t shrink-0 p-3"
-        style={{ borderColor: "var(--sidebar-border)" }}
+        className="border-t-stroke shrink-0 p-3"
+        style={{
+          borderColor:
+            "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
+        }}
       >
         <UserProfile collapsed={collapsed} />
 
