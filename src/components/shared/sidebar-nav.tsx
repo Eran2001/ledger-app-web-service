@@ -62,14 +62,11 @@ export function SidebarNav({
               className={cn("mb-4", collapsed && "px-2")}
             >
               {!collapsed ? (
-                <div className="px-5 mb-2 t-label-sm-bold app-sidebar-text-faint text-uppercase [letter-spacing:var(--tracking-label-wide)]">
+                <div className="px-5 mb-2 t-label-sm-bold app-sidebar-text-faint text-uppercase">
                   {section.label}
                 </div>
               ) : i > 0 ? (
-                <div
-                  className="mb-3 border-t"
-                  style={{ borderColor: "var(--sidebar-border)" }}
-                />
+                <div className="mb-3 border-t" />
               ) : null}
               <ul className={cn("space-y-1", !collapsed && "px-3")}>
                 {section.items.map((item) => {
@@ -84,9 +81,16 @@ export function SidebarNav({
                               to={item.href}
                               onClick={onItemClick}
                               className={cn(
-                                "app-sidebar-collapsed-link",
-                                active && "app-sidebar-link-active",
+                                "app-sidebar-link app-sidebar-icon-btn inline-flex h-field w-field items-center justify-center global-rounded",
                               )}
+                              style={
+                                active
+                                  ? {
+                                      backgroundColor: "var(--primary-light)",
+                                      color: "var(--primary)",
+                                    }
+                                  : undefined
+                              }
                             >
                               <Icon className="h-4 w-4" strokeWidth={2} />
                               <span className="sr-only">{item.label}</span>
@@ -109,9 +113,15 @@ export function SidebarNav({
                         onClick={onItemClick}
                         className={cn(
                           "app-sidebar-link flex items-center gap-3 px-3 h-10 global-rounded t-body-md transition-colors",
-                          active &&
-                            "app-sidebar-link-active border-l-[3px] border-start-brand pl-2.25",
                         )}
+                        style={
+                          active
+                            ? {
+                                backgroundColor: "var(--primary-light)",
+                                color: "var(--primary)",
+                              }
+                            : undefined
+                        }
                       >
                         <Icon className="h-4 w-4 shrink-0" strokeWidth={2} />
                         <span className="truncate">{item.label}</span>

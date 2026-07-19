@@ -63,7 +63,6 @@ const CustomersPage = () => {
               value={search}
               onChange={setSearch}
               placeholder="Search by name, NIC, or phone…"
-              size={width >= breakpoints.xl ? "large" : "default"}
               containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
             />
             <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
@@ -78,11 +77,7 @@ const CustomersPage = () => {
                   <TabsTrigger value="overdue">Has Overdue</TabsTrigger>
                 </TabsList>
               </Tabs>
-              <Button
-                size={width >= breakpoints.xl ? "lg" : "default"}
-                variant="secondary"
-                className="shrink-0"
-              >
+              <Button variant="secondary">
                 <Icon.ArrowUpFromLine /> Export
               </Button>
             </div>
