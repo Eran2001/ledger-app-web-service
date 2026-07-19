@@ -306,12 +306,7 @@ export default function ReportsPage() {
                           {formatCurrency(r.amount)}
                         </td>
                         <td className="px-4 py-3 text-right">
-                          <Button
-                            asChild
-                            size="sm"
-                            variant="ghost"
-                            className="gap-1.5"
-                          >
+                          <Button asChild variant="ghost" className="gap-1.5">
                             <Link to="/sales/$id" params={{ id: r.saleId }}>
                               <Eye className="h-3.5 w-3.5" />
                               View

@@ -1,54 +1,23 @@
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import { cva } from "class-variance-authority";
 
-import { useWidth } from "@/hooks/use-width";
 import { cn } from "@/lib/utils";
 import { getAvatarColors } from "@/utils/get-avatar-colors";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
-
-const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden xl-rounded",
-  {
-    variants: {
-      size: {
-        compact: "h-field w-field",
-        default: "h-large w-large",
-        large: "h-medium-large w-medium-large",
-        "extra-large": "h-extra-large w-extra-large",
-        auto: "h-full w-full",
-      },
-    },
-    defaultVariants: {
-      size: "default",
-    },
-  },
-);
-
-type AvatarSize = ResponsiveSize | "auto";
 
 function Avatar({
   className,
-  size,
   border = false,
   shadow = false,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Root> & {
-  size?: AvatarSize;
   border?: boolean;
   shadow?: boolean;
 }) {
-  const { width, breakpoints } = useWidth();
-  const resolvedSize = size ?? getResponsiveSize(width, breakpoints);
-
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
       className={cn(
-        avatarVariants({ size: resolvedSize }),
+        "relative flex h-field w-field shrink-0 overflow-hidden global-rounded",
         border && "border-stroke border-default",
         shadow && "shadow-card",
         className,

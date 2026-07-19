@@ -255,7 +255,6 @@ export default function OverduePage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-1 justify-end">
                           <Button
-                            size="sm"
                             variant="outline"
                             onClick={() =>
                               Notification.success(
@@ -266,7 +265,7 @@ export default function OverduePage() {
                             <Bell />
                             Remind
                           </Button>
-                          <Button size="sm" variant="ghost">
+                          <Button variant="ghost">
                             <Link to="/sales/$id" params={{ id: r.saleId }}>
                               <Eye />
                               View

@@ -46,14 +46,13 @@ function ToggleGroupItem({
 
   return (
     <ToggleGroupPrimitive.Item
-      data-slot="toggle-group-item no-rounded"
+      data-slot="toggle-group-item"
       data-variant={context.variant || variant}
       className={cn(
         toggleVariants({
           variant: context.variant || variant,
-          size: "default",
         }),
-        "shrink-0 toggle-group-item no-rounded",
+        "shrink-0 toggle-group-item",
         className,
       )}
       {...props}

@@ -27,7 +27,6 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
         <div className="flex justify-between items-center">
           <Button
             variant="link"
-            size="sm"
             className="p-0 t-body-md-bold group"
             onClick={() => navigate({ to: "/customers" })}
           >

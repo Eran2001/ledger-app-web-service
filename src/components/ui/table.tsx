@@ -322,7 +322,7 @@ function TableEmptyState({
         <p className="t-body-lg text-faint">{description}</p>
       </div>
 
-      <Button variant="outline" size="lg" className="mt-4" onClick={onRefresh}>
+      <Button variant="outline" className="mt-4" onClick={onRefresh}>
         <Icon.RefreshCw className="size-4" />
         {actionLabel}
       </Button>

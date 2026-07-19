@@ -4,43 +4,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import * as Icon from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { useWidth } from "@/hooks/use-width";
-import {
-  getResponsiveSize,
-  type ResponsiveSize,
-} from "@/utils/get-responsive-size";
-
-type ButtonDimension =
-  | "small"
-  | "compact"
-  | "field"
-  | "large"
-  | "medium-large"
-  | "extra-large"
-  | "full"
-  | "auto";
-
-const BUTTON_HEIGHT_CLASSES: Record<ButtonDimension, string> = {
-  small: "h-small",
-  compact: "h-compact",
-  field: "h-field",
-  large: "h-large",
-  "medium-large": "h-medium-large",
-  "extra-large": "h-extra-large",
-  full: "h-full",
-  auto: "h-auto",
-};
-
-const BUTTON_WIDTH_CLASSES: Record<ButtonDimension, string> = {
-  small: "w-small",
-  compact: "w-compact",
-  field: "w-field",
-  large: "w-large",
-  "medium-large": "w-medium-large",
-  "extra-large": "w-extra-large",
-  full: "w-full",
-  auto: "w-auto",
-};
 
 const buttonVariants = cva(
   [
@@ -67,9 +30,6 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-field px-4 t-body-md has-[>svg]:px-3",
-        sm: "h-compact global-rounded gap-1.5 px-3 t-label-md has-[>svg]:px-2.5",
-        lg: "h-large global-rounded px-6 t-body-md has-[>svg]:px-4",
-        xl: "h-extra-large global-rounded px-8 t-body-lg has-[>svg]:px-6",
         icon: "h-field w-field",
         "icon-sm": "h-compact w-compact",
         "icon-lg": "h-large w-large",
@@ -79,24 +39,12 @@ const buttonVariants = cva(
   },
 );
 
-const RESPONSIVE_SIZE_MAP: Record<
-  ResponsiveSize,
-  NonNullable<VariantProps<typeof buttonVariants>["size"]>
-> = {
-  compact: "sm",
-  default: "default",
-  large: "lg",
-  "extra-large": "xl",
-};
-
 const Button = ({
   className,
   variant,
   size,
   border = false,
   shadow = false,
-  width,
-  height,
   asChild = false,
   loading = false,
   disabled,
@@ -107,13 +55,9 @@ const Button = ({
     asChild?: boolean;
     border?: boolean;
     shadow?: boolean;
-    width?: ButtonDimension;
-    height?: ButtonDimension;
     loading?: boolean;
   }) => {
-  const { width: viewportWidth, breakpoints } = useWidth();
-  const resolvedSize =
-    size ?? RESPONSIVE_SIZE_MAP[getResponsiveSize(viewportWidth, breakpoints)];
+  const resolvedSize = size ?? "default";
   const Comp = asChild ? Slot : "button";
   const resolvedVariant = variant ?? "default";
   const isRoll = resolvedVariant === "default";
@@ -148,8 +92,6 @@ const Button = ({
         buttonVariants({ variant: resolvedVariant, size: resolvedSize }),
         (border || hasVariantBorder) && "border-stroke border-default",
         shadow && "shadow-card",
-        width && BUTTON_WIDTH_CLASSES[width],
-        height && BUTTON_HEIGHT_CLASSES[height],
         className,
       )}
       disabled={loading || disabled}

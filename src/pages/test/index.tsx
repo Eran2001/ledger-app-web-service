@@ -79,6 +79,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TimePicker } from "@/components/ui/time-picker";
 import { Toggle } from "@/components/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default function Test() {
   const [searchValue, setSearchValue] = useState("");
@@ -106,7 +107,7 @@ export default function Test() {
 
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 3xl:grid-cols-3 5xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 3xl:grid-cols-3 5xl:grid-cols-4">
         <SearchField
           value={searchValue}
           placeholder="Enter ur name"
@@ -118,6 +119,26 @@ export default function Test() {
         />
 
         <Button>New Sale</Button>
+
+        <Toggle pressed={togglePressed} onPressedChange={setTogglePressed}>
+          Bold
+        </Toggle>
+
+        <ToggleGroup
+          type="single"
+          value={toggleGroupValue}
+          onValueChange={(value) => {
+            if (value) setToggleGroupValue(value);
+          }}
+        >
+          <ToggleGroupItem value="left">Left</ToggleGroupItem>
+          <ToggleGroupItem value="center">Center</ToggleGroupItem>
+          <ToggleGroupItem value="right">Right</ToggleGroupItem>
+        </ToggleGroup>
+
+        <Avatar>
+          <AvatarFallback>SM</AvatarFallback>
+        </Avatar>
 
         <Tabs defaultValue="overview">
           <TabsList>
@@ -201,22 +222,6 @@ export default function Test() {
         </Select>
 
         <TimePicker value={timeValue} onChange={setTimeValue} />
-
-        <Toggle pressed={togglePressed} onPressedChange={setTogglePressed}>
-          Bold
-        </Toggle>
-
-        <ToggleGroup
-          type="single"
-          value={toggleGroupValue}
-          onValueChange={(value) => {
-            if (value) setToggleGroupValue(value);
-          }}
-        >
-          <ToggleGroupItem value="left">Left</ToggleGroupItem>
-          <ToggleGroupItem value="center">Center</ToggleGroupItem>
-          <ToggleGroupItem value="right">Right</ToggleGroupItem>
-        </ToggleGroup>
 
         <Pagination>
           <PaginationContent>
@@ -348,10 +353,7 @@ export default function Test() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <ButtonGroup
-          action="toggle"
-          defaultValue="grid"
-        />
+        <ButtonGroup action="toggle" defaultValue="grid" />
 
         <ButtonGroup
           action="split"
@@ -378,17 +380,19 @@ export default function Test() {
           action="search"
           placeholder="Search customers..."
           onChange={(event) =>
-            setButtonGroupSearchValue(
-              (event.target as HTMLInputElement).value,
-            )
+            setButtonGroupSearchValue((event.target as HTMLInputElement).value)
           }
         />
 
         <ButtonGroup
           action="pagination"
           label={`Page ${buttonGroupPage} of 12`}
-          onPrev={() => setButtonGroupPage((current) => Math.max(1, current - 1))}
-          onNext={() => setButtonGroupPage((current) => Math.min(12, current + 1))}
+          onPrev={() =>
+            setButtonGroupPage((current) => Math.max(1, current - 1))
+          }
+          onNext={() =>
+            setButtonGroupPage((current) => Math.min(12, current + 1))
+          }
         />
 
         <Command border>
@@ -403,10 +407,11 @@ export default function Test() {
           </CommandList>
         </Command>
 
-        <Collapsible open={isCollapsibleOpen} onOpenChange={setIsCollapsibleOpen}>
-          <CollapsibleTrigger>
-            Customer summary
-          </CollapsibleTrigger>
+        <Collapsible
+          open={isCollapsibleOpen}
+          onOpenChange={setIsCollapsibleOpen}
+        >
+          <CollapsibleTrigger>Customer summary</CollapsibleTrigger>
           <CollapsibleContent>
             Recent invoice totals and payment activity appear here.
           </CollapsibleContent>

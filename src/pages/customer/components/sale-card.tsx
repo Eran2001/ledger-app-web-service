@@ -56,7 +56,6 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
         <StatMeta label="Next due" value={formatDate(stat.nextDue)} />
         <Button
           variant="link"
-          size="sm"
           className="p-0 t-body-md-bold group"
           onClick={() =>
             navigate({

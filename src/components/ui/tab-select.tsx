@@ -25,7 +25,7 @@ export function TabSelect({
             aria-selected={value === t.value}
             onClick={() => onValueChange(t.value)}
             className={cn(
-              "px-5 py-3 t-body-md-bold tab-trigger border-b-stroke",
+              "inline-flex h-field items-center px-5 t-body-md-bold tab-trigger border-b-stroke",
               value === t.value && "surface-card",
             )}
           >

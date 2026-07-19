@@ -130,7 +130,6 @@ export default function UsersPage() {
                     <td className="px-4 py-3">
                       <div className="flex justify-end">
                         <Button
-                          size="sm"
                           variant="outline"
                           onClick={() =>
                             Notification.success(`Edit role for ${u.name}`)
@@ -205,7 +204,6 @@ export default function UsersPage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-1 justify-end">
                           <Button
-                            size="sm"
                             onClick={() => approve(r.id)}
                             className="surface-success text-inverse hover:opacity-90 gap-1.5"
                           >
@@ -213,7 +211,6 @@ export default function UsersPage() {
                             Approve
                           </Button>
                           <Button
-                            size="sm"
                             variant="outline"
                             onClick={() => reject(r.id)}
                             className="gap-1.5 text-danger surface-danger-soft-hover"

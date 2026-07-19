@@ -200,7 +200,6 @@ export default function SaleDetailPage() {
                       {!isPaid ? (
                         <Button
                           variant="outline"
-                          size="sm"
                           onClick={() => openPaymentModal(s.id)}
                           className="t-label-md-bold control-rounded border-brand-soft text-brand hover:bg-(--primary-light) bg-transparent"
                         >
