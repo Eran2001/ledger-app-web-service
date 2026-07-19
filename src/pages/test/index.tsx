@@ -1,9 +1,19 @@
 import * as Icon from "@/components/icons";
+import { EmptyState } from "@/components/shared/empty-state";
 
-export default function Test() {
+const Test = () => {
   return (
     <div className="space-y-6">
-      <h1>Hello</h1>
+      <EmptyState
+        icon={Icon.AlertCircle}
+        title="Hello"
+        subtitle="yes"
+        actionLabel="Click"
+        onAction={() => undefined}
+        actionIcon={Icon.AlertCircle}
+      />
     </div>
   );
-}
+};
+
+export default Test;

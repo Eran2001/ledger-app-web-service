@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+
 import { cn } from "@/lib/utils";
 
 interface EmptyStateProps {
@@ -77,14 +78,8 @@ export function EmptyState({
         {subtitle}
       </p>
       {actionLabel && onAction && (
-        <Button
-          onClick={onAction}
-          className={cn(
-            "mt-6 h-10 px-5",
-            "surface-brand text-inverse btn-base control-rounded",
-          )}
-        >
-          {ActionIcon && <ActionIcon className="size-4" />}
+        <Button onClick={onAction} className={cn("mt-6")}>
+          {ActionIcon && <ActionIcon />}
           {actionLabel}
         </Button>
       )}
