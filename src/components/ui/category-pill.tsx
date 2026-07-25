@@ -1,4 +1,5 @@
 import { StatPill } from "@/components/ui/stat-pill";
+
 import type { ProductCategory } from "@/types/product-types";
 
 const CATEGORY_COLOR: Record<

@@ -1,14 +1,15 @@
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { CheckIcon } from "lucide-react";
 
-import { useWidth } from "@/hooks/use-width";
+import * as Icon from "@/components/icons";
 import { Label } from "@/components/ui/label";
+
 import { cn } from "@/lib/utils";
 import {
   getResponsiveSize,
   type ResponsiveSize,
 } from "@/utils/get-responsive-size";
+import { useWidth } from "@/hooks/use-width";
 
 const CHECKBOX_CONTROL_CLASS: Record<ResponsiveSize, string> = {
   compact: "size-4",
@@ -74,7 +75,7 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current transition-none"
       >
-        <CheckIcon className={CHECKBOX_ICON_CLASS[resolvedSize]} />
+        <Icon.CheckIcon className={CHECKBOX_ICON_CLASS[resolvedSize]} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

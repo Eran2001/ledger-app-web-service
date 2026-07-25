@@ -13,13 +13,10 @@ import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 
 import { Notification } from "@/utils/notification";
 import { TEST_CUSTOMER } from "@/constant/test-data";
+import ComingSoon from "@/components/shared/coming-soon";
 
 const Test = () => {
-  return (
-    <div>
-      <h1>hello</h1>
-    </div>
-  );
+  return <ComingSoon />;
 };
 
 export default Test;

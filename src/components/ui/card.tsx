@@ -2,6 +2,7 @@ import * as React from "react";
 import type { LucideIcon } from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
+
 import { cn } from "@/lib/utils";
 
 type CardProps = React.ComponentProps<"div"> & {

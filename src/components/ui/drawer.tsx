@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
-import { XIcon } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
+import * as Icon from "@/components/icons";
 
 import { cn } from "@/lib/utils";
 
@@ -121,7 +122,7 @@ function DrawerContent({
               "dialog-close-btn",
             )}
           >
-            <XIcon />
+            <Icon.XIcon />
             <span className="sr-only">Close</span>
           </DrawerPrimitive.Close>
         )}

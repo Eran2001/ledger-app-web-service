@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { toast as sonnerToast } from "sonner";
 
 import * as Icon from "@/components/icons";
+
 import { cn } from "@/lib/utils";
 
 type ToastVariant = "success" | "destructive" | "warning" | "info";
@@ -15,13 +16,17 @@ type CustomToastProps = {
 
 const VARIANT_STYLES: Record<ToastVariant, ToastStyle> = {
   success: {
-    icon: <Icon.CircleCheckBig className="custom-toast__icon-svg" strokeWidth={3} />,
+    icon: (
+      <Icon.CircleCheckBig className="custom-toast__icon-svg" strokeWidth={3} />
+    ),
   },
   destructive: {
     icon: <Icon.CircleX className="custom-toast__icon-svg" strokeWidth={3} />,
   },
   warning: {
-    icon: <Icon.TriangleAlert className="custom-toast__icon-svg" strokeWidth={3} />,
+    icon: (
+      <Icon.TriangleAlert className="custom-toast__icon-svg" strokeWidth={3} />
+    ),
   },
   info: {
     icon: <Icon.Info className="custom-toast__icon-svg" strokeWidth={3} />,
@@ -32,7 +37,9 @@ function CustomToast({ id, message, variant }: CustomToastProps) {
   const { icon } = VARIANT_STYLES[variant];
 
   return (
-    <div className={cn("custom-toast global-rounded", `custom-toast--${variant}`)}>
+    <div
+      className={cn("custom-toast global-rounded", `custom-toast--${variant}`)}
+    >
       <span aria-hidden="true" className="custom-toast__icon global-rounded">
         {icon}
       </span>

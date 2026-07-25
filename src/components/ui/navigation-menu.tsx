@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
-import { ChevronDownIcon } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 
 import { cn } from "@/lib/utils";
 
@@ -80,15 +81,11 @@ function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
-      className={cn(
-        navigationMenuTriggerStyle(),
-        "group",
-        className,
-      )}
+      className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
       {children}{" "}
-      <ChevronDownIcon
+      <Icon.ChevronDownIcon
         className="relative top-px ml-1 size-3"
         aria-hidden="true"
       />
@@ -136,10 +133,12 @@ function NavigationMenuContent({
     if (!trigger) return;
 
     const triggerRect = trigger.getBoundingClientRect();
-    const contentHeight = content.getBoundingClientRect().height || content.scrollHeight;
+    const contentHeight =
+      content.getBoundingClientRect().height || content.scrollHeight;
     const spaceAbove = triggerRect.top;
     const spaceBelow = window.innerHeight - triggerRect.bottom;
-    const shouldOpenUpward = spaceBelow < contentHeight + 16 && spaceAbove > spaceBelow;
+    const shouldOpenUpward =
+      spaceBelow < contentHeight + 16 && spaceAbove > spaceBelow;
 
     setOpenUpward(shouldOpenUpward);
   }, [inlinePanel]);

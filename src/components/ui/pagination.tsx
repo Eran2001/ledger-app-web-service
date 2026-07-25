@@ -1,12 +1,9 @@
 import * as React from "react";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react";
+
+import * as Icon from "@/components/icons";
+import { buttonVariants } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -71,7 +68,7 @@ function PaginationPrevious({
       className={cn(className)}
       {...props}
     >
-      <ChevronLeftIcon />
+      <Icon.ChevronLeftIcon />
     </PaginationLink>
   );
 }
@@ -86,7 +83,7 @@ function PaginationNext({
       className={cn(className)}
       {...props}
     >
-      <ChevronRightIcon />
+      <Icon.ChevronRightIcon />
     </PaginationLink>
   );
 }
@@ -99,10 +96,13 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex h-field w-field items-center justify-center", className)}
+      className={cn(
+        "flex h-field w-field items-center justify-center",
+        className,
+      )}
       {...props}
     >
-      <MoreHorizontalIcon />
+      <Icon.MoreHorizontalIcon />
       <span className="sr-only">More pages</span>
     </span>
   );

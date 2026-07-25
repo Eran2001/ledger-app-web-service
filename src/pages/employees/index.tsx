@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { Check, Edit2, X } from "lucide-react";
+import { Check, Edit2, Inbox, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { Notification } from "@/components/ui/custom-toast";
+import {
+  Grid,
+  GridItem,
+  GridItemHeader,
+  GridItemBody,
+  GridEmpty,
+} from "@/components/ui/grid";
 
 import {
   pendingRegistrations,
   employees as initialUsers,
 } from "@/constant/employee-data";
+import { useWidth } from "@/hooks/use-width";
 import { formatDate } from "@/utils/format-date";
 import type { Employee, Role } from "@/types/employee-types";
 
@@ -28,6 +36,8 @@ function rolePillClass(role: Role): string {
 }
 
 export default function UsersPage() {
+  const { width, breakpoints } = useWidth();
+  const isMaxLg = width < breakpoints.lg;
   const [tab, setTab] = useState<Tab>("Team Members");
   const [users, setUsers] = useState<Employee[]>(initialUsers);
   const [pending, setPending] = useState(pendingRegistrations);
@@ -81,6 +91,51 @@ export default function UsersPage() {
       </div>
 
       {tab === "Team Members" ? (
+        isMaxLg ? (
+          <Grid>
+            {users.map((u) => (
+              <GridItem key={u.id} border shadow>
+                <GridItemHeader>
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <InitialsAvatar name={u.name} />
+                    <span className="table-title-text truncate">
+                      {u.name}
+                    </span>
+                  </div>
+                  <StatusBadge
+                    status={u.status === "active" ? "ACTIVE" : "PENDING"}
+                  />
+                </GridItemHeader>
+                <GridItemBody>
+                  <span className="t-label-md text-faint">Email</span>
+                  <span className="table-text font-mono t-body-md truncate">
+                    {u.email}
+                  </span>
+                  <span className="t-label-md text-faint">Role</span>
+                  <span
+                    className={`${rolePillClass(u.role)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
+                  >
+                    {u.role}
+                  </span>
+                  <span className="t-label-md text-faint">Last Login</span>
+                  <span className="table-text">
+                    {formatDate(u.lastLogin)}
+                  </span>
+                </GridItemBody>
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    Notification.success(`Edit role for ${u.name}`)
+                  }
+                  className="gap-1.5"
+                >
+                  <Edit2 className="h-3.5 w-3.5" />
+                  Edit Role
+                </Button>
+              </GridItem>
+            ))}
+          </Grid>
+        ) : (
         <div className="card-base overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -147,6 +202,71 @@ export default function UsersPage() {
             </table>
           </div>
         </div>
+        )
+      ) : isMaxLg ? (
+        pending.length === 0 ? (
+          <Grid>
+            <GridEmpty
+              icon={Inbox}
+              title="No pending requests"
+              description="No pending requests."
+            />
+          </Grid>
+        ) : (
+          <Grid>
+            {pending.map((r) => (
+              <GridItem key={r.id} border shadow>
+                <GridItemHeader>
+                  <span className="table-title-text">{r.name}</span>
+                </GridItemHeader>
+                <GridItemBody>
+                  <span className="t-label-md text-faint">Email</span>
+                  <span className="table-text font-mono t-body-md">
+                    {r.email}
+                  </span>
+                  <span className="t-label-md text-faint">Phone</span>
+                  <span className="table-text font-mono t-body-md">
+                    {r.phone}
+                  </span>
+                  <span className="t-label-md text-faint">
+                    Requested Role
+                  </span>
+                  <span
+                    className={`${rolePillClass(r.requestedRole)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
+                  >
+                    {r.requestedRole}
+                  </span>
+                  <span className="t-label-md text-faint">Message</span>
+                  <p className="table-text col-span-2 line-clamp-2">
+                    {r.message}
+                  </p>
+                  <span className="t-label-md text-faint">Date</span>
+                  <span className="table-text">
+                    {formatDate(r.requestedAt)}
+                  </span>
+                </GridItemBody>
+                <div className="flex items-center gap-2">
+                  <Button
+                    className="flex-1 gap-1.5 surface-success text-inverse hover:opacity-90"
+                    onClick={() => approve(r.id)}
+                  >
+                    <Check className="h-3.5 w-3.5" />
+                    Approve
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex-1 gap-1.5 text-danger surface-danger-soft-hover"
+                    style={{ borderColor: "var(--destructive)" }}
+                    onClick={() => reject(r.id)}
+                  >
+                    <X className="h-3.5 w-3.5" />
+                    Reject
+                  </Button>
+                </div>
+              </GridItem>
+            ))}
+          </Grid>
+        )
       ) : (
         <div className="card-base overflow-hidden">
           <div className="overflow-x-auto">

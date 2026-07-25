@@ -2,6 +2,7 @@ import * as React from "react";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 
 import { Label } from "@/components/ui/label";
+
 import { cn } from "@/lib/utils";
 
 function Switch({
@@ -24,7 +25,7 @@ function Switch({
       id={switchId}
       data-slot="switch"
       className={cn(
-        "peer inline-flex shrink-0 items-center border-stroke full-rounded cursor-pointer switch-track switch-xl",
+        "peer inline-flex shrink-0 items-center border-stroke global-rounded cursor-pointer switch-track switch-xl",
         className,
       )}
       {...props}
@@ -32,7 +33,7 @@ function Switch({
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={cn(
-          "pointer-events-none block full-rounded transition-transform switch-thumb",
+          "pointer-events-none block global-rounded transition-transform switch-thumb",
           "data-[state=checked]:translate-x-[calc(100%-0.125rem)]",
           "data-[state=unchecked]:translate-x-0",
         )}

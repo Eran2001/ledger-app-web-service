@@ -21,13 +21,13 @@ const ComingSoon = () => {
       <div
         className={cn(
           "coming-soon-accent-left coming-soon-drift absolute",
-          "left-[10%] top-[20%] h-16 w-16 xl-rounded",
+          "left-[10%] top-[20%] h-16 w-16 global-rounded",
         )}
       />
       <div
         className={cn(
           "coming-soon-accent-right coming-soon-drift-reverse absolute",
-          "right-[12%] top-[18%] h-14 w-8 full-rounded",
+          "right-[12%] top-[18%] h-14 w-8 global-rounded",
         )}
       />
 

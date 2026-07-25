@@ -10,6 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
 import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { cn } from "@/lib/utils";
 
@@ -221,7 +222,7 @@ function GridItemAction({
       variant="outline"
       data-slot="grid-item-action"
       className={cn(
-        "h-large w-large shrink-0 full-rounded border-stroke border-default bg-background text-main shadow-none",
+        "h-large w-large shrink-0 global-rounded border-stroke border-default bg-background text-main shadow-none",
         className,
       )}
       {...props}

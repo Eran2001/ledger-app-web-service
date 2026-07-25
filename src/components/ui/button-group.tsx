@@ -1,16 +1,8 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  List,
-  LayoutGrid,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Search,
-} from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import { cn } from "@/lib/utils";
 
 const buttonGroupVariants = cva(
   [
@@ -139,10 +133,10 @@ function ButtonGroup({
           {...props}
         >
           <ButtonGroupItem value="list" border={border} shadow={shadow}>
-            <List />
+            <Icon.List />
           </ButtonGroupItem>
           <ButtonGroupItem value="grid" border={border} shadow={shadow}>
-            <LayoutGrid />
+            <Icon.LayoutGrid />
           </ButtonGroupItem>
         </div>
       </ButtonGroupContext.Provider>
@@ -183,7 +177,7 @@ function ButtonGroup({
                 shadow && "shadow-card",
               )}
             >
-              <ChevronDown />
+              <Icon.ChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -213,7 +207,7 @@ function ButtonGroup({
         {...props}
       >
         <ButtonGroupText border={border} shadow={shadow}>
-          <Search />
+          <Icon.Search />
         </ButtonGroupText>
         <Input
           className={cn(
@@ -246,7 +240,7 @@ function ButtonGroup({
           )}
           onClick={onPrev}
         >
-          <ChevronLeft />
+          <Icon.ChevronLeft />
         </Button>
         <ButtonGroupText border={border} shadow={shadow}>
           {label}
@@ -261,7 +255,7 @@ function ButtonGroup({
           )}
           onClick={onNext}
         >
-          <ChevronRight />
+          <Icon.ChevronRight />
         </Button>
       </div>
     );
@@ -286,8 +280,7 @@ function ButtonGroupItem({
   border = false,
   shadow = false,
   ...props
-}: React.ComponentProps<"button"> &
-  ButtonGroupStyleProps & { value: string }) {
+}: React.ComponentProps<"button"> & ButtonGroupStyleProps & { value: string }) {
   const ctx = React.useContext(ButtonGroupContext);
   const isActive = ctx?.activeValue === value;
 

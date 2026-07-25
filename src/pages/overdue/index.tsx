@@ -7,9 +7,17 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Notification } from "@/components/ui/custom-toast";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
+import {
+  Grid,
+  GridItem,
+  GridItemHeader,
+  GridItemBody,
+  GridEmpty,
+} from "@/components/ui/grid";
 import { customerById, customers } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById } from "@/constant/sale-data";
+import { useWidth } from "@/hooks/use-width";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 
@@ -58,6 +66,8 @@ function severityFor(days: number) {
 }
 
 export default function OverduePage() {
+  const { width, breakpoints } = useWidth();
+  const isMaxLg = width < breakpoints.lg;
   const allRows = useMemo(buildOverdueRows, []);
   const [tab, setTab] = useState<Tab>("All");
   const [query, setQuery] = useState("");
@@ -172,6 +182,89 @@ export default function OverduePage() {
         </Button>
       </div>
 
+      {isMaxLg ? (
+        filtered.length === 0 ? (
+          <Grid>
+            <GridEmpty
+              icon={Search}
+              title="No overdue payments"
+              description="No overdue payments in this range."
+            />
+          </Grid>
+        ) : (
+          <Grid>
+            {filtered.map((r) => {
+              const sev = severityFor(r.daysOverdue);
+              const checked = selected.has(r.scheduleId);
+              return (
+                <GridItem
+                  key={r.scheduleId}
+                  border
+                  shadow
+                  className={sev.row}
+                >
+                  <GridItemHeader>
+                    <div className="flex min-w-0 flex-1 items-center gap-3">
+                      <Checkbox
+                        checked={checked}
+                        onCheckedChange={() => toggle(r.scheduleId)}
+                        aria-label={`Select ${r.customerName}`}
+                      />
+                      <InitialsAvatar name={r.customerName} />
+                      <div className="min-w-0">
+                        <p className="table-title-text truncate">
+                          {r.customerName}
+                        </p>
+                        <p className="t-label-sm text-faint font-mono">
+                          {r.customerPhone}
+                        </p>
+                      </div>
+                    </div>
+                  </GridItemHeader>
+                  <GridItemBody>
+                    <span className="t-label-md text-faint">Product</span>
+                    <span className="table-text">{r.productName}</span>
+                    <span className="t-label-md text-faint">Due Date</span>
+                    <span className="table-text">
+                      {formatDate(r.dueDate)}
+                    </span>
+                    <span className="t-label-md text-faint">
+                      Days Overdue
+                    </span>
+                    <span className={`fw-black ${sev.text}`}>
+                      {r.daysOverdue} days
+                    </span>
+                    <span className="t-label-md text-faint">Expected</span>
+                    <span className="table-title-text fw-bold">
+                      {formatCurrency(r.expectedAmount)}
+                    </span>
+                  </GridItemBody>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      className="flex-1"
+                      onClick={() =>
+                        Notification.success(
+                          `Reminder sent to ${r.customerName}`,
+                        )
+                      }
+                    >
+                      <Bell />
+                      Remind
+                    </Button>
+                    <Button variant="ghost" className="flex-1" asChild>
+                      <Link to="/sales/$id" params={{ id: r.saleId }}>
+                        <Eye />
+                        View
+                      </Link>
+                    </Button>
+                  </div>
+                </GridItem>
+              );
+            })}
+          </Grid>
+        )
+      ) : (
       <div className="card-base overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -281,6 +374,7 @@ export default function OverduePage() {
           </table>
         </div>
       </div>
+      )}
 
       {selected.size > 0 ? (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-4">

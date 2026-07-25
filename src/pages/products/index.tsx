@@ -10,9 +10,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Notification } from "@/components/ui/custom-toast";
+import {
+  Grid,
+  GridItem,
+  GridItemHeader,
+  GridItemBody,
+  GridItemAction,
+  GridEmpty,
+} from "@/components/ui/grid";
 
 import { products as initialProducts } from "@/constant/product-data";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
+import { useWidth } from "@/hooks/use-width";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import type { Product } from "@/types/product-types";
@@ -57,6 +66,8 @@ interface EditDraft {
 }
 
 export default function ProductsPage() {
+  const { width, breakpoints } = useWidth();
+  const isMaxLg = width < breakpoints.lg;
   const [list, setList] = useState<Product[]>(initialProducts);
   const [tab, setTab] = useState<Tab>("All");
   const [query, setQuery] = useState("");
@@ -169,6 +180,132 @@ export default function ProductsPage() {
         />
       </div>
 
+      {isMaxLg ? (
+        filtered.length === 0 ? (
+          <Grid>
+            <GridEmpty
+              icon={Search}
+              title="No products found"
+              description="No products match your search or filter."
+            />
+          </Grid>
+        ) : (
+          <Grid>
+            {filtered.map((p) => {
+              const isEditing = editingId === p.id && draft;
+              return (
+                <GridItem key={p.id} border shadow>
+                  <GridItemHeader>
+                    <div className="min-w-0 flex-1">
+                      {isEditing ? (
+                        <Input
+                          value={draft.name}
+                          onChange={(e) =>
+                            setDraft({ ...draft, name: e.target.value })
+                          }
+                        />
+                      ) : (
+                        <span className="table-title-text fw-semibold">
+                          {p.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      {isEditing ? (
+                        <>
+                          <GridItemAction
+                            onClick={saveEdit}
+                            className="surface-success-soft-hover"
+                          >
+                            <Check className="h-4 w-4 text-success-role" />
+                            <span className="sr-only">Save</span>
+                          </GridItemAction>
+                          <GridItemAction onClick={cancelEdit}>
+                            <X className="h-4 w-4" />
+                            <span className="sr-only">Cancel</span>
+                          </GridItemAction>
+                        </>
+                      ) : (
+                        <>
+                          <GridItemAction onClick={() => startEdit(p)}>
+                            <Edit2 className="h-4 w-4" />
+                            <span className="sr-only">Edit</span>
+                          </GridItemAction>
+                          <GridItemAction
+                            onClick={() => archive(p.id)}
+                            className="surface-danger-soft-hover hover:text-danger"
+                          >
+                            <Archive className="h-4 w-4" />
+                            <span className="sr-only">Archive</span>
+                          </GridItemAction>
+                        </>
+                      )}
+                    </div>
+                  </GridItemHeader>
+                  <GridItemBody>
+                    <span className="t-label-md text-faint">Category</span>
+                    {isEditing ? (
+                      <Select
+                        value={draft.category}
+                        onValueChange={(v) =>
+                          setDraft({
+                            ...draft,
+                            category: v as Product["category"],
+                          })
+                        }
+                      >
+                        <SelectTrigger className="w-40">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {CATEGORIES.map((c) => (
+                            <SelectItem key={c} value={c}>
+                              {c}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <span
+                        className={`${categoryPillClass(p.category)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
+                      >
+                        {p.category}
+                      </span>
+                    )}
+                    <span className="t-label-md text-faint">Base Price</span>
+                    {isEditing ? (
+                      <Input
+                        type="number"
+                        value={draft.basePrice}
+                        onChange={(e) =>
+                          setDraft({
+                            ...draft,
+                            basePrice: Number(e.target.value),
+                          })
+                        }
+                      />
+                    ) : (
+                      <span className="table-text fw-bold text-main">
+                        {formatCurrency(p.basePrice)}
+                      </span>
+                    )}
+                    <span className="t-label-md text-faint">
+                      Active Sales
+                    </span>
+                    <span className="table-text fw-semibold text-main">
+                      {p.activeSales}
+                    </span>
+                    <span className="t-label-md text-faint">Added</span>
+                    <span className="table-text">
+                      {formatDate(p.createdAt)}
+                    </span>
+                  </GridItemBody>
+                </GridItem>
+              );
+            })}
+          </Grid>
+        )
+      ) : (
       <div className="card-base overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -336,6 +473,7 @@ export default function ProductsPage() {
           </table>
         </div>
       </div>
+      )}
     </div>
   );
 }
