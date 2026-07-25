@@ -17,7 +17,7 @@ export const AccountSummaryCard = ({
   const isOutstanding = outstanding > 0;
 
   return (
-    <Card>
+    <Card border shadow>
       <div className="flex items-center justify-between">
         <p className="t-label-md text-uppercase text-faint">Account Summary</p>
         <StatPill

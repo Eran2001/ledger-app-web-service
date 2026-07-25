@@ -18,7 +18,7 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
   const isMaxXs = width < breakpoints.xs;
 
   return (
-    <Card className="overflow-hidden relative">
+    <Card className="overflow-hidden relative" border shadow>
       <div
         className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
         aria-hidden
@@ -59,7 +59,12 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
           </div>
         ) : (
           <SyncedHeightPair
-            left={<InitialsAvatar name={customer.fullName} className="h-full w-full" />}
+            left={
+              <InitialsAvatar
+                name={customer.fullName}
+                className="h-full w-full"
+              />
+            }
             right={
               <div className="min-w-0 flex flex-col space-y-1">
                 <h2 className="t-title-xl text-main">{customer.fullName}</h2>

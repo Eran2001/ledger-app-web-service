@@ -1,4 +1,6 @@
 import {
+  cloneElement,
+  isValidElement,
   type CSSProperties,
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -61,16 +63,32 @@ export function SyncedHeightPair({
       }
     : undefined;
 
+  // Forcing the child's size via inline style (rather than a `*:h-full`
+  // class on the wrapper) guarantees it wins over whatever fixed-size
+  // classes the child itself carries, regardless of Tailwind's class
+  // generation order.
+  const leftNode = isValidElement<{ style?: CSSProperties }>(left)
+    ? cloneElement(left, {
+        style: { ...left.props.style, height: "100%", width: "100%" },
+      })
+    : left;
+
   return (
-    <div className={cn("flex min-w-0 items-start gap-4", className)} {...props}>
+    <div
+      className={cn("flex min-w-0 items-start gap-4 max-sm:gap-0", className)}
+      {...props}
+    >
       <div
-        className={cn("shrink-0 *:h-full *:w-full", leftClassName)}
+        className={cn("shrink-0 max-sm:hidden", leftClassName)}
         style={leftStyle}
       >
-        {left}
+        {leftNode}
       </div>
 
-      <div ref={rightRef} className={cn("min-w-0 flex-1", rightClassName)}>
+      <div
+        ref={rightRef}
+        className={cn("min-w-0 flex-1 max-sm:w-full", rightClassName)}
+      >
         {right}
       </div>
     </div>

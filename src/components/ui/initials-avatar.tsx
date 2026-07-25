@@ -7,6 +7,8 @@ interface InitialsAvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string;
   border?: boolean;
   shadow?: boolean;
+  hAuto?: boolean;
+  wAuto?: boolean;
 }
 
 export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
@@ -15,7 +17,10 @@ export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
       name,
       border = false,
       shadow = false,
+      hAuto = false,
+      wAuto = false,
       className,
+      style,
       ...props
     },
     ref,
@@ -27,12 +32,14 @@ export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
         className={cn(
           "global-rounded flex items-center justify-center",
           "shrink-0 select-none cursor-pointer",
-          "h-field w-field t-body-md-bold",
+          "t-body-md-bold",
+          !hAuto && "h-field",
+          !wAuto && "w-field",
           border && "border-stroke border-default",
           shadow && "shadow-card",
           className,
         )}
-        style={{ backgroundColor: colors.bg, color: colors.fg }}
+        style={{ backgroundColor: colors.bg, color: colors.fg, ...style }}
         aria-label={name}
         {...props}
       >
