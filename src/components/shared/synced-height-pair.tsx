@@ -69,7 +69,11 @@ export function SyncedHeightPair({
   // generation order.
   const leftNode = isValidElement<{ style?: CSSProperties }>(left)
     ? cloneElement(left, {
-        style: { ...left.props.style, height: "100%", width: "100%" },
+        style: {
+          ...left.props.style,
+          height: "100%",
+          ...(squareLeft ? { width: "100%" } : null),
+        },
       })
     : left;
 

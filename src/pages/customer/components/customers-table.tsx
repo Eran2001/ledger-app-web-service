@@ -65,7 +65,7 @@ export const CustomersTable = ({ rows }: CustomersTableProps) => {
                 navigate({ to: "/customers/$id", params: { id: c.id } })
               }
             >
-              <TableCell accentBar={c.hasOverdue}>
+              <TableCell>
                 <TableCellMedia
                   name={c.fullName}
                   title={c.fullName}
@@ -86,29 +86,38 @@ export const CustomersTable = ({ rows }: CustomersTableProps) => {
                 <StatusBadge status={c.status} />
               </TableCell>
               <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="secondary"
-                      size="icon-sm"
+                <div
+                  className="flex items-center justify-end gap-2"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        className="focus-visible:shadow-none"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Icon.MoreHorizontal />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="end"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Icon.MoreVertical />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="end"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <DropdownMenuItem
-                      onClick={() =>
-                        navigate({ to: "/customers/$id", params: { id: c.id } })
-                      }
-                    >
-                      <Icon.Eye /> View
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          navigate({
+                            to: "/customers/$id",
+                            params: { id: c.id },
+                          })
+                        }
+                      >
+                        <Icon.Eye /> View
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </TableCell>
             </TableRow>
           ))

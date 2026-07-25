@@ -35,6 +35,7 @@ export const InitialsAvatar = forwardRef<HTMLDivElement, InitialsAvatarProps>(
           "t-body-md-bold",
           !hAuto && "h-field",
           !wAuto && "w-field",
+          wAuto && "aspect-square",
           border && "border-stroke border-default",
           shadow && "shadow-card",
           className,

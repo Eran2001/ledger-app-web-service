@@ -103,6 +103,7 @@ function Carousel({
 
     return () => {
       api?.off("select", onSelect);
+      api?.off("reInit", onSelect);
     };
   }, [api, onSelect]);
 
@@ -123,7 +124,7 @@ function Carousel({
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn(
-          "relative global-rounded surface-card overflow-hidden",
+          "relative global-rounded surface-card",
           border && "border-stroke border-default",
           shadow && "shadow-card",
           className,
@@ -145,7 +146,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="global-rounded overflow-hidden"
       data-slot="carousel-content"
     >
       <div

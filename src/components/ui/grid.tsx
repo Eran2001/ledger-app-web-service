@@ -5,7 +5,38 @@ import { BadgeIcon } from "@/components/ui/badge-icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { cn } from "@/lib/utils";
+
+type GridItemAccentVariant =
+  | "default"
+  | "secondary"
+  | "destructive"
+  | "outline"
+  | "success"
+  | "warning"
+  | "info"
+  | "processing"
+  | "overtime"
+  | "sky";
+
+const GRID_ITEM_ACCENT_COLORS: Record<GridItemAccentVariant, string> = {
+  default: "var(--primary)",
+  secondary: "var(--secondary)",
+  destructive: "var(--destructive)",
+  outline: "var(--border)",
+  success: "var(--success)",
+  warning: "var(--warning)",
+  info: "var(--status-info)",
+  processing: "var(--status-info)",
+  overtime: "var(--warning)",
+  sky: "var(--status-info)",
+};
 
 function Grid({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -21,17 +52,36 @@ function GridItem({
   className,
   border = false,
   shadow = false,
+  accentVariant,
+  style,
   ...props
 }: React.ComponentProps<"div"> & {
   border?: boolean;
   shadow?: boolean;
+  accentVariant?: GridItemAccentVariant;
 }) {
+  const accentColor = accentVariant
+    ? GRID_ITEM_ACCENT_COLORS[accentVariant]
+    : undefined;
+
   return (
     <Card
       border={border}
       shadow={shadow}
       data-slot="grid-item"
-      className={cn("gap-5 px-4 py-4 sm:px-5 global-rounded", className)}
+      className={cn(
+        "gap-5 px-4 py-4 sm:px-5 global-rounded",
+        accentVariant && "grid-item-accent",
+        className,
+      )}
+      style={
+        accentColor
+          ? ({
+              ...style,
+              "--grid-item-accent": accentColor,
+            } as React.CSSProperties)
+          : style
+      }
       {...props}
     />
   );
@@ -70,6 +120,7 @@ interface GridItemMediaProps {
   badgeVariant?: React.ComponentProps<typeof BadgeIcon>["variant"];
   badgeLabel?: React.ReactNode;
   className?: string;
+  truncate?: boolean;
 }
 
 function GridItemMedia({
@@ -81,6 +132,7 @@ function GridItemMedia({
   badgeVariant,
   badgeLabel,
   className,
+  truncate = false,
 }: GridItemMediaProps) {
   const badgeNode = badge ? (
     <div className="shrink-0">{badge}</div>
@@ -94,26 +146,55 @@ function GridItemMedia({
     </BadgeIcon>
   ) : null;
 
+  const titleNode = (
+    <p
+      className={cn(
+        "max-w-full t-title-lg-soft text-main",
+        truncate && "truncate",
+      )}
+    >
+      {title}
+    </p>
+  );
+
   return (
     <div
       className={cn(
-        "flex w-full min-w-0 items-start justify-between gap-4",
+        "grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] items-start gap-4",
         className,
       )}
     >
-      <div className="flex min-w-0 flex-1 items-start gap-4">
-        <InitialsAvatar name={name} />
-
-        <div className="min-w-0 flex-1 space-y-1 pt-1">
-          <p className="truncate t-title-lg-soft text-main">{title}</p>
-          {subtitle && (
-            <p className="truncate t-body-md text-faint">{subtitle}</p>
-          )}
-          {phoneNumber && (
-            <p className="truncate t-label-md text-faint">{phoneNumber}</p>
-          )}
-        </div>
-      </div>
+      <SyncedHeightPair
+        className="min-w-0 flex-1"
+        squareLeft
+        left={<InitialsAvatar name={name} hAuto wAuto />}
+        right={
+          <div className="min-w-0 flex-1 space-y-1">
+            {truncate ? (
+              <Tooltip>
+                <TooltipTrigger asChild>{titleNode}</TooltipTrigger>
+                <TooltipContent>{title}</TooltipContent>
+              </Tooltip>
+            ) : (
+              titleNode
+            )}
+            {subtitle &&
+              (truncate ? (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="truncate t-body-md text-faint">{subtitle}</p>
+                  </TooltipTrigger>
+                  <TooltipContent>{subtitle}</TooltipContent>
+                </Tooltip>
+              ) : (
+                <p className="truncate t-body-md text-faint">{subtitle}</p>
+              ))}
+            {phoneNumber && (
+              <p className="truncate t-label-md text-faint">{phoneNumber}</p>
+            )}
+          </div>
+        }
+      />
 
       {badgeNode}
     </div>

@@ -77,12 +77,13 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
                   status={stat.hasOverdue ? "OVERDUE" : sale.status}
                 />
               </TableCell>
-              <TableCell>
+              <TableCell className="text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="secondary"
                       size="icon-sm"
+                      className="focus-visible:shadow-none"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <Icon.MoreVertical />

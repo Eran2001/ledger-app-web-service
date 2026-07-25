@@ -1,7 +1,7 @@
 import { useThemeStore } from "@/stores/theme-store";
 import { Toaster as Sonner, ToasterProps } from "sonner";
 
-const Toaster = ({ ...props }: ToasterProps) => {
+const Toaster = ({ style, ...props }: ToasterProps) => {
   const isDark = useThemeStore((s) => s.isDark);
 
   return (
@@ -14,6 +14,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-bg": "var(--popover)",
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
+          ...style,
         } as React.CSSProperties
       }
       {...props}
