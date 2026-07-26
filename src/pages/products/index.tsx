@@ -65,7 +65,7 @@ interface EditDraft {
   basePrice: number;
 }
 
-export default function ProductsPage() {
+function Products() {
   const { width, breakpoints } = useWidth();
   const isMaxLg = width < breakpoints.lg;
   const [list, setList] = useState<Product[]>(initialProducts);
@@ -289,9 +289,7 @@ export default function ProductsPage() {
                         {formatCurrency(p.basePrice)}
                       </span>
                     )}
-                    <span className="t-label-md text-faint">
-                      Active Sales
-                    </span>
+                    <span className="t-label-md text-faint">Active Sales</span>
                     <span className="table-text fw-semibold text-main">
                       {p.activeSales}
                     </span>
@@ -306,9 +304,9 @@ export default function ProductsPage() {
           </Grid>
         )
       ) : (
-      <div className="card-base overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="card-base overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
               <thead>
                 <tr>
                   <th className="table-header text-left px-4 py-3">
@@ -470,10 +468,12 @@ export default function ProductsPage() {
                   })
                 )}
               </tbody>
-          </table>
+            </table>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );
 }
+
+export default Products;

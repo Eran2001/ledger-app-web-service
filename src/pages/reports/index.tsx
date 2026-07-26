@@ -40,7 +40,7 @@ function buildMonthlyCollections(): MonthlyPoint[] {
   return points;
 }
 
-export default function ReportsPage() {
+function Reports() {
   const monthly = useMemo(buildMonthlyCollections, []);
 
   const stats = useMemo(() => {
@@ -144,7 +144,9 @@ export default function ReportsPage() {
         </div>
         <div className="card-base p-5">
           <p className="text-uppercase">Active Sales</p>
-          <p className="t-display-xl text-main mt-2">{stats.activeSalesCount}</p>
+          <p className="t-display-xl text-main mt-2">
+            {stats.activeSalesCount}
+          </p>
           <p className="t-label-md text-soft mt-1">In progress</p>
         </div>
       </div>
@@ -246,83 +248,83 @@ export default function ReportsPage() {
         </div>
       </div>
 
-        <div className="card-base overflow-hidden">
-          <div
-            className="px-5 py-4 border-b"
-            style={{ borderColor: "var(--border)" }}
-          >
-            <h2 className="t-title-lg text-main">Overdue Aging</h2>
-            <p className="t-label-md text-soft">
-              Customers with unpaid past-due installments
-            </p>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="table-header text-left px-4 py-3">Customer</th>
-                  <th className="table-header text-left px-4 py-3">Product</th>
-                  <th className="table-header text-left px-4 py-3">
-                    Days Overdue
-                  </th>
-                  <th className="table-header text-left px-4 py-3">Amount</th>
-                  <th className="table-header text-right px-4 py-3">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {overdueRows.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={5}
-                      className="px-4 py-12 text-center t-body-md text-faint"
-                    >
-                      No overdue installments.
-                    </td>
-                  </tr>
-                ) : (
-                  overdueRows.slice(0, 10).map((r) => {
-                    const sevText =
-                      r.daysOverdue > 60
-                        ? "text-danger"
-                        : r.daysOverdue > 30
-                          ? "text-warning-role"
-                          : "text-warning-role";
-                    return (
-                      <tr
-                        key={r.id}
-                        className="border-t"
-                        style={{ borderColor: "var(--border)" }}
-                      >
-                        <td className="px-4 py-3 table-title-text">
-                          {r.customerName}
-                        </td>
-                        <td className="px-4 py-3 table-text">
-                          {r.productName}
-                        </td>
-                        <td className={`px-4 py-3 fw-black ${sevText}`}>
-                          {r.daysOverdue} days
-                        </td>
-                        <td className="px-4 py-3 table-title-text fw-bold">
-                          {formatCurrency(r.amount)}
-                        </td>
-                        <td className="px-4 py-3 text-right">
-                          <Button asChild variant="ghost" className="gap-1.5">
-                            <Link to="/sales/$id" params={{ id: r.saleId }}>
-                              <Eye className="h-3.5 w-3.5" />
-                              View
-                            </Link>
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
+      <div className="card-base overflow-hidden">
+        <div
+          className="px-5 py-4 border-b"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <h2 className="t-title-lg text-main">Overdue Aging</h2>
+          <p className="t-label-md text-soft">
+            Customers with unpaid past-due installments
+          </p>
         </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="table-header text-left px-4 py-3">Customer</th>
+                <th className="table-header text-left px-4 py-3">Product</th>
+                <th className="table-header text-left px-4 py-3">
+                  Days Overdue
+                </th>
+                <th className="table-header text-left px-4 py-3">Amount</th>
+                <th className="table-header text-right px-4 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {overdueRows.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={5}
+                    className="px-4 py-12 text-center t-body-md text-faint"
+                  >
+                    No overdue installments.
+                  </td>
+                </tr>
+              ) : (
+                overdueRows.slice(0, 10).map((r) => {
+                  const sevText =
+                    r.daysOverdue > 60
+                      ? "text-danger"
+                      : r.daysOverdue > 30
+                        ? "text-warning-role"
+                        : "text-warning-role";
+                  return (
+                    <tr
+                      key={r.id}
+                      className="border-t"
+                      style={{ borderColor: "var(--border)" }}
+                    >
+                      <td className="px-4 py-3 table-title-text">
+                        {r.customerName}
+                      </td>
+                      <td className="px-4 py-3 table-text">{r.productName}</td>
+                      <td className={`px-4 py-3 fw-black ${sevText}`}>
+                        {r.daysOverdue} days
+                      </td>
+                      <td className="px-4 py-3 table-title-text fw-bold">
+                        {formatCurrency(r.amount)}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <Button asChild variant="ghost" className="gap-1.5">
+                          <Link to="/sales/$id" params={{ id: r.saleId }}>
+                            <Eye className="h-3.5 w-3.5" />
+                            View
+                          </Link>
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <p className="sr-only">{formatDate(new Date())}</p>
     </div>
   );
 }
+
+export default Reports;

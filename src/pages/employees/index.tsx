@@ -35,7 +35,7 @@ function rolePillClass(role: Role): string {
   }
 }
 
-export default function UsersPage() {
+const Users = () => {
   const { width, breakpoints } = useWidth();
   const isMaxLg = width < breakpoints.lg;
   const [tab, setTab] = useState<Tab>("Team Members");
@@ -98,9 +98,7 @@ export default function UsersPage() {
                 <GridItemHeader>
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <InitialsAvatar name={u.name} />
-                    <span className="table-title-text truncate">
-                      {u.name}
-                    </span>
+                    <span className="table-title-text truncate">{u.name}</span>
                   </div>
                   <StatusBadge
                     status={u.status === "active" ? "ACTIVE" : "PENDING"}
@@ -118,9 +116,7 @@ export default function UsersPage() {
                     {u.role}
                   </span>
                   <span className="t-label-md text-faint">Last Login</span>
-                  <span className="table-text">
-                    {formatDate(u.lastLogin)}
-                  </span>
+                  <span className="table-text">{formatDate(u.lastLogin)}</span>
                 </GridItemBody>
                 <Button
                   variant="outline"
@@ -136,72 +132,74 @@ export default function UsersPage() {
             ))}
           </Grid>
         ) : (
-        <div className="card-base overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="table-header text-left px-4 py-3">Name</th>
-                  <th className="table-header text-left px-4 py-3">Email</th>
-                  <th className="table-header text-left px-4 py-3">Role</th>
-                  <th className="table-header text-left px-4 py-3">Status</th>
-                  <th className="table-header text-left px-4 py-3">
-                    Last Login
-                  </th>
-                  <th className="table-header text-right px-4 py-3">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((u) => (
-                  <tr
-                    key={u.id}
-                    className="border-t"
-                    style={{ borderColor: "var(--border)" }}
-                  >
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <InitialsAvatar name={u.name} />
-                        <span className="table-title-text">{u.name}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 table-text font-mono t-body-md">
-                      {u.email}
-                    </td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`${rolePillClass(u.role)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
-                      >
-                        {u.role}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3">
-                      <StatusBadge
-                        status={u.status === "active" ? "ACTIVE" : "PENDING"}
-                      />
-                    </td>
-                    <td className="px-4 py-3 table-text">
-                      {formatDate(u.lastLogin)}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex justify-end">
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            Notification.success(`Edit role for ${u.name}`)
-                          }
-                          className="gap-1.5"
-                        >
-                          <Edit2 className="h-3.5 w-3.5" />
-                          Edit Role
-                        </Button>
-                      </div>
-                    </td>
+          <div className="card-base overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="table-header text-left px-4 py-3">Name</th>
+                    <th className="table-header text-left px-4 py-3">Email</th>
+                    <th className="table-header text-left px-4 py-3">Role</th>
+                    <th className="table-header text-left px-4 py-3">Status</th>
+                    <th className="table-header text-left px-4 py-3">
+                      Last Login
+                    </th>
+                    <th className="table-header text-right px-4 py-3">
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {users.map((u) => (
+                    <tr
+                      key={u.id}
+                      className="border-t"
+                      style={{ borderColor: "var(--border)" }}
+                    >
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <InitialsAvatar name={u.name} />
+                          <span className="table-title-text">{u.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 table-text font-mono t-body-md">
+                        {u.email}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`${rolePillClass(u.role)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
+                        >
+                          {u.role}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <StatusBadge
+                          status={u.status === "active" ? "ACTIVE" : "PENDING"}
+                        />
+                      </td>
+                      <td className="px-4 py-3 table-text">
+                        {formatDate(u.lastLogin)}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex justify-end">
+                          <Button
+                            variant="outline"
+                            onClick={() =>
+                              Notification.success(`Edit role for ${u.name}`)
+                            }
+                            className="gap-1.5"
+                          >
+                            <Edit2 className="h-3.5 w-3.5" />
+                            Edit Role
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
         )
       ) : isMaxLg ? (
         pending.length === 0 ? (
@@ -228,9 +226,7 @@ export default function UsersPage() {
                   <span className="table-text font-mono t-body-md">
                     {r.phone}
                   </span>
-                  <span className="t-label-md text-faint">
-                    Requested Role
-                  </span>
+                  <span className="t-label-md text-faint">Requested Role</span>
                   <span
                     className={`${rolePillClass(r.requestedRole)} t-label-md-bold px-2.5 py-0.5 global-rounded`}
                   >
@@ -351,4 +347,6 @@ export default function UsersPage() {
       )}
     </div>
   );
-}
+};
+
+export default Users;

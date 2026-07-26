@@ -65,7 +65,7 @@ function severityFor(days: number) {
   return { text: "text-warning-role", row: "" };
 }
 
-export default function OverduePage() {
+const Overdue = () => {
   const { width, breakpoints } = useWidth();
   const isMaxLg = width < breakpoints.lg;
   const allRows = useMemo(buildOverdueRows, []);
@@ -197,12 +197,7 @@ export default function OverduePage() {
               const sev = severityFor(r.daysOverdue);
               const checked = selected.has(r.scheduleId);
               return (
-                <GridItem
-                  key={r.scheduleId}
-                  border
-                  shadow
-                  className={sev.row}
-                >
+                <GridItem key={r.scheduleId} border shadow className={sev.row}>
                   <GridItemHeader>
                     <div className="flex min-w-0 flex-1 items-center gap-3">
                       <Checkbox
@@ -225,12 +220,8 @@ export default function OverduePage() {
                     <span className="t-label-md text-faint">Product</span>
                     <span className="table-text">{r.productName}</span>
                     <span className="t-label-md text-faint">Due Date</span>
-                    <span className="table-text">
-                      {formatDate(r.dueDate)}
-                    </span>
-                    <span className="t-label-md text-faint">
-                      Days Overdue
-                    </span>
+                    <span className="table-text">{formatDate(r.dueDate)}</span>
+                    <span className="t-label-md text-faint">Days Overdue</span>
                     <span className={`fw-black ${sev.text}`}>
                       {r.daysOverdue} days
                     </span>
@@ -265,115 +256,115 @@ export default function OverduePage() {
           </Grid>
         )
       ) : (
-      <div className="card-base overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="table-header px-4 py-3 w-10">
-                  <Checkbox
-                    checked={allSelected}
-                    onCheckedChange={toggleAll}
-                    aria-label="Select all"
-                  />
-                </th>
-                <th className="table-header text-left px-4 py-3">Customer</th>
-                <th className="table-header text-left px-4 py-3">Product</th>
-                <th className="table-header text-left px-4 py-3">Due Date</th>
-                <th className="table-header text-left px-4 py-3">
-                  Days Overdue
-                </th>
-                <th className="table-header text-left px-4 py-3">Expected</th>
-                <th className="table-header text-right px-4 py-3">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.length === 0 ? (
+        <div className="card-base overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
                 <tr>
-                  <td
-                    colSpan={7}
-                    className="px-4 py-12 text-center text-faint t-body-md"
-                  >
-                    No overdue payments in this range.
-                  </td>
+                  <th className="table-header px-4 py-3 w-10">
+                    <Checkbox
+                      checked={allSelected}
+                      onCheckedChange={toggleAll}
+                      aria-label="Select all"
+                    />
+                  </th>
+                  <th className="table-header text-left px-4 py-3">Customer</th>
+                  <th className="table-header text-left px-4 py-3">Product</th>
+                  <th className="table-header text-left px-4 py-3">Due Date</th>
+                  <th className="table-header text-left px-4 py-3">
+                    Days Overdue
+                  </th>
+                  <th className="table-header text-left px-4 py-3">Expected</th>
+                  <th className="table-header text-right px-4 py-3">Actions</th>
                 </tr>
-              ) : (
-                filtered.map((r) => {
-                  const sev = severityFor(r.daysOverdue);
-                  const checked = selected.has(r.scheduleId);
-                  return (
-                    <tr
-                      key={r.scheduleId}
-                      className={`border-t ${sev.row}`}
-                      style={{ borderColor: "var(--border)" }}
+              </thead>
+              <tbody>
+                {filtered.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={7}
+                      className="px-4 py-12 text-center text-faint t-body-md"
                     >
-                      <td className="px-4 py-3">
-                        <Checkbox
-                          checked={checked}
-                          onCheckedChange={() => toggle(r.scheduleId)}
-                          aria-label={`Select ${r.customerName}`}
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
-                          <InitialsAvatar name={r.customerName} />
-                          <div className="min-w-0">
-                            <p className="table-title-text truncate">
-                              {r.customerName}
-                            </p>
-                            <p className="t-label-sm text-faint font-mono">
-                              {r.customerPhone}
-                            </p>
+                      No overdue payments in this range.
+                    </td>
+                  </tr>
+                ) : (
+                  filtered.map((r) => {
+                    const sev = severityFor(r.daysOverdue);
+                    const checked = selected.has(r.scheduleId);
+                    return (
+                      <tr
+                        key={r.scheduleId}
+                        className={`border-t ${sev.row}`}
+                        style={{ borderColor: "var(--border)" }}
+                      >
+                        <td className="px-4 py-3">
+                          <Checkbox
+                            checked={checked}
+                            onCheckedChange={() => toggle(r.scheduleId)}
+                            aria-label={`Select ${r.customerName}`}
+                          />
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-3">
+                            <InitialsAvatar name={r.customerName} />
+                            <div className="min-w-0">
+                              <p className="table-title-text truncate">
+                                {r.customerName}
+                              </p>
+                              <p className="t-label-sm text-faint font-mono">
+                                {r.customerPhone}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="table-text">{r.productName}</span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="table-text">
-                          {formatDate(r.dueDate)}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className={`fw-black ${sev.text}`}>
-                          {r.daysOverdue} days
-                        </span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="table-title-text fw-bold">
-                          {formatCurrency(r.expectedAmount)}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-1 justify-end">
-                          <Button
-                            variant="outline"
-                            onClick={() =>
-                              Notification.success(
-                                `Reminder sent to ${r.customerName}`,
-                              )
-                            }
-                          >
-                            <Bell />
-                            Remind
-                          </Button>
-                          <Button variant="ghost">
-                            <Link to="/sales/$id" params={{ id: r.saleId }}>
-                              <Eye />
-                              View
-                            </Link>
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="table-text">{r.productName}</span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="table-text">
+                            {formatDate(r.dueDate)}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className={`fw-black ${sev.text}`}>
+                            {r.daysOverdue} days
+                          </span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="table-title-text fw-bold">
+                            {formatCurrency(r.expectedAmount)}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-1 justify-end">
+                            <Button
+                              variant="outline"
+                              onClick={() =>
+                                Notification.success(
+                                  `Reminder sent to ${r.customerName}`,
+                                )
+                              }
+                            >
+                              <Bell />
+                              Remind
+                            </Button>
+                            <Button variant="ghost">
+                              <Link to="/sales/$id" params={{ id: r.saleId }}>
+                                <Eye />
+                                View
+                              </Link>
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       )}
 
       {selected.size > 0 ? (
@@ -414,4 +405,6 @@ export default function OverduePage() {
       <span className="sr-only">{customers.length} customers in system</span>
     </div>
   );
-}
+};
+
+export default Overdue;

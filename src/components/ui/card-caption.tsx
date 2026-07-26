@@ -32,11 +32,12 @@ export function CardCaption({
           <span className="t-title-lg-soft">{title}</span>
           {actionLabel && actionTo && (
             <Button variant="link" className="p-0">
-              <Link to={actionTo} className="inline-flex items-center gap-1 t-label-md">
+              <Link
+                to={actionTo}
+                className="group inline-flex items-center gap-2 text-brand btn-base btn-link"
+              >
                 {actionLabel}
-                <span className="inline-flex items-center justify-center text-brand [&>svg]:size-3.5 [&>svg]:shrink-0">
-                  <Icon.ArrowRight />
-                </span>
+                <Icon.ArrowRight className="icon-default icon-front-hover" />
               </Link>
             </Button>
           )}

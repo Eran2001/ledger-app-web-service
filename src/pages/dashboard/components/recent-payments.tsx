@@ -44,7 +44,7 @@ const recentPayments = [...payments]
 
 export const RecentPayments = () => {
   return (
-    <div className="xl:col-span-3">
+    <div className="xl:col-span-4">
       <Table
         variant="simple"
         caption="Recent Payments"

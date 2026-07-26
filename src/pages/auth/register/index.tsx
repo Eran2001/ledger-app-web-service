@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { CheckCircle2 } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function RegisterPage() {
+const Register = () => {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
@@ -52,7 +53,7 @@ export default function RegisterPage() {
         {submitted ? (
           <div className="text-center py-10">
             <div className="surface-success-soft circle-rounded h-16 w-16 mx-auto flex items-center justify-center mb-5">
-              <CheckCircle2
+              <Icon.CheckCircle2
                 className="h-8 w-8 text-success-role"
                 strokeWidth={2}
               />
@@ -162,4 +163,6 @@ export default function RegisterPage() {
       </div>
     </div>
   );
-}
+};
+
+export default Register;

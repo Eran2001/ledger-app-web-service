@@ -1,9 +1,11 @@
 import { useCallback, useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "@tanstack/react-router";
-import { ArrowLeft, Wallet } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { StatusBadge } from "@/components/ui/status-badge";
+
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import {
@@ -16,9 +18,9 @@ import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
-import { RecordPaymentModal } from "@/pages/sales/components/record-payment-modal";
+import { RecordPaymentModal } from "../components/record-payment-modal";
 
-export default function SaleDetailPage() {
+function SaleDetail() {
   const { id } = useParams({ strict: false });
   const sale = saleById(id ?? "");
   const schedules = sale ? schedulesForSale(sale.id) : [];
@@ -46,7 +48,7 @@ export default function SaleDetailPage() {
             primaryAction: firstUnpaid
               ? {
                   onClick: () => openPaymentModal(),
-                  icon: Wallet,
+                  icon: Icon.Wallet,
                   label: "Record Payment",
                 }
               : undefined,
@@ -69,7 +71,7 @@ export default function SaleDetailPage() {
         to="/sales"
         className="inline-flex items-center gap-2 t-body-md-bold text-brand mb-6 group"
       >
-        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+        <Icon.ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
         Back to list
       </Link>
 
@@ -300,3 +302,5 @@ function KV({
     </div>
   );
 }
+
+export default SaleDetail;

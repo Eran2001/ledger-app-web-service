@@ -1,23 +1,24 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function SetupPasswordPage() {
+const SetupPassword = () => {
   const [done, setDone] = useState(false);
 
-  function submit(e: React.FormEvent) {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setDone(true);
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center auth-gradient p-6">
       <div className="w-full max-w-md surface-card auth-rounded p-8 sm:p-10 shadow-brand-soft">
         <div className="surface-brand-soft circle-rounded h-12 w-12 flex items-center justify-center mb-5">
-          <ShieldCheck className="h-6 w-6 text-brand" />
+          <Icon.ShieldCheck className="h-6 w-6 text-brand" />
         </div>
 
         {done ? (
@@ -74,4 +75,6 @@ export default function SetupPasswordPage() {
       </div>
     </div>
   );
-}
+};
+
+export default SetupPassword;

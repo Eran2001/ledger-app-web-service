@@ -1,6 +1,7 @@
 import type { UseFormRegister, Control, FieldErrors } from "react-hook-form";
 
 import type { NewCustomerFormValues } from "@/schemas/customer-schema";
+import type { customerStats } from "@/constant/customer-data";
 
 export type Tab = "all" | "active" | "overdue";
 
@@ -65,4 +66,13 @@ export interface NewCustomerFormFieldsProps {
   register: UseFormRegister<NewCustomerFormValues>;
   control: Control<NewCustomerFormValues>;
   errors: FieldErrors<NewCustomerFormValues>;
+}
+
+export type EnrichedCustomer = Customer &
+  ReturnType<typeof customerStats> & {
+    status: "ACTIVE" | "OVERDUE" | "COMPLETED";
+  };
+
+export interface CustomersTableProps {
+  rows: EnrichedCustomer[];
 }

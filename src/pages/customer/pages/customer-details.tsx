@@ -12,7 +12,7 @@ import { customerById, customerStats, TABS } from "@/constant/customer-data";
 import { paymentsForSale, sales } from "@/constant/sale-data";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
-const CustomerDetailPage = () => {
+const CustomerDetail = () => {
   const { id } = useParams({ strict: false });
   const [tab, setTab] = useState("active");
 
@@ -69,4 +69,4 @@ const CustomerDetailPage = () => {
   );
 };
 
-export default CustomerDetailPage;
+export default CustomerDetail;

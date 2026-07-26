@@ -5,7 +5,7 @@ import { KpiCard } from "./components/kpi-card";
 import { RecentPayments } from "./components/recent-payments";
 import { OverdueList } from "./components/overdue-list";
 
-const DashboardPage = () => {
+const Dashboard = () => {
   const totalOutstanding = sales.reduce(
     (sum, s) => sum + saleStats(s.id).outstanding,
     0,
@@ -57,7 +57,7 @@ const DashboardPage = () => {
           shadow
         />
       </div>
-      <div className="grid gap-6 grid-cols-1 xl:grid-cols-5">
+      <div className="grid gap-6 grid-cols-1 xl:grid-cols-6">
         <RecentPayments />
         <OverdueList />
       </div>
@@ -65,4 +65,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

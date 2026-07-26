@@ -13,30 +13,33 @@ import DefaultLayout from "@/layouts/default-layout";
 import { Loading } from "@/components/ui/loading";
 
 /* AUTH */
-const LoginPage = lazy(() => import("./pages/auth/login"));
-const RegisterPage = lazy(() => import("./pages/auth/register"));
-const SetupPasswordPage = lazy(() => import("./pages/auth/setup-password"));
+const Login = lazy(() => import("./pages/auth/login"));
+const Register = lazy(() => import("./pages/auth/register"));
+const SetupPassword = lazy(() => import("./pages/auth/setup-password"));
+const ForgotPassword = lazy(() => import("./pages/auth/forgot-password"));
 
 /* DEFAULT */
-const DashboardPage = lazy(() => import("./pages/dashboard"));
-const SalesPage = lazy(() => import("./pages/sales"));
-const SalesNewPage = lazy(() => import("./pages/sales/pages/SalesNewPage"));
-const SaleDetailPage = lazy(() => import("./pages/sales/pages/SaleDetailPage"));
-const CustomersPage = lazy(() => import("./pages/customer"));
-const CustomerDetailPage = lazy(() => import("./pages/customer/pages/detail"));
-const ProductsPage = lazy(() => import("./pages/products"));
-const EmployeePage = lazy(() => import("./pages/employees"));
-const OverduePage = lazy(() => import("./pages/overdue"));
-const ReportsPage = lazy(() => import("./pages/reports"));
-const SettingsPage = lazy(() => import("./pages/settings"));
-const ProfilePage = lazy(
+const Dashboard = lazy(() => import("./pages/dashboard"));
+const Sales = lazy(() => import("./pages/sales"));
+const SalesNew = lazy(() => import("./pages/sales/pages/sales-new"));
+const SaleDetails = lazy(() => import("./pages/sales/pages/sale-details"));
+const Customers = lazy(() => import("./pages/customer"));
+const CustomerDetails = lazy(
+  () => import("./pages/customer/pages/customer-details"),
+);
+const Products = lazy(() => import("./pages/products"));
+const Employee = lazy(() => import("./pages/employees"));
+const Overdue = lazy(() => import("./pages/overdue"));
+const Reports = lazy(() => import("./pages/reports"));
+const Settings = lazy(() => import("./pages/settings"));
+const Profile = lazy(
   () => import("./pages/settings/components/account-information"),
 );
 
 /* ERROR */
-const NotFoundPage = lazy(() => import("./pages/404"));
-const UnauthorizedPage = lazy(() => import("./pages/401"));
-const SubscriptionErrorPage = lazy(() => import("./pages/502"));
+const NotFound = lazy(() => import("./pages/404"));
+const Unauthorized = lazy(() => import("./pages/401"));
+const SubscriptionError = lazy(() => import("./pages/502"));
 
 /* ROOT */
 const rootRoute = createRootRoute({
@@ -57,17 +60,22 @@ const authRoute = createRoute({
 const loginRoute = createRoute({
   getParentRoute: () => authRoute,
   path: "/login",
-  component: LoginPage,
+  component: Login,
 });
 const registerRoute = createRoute({
   getParentRoute: () => authRoute,
   path: "/register",
-  component: RegisterPage,
+  component: Register,
 });
 const setupPasswordRoute = createRoute({
   getParentRoute: () => authRoute,
   path: "/setup-password",
-  component: SetupPasswordPage,
+  component: SetupPassword,
+});
+const forgotPasswordRoute = createRoute({
+  getParentRoute: () => authRoute,
+  path: "/forgot-password",
+  component: ForgotPassword,
 });
 
 /* DEFAULT */
@@ -87,83 +95,88 @@ const indexRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/dashboard",
-  component: DashboardPage,
+  component: Dashboard,
 });
 const salesRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/sales",
-  component: SalesPage,
+  component: Sales,
 });
 const salesNewRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/sales/new",
-  component: SalesNewPage,
+  component: SalesNew,
 });
 const saleDetailRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/sales/$id",
-  component: SaleDetailPage,
+  component: SaleDetails,
 });
 const customersRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/customers",
-  component: CustomersPage,
+  component: Customers,
 });
 const customerDetailRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/customers/$id",
-  component: CustomerDetailPage,
+  component: CustomerDetails,
 });
 const productsRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/products",
-  component: ProductsPage,
+  component: Products,
 });
 const usersRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/users",
-  component: EmployeePage,
+  component: Employee,
 });
 const overdueRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/overdue",
-  component: OverduePage,
+  component: Overdue,
 });
 const reportsRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/reports",
-  component: ReportsPage,
+  component: Reports,
 });
 const settingsRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/settings",
-  component: SettingsPage,
+  component: Settings,
 });
 const profileRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/settings/profile",
-  component: ProfilePage,
+  component: Profile,
 });
 
 /* ERROR */
 const notFoundRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/404",
-  component: NotFoundPage,
+  component: NotFound,
 });
 const unauthorizedRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/401",
-  component: UnauthorizedPage,
+  component: Unauthorized,
 });
 const subscriptionErrorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/502",
-  component: SubscriptionErrorPage,
+  component: SubscriptionError,
 });
 
 const routeTree = rootRoute.addChildren([
-  authRoute.addChildren([loginRoute, registerRoute, setupPasswordRoute]),
+  authRoute.addChildren([
+    loginRoute,
+    registerRoute,
+    setupPasswordRoute,
+    forgotPasswordRoute,
+  ]),
 
   shellRoute.addChildren([
     indexRoute,

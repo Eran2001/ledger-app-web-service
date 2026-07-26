@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { initialTemplates } from "@/constant/setting-data";
+
 import BusinessInformation from "./components/business-information";
 import WhatsAppPanel from "./components/whatsapp-panel";
 import SecurityPanel from "./components/security-panel";
@@ -15,45 +17,9 @@ const TABS = [
 ] as const;
 type Tab = (typeof TABS)[number];
 
-interface WhatsAppTemplate {
-  id: string;
-  name: string;
-  preview: string;
-  active: boolean;
-}
-
-const initialTemplates: WhatsAppTemplate[] = [
-  {
-    id: "t1",
-    name: "Payment Reminder",
-    preview: "Hi {customer}, your installment of {amount} is due on {date}.",
-    active: true,
-  },
-  {
-    id: "t2",
-    name: "Overdue Notice",
-    preview:
-      "Hi {customer}, your payment of {amount} is overdue by {days} days.",
-    active: true,
-  },
-  {
-    id: "t3",
-    name: "Payment Confirmation",
-    preview: "Thank you {customer}! We've received your payment of {amount}.",
-    active: true,
-  },
-  {
-    id: "t4",
-    name: "Sale Completion",
-    preview: "Congratulations {customer}! You've completed all installments.",
-    active: false,
-  },
-];
-
-export default function SettingsPage() {
+function Settings() {
   const [tab, setTab] = useState<Tab>("Business Settings");
-  const [templates, setTemplates] =
-    useState<WhatsAppTemplate[]>(initialTemplates);
+  const [templates, setTemplates] = useState(initialTemplates);
   const [twoFA, setTwoFA] = useState(false);
 
   return (
@@ -89,3 +55,5 @@ export default function SettingsPage() {
     </div>
   );
 }
+
+export default Settings;

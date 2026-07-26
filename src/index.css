@@ -4893,6 +4893,25 @@
     }
   }
 
+  /* EXPANDING SEARCH FIELD */
+  .expanding-search-root {
+    transition:
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
+
+    &:focus-within {
+      border-color: var(--ring);
+      box-shadow: var(--shadow-ring);
+    }
+  }
+
+  .expanding-search-input {
+    &:focus-visible {
+      box-shadow: var(--shadow-none) !important;
+      border-color: transparent !important;
+    }
+  }
+
   /* SELECT */
   .select-trigger {
     background-color: var(--background);

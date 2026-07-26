@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SearchField } from "@/components/ui/search-field";
 
 import { SalesTable } from "./components/sales-table";
+import { SalesGrid } from "./components/sales-grid";
 
 import { useWidth } from "@/hooks/use-width";
 import { customerById } from "@/constant/customer-data";
@@ -20,8 +21,9 @@ const enriched = sales.map((s) => {
   return { sale: s, stat, customer, product };
 });
 
-const SalesPage = () => {
+const Sales = () => {
   const { width, breakpoints } = useWidth();
+  const isMaxLg = width < breakpoints.lg;
   const [search, setSearch] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -51,7 +53,6 @@ const SalesPage = () => {
           value={search}
           onChange={setSearch}
           placeholder="Search by name, NIC, or phone…"
-          size={width >= breakpoints.xl ? "large" : "default"}
           containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
         />
         <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
@@ -62,24 +63,22 @@ const SalesPage = () => {
           >
             <TabsList>
               {SALE_TABS.map((t) => (
-                <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
+                <TabsTrigger key={t.value} value={t.value}>
+                  {t.label}
+                </TabsTrigger>
               ))}
             </TabsList>
           </Tabs>
 
-          <Button
-            size={width >= breakpoints.xl ? "lg" : "default"}
-            variant="secondary"
-            className="shrink-0"
-          >
+          <Button variant="secondary" className="shrink-0">
             <Icon.ArrowUpFromLine /> Export
           </Button>
         </div>
       </div>
 
-      <SalesTable rows={filtered} />
+      {isMaxLg ? <SalesGrid rows={filtered} /> : <SalesTable rows={filtered} />}
     </div>
   );
 };
 
-export default SalesPage;
+export default Sales;
