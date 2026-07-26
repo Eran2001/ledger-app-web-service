@@ -15,7 +15,15 @@ import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import type { Sale } from "@/types/sale-types";
 
-export const SaleCard = ({ sale }: { sale: Sale }) => {
+export const SaleCard = ({
+  sale,
+  border = false,
+  shadow = false,
+}: {
+  sale: Sale;
+  border?: boolean;
+  shadow?: boolean;
+}) => {
   const navigate = useNavigate();
   const product = productById(sale.productId);
   const stat = saleStats(sale.id);
@@ -23,7 +31,7 @@ export const SaleCard = ({ sale }: { sale: Sale }) => {
     stat.totalCount === 0 ? 0 : (stat.paidCount / stat.totalCount) * 100;
 
   return (
-    <Card>
+    <Card border={border} shadow={shadow}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="t-title-xl text-main truncate">{product?.name}</h3>

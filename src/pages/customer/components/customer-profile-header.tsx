@@ -18,8 +18,8 @@ export const CustomerProfileHeader = ({ customer }: ProfileProps) => {
   const isMaxXs = width < breakpoints.xs;
 
   return (
-    <Card className="p-0 relative" border shadow>
-      <div className="global-rounded overflow-hidden p-6">
+    <Card className="p-0" border shadow>
+      <div className="global-rounded overflow-hidden relative p-6">
         <div
           className="surface-brand-soft absolute -top-12 -right-12 h-48 w-48 full-rounded opacity-60"
           aria-hidden

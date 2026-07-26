@@ -55,7 +55,7 @@ const CustomerDetailPage = () => {
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
               {activeSales.map((sale) => (
-                <SaleCard key={sale.id} sale={sale} />
+                <SaleCard key={sale.id} sale={sale} border shadow />
               ))}
             </div>
           )}

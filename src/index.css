@@ -1793,7 +1793,7 @@
 
   /* SEMANTIC ROUNDING */
   .global-rounded {
-    border-radius: var(--radius-none);
+    border-radius: var(--radius-xl);
   }
   .no-rounded {
     border-radius: var(--radius-none);
@@ -1814,7 +1814,7 @@
     border-radius: var(--radius-full);
   }
   .t-rounded {
-    border-radius: var(--radius-md) var(--radius-md) var(--radius-none)
+    border-radius: var(--radius-xl) var(--radius-xl) var(--radius-none)
       var(--radius-none);
   }
   .b-rounded {
