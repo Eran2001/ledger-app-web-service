@@ -32,6 +32,8 @@ export const SalesGrid = ({ rows }: SalesTableProps) => {
           icon={Icon.ShoppingBag}
           title="No sales found"
           description="No sales match your filters."
+          border
+          shadow
         />
       </Grid>
     );
@@ -45,7 +47,9 @@ export const SalesGrid = ({ rows }: SalesTableProps) => {
           border
           shadow
           className="cursor-pointer"
-          onClick={() => navigate({ to: "/sales/$id", params: { id: sale.id } })}
+          onClick={() =>
+            navigate({ to: "/sales/$id", params: { id: sale.id } })
+          }
         >
           <GridItemHeader>
             <GridItemMedia

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Notification } from "@/components/ui/custom-toast";
 
-export default function BusinessForm() {
+export const BusinessInformation = () => {
   const [form, setForm] = useState({
     businessName: "Silva Traders",
     ownerName: "Kamal Silva",
@@ -93,4 +93,4 @@ export default function BusinessForm() {
       </div>
     </form>
   );
-}
+};

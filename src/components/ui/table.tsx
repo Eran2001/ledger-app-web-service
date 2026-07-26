@@ -18,6 +18,7 @@ import type { ProductCategory } from "@/types/product-types";
 function Table({
   className,
   variant = "main",
+  layout = "auto",
   caption,
   actionLabel,
   actionTo,
@@ -26,6 +27,7 @@ function Table({
   ...props
 }: Omit<React.ComponentProps<"table">, "border"> & {
   variant?: "main" | "simple";
+  layout?: "auto" | "fixed";
   caption?: string;
   actionLabel?: string;
   actionTo?: string;
@@ -46,6 +48,7 @@ function Table({
         data-slot="table"
         className={cn(
           "w-full t-body-md",
+          layout === "fixed" && "table-fixed",
           isSimple ? "table-simple" : "table-main",
           className,
         )}
@@ -188,11 +191,7 @@ interface TableCellMediaProps {
   title: string;
   subtitle?: string;
 }
-function TableCellMedia({
-  name,
-  title,
-  subtitle,
-}: TableCellMediaProps) {
+function TableCellMedia({ name, title, subtitle }: TableCellMediaProps) {
   return (
     <div className="flex items-center gap-3">
       <InitialsAvatar name={name} />

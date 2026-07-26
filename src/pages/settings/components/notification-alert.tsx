@@ -1,7 +1,5 @@
 import React from "react";
 
-const NotificationAlert = () => {
+export const NotificationAlert = () => {
   return <div>NotificationAlert</div>;
 };
-
-export default NotificationAlert;

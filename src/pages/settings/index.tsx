@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import { initialTemplates } from "@/constant/setting-data";
 
-import BusinessInformation from "./components/business-information";
-import WhatsAppPanel from "./components/whatsapp-panel";
-import SecurityPanel from "./components/security-panel";
-import ProfilePage from "./components/account-information";
-import NotificationAlert from "./components/notification-alert";
+import { AccountInformation } from "./components/account-information";
+import { BusinessInformation } from "./components/business-information";
+import { WhatsAppPanel } from "./components/whatsapp-panel";
+import { SecurityPanel } from "./components/security-panel";
+import { NotificationAlert } from "./components/notification-alert";
 
 const TABS = [
   "Account Info",
@@ -43,7 +43,7 @@ function Settings() {
         })}
       </div>
 
-      {tab === "Account Info" ? <ProfilePage /> : null}
+      {tab === "Account Info" ? <AccountInformation /> : null}
       {tab === "Business Settings" ? <BusinessInformation /> : null}
       {tab === "Notifications" ? <NotificationAlert /> : null}
       {tab === "WhatsApp" ? (

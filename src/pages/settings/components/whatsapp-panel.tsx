@@ -12,13 +12,13 @@ interface WhatsAppTemplate {
   active: boolean;
 }
 
-export default function WhatsAppPanel({
+export const WhatsAppPanel = ({
   templates,
   setTemplates,
 }: {
   templates: WhatsAppTemplate[];
   setTemplates: (t: WhatsAppTemplate[]) => void;
-}) {
+}) => {
   function toggle(id: string) {
     setTemplates(
       templates.map((t) => (t.id === id ? { ...t, active: !t.active } : t)),
@@ -94,4 +94,4 @@ export default function WhatsAppPanel({
       </div>
     </div>
   );
-}
+};

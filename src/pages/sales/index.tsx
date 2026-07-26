@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsCount } from "@/components/ui/tabs";
 import { SearchField } from "@/components/ui/search-field";
 
 import { SalesTable } from "./components/sales-table";
@@ -29,7 +29,18 @@ const Sales = () => {
   const [to, setTo] = useState("");
   const [tab, setTab] = useState<SaleTab>("all");
 
-  const filtered = enriched.filter(({ sale, stat, customer, product }) => {
+  const matchesTab = (
+    { sale, stat }: (typeof enriched)[number],
+    value: SaleTab,
+  ) => {
+    if (value === "active") return sale.status === "ACTIVE" && !stat.hasOverdue;
+    if (value === "overdue") return stat.hasOverdue;
+    if (value === "completed") return sale.status === "COMPLETED";
+    if (value === "writtenoff") return sale.status === "WRITTEN_OFF";
+    return true;
+  };
+
+  const searched = enriched.filter(({ sale, customer, product }) => {
     const q = search.trim().toLowerCase();
     if (
       q &&
@@ -39,12 +50,17 @@ const Sales = () => {
       return false;
     if (from && new Date(sale.saleDate) < new Date(from)) return false;
     if (to && new Date(sale.saleDate) > new Date(to)) return false;
-    if (tab === "active") return sale.status === "ACTIVE" && !stat.hasOverdue;
-    if (tab === "overdue") return stat.hasOverdue;
-    if (tab === "completed") return sale.status === "COMPLETED";
-    if (tab === "writtenoff") return sale.status === "WRITTEN_OFF";
     return true;
   });
+
+  const tabCounts = Object.fromEntries(
+    SALE_TABS.map((t) => [
+      t.value,
+      searched.filter((row) => matchesTab(row, t.value)).length,
+    ]),
+  ) as Record<SaleTab, number>;
+
+  const filtered = searched.filter((row) => matchesTab(row, tab));
 
   return (
     <div className="space-y-6">
@@ -64,7 +80,7 @@ const Sales = () => {
             <TabsList>
               {SALE_TABS.map((t) => (
                 <TabsTrigger key={t.value} value={t.value}>
-                  {t.label}
+                  {t.label} <TabsCount>{tabCounts[t.value]}</TabsCount>
                 </TabsTrigger>
               ))}
             </TabsList>

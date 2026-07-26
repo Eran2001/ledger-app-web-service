@@ -27,7 +27,16 @@ export const CustomersTable = ({ rows }: CustomersTableProps) => {
   const navigate = useNavigate();
 
   return (
-    <Table variant="main">
+    <Table variant="main" layout="fixed">
+      <colgroup>
+        <col className="w-[22%]" />
+        <col className="w-[18%]" />
+        <col className="w-[16%]" />
+        <col className="w-[12%]" />
+        <col className="w-[14%]" />
+        <col className="w-[11%]" />
+        <col className="w-[7%]" />
+      </colgroup>
       <TableHeader>
         <TableRow>
           <TableHead>Customer</TableHead>
@@ -94,6 +103,8 @@ export const CustomersTable = ({ rows }: CustomersTableProps) => {
                     <DropdownMenuContent
                       align="end"
                       onClick={(e) => e.stopPropagation()}
+                      border
+                      shadow
                     >
                       <DropdownMenuItem
                         onClick={() =>

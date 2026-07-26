@@ -8,7 +8,7 @@ import { Notification } from "@/components/ui/custom-toast";
 
 import { useAuthStore } from "@/stores/auth-store";
 
-export default function AccountInfoPage() {
+export const AccountInformation = () => {
   const user = useAuthStore((s) => s.user);
 
   const [form, setForm] = useState({
@@ -100,4 +100,4 @@ export default function AccountInfoPage() {
       </div>
     </div>
   );
-}
+};

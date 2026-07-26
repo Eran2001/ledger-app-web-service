@@ -7,13 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Notification } from "@/components/ui/custom-toast";
 
-export default function SecurityPanel({
+export const SecurityPanel = ({
   twoFA,
   setTwoFA,
 }: {
   twoFA: boolean;
   setTwoFA: (v: boolean) => void;
-}) {
+}) => {
   const [pwd, setPwd] = useState({ current: "", next: "", confirm: "" });
 
   function changePassword(e: React.FormEvent) {
@@ -84,7 +84,9 @@ export default function SecurityPanel({
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="t-title-lg text-main">Two-Factor Authentication</h2>
+              <h2 className="t-title-lg text-main">
+                Two-Factor Authentication
+              </h2>
               <p className="t-label-md text-soft mt-1 max-w-md">
                 Add an extra layer of security by requiring a code from your
                 authenticator app at sign in.
@@ -102,4 +104,4 @@ export default function SecurityPanel({
       </div>
     </div>
   );
-}
+};

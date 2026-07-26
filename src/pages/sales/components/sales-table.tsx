@@ -17,6 +17,7 @@ import {
   TableCell,
   TableCellMedia,
   TableCellProduct,
+  TableEmpty,
 } from "@/components/ui/table";
 import { StatusBadge } from "@/components/ui/status-badge";
 
@@ -28,7 +29,17 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
   const navigate = useNavigate();
 
   return (
-    <Table variant="main">
+    <Table variant="main" layout="fixed">
+      <colgroup>
+        <col className="w-[20%]" />
+        <col className="w-[18%]" />
+        <col className="w-[11%]" />
+        <col className="w-[11%]" />
+        <col className="w-[11%]" />
+        <col className="w-[12%]" />
+        <col className="w-[10%]" />
+        <col className="w-[7%]" />
+      </colgroup>
       <TableHeader>
         <TableRow>
           <TableHead>Customer</TableHead>
@@ -43,11 +54,12 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
       </TableHeader>
       <TableBody>
         {rows.length === 0 ? (
-          <TableRow>
-            <TableCell colSpan={8} className="table-empty">
-              No sales match your filters.
-            </TableCell>
-          </TableRow>
+          <TableEmpty
+            colSpan={8}
+            icon={Icon.Users}
+            title="No sales found"
+            description="No sales match your search or filter."
+          />
         ) : (
           rows.map(({ sale, stat, customer, product }) => (
             <TableRow
@@ -56,7 +68,7 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
                 navigate({ to: "/sales/$id", params: { id: sale.id } })
               }
             >
-              <TableCell accentBar={stat.hasOverdue}>
+              <TableCell>
                 <TableCellMedia
                   name={customer?.fullName ?? ""}
                   title={customer?.fullName ?? ""}
@@ -81,17 +93,19 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
-                      variant="secondary"
+                      variant="ghost"
                       size="icon-sm"
                       className="focus-visible:shadow-none"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Icon.MoreVertical />
+                      <Icon.MoreHorizontal />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
                     onClick={(e) => e.stopPropagation()}
+                    border
+                    shadow
                   >
                     <DropdownMenuItem
                       onClick={() =>
