@@ -29,12 +29,16 @@ const DashboardPage = () => {
           label="Total Outstanding"
           value={formatCurrency(totalOutstanding)}
           sub={`${sales.filter((s) => s.status === "ACTIVE").length} active sales`}
+          border
+          shadow
         />
         <KpiCard
           label="Collected this Month"
           value={formatCurrency(monthlyCollected)}
           trend={{ label: "↑ 12%", color: "text-success-role" }}
           sub="+12% vs last month"
+          border
+          shadow
         />
         <KpiCard
           label="Overdue Installments"
@@ -42,11 +46,15 @@ const DashboardPage = () => {
           trend={{ label: "!!", color: "text-danger" }}
           sub={`${overdueOver60} over 60 days`}
           danger
+          border
+          shadow
         />
         <KpiCard
           label="New Sales This Month"
           value={String(newSalesThisMonth)}
           sub="LKR 92,000 total value"
+          border
+          shadow
         />
       </div>
       <div className="grid gap-6 grid-cols-1 xl:grid-cols-5">

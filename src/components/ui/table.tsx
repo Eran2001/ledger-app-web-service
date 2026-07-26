@@ -70,12 +70,8 @@ function Table({
     }
 
     return (
-      <Card
-        border={border}
-        shadow={shadow}
-        className="p-0 gap-0 overflow-hidden"
-      >
-        {tableEl}
+      <Card border={border} shadow={shadow} className="p-0 gap-0">
+        <div className="global-rounded overflow-hidden">{tableEl}</div>
       </Card>
     );
   }
@@ -129,7 +125,7 @@ function TableHead({
       data-variant={variant}
       className={cn(
         "text-left align-middle whitespace-nowrap border-b-stroke border-default table-head h-field px-4 t-label-md-bold",
-        "first:pl-0 last:pr-0 last:text-right",
+        variant !== "simple" && "first:pl-0 last:pr-0 last:text-right",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -156,7 +152,7 @@ function TableCell({
       data-variant={variant}
       className={cn(
         "align-middle whitespace-nowrap h-medium-large px-4 t-body-md",
-        "first:pl-0 last:pr-0",
+        variant !== "simple" && "first:pl-0 last:pr-0",
         accentBar && "relative",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,

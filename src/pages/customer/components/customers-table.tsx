@@ -73,7 +73,11 @@ export const CustomersTable = ({ rows }: CustomersTableProps) => {
             }
           >
             <GridItemHeader>
-              <GridItemMedia name={c.fullName} title={c.fullName} subtitle={c.city} />
+              <GridItemMedia
+                name={c.fullName}
+                title={c.fullName}
+                subtitle={c.city}
+              />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <GridItemAction

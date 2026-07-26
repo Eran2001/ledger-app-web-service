@@ -7,6 +7,8 @@ export interface KpiCardProps {
   sub?: string;
   trend?: { label: string; color: string };
   danger?: boolean;
+  border?: boolean;
+  shadow?: boolean;
 }
 
 /* CARD CAPTION */
