@@ -14,7 +14,7 @@ import {
 import { SyncedHeightPair } from "@/components/shared/synced-height-pair";
 import { cn } from "@/lib/utils";
 
-type GridItemAccentVariant =
+export type GridItemAccentVariant =
   | "default"
   | "secondary"
   | "destructive"
@@ -72,7 +72,7 @@ function GridItem({
       data-slot="grid-item"
       className={cn(
         "gap-5 px-4 py-4 sm:px-5 global-rounded",
-        accentVariant && "grid-item-accent",
+        accentVariant && "relative grid-item-accent",
         className,
       )}
       style={
@@ -104,7 +104,7 @@ function GridItemBody({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="grid-item-body"
       className={cn(
         "grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-3",
-        "[&>*:nth-child(even)]:justify-self-end",
+        "[&>*:nth-child(odd)]:justify-self-start [&>*:nth-child(even)]:justify-self-end",
         className,
       )}
       {...props}

@@ -3,6 +3,11 @@ import { create } from "zustand";
 const SIDEBAR_COLLAPSED_KEY = "sidebarCollapsed";
 const NEW_CUSTOMER_OPEN_KEY = "newCustomerOpen";
 
+const getSidebarCollapsedDefault = () => {
+  const stored = localStorage.getItem(SIDEBAR_COLLAPSED_KEY);
+  return stored === null ? true : stored === "true";
+};
+
 interface UIState {
   sidebarCollapsed: boolean;
   mobileSidebarOpen: boolean;
@@ -22,7 +27,7 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-  sidebarCollapsed: localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === "true",
+  sidebarCollapsed: getSidebarCollapsedDefault(),
   mobileSidebarOpen: false,
   activeModal: null,
   selectedInstallmentId: null,

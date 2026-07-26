@@ -1,10 +1,19 @@
+import { useEffect } from "react";
+
 import { useUIStore } from "@/stores/ui-store";
+import { useWidth } from "@/hooks/use-width";
 import { SidebarNav } from "./sidebar-nav";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 export function Sidebar() {
   const collapsed = useUIStore((s) => s.sidebarCollapsed);
   const toggle = useUIStore((s) => s.toggleSidebar);
+  const { width, breakpoints } = useWidth();
+
+  useEffect(() => {
+    if (width < breakpoints.lg && !collapsed) toggle();
+  }, [width, breakpoints.lg, collapsed, toggle]);
+
   return (
     <div className="hidden lg:block shrink-0 h-screen sticky top-0">
       <SidebarNav collapsed={collapsed} onToggleCollapse={toggle} />

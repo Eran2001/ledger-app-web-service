@@ -32,11 +32,11 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
     <Table variant="main" layout="fixed">
       <colgroup>
         <col className="w-[20%]" />
-        <col className="w-[18%]" />
+        <col className="w-[17%]" />
+        <col className="w-[11%]" />
+        <col className="w-[13%]" />
         <col className="w-[11%]" />
         <col className="w-[11%]" />
-        <col className="w-[11%]" />
-        <col className="w-[12%]" />
         <col className="w-[10%]" />
         <col className="w-[7%]" />
       </colgroup>

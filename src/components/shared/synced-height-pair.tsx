@@ -78,21 +78,12 @@ export function SyncedHeightPair({
     : left;
 
   return (
-    <div
-      className={cn("flex min-w-0 items-start gap-4 max-sm:gap-0", className)}
-      {...props}
-    >
-      <div
-        className={cn("shrink-0 max-sm:hidden", leftClassName)}
-        style={leftStyle}
-      >
+    <div className={cn("flex min-w-0 items-start gap-4", className)} {...props}>
+      <div className={cn("shrink-0", leftClassName)} style={leftStyle}>
         {leftNode}
       </div>
 
-      <div
-        ref={rightRef}
-        className={cn("min-w-0 flex-1 max-sm:w-full", rightClassName)}
-      >
+      <div ref={rightRef} className={cn("min-w-0 flex-1", rightClassName)}>
         {right}
       </div>
     </div>

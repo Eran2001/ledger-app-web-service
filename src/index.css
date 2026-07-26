@@ -4237,6 +4237,21 @@
     }
   }
 
+  /* GRID */
+  .grid-item-accent {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0.25rem;
+      background-color: var(--grid-item-accent);
+      border-top-left-radius: var(--radius-xl);
+      border-bottom-left-radius: var(--radius-xl);
+    }
+  }
+
   /* HOVER-CARD */
   .hover-card-content {
     background-color: var(--popover);

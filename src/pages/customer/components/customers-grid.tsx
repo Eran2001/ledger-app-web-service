@@ -2,24 +2,33 @@ import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import {
   Grid,
   GridItem,
   GridItemHeader,
   GridItemBody,
   GridItemMedia,
-  GridItemAction,
   GridEmpty,
+  type GridItemAccentVariant,
 } from "@/components/ui/grid";
 import { StatusBadge } from "@/components/ui/status-badge";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 import { formatCurrency } from "@/utils/format-currency";
-import type { CustomersTableProps } from "@/types/customer-types";
+import type {
+  CustomersTableProps,
+  EnrichedCustomer,
+} from "@/types/customer-types";
+
+const STATUS_ACCENT: Record<EnrichedCustomer["status"], GridItemAccentVariant> =
+  {
+    ACTIVE: "default",
+    OVERDUE: "destructive",
+    COMPLETED: "success",
+  };
 
 export const CustomersGrid = ({ rows }: CustomersTableProps) => {
   const navigate = useNavigate();
@@ -40,6 +49,7 @@ export const CustomersGrid = ({ rows }: CustomersTableProps) => {
             key={c.id}
             border
             shadow
+            accentVariant={STATUS_ACCENT[c.status]}
             className="cursor-pointer"
             onClick={() =>
               navigate({ to: "/customers/$id", params: { id: c.id } })
@@ -51,46 +61,39 @@ export const CustomersGrid = ({ rows }: CustomersTableProps) => {
                 title={c.fullName}
                 subtitle={c.city}
               />
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <GridItemAction
-                    className="focus-visible:shadow-none"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Icon.MoreHorizontal />
-                  </GridItemAction>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="end"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <DropdownMenuItem
-                    onClick={() =>
-                      navigate({ to: "/customers/$id", params: { id: c.id } })
-                    }
-                  >
-                    <Icon.Eye /> View
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <StatusBadge status={c.status} />
             </GridItemHeader>
             <GridItemBody>
-              <span className="t-label-md text-faint">NIC Number</span>
-              <span className="t-body-md-bold text-main">{c.nic}</span>
-              <span className="t-label-md text-faint">Phone</span>
-              <span className="t-body-md-bold text-main">
-                {c.primary_phone}
-              </span>
-              <span className="t-label-md text-faint">Active Sales</span>
-              <span className="t-body-md-bold text-main">
-                {c.activeSalesCount}
-              </span>
-              <span className="t-label-md text-faint">Outstanding</span>
-              <span className="t-body-md-bold text-main">
-                {c.outstanding > 0 ? formatCurrency(c.outstanding) : "N/A"}
-              </span>
-              <span className="t-label-md text-faint">Status</span>
-              <StatusBadge status={c.status} />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="t-body-md-bold text-main">{c.nic}</span>
+                </TooltipTrigger>
+                <TooltipContent>NIC Number</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="t-body-md-bold text-main">
+                    {c.primary_phone}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>Phone</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="t-body-md-bold text-main">
+                    {c.activeSalesCount}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>Active Sales</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="t-body-md-bold text-main">
+                    {c.outstanding > 0 ? formatCurrency(c.outstanding) : "N/A"}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>Outstanding</TooltipContent>
+              </Tooltip>
             </GridItemBody>
           </GridItem>
         ))

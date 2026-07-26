@@ -127,7 +127,7 @@ function TableHead({
       data-slot="table-head"
       data-variant={variant}
       className={cn(
-        "text-left align-middle whitespace-nowrap border-b-stroke border-default table-head h-field px-4 t-label-md-bold",
+        "text-left align-middle truncate border-b-stroke border-default table-head h-field px-4 t-label-md-bold",
         variant !== "simple" && "first:pl-0 last:pr-0 last:text-right",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
