@@ -2,6 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+
 import { getAvatarColors } from "@/utils/get-avatar-colors";
 import { getInitials } from "@/utils/get-initials";
 import { useAuthStore } from "@/stores/auth-store";

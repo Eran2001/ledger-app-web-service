@@ -1,7 +1,8 @@
 import * as Icon from "@/components/icons";
 import type { TopBarProps } from "@/components/shared/top-bar";
+
 import { useUIStore } from "@/stores/ui-store";
-import { Notification } from "@/utils/notification";
+import { Notification } from "@/components/ui/custom-toast";
 
 interface RouteTopBarConfig extends TopBarProps {
   match: string | RegExp;

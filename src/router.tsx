@@ -11,6 +11,7 @@ import AuthLayout from "@/layouts/auth-layout";
 import DefaultLayout from "@/layouts/default-layout";
 
 import { Loading } from "@/components/ui/loading";
+import { settingsSearchSchema } from "@/constant/setting-data";
 
 /* AUTH */
 const Login = lazy(() => import("./pages/auth/login"));
@@ -32,9 +33,6 @@ const Employee = lazy(() => import("./pages/employees"));
 const Overdue = lazy(() => import("./pages/overdue"));
 const Reports = lazy(() => import("./pages/reports"));
 const Settings = lazy(() => import("./pages/settings"));
-const Profile = lazy(
-  () => import("./pages/settings/components/account-information"),
-);
 
 /* ERROR */
 const NotFound = lazy(() => import("./pages/404"));
@@ -145,12 +143,8 @@ const reportsRoute = createRoute({
 const settingsRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/settings",
+  validateSearch: settingsSearchSchema,
   component: Settings,
-});
-const profileRoute = createRoute({
-  getParentRoute: () => shellRoute,
-  path: "/settings/profile",
-  component: Profile,
 });
 
 /* ERROR */
@@ -191,7 +185,6 @@ const routeTree = rootRoute.addChildren([
     overdueRoute,
     reportsRoute,
     settingsRoute,
-    profileRoute,
   ]),
 
   notFoundRoute,

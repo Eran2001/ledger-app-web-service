@@ -13,6 +13,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 import { useUIStore } from "@/stores/ui-store";
 import { useThemeStore } from "@/stores/theme-store";
@@ -97,29 +102,42 @@ export function TopBar({
             </Button>
           </div>
         )}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="app-sidebar-link app-sidebar-icon-btn"
-          aria-label="Toggle theme"
-        >
-          {isDark ? (
-            <Icon.Sun className="h-5 w-5" />
-          ) : (
-            <Icon.Moon className="h-5 w-5" />
-          )}
-        </Button>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="relative app-sidebar-link app-sidebar-icon-btn"
-          aria-label="Notifications"
-        >
-          <Icon.Bell className="h-5 w-5" />
-          <NotificationDot />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="app-sidebar-link app-sidebar-icon-btn"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Icon.Sun className="h-5 w-5" />
+              ) : (
+                <Icon.Moon className="h-5 w-5" />
+              )}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {isDark ? "toggle light" : "toggle dark"}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative app-sidebar-link app-sidebar-icon-btn"
+              aria-label="Notifications"
+            >
+              <Icon.Bell className="h-5 w-5" />
+              <NotificationDot />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Notifications</TooltipContent>
+        </Tooltip>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -135,7 +153,8 @@ export function TopBar({
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link
-                to="/settings/profile"
+                to="/settings"
+                search={{ tab: "Account Info" }}
                 className="flex items-center gap-2 t-body-md"
               >
                 <Icon.User className="h-4 w-4" /> Profile
@@ -144,6 +163,7 @@ export function TopBar({
             <DropdownMenuItem asChild>
               <Link
                 to="/settings"
+                search={{ tab: "Business Settings" }}
                 className="flex items-center gap-2 t-body-md"
               >
                 <Icon.Settings className="h-4 w-4" /> Settings

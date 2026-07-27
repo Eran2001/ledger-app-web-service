@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "@tanstack/react-router";
 
 import type { TopBarProps } from "@/components/shared/top-bar";
+
 import { useTopBarStore } from "@/stores/top-bar-store";
 
 export function useTopBarOverride(config: Partial<TopBarProps> | null) {

@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsCount } from "@/components/ui/tabs";
 import { SearchField } from "@/components/ui/search-field";
 
-import { SalesTable } from "./components/sales-table";
-import { SalesGrid } from "./components/sales-grid";
-
 import { useWidth } from "@/hooks/use-width";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { saleStats, sales, SALE_TABS } from "@/constant/sale-data";
 import type { SaleTab } from "@/types/sale-types";
+
+import { SalesTable } from "./components/sales-table";
+import { SalesGrid } from "./components/sales-grid";
 
 const enriched = sales.map((s) => {
   const stat = saleStats(s.id);

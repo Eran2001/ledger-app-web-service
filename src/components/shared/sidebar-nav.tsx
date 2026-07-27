@@ -1,8 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
 
-import { BusinessHeader } from "@/components/shared/business-header";
-import { UserProfile } from "@/components/shared/user-profile";
-
 import * as Icon from "@/components/icons";
 import {
   Tooltip,
@@ -11,6 +8,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { BusinessHeader } from "@/components/shared/business-header";
+import { UserProfile } from "@/components/shared/user-profile";
 
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constant/sidebar-nav-links";

@@ -72,6 +72,7 @@ export const SalesTable = ({ rows }: SalesTableProps) => {
                 <TableCellMedia
                   name={customer?.fullName ?? ""}
                   title={customer?.fullName ?? ""}
+                  subtitle={customer?.primary_phone}
                 />
               </TableCell>
               <TableCell>

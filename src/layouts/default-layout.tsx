@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "@tanstack/react-router";
 import { Sidebar, MobileSidebar } from "@/components/shared/sidebar";
 import { AppFooter } from "@/components/shared/app-footer";
 import { TopBar, type TopBarProps } from "@/components/shared/top-bar";
+
 import { getRouteTopBarConfig } from "@/constant/top-bar-routes";
 import { useTopBarStore } from "@/stores/top-bar-store";
 

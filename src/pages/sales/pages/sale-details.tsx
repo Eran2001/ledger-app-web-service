@@ -3,8 +3,8 @@ import { Link, useParams, Navigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { CustomerInfoCard } from "@/components/shared/customer-info-card";
 
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
@@ -19,6 +19,7 @@ import { formatCurrency } from "@/utils/format-currency";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
 import { RecordPaymentModal } from "../components/record-payment-modal";
+import { SaleSummaryCard } from "../components/sale-summary-card";
 
 function SaleDetail() {
   const { id } = useParams({ strict: false });
@@ -67,77 +68,33 @@ function SaleDetail() {
 
   return (
     <div>
-      <Link
-        to="/sales"
-        className="inline-flex items-center gap-2 t-body-md-bold text-brand mb-6 group"
-      >
-        <Icon.ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-        Back to list
-      </Link>
-
       <div className="grid gap-6 lg:grid-cols-2 mb-6">
-        {/* Customer */}
-        <div className="surface-card global-rounded border border-default p-6 shadow-sm">
-          <p className="t-label-sm-bold text-soft text-uppercase tracking-label mb-4">
-            Customer
-          </p>
-          <div className="flex items-start gap-4">
-            <InitialsAvatar name={customer?.fullName ?? ""} />
-            <div className="flex-1 min-w-0">
-              <h3 className="t-title-xl text-main mb-1">
-                {customer?.fullName}
-              </h3>
-              <div className="flex flex-wrap gap-x-4 gap-y-0.5 t-body-md text-soft">
-                <span>
-                  <span className="text-faint mr-1">NIC</span>
-                  <span className="font-mono">{customer?.nic}</span>
-                </span>
-                <span>
-                  <span className="text-faint mr-1">Phone</span>
-                  {customer?.primary_phone}
-                </span>
-              </div>
-              <p className="t-body-md text-soft mt-1">{customer?.address}</p>
-              {customer && (
-                <Link
-                  to="/customers/$id"
-                  params={{ id: customer.id }}
-                  className="t-label-md-bold text-brand inline-flex items-center gap-1 mt-3"
-                >
-                  View Full Profile →
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
+        {customer && (
+          <CustomerInfoCard
+            border
+            shadow
+            customer={customer}
+            backTo="/sales"
+            onNavigate={`/customers/${customer.id}`}
+          />
+        )}
 
-        {/* Sale summary */}
-        <div className="surface-card global-rounded border border-default p-6 shadow-sm relative">
-          <div className="flex items-start justify-between mb-4">
-            <p className="t-label-sm-bold text-soft text-uppercase tracking-label">
-              Sale Summary
-            </p>
-            <StatusBadge status={stat.hasOverdue ? "OVERDUE" : sale.status} />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <KV label="Product" value={product?.name ?? "—"} />
-            <KV label="Sold Price" value={formatCurrency(sale.soldPrice)} />
-            <KV label="Down Payment" value={formatCurrency(sale.downPayment)} />
-            <KV label="Monthly" value={formatCurrency(sale.monthlyAmount)} />
-            <KV label="Total Paid" value={formatCurrency(stat.totalPaid)} />
-            <KV
-              label="Outstanding"
-              value={formatCurrency(stat.outstanding)}
-              highlight
-            />
-          </div>
-          <p className="t-label-md text-faint italic mt-4 pt-4 border-t border-default">
-            Sold on {formatDate(sale.saleDate)}
-          </p>
-        </div>
+        <SaleSummaryCard
+          status={stat.hasOverdue ? "OVERDUE" : sale.status}
+          productName={product?.name ?? "—"}
+          soldPrice={sale.soldPrice}
+          downPayment={sale.downPayment}
+          monthlyAmount={sale.monthlyAmount}
+          totalMonths={sale.totalMonths}
+          totalPaid={stat.totalPaid}
+          outstanding={stat.outstanding}
+          nextDue={stat.nextDue}
+          saleDate={sale.saleDate}
+          border
+          shadow
+        />
       </div>
 
-      {/* Installment Schedule */}
       <section className="surface-card modal-rounded border border-default shadow-sm mb-6 overflow-hidden">
         <div className="flex items-center justify-between px-6 h-14 border-b border-default">
           <h2 className="t-title-md text-main">Installment Schedule</h2>
@@ -219,7 +176,6 @@ function SaleDetail() {
         </div>
       </section>
 
-      {/* Payment timeline */}
       <section className="surface-card modal-rounded border border-default p-8 shadow-sm">
         <h2 className="t-title-md text-main mb-6">Payment History</h2>
         {history.length === 0 ? (
@@ -278,27 +234,6 @@ function SaleDetail() {
         installmentId={activeInstallmentId}
         customerPhone={customer?.primary_phone}
       />
-    </div>
-  );
-}
-
-function KV({
-  label,
-  value,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div>
-      <p className="t-label-sm-bold text-soft text-uppercase tracking-label mb-1">
-        {label}
-      </p>
-      <p className={`t-body-md-bold ${highlight ? "text-brand" : "text-main"}`}>
-        {value}
-      </p>
     </div>
   );
 }

@@ -1,20 +1,9 @@
-// import { Suspense } from "react";
-// import { Outlet } from "@tanstack/react-router";
-
-// import { Loading } from "@/components/ui/loading";
-
-// export default function AuthLayout() {
-//   return (
-//     <Suspense fallback={<Loading />}>
-//       <Outlet />
-//     </Suspense>
-//   );
-// }
 import { Suspense } from "react";
 import { Outlet } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 
 import { Loading } from "@/components/ui/loading";
+
 import {
   loginHeroFeatures,
   loginHeroSignal,

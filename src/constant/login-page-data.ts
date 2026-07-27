@@ -1,9 +1,6 @@
-import {
-  BarChart3,
-  ShieldCheck,
-  Workflow,
-  type LucideIcon,
-} from "lucide-react";
+import { type LucideIcon } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 
 interface LoginHeroFeature {
   icon: LucideIcon;
@@ -33,19 +30,19 @@ export const loginHeroStats: LoginHeroStat[] = [
 
 export const loginHeroFeatures: LoginHeroFeature[] = [
   {
-    icon: ShieldCheck,
+    icon: Icon.ShieldCheck,
     title: "Verification Sessions",
     copy: "Review KYC status, resubmissions, and customer verification outcomes in real time.",
   },
   {
-    icon: Workflow,
+    icon: Icon.Workflow,
     title: "Workflow Control",
     copy: "Configure tenant validation flows for documents, liveness, face match, and business checks.",
   },
 ];
 
 export const loginHeroSignal = {
-  icon: BarChart3,
+  icon: Icon.BarChart3,
   label: "Live verification volume",
   value: "+18.4%",
 };

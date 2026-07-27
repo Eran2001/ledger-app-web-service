@@ -1,9 +1,25 @@
+import { z } from "zod";
+
 interface WhatsAppTemplate {
   id: string;
   name: string;
   preview: string;
   active: boolean;
 }
+
+export const SETTINGS_TABS = [
+  "Account Info",
+  "Business Settings",
+  "Notifications",
+  "WhatsApp",
+  "Security",
+] as const;
+
+export type SettingsTab = (typeof SETTINGS_TABS)[number];
+
+export const settingsSearchSchema = z.object({
+  tab: z.enum(SETTINGS_TABS).default("Business Settings"),
+});
 
 export const initialTemplates: WhatsAppTemplate[] = [
   {

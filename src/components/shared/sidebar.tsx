@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
+
 import { useUIStore } from "@/stores/ui-store";
 import { useWidth } from "@/hooks/use-width";
+
 import { SidebarNav } from "./sidebar-nav";
-import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 export function Sidebar() {
   const collapsed = useUIStore((s) => s.sidebarCollapsed);

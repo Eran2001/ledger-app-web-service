@@ -1,6 +1,7 @@
 import { subMonths, format } from "date-fns";
 
 import type { Customer } from "@/types/customer-types";
+
 import { saleStats, sales } from "./sale-data";
 
 const today = new Date(2026, 4, 3);
