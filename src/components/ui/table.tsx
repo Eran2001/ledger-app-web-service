@@ -11,6 +11,7 @@ import {
 import { CardCaption } from "@/components/ui/card-caption";
 import { InitialsAvatar } from "@/components/ui/initials-avatar";
 import { CategoryLabel } from "@/components/ui/category-label";
+import type { PillColor } from "@/components/ui/stat-pill";
 
 import { cn } from "@/lib/utils";
 import type { ProductCategory } from "@/types/product-types";
@@ -22,6 +23,8 @@ function Table({
   caption,
   actionLabel,
   actionTo,
+  statLabel,
+  statColor,
   border = false,
   shadow = false,
   ...props
@@ -31,6 +34,8 @@ function Table({
   caption?: string;
   actionLabel?: string;
   actionTo?: string;
+  statLabel?: string;
+  statColor?: PillColor;
   border?: boolean;
   shadow?: boolean;
 }) {
@@ -64,6 +69,8 @@ function Table({
           title={caption}
           actionLabel={actionLabel}
           actionTo={actionTo}
+          statLabel={statLabel}
+          statColor={statColor}
           border={border}
           shadow={shadow}
         >
@@ -105,13 +112,35 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   );
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+function TableRow({
+  className,
+  done = false,
+  lineThrough = false,
+  children,
+  ...props
+}: React.ComponentProps<"tr"> & {
+  done?: boolean;
+  lineThrough?: boolean;
+}) {
+  const isDone = done || lineThrough;
+
+  const rowChildren = React.Children.map(children, (child) => {
+    if (!isDone || !React.isValidElement(child)) return child;
+
+    return React.cloneElement(child as React.ReactElement<TableCellProps>, {
+      done: true,
+    });
+  });
+
   return (
     <tr
       data-slot="table-row"
+      data-done={isDone || undefined}
       className={cn("table-row", className)}
       {...props}
-    />
+    >
+      {rowChildren}
+    </tr>
   );
 }
 
@@ -140,23 +169,31 @@ function TableHead({
 interface TableCellProps extends React.ComponentProps<"td"> {
   accentBar?: boolean;
   variant?: "main" | "simple";
+  done?: boolean;
+  lineThrough?: boolean;
 }
 
 function TableCell({
   className,
   accentBar = false,
+  done = false,
+  lineThrough = false,
   children,
   variant,
   ...props
 }: TableCellProps) {
+  const isDone = done || lineThrough;
+
   return (
     <td
       data-slot="table-cell"
       data-variant={variant}
+      data-done={isDone || undefined}
       className={cn(
         "align-middle whitespace-nowrap h-medium-large px-4 t-body-md",
         variant !== "simple" && "first:pl-0 last:pr-0",
         accentBar && "relative",
+        isDone && "text-faint",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}

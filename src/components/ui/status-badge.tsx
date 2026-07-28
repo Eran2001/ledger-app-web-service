@@ -39,23 +39,30 @@ export function StatusBadge({
   status,
   border = false,
   shadow = false,
+  muted = false,
   className,
 }: {
   status: Status;
   border?: boolean;
   shadow?: boolean;
+  muted?: boolean;
   className?: string;
 }) {
   const colors = VAR_MAP[status];
   return (
     <span
+      data-slot="status-badge"
       className={cn(
-        "badge-text px-2.5 py-0.5 global-rounded whitespace-nowrap inline-block",
-        border && "border-stroke",
-        shadow && "shadow-card",
+        muted
+          ? "inline-block whitespace-nowrap text-faint"
+          : "badge-text px-2.5 py-0.5 global-rounded whitespace-nowrap inline-block",
+        !muted && border && "border-stroke",
+        !muted && shadow && "shadow-card",
         className,
       )}
-      style={{ backgroundColor: colors.bg, color: colors.text }}
+      style={
+        muted ? undefined : { backgroundColor: colors.bg, color: colors.text }
+      }
     >
       {formatStatusLabel(status)}
     </span>

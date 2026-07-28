@@ -105,6 +105,7 @@ export {
   Sun,
   CircleAlert,
   CircleCheckBig,
+  BadgeCheck,
   CircleX,
   Upload,
   LoaderCircle,

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type PillColor =
+export type PillColor =
   | "indigo"
   | "amber"
   | "gray"

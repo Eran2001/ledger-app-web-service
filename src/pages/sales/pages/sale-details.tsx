@@ -1,9 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
-import { Link, useParams, Navigate } from "@tanstack/react-router";
+import { useParams, Navigate } from "@tanstack/react-router";
 
 import * as Icon from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { CustomerInfoCard } from "@/components/shared/customer-info-card";
 
 import { customerById } from "@/constant/customer-data";
@@ -18,6 +16,7 @@ import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
+import { InstallmentScheduleTable } from "../components/installment-schedule-table";
 import { RecordPaymentModal } from "../components/record-payment-modal";
 import { SaleSummaryCard } from "../components/sale-summary-card";
 
@@ -95,86 +94,13 @@ function SaleDetail() {
         />
       </div>
 
-      <section className="surface-card modal-rounded border border-default shadow-sm mb-6 overflow-hidden">
-        <div className="flex items-center justify-between px-6 h-14 border-b border-default">
-          <h2 className="t-title-md text-main">Installment Schedule</h2>
-          <span className="surface-brand-soft text-brand t-label-md-bold px-3 py-1 circle-rounded">
-            {stat.paidCount} of {stat.totalCount} paid ·{" "}
-            {formatCurrency(stat.outstanding)} remaining
-          </span>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="table-header">
-                <th className="px-6 py-3 text-left">#</th>
-                <th className="px-6 py-3 text-left">Due Date</th>
-                <th className="px-6 py-3 text-right">Expected</th>
-                <th className="px-6 py-3 text-right">Paid</th>
-                <th className="px-6 py-3 text-right">Balance</th>
-                <th className="px-6 py-3 text-left">Status</th>
-                <th className="px-6 py-3 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {schedules.map((s) => {
-                const balance = s.expectedAmount - s.paidAmount;
-                const rowClass =
-                  s.status === "PAID"
-                    ? "surface-page"
-                    : s.status === "PARTIALLY_PAID"
-                      ? "surface-warning-soft"
-                      : s.status === "OVERDUE"
-                        ? "surface-overdue-row"
-                        : "";
-                const isPaid = s.status === "PAID";
-                return (
-                  <tr
-                    key={s.id}
-                    className={`border-t border-default ${rowClass}`}
-                  >
-                    <td
-                      className={`px-6 py-3 t-body-md-bold ${isPaid ? "text-faint" : "text-main"}`}
-                    >
-                      {s.installmentNumber}
-                    </td>
-                    <td
-                      className={`px-6 py-3 table-text ${isPaid ? "line-through text-faint" : ""}`}
-                    >
-                      {formatDate(s.dueDate)}
-                    </td>
-                    <td className="px-6 py-3 text-right table-text">
-                      {formatCurrency(s.expectedAmount)}
-                    </td>
-                    <td className="px-6 py-3 text-right table-text">
-                      {formatCurrency(s.paidAmount)}
-                    </td>
-                    <td className="px-6 py-3 text-right t-body-md-bold text-main">
-                      {balance > 0 ? formatCurrency(balance) : "—"}
-                    </td>
-                    <td className="px-6 py-3">
-                      <StatusBadge status={s.status} />
-                    </td>
-                    <td className="px-6 py-3 text-right">
-                      {!isPaid ? (
-                        <Button
-                          variant="outline"
-                          onClick={() => openPaymentModal(s.id)}
-                          className="t-label-md-bold control-rounded border-brand-soft text-brand hover:bg-(--primary-light) bg-transparent"
-                        >
-                          Record Payment
-                        </Button>
-                      ) : (
-                        <span className="t-label-md text-faint">—</span>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <div className="mb-6">
+        <InstallmentScheduleTable
+          schedules={schedules}
+          statLabel={`${stat.paidCount} of ${stat.totalCount} paid · ${formatCurrency(stat.outstanding)} remaining`}
+          onRecordPayment={openPaymentModal}
+        />
+      </div>
 
       <section className="surface-card modal-rounded border border-default p-8 shadow-sm">
         <h2 className="t-title-md text-main mb-6">Payment History</h2>

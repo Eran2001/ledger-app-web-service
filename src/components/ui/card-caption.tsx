@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { StatPill } from "@/components/ui/stat-pill";
 
 import { cn } from "@/lib/utils";
 import { CardCaptionProps } from "@/types/dashboard-types";
@@ -11,6 +12,8 @@ export function CardCaption({
   title,
   actionLabel,
   actionTo,
+  statLabel,
+  statColor,
   className,
   border = false,
   shadow = false,
@@ -30,7 +33,7 @@ export function CardCaption({
           )}
         >
           <span className="t-title-lg-soft">{title}</span>
-          {actionLabel && actionTo && (
+          {actionLabel && actionTo ? (
             <Button variant="link" className="p-0">
               <Link
                 to={actionTo}
@@ -40,7 +43,9 @@ export function CardCaption({
                 <Icon.ArrowRight className="icon-default icon-front-hover" />
               </Link>
             </Button>
-          )}
+          ) : statLabel ? (
+            <StatPill label={statLabel} color={statColor} />
+          ) : null}
         </div>
         {children}
       </div>
