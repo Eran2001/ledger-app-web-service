@@ -16,6 +16,8 @@ import type { PillColor } from "@/components/ui/stat-pill";
 import { cn } from "@/lib/utils";
 import type { ProductCategory } from "@/types/product-types";
 
+const TableVariantContext = React.createContext<"main" | "simple">("main");
+
 function Table({
   className,
   variant = "main",
@@ -42,24 +44,26 @@ function Table({
   const isSimple = variant === "simple";
 
   const tableEl = (
-    <div
-      data-slot="table-container"
-      className={cn(
-        "relative w-full overflow-x-auto",
-        !isSimple && "table-main-bleed",
-      )}
-    >
-      <table
-        data-slot="table"
+    <TableVariantContext.Provider value={variant}>
+      <div
+        data-slot="table-container"
         className={cn(
-          "w-full t-body-md",
-          layout === "fixed" && "table-fixed",
-          isSimple ? "table-simple" : "table-main",
-          className,
+          "relative w-full overflow-x-auto",
+          !isSimple && "table-main-bleed",
         )}
-        {...props}
-      />
-    </div>
+      >
+        <table
+          data-slot="table"
+          className={cn(
+            "w-full t-body-md",
+            layout === "fixed" && "table-fixed",
+            isSimple ? "table-simple" : "table-main",
+            className,
+          )}
+          {...props}
+        />
+      </div>
+    </TableVariantContext.Provider>
   );
 
   if (isSimple) {
@@ -151,13 +155,16 @@ function TableHead({
 }: React.ComponentProps<"th"> & {
   variant?: "main" | "simple";
 }) {
+  const tableVariant = React.useContext(TableVariantContext);
+  const resolvedVariant = variant ?? tableVariant;
+
   return (
     <th
       data-slot="table-head"
-      data-variant={variant}
+      data-variant={resolvedVariant}
       className={cn(
         "text-left align-middle truncate border-b-stroke border-default table-head h-field px-4 t-label-md-bold",
-        variant !== "simple" && "first:pl-0 last:pr-0 last:text-right",
+        resolvedVariant !== "simple" && "first:pl-0 last:pr-0 last:text-right",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",
         className,
       )}
@@ -182,16 +189,18 @@ function TableCell({
   variant,
   ...props
 }: TableCellProps) {
+  const tableVariant = React.useContext(TableVariantContext);
+  const resolvedVariant = variant ?? tableVariant;
   const isDone = done || lineThrough;
 
   return (
     <td
       data-slot="table-cell"
-      data-variant={variant}
+      data-variant={resolvedVariant}
       data-done={isDone || undefined}
       className={cn(
         "align-middle whitespace-nowrap h-medium-large px-4 t-body-md",
-        variant !== "simple" && "first:pl-0 last:pr-0",
+        resolvedVariant !== "simple" && "first:pl-0 last:pr-0",
         accentBar && "relative",
         isDone && "text-faint",
         "[&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5",

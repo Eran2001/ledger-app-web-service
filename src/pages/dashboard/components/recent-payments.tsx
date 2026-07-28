@@ -55,23 +55,23 @@ export const RecentPayments = () => {
       >
         <TableHeader>
           <TableRow>
-            <TableHead variant="simple">Customer</TableHead>
-            <TableHead variant="simple">Product</TableHead>
-            <TableHead variant="simple">Amount</TableHead>
-            <TableHead variant="simple">Date</TableHead>
-            <TableHead variant="simple">Status</TableHead>
+            <TableHead>Customer</TableHead>
+            <TableHead>Product</TableHead>
+            <TableHead>Amount</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {recentPayments.map((p) => (
             <TableRow key={p.id}>
-              <TableCell variant="simple">
+              <TableCell>
                 <TableCellMedia name={p.customer} title={p.customer} />
               </TableCell>
-              <TableCell variant="simple">{p.product}</TableCell>
-              <TableCell variant="simple">{formatCurrency(p.amount)}</TableCell>
-              <TableCell variant="simple">{formatDate(p.date)}</TableCell>
-              <TableCell variant="simple">
+              <TableCell>{p.product}</TableCell>
+              <TableCell>{formatCurrency(p.amount)}</TableCell>
+              <TableCell>{formatDate(p.date)}</TableCell>
+              <TableCell>
                 <StatusBadge status={p.status} />
               </TableCell>
             </TableRow>

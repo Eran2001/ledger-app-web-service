@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 function Fallback({
   className,
-  children = "-",
+  children = "—",
   ...props
 }: React.ComponentProps<"span">) {
   return (

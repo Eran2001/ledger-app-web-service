@@ -1,5 +1,11 @@
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
@@ -29,21 +35,31 @@ export function InstallmentScheduleTable({
   return (
     <Table
       variant="simple"
+      layout="fixed"
       caption="Installment Schedule"
       statLabel={statLabel}
       statColor="indigo"
       border
       shadow
     >
+      <colgroup>
+        <col className="w-[8%]" />
+        <col className="w-[20%]" />
+        <col className="w-[15%]" />
+        <col className="w-[15%]" />
+        <col className="w-[15%]" />
+        <col className="w-[12%]" />
+        <col className="w-[15%]" />
+      </colgroup>
       <TableHeader>
         <TableRow>
-          <TableHead variant="simple">#</TableHead>
-          <TableHead variant="simple">Due Date</TableHead>
-          <TableHead variant="simple">Expected</TableHead>
-          <TableHead variant="simple">Paid</TableHead>
-          <TableHead variant="simple">Balance</TableHead>
-          <TableHead variant="simple">Status</TableHead>
-          <TableHead variant="simple">Action</TableHead>
+          <TableHead>#</TableHead>
+          <TableHead>Due Date</TableHead>
+          <TableHead>Expected</TableHead>
+          <TableHead>Paid</TableHead>
+          <TableHead>Balance</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead className="text-right">Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -59,39 +75,37 @@ export function InstallmentScheduleTable({
 
           return (
             <TableRow key={schedule.id} done={isPaid} className={rowClass}>
-              <TableCell variant="simple">
-                {schedule.installmentNumber}
+              <TableCell>{schedule.installmentNumber}</TableCell>
+              <TableCell>{formatDate(schedule.dueDate)}</TableCell>
+              <TableCell>{formatCurrency(schedule.expectedAmount)}</TableCell>
+              <TableCell>{formatCurrency(schedule.paidAmount)}</TableCell>
+              <TableCell>
+                {balance > 0 ? formatCurrency(balance) : <Fallback />}
               </TableCell>
-              <TableCell variant="simple">
-                {formatDate(schedule.dueDate)}
-              </TableCell>
-              <TableCell variant="simple">
-                {formatCurrency(schedule.expectedAmount)}
-              </TableCell>
-              <TableCell variant="simple">
-                {formatCurrency(schedule.paidAmount)}
-              </TableCell>
-              <TableCell variant="simple">
-                {balance > 0 ? formatCurrency(balance) : "—"}
-              </TableCell>
-              <TableCell variant="simple">
+              <TableCell>
                 {isPaid ? (
-                  <Icon.BadgeCheck className="size-5" />
+                  <Icon.BadgeCheck className="icon-default" />
                 ) : (
                   <StatusBadge status={schedule.status} />
                 )}
               </TableCell>
-              <TableCell variant="simple">
+              <TableCell className="text-right">
                 {!isPaid ? (
-                  <Button
-                    variant="outline"
-                    onClick={() => onRecordPayment(schedule.id)}
-                  >
-                    Record Payment
-                  </Button>
-                ) : (
-                  <Fallback />
-                )}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon-sm">
+                        <Icon.MoreHorizontal />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" border shadow>
+                      <DropdownMenuItem
+                        onClick={() => onRecordPayment(schedule.id)}
+                      >
+                        <Icon.Wallet /> Record Payment
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : null}
               </TableCell>
             </TableRow>
           );
