@@ -2,6 +2,7 @@ import { format } from "date-fns";
 
 import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { Input } from "@/components/ui/input";
 import {
@@ -36,9 +37,7 @@ export const SaleTermsFields = ({
   return (
     <div className="grid gap-5 md:grid-cols-2">
       <div className="grid gap-2">
-        <Label required className="text-main">
-          Sold price
-        </Label>
+        <Label required>Sold price</Label>
         <InputGroup>
           <InputGroupAddon>
             <InputGroupText>LKR</InputGroupText>
@@ -53,7 +52,7 @@ export const SaleTermsFields = ({
       </div>
 
       <div className="grid gap-2">
-        <Label className="text-main">Down payment</Label>
+        <Label>Down payment</Label>
         <InputGroup>
           <InputGroupAddon>
             <InputGroupText>LKR</InputGroupText>
@@ -63,16 +62,13 @@ export const SaleTermsFields = ({
             min={0}
             value={downPayment || ""}
             onChange={(e) => onDownPaymentChange(Number(e.target.value))}
-            className="text-success-role"
           />
         </InputGroup>
       </div>
 
       <div className="grid gap-2">
-        <Label required className="text-main">
-          Number of months
-        </Label>
-        <div className="flex items-center gap-2">
+        <Label required>Number of months</Label>
+        <ButtonGroup className="w-full">
           <Button
             type="button"
             onClick={() => onMonthsChange(Math.max(1, months - 1))}
@@ -98,7 +94,7 @@ export const SaleTermsFields = ({
           >
             <Icon.Plus />
           </Button>
-        </div>
+        </ButtonGroup>
       </div>
 
       <DatePickerInput
@@ -108,6 +104,8 @@ export const SaleTermsFields = ({
           onSaleDateChange(date ? format(date, "yyyy-MM-dd") : "")
         }
         placeholder="Choose sale date"
+        border
+        shadow
       />
     </div>
   );

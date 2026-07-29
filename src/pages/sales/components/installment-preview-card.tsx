@@ -6,9 +6,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
+import { Separator } from "@/components/ui/separator";
 
 interface ScheduleItem {
   n: number;
@@ -50,14 +59,13 @@ export const InstallmentPreviewCard = ({
               −{formatCurrency(downPayment)}
             </span>
           </div>
-          <div className="flex justify-between items-center py-3 border-b border-default">
-            <span className="t-body-md-bold text-main">
-              Remaining Balance
-            </span>
+          <div className="flex justify-between items-center py-3">
+            <span className="t-body-md-bold text-main">Remaining Balance</span>
             <span className="t-title-lg text-main">
               {formatCurrency(remaining)}
             </span>
           </div>
+          <Separator />
           <div className="surface-brand-soft global-rounded p-4 mt-4 mb-3 flex justify-between items-center">
             <span className="t-body-md-bold text-brand">Monthly Payment</span>
             <span className="t-title-xl text-brand">
@@ -67,46 +75,41 @@ export const InstallmentPreviewCard = ({
           <Row label="Duration" value={`${months} months`} />
         </div>
 
-        <div className="mt-5 pt-5 border-t border-default">
+        <Separator />
+
+        <div className="pt-5">
           <p className="t-label-sm-bold text-soft text-uppercase tracking-label mb-2">
             Generated Schedule
           </p>
-          <div className="max-h-75 overflow-y-auto -mx-2">
-            <table className="w-full">
-              <thead>
-                <tr className="t-label-sm text-faint text-uppercase tracking-label">
-                  <th className="px-2 py-1.5 text-left">#</th>
-                  <th className="px-2 py-1.5 text-left">Due Date</th>
-                  <th className="px-2 py-1.5 text-right">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
+          <div className="max-h-75 overflow-y-auto hide-scrollbar">
+            <Table layout="fixed">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>#</TableHead>
+                  <TableHead>Due Date</TableHead>
+                  <TableHead>Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {schedule.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={3}
-                      className="px-2 py-6 text-center t-label-md text-faint"
-                    >
+                  <TableRow>
+                    <TableCell colSpan={3} className="text-center text-faint">
                       Enter sale details to preview schedule
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ) : (
                   schedule.map((s) => (
-                    <tr key={s.n} className="border-t border-default">
-                      <td className="px-2 py-2 t-label-md text-faint">
-                        {s.n}
-                      </td>
-                      <td className="px-2 py-2 t-label-md text-soft">
-                        {formatDate(s.due)}
-                      </td>
-                      <td className="px-2 py-2 text-right t-label-md-bold text-main">
+                    <TableRow key={s.n}>
+                      <TableCell>{s.n}</TableCell>
+                      <TableCell>{formatDate(s.due)}</TableCell>
+                      <TableCell className="text-right">
                         {formatCurrency(s.amount)}
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))
                 )}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         </div>
       </CardContent>

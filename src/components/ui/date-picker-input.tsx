@@ -19,6 +19,8 @@ type DatePickerInputProps = {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  border?: boolean;
+  shadow?: boolean;
 };
 
 const formatDate = (date?: Date) => {
@@ -37,6 +39,8 @@ export function DatePickerInput({
   placeholder = "Select date",
   disabled,
   className,
+  border = false,
+  shadow = false,
 }: DatePickerInputProps) {
   const [open, setOpen] = React.useState(false);
   const [month, setMonth] = React.useState<Date | undefined>(value);
@@ -71,10 +75,9 @@ export function DatePickerInput({
         </PopoverTrigger>
 
         <PopoverContent
-          className={cn(
-            "w-auto p-0",
-            "dropdown-shadow picker-content",
-          )}
+          className={cn("w-auto p-0", "picker-content")}
+          border={border}
+          shadow={shadow}
           align="start"
           sideOffset={6}
         >

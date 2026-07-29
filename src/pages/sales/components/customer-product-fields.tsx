@@ -65,7 +65,9 @@ export const CustomerProductFields = ({
       </div>
 
       <div className="grid gap-3">
-        <Label required>Select product</Label>
+        <div className="flex items-center justify-between gap-2">
+          <Label required>Select product</Label>
+        </div>
         <Select value={productId} onValueChange={onProductChange}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Choose a product…" />
@@ -78,20 +80,10 @@ export const CustomerProductFields = ({
             ))}
           </SelectContent>
         </Select>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <Button type="button" variant="link" className="w-fit p-0">
-            <Icon.ShoppingCart />
-            Add New Product
-          </Button>
-          {/* {product && (
-            <p className="t-label-md text-soft">
-              Standard price:{" "}
-              <span className="fw-bold text-main">
-                {formatCurrency(product.basePrice)}
-              </span>
-            </p>
-          )} */}
-        </div>
+        <Button type="button" variant="link" className="w-fit p-0">
+          <Icon.ShoppingCart />
+          Add New Product
+        </Button>
       </div>
     </div>
   );
