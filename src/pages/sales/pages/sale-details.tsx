@@ -12,11 +12,12 @@ import {
   saleStats,
   schedulesForSale,
 } from "@/constant/sale-data";
-import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 
 import { InstallmentScheduleTable } from "../components/installment-schedule-table";
+import { PaymentDetailsCard } from "../components/payment-details-card";
+import { PaymentHistoryCard } from "../components/payment-history-card";
 import { RecordPaymentModal } from "../components/record-payment-modal";
 import { SaleSummaryCard } from "../components/sale-summary-card";
 
@@ -102,57 +103,16 @@ function SaleDetail() {
         />
       </div>
 
-      <section className="surface-card modal-rounded border border-default p-8 shadow-sm">
-        <h2 className="t-title-md text-main mb-6">Payment History</h2>
-        {history.length === 0 ? (
-          <p className="t-body-lg text-faint">No payments recorded yet.</p>
-        ) : (
-          <div className="relative pl-8">
-            <div
-              className="absolute left-2.5 top-1 bottom-1 w-px"
-              style={{ backgroundColor: "var(--primary)" }}
-              aria-hidden
-            />
-            <ul className="flex flex-col gap-6">
-              {history.map((p) => {
-                const sched = schedules.find(
-                  (s) => s.id === p.installmentScheduleId,
-                );
-                return (
-                  <li key={p.id} className="relative">
-                    <span
-                      className="absolute -left-6.5 top-1.5 h-3 w-3 circle-rounded ring-4 ring-(--card-bg)"
-                      style={{ backgroundColor: "var(--primary)" }}
-                      aria-hidden
-                    />
-                    <div className="flex flex-wrap items-center gap-3 mb-1">
-                      <span className="t-body-md-bold text-main">
-                        {formatDate(p.paidDate)}
-                      </span>
-                      <span className="t-title-lg fw-black text-brand">
-                        {formatCurrency(p.paidAmount)}
-                      </span>
-                      {sched && (
-                        <span className="surface-brand-soft text-brand t-label-sm-bold text-uppercase tracking-label px-2 py-0.5 global-rounded">
-                          Installment {sched.installmentNumber}
-                        </span>
-                      )}
-                    </div>
-                    <p className="t-label-md text-soft">
-                      Recorded by {p.recordedBy}
-                    </p>
-                    {p.notes && (
-                      <p className="surface-page global-rounded p-3 t-label-md text-soft mt-2 border border-default">
-                        {p.notes}
-                      </p>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
-      </section>
+      <div className="grid gap-6 lg:grid-cols-2 items-start">
+        <PaymentHistoryCard history={history} schedules={schedules} />
+        <PaymentDetailsCard
+          history={history}
+          paidCount={stat.paidCount}
+          totalCount={stat.totalCount}
+          outstanding={stat.outstanding}
+          nextDue={stat.nextDue}
+        />
+      </div>
 
       <RecordPaymentModal
         open={!!activeInstallmentId}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { MessageCircle } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+
 import { installmentSchedules, schedulesForSale } from "@/constant/sale-data";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
@@ -133,7 +135,7 @@ export function RecordPaymentModal({
               <div className="surface-page modal-rounded p-5 border border-default flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="surface-success-soft circle-rounded h-10 w-10 flex items-center justify-center shrink-0">
-                    <MessageCircle className="h-5 w-5 text-success-role" />
+                    <Icon.MessageCircle className="h-5 w-5 text-success-role" />
                   </div>
                   <div className="min-w-0">
                     <p className="t-body-md-bold text-main">

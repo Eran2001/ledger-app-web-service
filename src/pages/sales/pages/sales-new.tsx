@@ -1,25 +1,13 @@
 import { useMemo, useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { addMonths, format } from "date-fns";
 
-import * as Icon from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Notification } from "@/components/ui/custom-toast";
 
-import { customers } from "@/constant/customer-data";
 import { products } from "@/constant/product-data";
-import { formatDate } from "@/utils/format-date";
-import { formatCurrency } from "@/utils/format-currency";
+
+import { InstallmentPreviewCard } from "../components/installment-preview-card";
+import { SaleFormCard } from "../components/sale-form-card";
 
 const SalesNew = () => {
   const navigate = useNavigate();
@@ -49,13 +37,13 @@ const SalesNew = () => {
     return items;
   }, [monthly, months, saleDate]);
 
-  function onProductChange(id: string) {
+  const handleProductChange = (id: string) => {
     setProductId(id);
     const p = products.find((x) => x.id === id);
     if (p) setSoldPrice(p.basePrice);
-  }
+  };
 
-  function submit(e: React.FormEvent) {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerId || !productId || soldPrice <= 0) {
       Notification.error("Please fill all required fields.");
@@ -63,262 +51,44 @@ const SalesNew = () => {
     }
     Notification.success("Sale created and schedule generated.");
     setTimeout(() => navigate({ to: "/sales" }), 600);
-  }
+  };
 
   return (
     <div>
-      <Link
-        to="/sales"
-        className="inline-flex items-center gap-2 t-body-md-bold text-brand mb-6 group"
-      >
-        <Icon.ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-        Back to sales
-      </Link>
-
-      <form onSubmit={submit} className="grid gap-6 xl:grid-cols-5">
-        {/* FORM */}
+      <form onSubmit={handleSubmit} className="grid gap-6 xl:grid-cols-5">
         <div className="xl:col-span-3">
-          <div className="surface-card modal-rounded border border-default p-8 shadow-sm flex flex-col gap-7">
-            {/* Customer & Product */}
-            <SectionHeader>Customer & Product</SectionHeader>
-            <div className="flex flex-col gap-2">
-              <Label className="t-body-md-bold text-main">
-                Select customer
-              </Label>
-              <Select value={customerId} onValueChange={setCustomerId}>
-                <SelectTrigger className="h-11 control-rounded border-default text-main">
-                  <SelectValue placeholder="Choose a customer…" />
-                </SelectTrigger>
-                <SelectContent>
-                  {customers.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>
-                      {c.fullName} · {c.primary_phone}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <button
-                type="button"
-                className="t-label-md-bold text-brand inline-flex items-center gap-1 self-start mt-1"
-              >
-                <Icon.UserPlus className="h-3.5 w-3.5" />
-                Add New Customer
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <Label className="t-body-md-bold text-main">Select product</Label>
-              <Select value={productId} onValueChange={onProductChange}>
-                <SelectTrigger className="h-11 control-rounded border-default text-main">
-                  <SelectValue placeholder="Choose a product…" />
-                </SelectTrigger>
-                <SelectContent>
-                  {products.map((p) => (
-                    <SelectItem key={p.id} value={p.id}>
-                      {p.name} · {p.category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {product && (
-                <p className="t-label-md text-soft">
-                  Standard price:{" "}
-                  <span className="fw-bold text-main">
-                    {formatCurrency(product.basePrice)}
-                  </span>
-                </p>
-              )}
-            </div>
-
-            {/* Sale Terms */}
-            <SectionHeader>Sale Terms</SectionHeader>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="flex flex-col gap-2">
-                <Label className="t-body-md-bold text-main">
-                  Sold price (LKR)
-                </Label>
-                <Input
-                  type="number"
-                  value={soldPrice || ""}
-                  onChange={(e) => setSoldPrice(Number(e.target.value))}
-                  className="h-11 control-rounded border-default text-main"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label className="t-body-md-bold text-main">
-                  Down payment (LKR)
-                </Label>
-                <Input
-                  type="number"
-                  value={downPayment || ""}
-                  onChange={(e) => setDownPayment(Number(e.target.value))}
-                  className="h-11 control-rounded border-default text-success-role"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label className="t-body-md-bold text-main">
-                  Number of months
-                </Label>
-                <div className="flex items-center gap-2">
-                  <Button
-                    type="button"
-                    onClick={() => setMonths(Math.max(1, months - 1))}
-                    variant="outline"
-                    className="h-11 w-11 control-rounded border-default p-0 bg-transparent"
-                  >
-                    <Icon.Minus className="h-4 w-4" />
-                  </Button>
-                  <Input
-                    type="number"
-                    value={months}
-                    onChange={(e) =>
-                      setMonths(Math.max(1, Number(e.target.value)))
-                    }
-                    className="h-11 control-rounded border-default text-center text-main"
-                  />
-                  <Button
-                    type="button"
-                    onClick={() => setMonths(months + 1)}
-                    variant="outline"
-                    className="h-11 w-11 control-rounded border-default p-0 bg-transparent"
-                  >
-                    <Icon.Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label className="t-body-md-bold text-main">Sale date</Label>
-                <Input
-                  type="date"
-                  value={saleDate}
-                  onChange={(e) => setSaleDate(e.target.value)}
-                  className="h-11 control-rounded border-default text-main"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <Label className="t-body-md-bold text-main">
-                Notes (optional)
-              </Label>
-              <Textarea
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                className="control-rounded border-default min-h-25"
-                placeholder="Reminders, contact preferences, etc."
-              />
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full h-14 surface-brand text-inverse t-title-lg-soft control-rounded surface-brand-strong-hover"
-            >
-              Create Sale & Generate Schedule
-            </Button>
-          </div>
+          <SaleFormCard
+            customerId={customerId}
+            onCustomerChange={setCustomerId}
+            productId={productId}
+            onProductChange={handleProductChange}
+            product={product}
+            soldPrice={soldPrice}
+            onSoldPriceChange={setSoldPrice}
+            downPayment={downPayment}
+            onDownPaymentChange={setDownPayment}
+            months={months}
+            onMonthsChange={setMonths}
+            saleDate={saleDate}
+            onSaleDateChange={setSaleDate}
+            notes={notes}
+            onNotesChange={setNotes}
+          />
         </div>
 
-        {/* PREVIEW */}
         <div className="xl:col-span-2">
-          <div className="surface-card modal-rounded border border-default p-6 shadow-sm sticky top-6">
-            <div className="flex items-center gap-2 mb-5">
-              <div className="surface-brand-soft circle-rounded h-8 w-8 flex items-center justify-center">
-                <Icon.Calculator className="h-4 w-4 text-brand" />
-              </div>
-              <h3 className="t-title-lg-soft text-main">Installment Preview</h3>
-            </div>
-
-            <div className="flex flex-col">
-              <Row label="Sold Price" value={formatCurrency(soldPrice)} />
-              <div className="flex justify-between items-center py-3 border-y border-dashed border-success-soft">
-                <span className="t-body-md text-soft">Down Payment</span>
-                <span className="t-body-md-bold text-success-role">
-                  −{formatCurrency(downPayment)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-default">
-                <span className="t-body-md-bold text-main">
-                  Remaining Balance
-                </span>
-                <span className="t-title-lg text-main">
-                  {formatCurrency(remaining)}
-                </span>
-              </div>
-              <div className="surface-brand-soft global-rounded p-4 mt-4 mb-3 flex justify-between items-center">
-                <span className="t-body-md-bold text-brand">
-                  Monthly Payment
-                </span>
-                <span className="t-title-xl text-brand">
-                  {formatCurrency(monthly)}
-                </span>
-              </div>
-              <Row label="Duration" value={`${months} months`} />
-            </div>
-
-            <div className="mt-5 pt-5 border-t border-default">
-              <p className="t-label-sm-bold text-soft text-uppercase tracking-label mb-2">
-                Generated Schedule
-              </p>
-              <div className="max-h-75 overflow-y-auto -mx-2">
-                <table className="w-full">
-                  <thead>
-                    <tr className="t-label-sm text-faint text-uppercase tracking-label">
-                      <th className="px-2 py-1.5 text-left">#</th>
-                      <th className="px-2 py-1.5 text-left">Due Date</th>
-                      <th className="px-2 py-1.5 text-right">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {schedule.length === 0 ? (
-                      <tr>
-                        <td
-                          colSpan={3}
-                          className="px-2 py-6 text-center t-label-md text-faint"
-                        >
-                          Enter sale details to preview schedule
-                        </td>
-                      </tr>
-                    ) : (
-                      schedule.map((s) => (
-                        <tr key={s.n} className="border-t border-default">
-                          <td className="px-2 py-2 t-label-md text-faint">
-                            {s.n}
-                          </td>
-                          <td className="px-2 py-2 t-label-md text-soft">
-                            {formatDate(s.due)}
-                          </td>
-                          <td className="px-2 py-2 text-right t-label-md-bold text-main">
-                            {formatCurrency(s.amount)}
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          <InstallmentPreviewCard
+            soldPrice={soldPrice}
+            downPayment={downPayment}
+            remaining={remaining}
+            monthly={monthly}
+            months={months}
+            schedule={schedule}
+          />
         </div>
       </form>
     </div>
   );
 };
-
-function SectionHeader({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="border-l-4 border-brand pl-4">
-      <h3 className="t-title-xl text-main">{children}</h3>
-    </div>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between items-center py-3">
-      <span className="t-body-md text-soft">{label}</span>
-      <span className="t-body-md-bold text-main">{value}</span>
-    </div>
-  );
-}
 
 export default SalesNew;
