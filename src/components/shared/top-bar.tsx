@@ -61,7 +61,7 @@ export function TopBar({
       </Button>
 
       <div className="flex items-baseline gap-2 min-w-0 flex-1">
-        <h1 className="t-title-lg-soft text-main truncate">{pageTitle}</h1>
+        <h1 className="t-title-lg-soft text-main">{pageTitle}</h1>
         {pageSubtitle && (
           <>
             <span className="text-faint t-body-lg hidden sm:inline">/</span>

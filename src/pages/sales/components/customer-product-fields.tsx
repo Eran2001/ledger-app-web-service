@@ -67,6 +67,14 @@ export const CustomerProductFields = ({
       <div className="grid gap-3">
         <div className="flex items-center justify-between gap-2">
           <Label required>Select product</Label>
+          {product && (
+            <p className="t-label-md text-soft">
+              Standard price:{" "}
+              <span className="fw-bold text-main">
+                {formatCurrency(product.basePrice)}
+              </span>
+            </p>
+          )}
         </div>
         <Select value={productId} onValueChange={onProductChange}>
           <SelectTrigger className="w-full">
