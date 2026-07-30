@@ -51,6 +51,7 @@ function SheetContent({
   className,
   children,
   side = "right",
+  onOpenAutoFocus,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: "top" | "right" | "bottom" | "left";
@@ -60,6 +61,10 @@ function SheetContent({
       <SheetOverlay />
       <SheetPrimitive.Content
         data-slot="sheet-content"
+        onOpenAutoFocus={(event) => {
+          event.preventDefault();
+          onOpenAutoFocus?.(event);
+        }}
         className={cn(
           "fixed z-dropdown flex flex-col gap-4",
           "transition-[transform,opacity] ease-in-out will-change-transform sheet-content",

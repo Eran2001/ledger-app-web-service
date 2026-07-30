@@ -70,11 +70,7 @@ export const ProductSheet = ({
 
   return (
     <Sheet open={open} onOpenChange={(next) => !next && handleClose()}>
-      <SheetContent
-        side="right"
-        className="sm:max-w-xl"
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+      <SheetContent side="right" className="sm:max-w-xl">
         <SheetHeader>
           <SheetTitle>{isEditing ? "Edit Product" : "New Product"}</SheetTitle>
           <SheetDescription>

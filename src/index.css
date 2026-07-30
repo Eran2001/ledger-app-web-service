@@ -5041,7 +5041,7 @@
       opacity: var(--opacity-100);
     }
 
-    &:focus {
+    &:focus-visible {
       outline: var(--outline-none);
       box-shadow: var(--shadow-ring-offset);
     }

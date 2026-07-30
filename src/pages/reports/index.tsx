@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { differenceInDays, format, subMonths } from "date-fns";
 import { Eye } from "lucide-react";
 import {
@@ -15,12 +15,18 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Notification } from "@/components/ui/custom-toast";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById, sales } from "@/constant/sale-data";
+import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
+
+import { ExportReportSheet } from "./components/export-report-sheet";
+import { StatReportCard } from "./components/stat-report-card";
 
 interface MonthlyPoint {
   month: string;
@@ -41,6 +47,7 @@ function buildMonthlyCollections(): MonthlyPoint[] {
 }
 
 function Reports() {
+  const [exportSheetOpen, setExportSheetOpen] = useState(false);
   const monthly = useMemo(buildMonthlyCollections, []);
 
   const stats = useMemo(() => {
@@ -118,40 +125,62 @@ function Reports() {
       .sort((a, b) => b.daysOverdue - a.daysOverdue);
   }, []);
 
+  const topBarOverride = useMemo(
+    () => ({
+      primaryAction: {
+        onClick: () => setExportSheetOpen(true),
+        icon: Icon.Download,
+        label: "Export PDF",
+      },
+    }),
+    [],
+  );
+
+  useTopBarOverride(topBarOverride);
+
   return (
-    <div className="space-y-6 pb-8">
+    <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="card-base p-5">
-          <p className="text-uppercase">Total Outstanding</p>
-          <p className="t-display-xl text-main mt-2">
-            {formatCurrency(stats.totalOutstanding)}
-          </p>
-          <p className="t-label-md text-soft mt-1">All active sales</p>
-        </div>
-        <div className="card-base p-5">
-          <p className="text-uppercase">Collected This Month</p>
-          <p className="t-display-xl text-success-role mt-2">
-            {formatCurrency(stats.collectedThisMonth)}
-          </p>
-          <p className="t-label-md text-soft mt-1">
-            {format(new Date(), "MMMM yyyy")}
-          </p>
-        </div>
-        <div className="card-base p-5">
-          <p className="text-uppercase">Collection Rate</p>
-          <p className="t-display-xl text-main mt-2">{stats.collectionRate}%</p>
-          <p className="t-label-md text-soft mt-1">This month</p>
-        </div>
-        <div className="card-base p-5">
-          <p className="text-uppercase">Active Sales</p>
-          <p className="t-display-xl text-main mt-2">
-            {stats.activeSalesCount}
-          </p>
-          <p className="t-label-md text-soft mt-1">In progress</p>
-        </div>
+        <StatReportCard
+          label="Total Outstanding"
+          value={formatCurrency(stats.totalOutstanding)}
+          tooltip="All active sales"
+          icon={Icon.Wallet}
+          iconColor="brand"
+          border
+          shadow
+        />
+        <StatReportCard
+          label="Collected This Month"
+          value={formatCurrency(stats.collectedThisMonth)}
+          valueClassName="text-success-role"
+          tooltip={format(new Date(), "MMMM yyyy")}
+          icon={Icon.CalendarCheck2}
+          iconColor="success"
+          border
+          shadow
+        />
+        <StatReportCard
+          label="Collection Rate"
+          value={`${stats.collectionRate}%`}
+          tooltip="This month"
+          icon={Icon.TrendingUp}
+          iconColor="info"
+          border
+          shadow
+        />
+        <StatReportCard
+          label="Active Sales"
+          value={stats.activeSalesCount}
+          tooltip="In progress"
+          icon={Icon.Timer}
+          iconColor="warning"
+          border
+          shadow
+        />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-6">
         <div className="card-base p-5 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -323,7 +352,13 @@ function Reports() {
       </div>
 
       <p className="sr-only">{formatDate(new Date())}</p>
-    </div>
+
+      <ExportReportSheet
+        open={exportSheetOpen}
+        onClose={() => setExportSheetOpen(false)}
+        onExport={() => Notification.success("Report exported as PDF")}
+      />
+    </>
   );
 }
 
