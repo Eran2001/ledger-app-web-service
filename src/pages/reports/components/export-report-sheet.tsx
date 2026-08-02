@@ -148,13 +148,7 @@ export const ExportReportSheet = ({
             </p>
             <div className="flex flex-wrap gap-2">
               {QUICK_PRESETS.map((preset) => (
-                <Badge
-                  key={preset.label}
-                  asChild
-                  variant="outline"
-                  border
-                  className="full-rounded px-4 py-2 t-body-md cursor-pointer"
-                >
+                <Badge key={preset.label} asChild variant="outline" border>
                   <button type="button" onClick={() => applyPreset(preset)}>
                     {preset.label}
                   </button>

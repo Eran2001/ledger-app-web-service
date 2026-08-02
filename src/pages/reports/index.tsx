@@ -1,22 +1,6 @@
-import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { differenceInDays, format, subMonths } from "date-fns";
-import { Eye } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import * as Icon from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import { Notification } from "@/components/ui/custom-toast";
 import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
@@ -25,13 +9,14 @@ import { useTopBarOverride } from "@/hooks/use-top-bar-override";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 
+import { CollectionStatusChart } from "./components/collection-status-chart";
 import { ExportReportSheet } from "./components/export-report-sheet";
+import {
+  MonthlyCollectionsChart,
+  type MonthlyPoint,
+} from "./components/monthly-collections-chart";
+import { OverdueAgingTable } from "./components/overdue-aging-table";
 import { StatReportCard } from "./components/stat-report-card";
-
-interface MonthlyPoint {
-  month: string;
-  collected: number;
-}
 
 function buildMonthlyCollections(): MonthlyPoint[] {
   const today = new Date();
@@ -181,175 +166,11 @@ function Reports() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-6">
-        <div className="card-base p-5 lg:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="t-title-lg text-main">Monthly Collections</h2>
-              <p className="t-label-md text-soft">Last 6 months</p>
-            </div>
-          </div>
-          <div className="h-72 chart-frame">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={monthly}
-                margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
-              >
-                <CartesianGrid
-                  stroke="var(--border)"
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  stroke="var(--text-muted)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="var(--text-muted)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                  tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
-                />
-                <Tooltip
-                  cursor={{ fill: "var(--primary-light)" }}
-                  contentStyle={{
-                    backgroundColor: "var(--popover)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "0.525rem",
-                    color: "var(--text-primary)",
-                  }}
-                  formatter={(v: number) => formatCurrency(v)}
-                />
-                <Bar
-                  dataKey="collected"
-                  fill="var(--primary)"
-                  radius={[6, 6, 0, 0]}
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div className="card-base p-5">
-          <div className="mb-4">
-            <h2 className="t-title-lg text-main">Collection Status</h2>
-            <p className="t-label-md text-soft">By installment</p>
-          </div>
-          <div className="h-72 chart-frame">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={50}
-                  outerRadius={85}
-                  paddingAngle={2}
-                  stroke="var(--card-bg)"
-                  strokeWidth={3}
-                >
-                  {pieData.map((entry) => (
-                    <Cell key={entry.name} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "var(--popover)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "0.525rem",
-                    color: "var(--text-primary)",
-                  }}
-                />
-                <Legend
-                  iconType="circle"
-                  wrapperStyle={{
-                    fontSize: "0.75rem",
-                    color: "var(--text-secondary)",
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+        <MonthlyCollectionsChart data={monthly} />
+        <CollectionStatusChart data={pieData} />
       </div>
 
-      <div className="card-base overflow-hidden">
-        <div
-          className="px-5 py-4 border-b"
-          style={{ borderColor: "var(--border)" }}
-        >
-          <h2 className="t-title-lg text-main">Overdue Aging</h2>
-          <p className="t-label-md text-soft">
-            Customers with unpaid past-due installments
-          </p>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="table-header text-left px-4 py-3">Customer</th>
-                <th className="table-header text-left px-4 py-3">Product</th>
-                <th className="table-header text-left px-4 py-3">
-                  Days Overdue
-                </th>
-                <th className="table-header text-left px-4 py-3">Amount</th>
-                <th className="table-header text-right px-4 py-3">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {overdueRows.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan={5}
-                    className="px-4 py-12 text-center t-body-md text-faint"
-                  >
-                    No overdue installments.
-                  </td>
-                </tr>
-              ) : (
-                overdueRows.slice(0, 10).map((r) => {
-                  const sevText =
-                    r.daysOverdue > 60
-                      ? "text-danger"
-                      : r.daysOverdue > 30
-                        ? "text-warning-role"
-                        : "text-warning-role";
-                  return (
-                    <tr
-                      key={r.id}
-                      className="border-t"
-                      style={{ borderColor: "var(--border)" }}
-                    >
-                      <td className="px-4 py-3 table-title-text">
-                        {r.customerName}
-                      </td>
-                      <td className="px-4 py-3 table-text">{r.productName}</td>
-                      <td className={`px-4 py-3 fw-black ${sevText}`}>
-                        {r.daysOverdue} days
-                      </td>
-                      <td className="px-4 py-3 table-title-text fw-bold">
-                        {formatCurrency(r.amount)}
-                      </td>
-                      <td className="px-4 py-3 text-right">
-                        <Button asChild variant="ghost" className="gap-1.5">
-                          <Link to="/sales/$id" params={{ id: r.saleId }}>
-                            <Eye className="h-3.5 w-3.5" />
-                            View
-                          </Link>
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <OverdueAgingTable rows={overdueRows} />
 
       <p className="sr-only">{formatDate(new Date())}</p>
 

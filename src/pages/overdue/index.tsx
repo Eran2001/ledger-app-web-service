@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { differenceInDays } from "date-fns";
 import { Bell, Download, Eye, Search, Send } from "lucide-react";
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,8 @@ import { installmentSchedules, saleById } from "@/constant/sale-data";
 import { useWidth } from "@/hooks/use-width";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
+
+import { OverdueStatCard } from "./components/overdue-stat-card";
 
 const TABS = ["All", "1-30 days", "31-60 days", "60+ days"] as const;
 type Tab = (typeof TABS)[number];
@@ -122,29 +125,31 @@ const Overdue = () => {
   return (
     <div className="space-y-6 pb-32">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="card-base p-5 border-l-4 border-start-danger">
-          <p className="text-uppercase">Overdue Customers</p>
-          <p className="t-display-xl text-main mt-2">{overdueCustomersCount}</p>
-          <p className="t-label-md text-faint mt-1">No trend data</p>
-        </div>
-        <div className="card-base p-5 border-l-4 border-start-danger">
-          <p className="text-uppercase">Total Overdue Amount</p>
-          <p className="t-display-xl text-danger mt-2">
-            {formatCurrency(totalOverdue)}
-          </p>
-          <p className="t-label-md text-faint mt-1">
-            Across {allRows.length} installments
-          </p>
-        </div>
-        <div className="card-base p-5 border-l-4 border-start-danger">
-          <p className="text-uppercase">Longest Overdue</p>
-          <p className="t-display-xl text-main mt-2">
-            {longest ? `${longest.daysOverdue} Days` : "—"}
-          </p>
-          <p className="t-label-md text-soft mt-1">
-            {longest?.customerName ?? "No overdues"}
-          </p>
-        </div>
+        <OverdueStatCard
+          label="Overdue Customers"
+          value={overdueCustomersCount}
+          tooltip="No trend data"
+          icon={Icon.Users}
+          border
+          shadow
+        />
+        <OverdueStatCard
+          label="Total Overdue Amount"
+          value={formatCurrency(totalOverdue)}
+          valueClassName="text-danger"
+          tooltip={`Across ${allRows.length} installments`}
+          icon={Icon.Banknote}
+          border
+          shadow
+        />
+        <OverdueStatCard
+          label="Longest Overdue"
+          value={longest ? `${longest.daysOverdue} Days` : "—"}
+          tooltip={longest?.customerName ?? "No overdues"}
+          icon={Icon.Clock}
+          border
+          shadow
+        />
       </div>
 
       <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
