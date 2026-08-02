@@ -1,12 +1,15 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { cn } from "@/lib/utils";
+import { useBusinessStore } from "@/stores/business-store";
 
 interface BusinessHeaderProps {
   collapsed: boolean;
 }
 
 export function BusinessHeader({ collapsed }: BusinessHeaderProps) {
+  const logoUrl = useBusinessStore((state) => state.logoUrl);
+
   return (
     <div
       className={cn(
@@ -17,8 +20,9 @@ export function BusinessHeader({ collapsed }: BusinessHeaderProps) {
         borderColor:
           "color-mix(in srgb, var(--sidebar-border) 55%, var(--border-transparent))",
       }}
-    >
+      >
       <Avatar>
+        {logoUrl && <AvatarImage src={logoUrl} alt="Silva Traders logo" />}
         <AvatarFallback>ST</AvatarFallback>
       </Avatar>
       {!collapsed && (

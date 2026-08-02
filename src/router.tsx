@@ -12,6 +12,7 @@ import DefaultLayout from "@/layouts/default-layout";
 
 import { Loading } from "@/components/ui/loading";
 import { settingsSearchSchema } from "@/constant/setting-data";
+import { useAuthStore } from "@/stores/auth-store";
 
 /* AUTH */
 const Login = lazy(() => import("./pages/auth/login"));
@@ -144,6 +145,11 @@ const settingsRoute = createRoute({
   getParentRoute: () => shellRoute,
   path: "/settings",
   validateSearch: settingsSearchSchema,
+  beforeLoad: () => {
+    if (useAuthStore.getState().user?.role !== "ADMIN") {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
   component: Settings,
 });
 

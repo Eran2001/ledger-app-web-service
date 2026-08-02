@@ -13,6 +13,7 @@ import { UserProfile } from "@/components/shared/user-profile";
 
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constant/sidebar-nav-links";
+import { useAuthStore } from "@/stores/auth-store";
 
 interface SidebarNavProps {
   collapsed: boolean;
@@ -30,8 +31,17 @@ export function SidebarNav({
   className,
 }: SidebarNavProps) {
   const { pathname } = useLocation();
+  const user = useAuthStore((state) => state.user);
+  const sections = SECTIONS.map((section) => ({
+    ...section,
+    items: section.items.filter(
+      (item) => item.href !== "/settings" || user?.role === "ADMIN",
+    ),
+  }));
 
-  const allHrefs = SECTIONS.flatMap((s) => s.items.map((i) => i.href));
+  const allHrefs = sections.flatMap((section) =>
+    section.items.map((item) => item.href),
+  );
 
   const isActive = (href: string) => {
     if (pathname === href) return true;
@@ -58,7 +68,7 @@ export function SidebarNav({
 
       <nav className="flex-1 min-h-0 overflow-y-auto pt-4 scrollbar-hidden">
         <TooltipProvider delayDuration={0}>
-          {SECTIONS.map((section, i) => (
+          {sections.map((section, i) => (
             <div
               key={section.label}
               className={cn("mb-4", collapsed && "px-2")}

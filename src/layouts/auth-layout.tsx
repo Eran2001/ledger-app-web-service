@@ -3,19 +3,24 @@ import { Outlet } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 
 import { Loading } from "@/components/ui/loading";
+import { Button } from "@/components/ui/button";
+import * as Icon from "@/components/icons";
 
 import {
   loginHeroFeatures,
   loginHeroSignal,
   loginHeroStats,
 } from "@/constant/login-page-data";
+import { useThemeStore } from "@/stores/theme-store";
 
 export default function AuthLayout() {
   const SignalIcon = loginHeroSignal.icon;
+  const isDark = useThemeStore((state) => state.isDark);
+  const toggleTheme = useThemeStore((state) => state.toggle);
 
   return (
     <div className="flex h-full min-h-dvh flex-col overflow-y-auto surface-page lg:flex-row">
-      <div className="hidden lg:flex w-[55%] relative overflow-hidden items-center justify-center p-10 text-inverse bg-[radial-gradient(circle_at_78%_88%,rgba(249,158,11,0.88)_0%,rgba(151,91,20,0.52)_28%,rgba(57,35,20,0.96)_68%),linear-gradient(145deg,#1f160f_0%,#4a2f19_54%,#9b5b12_100%)]">
+      <div className="auth-gradient hidden lg:flex w-[55%] relative overflow-hidden items-center justify-center p-10 text-inverse">
         <div
           className="absolute inset-0 opacity-[0.12]"
           style={{
@@ -26,7 +31,7 @@ export default function AuthLayout() {
           aria-hidden
         />
         <div
-          className="absolute -bottom-24 -right-16 h-72 w-72 full-rounded bg-[rgba(255,174,41,0.28)] blur-3xl"
+          className="absolute -bottom-24 -right-16 h-72 w-72 full-rounded bg-white/15 blur-3xl"
           aria-hidden
         />
         <div
@@ -35,20 +40,27 @@ export default function AuthLayout() {
         />
 
         <div className="relative z-10 w-full max-w-xl">
-          <h2 className="t-display-3xl text-inverse text-balance mb-8">
-            Control every verification workflow from one workspace
+          <div className="mb-12 flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center global-rounded bg-white/15 t-title-lg text-inverse">
+              ST
+            </div>
+            <div>
+              <p className="t-title-lg text-inverse">Silva Traders</p>
+              <p className="t-body-md text-inverse-muted">Sales & collections workspace</p>
+            </div>
+          </div>
+          <h2 className="t-display-2xl text-inverse text-balance mb-8">
+            Run your business with confidence.
           </h2>
-
-          {/* <p className="t-body-lg text-inverse-muted mb-8 max-w-lg">
-            Monitor customer and business verifications, tune workflow rules,
-            and keep integrations healthy across every tenant environment.
-          </p> */}
+          <p className="t-title-lg text-inverse-muted mb-8 max-w-xl">
+            Manage sales, installments, customer balances, and collections from one place.
+          </p>
 
           <div className="glass global-rounded p-5 mb-4 shadow-brand-soft">
             <div className="flex items-center justify-between gap-4 mb-4">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 global-rounded bg-[rgba(255,255,255,0.16)] flex items-center justify-center shrink-0">
-                  <SignalIcon className="icon-large text-amber-300" />
+                  <SignalIcon className="icon-large text-inverse" />
                 </div>
                 <div>
                   <p className="t-meta-bold text-inverse">
@@ -59,7 +71,7 @@ export default function AuthLayout() {
                   </p>
                 </div>
               </div>
-              <p className="t-kpi text-amber-300">{loginHeroSignal.value}</p>
+              <p className="t-kpi text-inverse">{loginHeroSignal.value}</p>
             </div>
 
             <div className="grid grid-cols-3 gap-3">
@@ -88,7 +100,17 @@ export default function AuthLayout() {
         </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-center p-6 sm:p-12 lg:w-[45%]">
+      <div className="relative flex flex-1 items-center justify-center p-6 sm:p-12 lg:w-[45%]">
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          onClick={toggleTheme}
+          className="absolute right-4 top-4 app-sidebar-link app-sidebar-icon-btn sm:right-6 sm:top-6"
+          aria-label="Toggle theme"
+        >
+          {isDark ? <Icon.Sun /> : <Icon.Moon />}
+        </Button>
         <div className="w-full max-w-md">
           <Suspense fallback={<Loading />}>
             <Outlet />
@@ -111,7 +133,7 @@ function FeatureCard({
   return (
     <div className="glass global-rounded p-4 flex items-start gap-4">
       <div className="h-10 w-10 global-rounded flex items-center justify-center shrink-0 bg-[rgba(255,255,255,0.16)]">
-        <Icon className="icon-large text-amber-300" />
+        <Icon className="icon-large text-inverse" />
       </div>
       <div>
         <p className="t-meta-bold text-inverse mb-1">{title}</p>

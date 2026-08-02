@@ -17,7 +17,7 @@ export default function App() {
         position="top-center"
         toastOptions={{
           unstyled: true,
-          classNames: { toast: "flex justify-center w-full" },
+          classNames: { toast: "flex justify-center w-auto" },
         }}
       />
       <RouterProvider router={router} />

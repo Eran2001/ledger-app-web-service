@@ -10,7 +10,6 @@ import {
 import * as Icon from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
 import { cn } from "@/lib/utils";
 
 interface FileDropzoneProps {
@@ -99,10 +98,11 @@ export function FileDropzone({
         className={cn(
           "global-rounded cursor-pointer p-4 transition-colors",
           "flex flex-col gap-4 text-left",
-          border && "border-stroke border-default border-dashed",
+          border &&
+            "border-(length:--border-width-1) border-default border-dashed",
           shadow && "shadow-card",
           !file && "items-center justify-center py-6 text-center",
-          dragOver && "border-brand bg-brand/5",
+          dragOver && "border-brand bg-primary/5",
         )}
       >
         {previewUrl ? (
@@ -123,7 +123,7 @@ export function FileDropzone({
                   inputRef.current?.click();
                 }}
               >
-                <Icon.RefreshCw className="size-4" />
+                <Icon.RefreshCw className="icon-default" />
               </Button>
               <Button
                 type="button"
@@ -135,14 +135,14 @@ export function FileDropzone({
                   onFileSelect(null);
                 }}
               >
-                <Icon.Trash2 className="size-4" />
+                <Icon.Trash2 className="icon-default" />
               </Button>
             </div>
           </div>
         ) : file ? (
           <div className="flex h-40 w-full items-center justify-center global-rounded border-stroke border-default bg-muted/20">
             <div className="space-y-3 text-center">
-              <div className="mx-auto flex h-field w-field items-center justify-center full-rounded border-stroke border-default bg-white">
+              <div className="mx-auto flex h-field w-field items-center justify-center full-rounded border-stroke border-default surface-card">
                 {DropIcon ? (
                   <span className="inline-flex items-center justify-center text-brand [&>svg]:size-5 [&>svg]:shrink-0">
                     <DropIcon />
@@ -158,7 +158,7 @@ export function FileDropzone({
           </div>
         ) : (
           <>
-            <div className="flex h-extra-large w-extra-large items-center justify-center full-rounded border-stroke border-default bg-white">
+            <div className="flex h-extra-large w-extra-large items-center justify-center full-rounded border-stroke border-default surface-card">
               {DropIcon ? (
                 <span className="inline-flex items-center justify-center text-faint [&>svg]:size-7 [&>svg]:shrink-0">
                   <DropIcon />

@@ -17,20 +17,21 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center gap-4">
-        <img
-          // src={logo}
-          alt="test"
-          className="h-10 w-auto max-w-40 shrink-0 object-contain"
-        />
+      <div className="mb-8 flex items-center justify-center gap-3">
+        <div className="app-sidebar-logo flex h-10 w-10 items-center justify-center global-rounded sidebar-brand-logo">
+          ST
+        </div>
+        <div>
+          <p className="t-title-lg text-main">Silva Traders</p>
+          <p className="t-label-md text-soft">Sales & collections</p>
+        </div>
       </div>
 
       <h2 className="t-kpi-lg text-main mb-2 text-center">
-        Sign in to Tenant Manager
+        Welcome back
       </h2>
       <p className="t-body text-soft mb-8 text-center">
-        Manage verification sessions, workflows, API access, and tenant
-        operations from one secure workspace.
+        Sign in to manage your sales, payments, and customer collections.
       </p>
 
       <form onSubmit={() => undefined} className="flex flex-col gap-5">

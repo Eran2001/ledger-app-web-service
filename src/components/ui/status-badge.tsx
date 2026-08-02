@@ -7,6 +7,7 @@ type Status =
   | "OVERDUE"
   | "PENDING"
   | "ACTIVE"
+  | "INACTIVE"
   | "COMPLETED"
   | "WRITTEN_OFF";
 
@@ -25,6 +26,10 @@ const VAR_MAP: Record<Status, { bg: string; text: string }> = {
     text: "var(--status-pending-text)",
   },
   ACTIVE: { bg: "var(--status-active-bg)", text: "var(--status-active-text)" },
+  INACTIVE: {
+    bg: "var(--status-pending-bg)",
+    text: "var(--status-pending-text)",
+  },
   COMPLETED: {
     bg: "var(--status-completed-bg)",
     text: "var(--status-completed-text)",

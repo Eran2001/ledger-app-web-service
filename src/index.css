@@ -101,9 +101,9 @@
   --bg-transparent: transparent;
   --box-transparent: transparent;
   --overlay-bg: hsl(0 0% 0% / 0.5); /* (0 0% 0% / 0.5) */
-  --auth-gradient-1: hsl(244 47% 20%); /* (244 47% 20%) */
-  --auth-gradient-2: hsl(242 47% 34%);
-  --auth-gradient-3: hsl(214 52% 25%);
+  --auth-gradient-1: hsl(224 76% 48%);
+  --auth-gradient-2: hsl(221 83% 53%);
+  --auth-gradient-3: hsl(199 89% 48%);
   --shadow-color: hsl(0 0% 0%); /* (0 0% 0%) */
   --scrollbar-thumb-bg: hsl(0 0% 0% / 0.15); /* (0 0% 0% / 0.15) */
   --scrollbar-thumb-hover-bg: hsl(0 0% 0% / 0.28); /* (0 0% 0% / 0.28) */
@@ -201,9 +201,9 @@
   --scrollbar-thumb-hover-bg: hsl(0 0% 100% / 0.22);
   --glass-text-muted: hsl(0 0% 100% / 0.6);
   --glass-text-faint: hsl(0 0% 100% / 0.2);
-  --auth-gradient-1: hsl(244 47% 20%); /* (244 47% 20%) */
-  --auth-gradient-2: hsl(242 47% 34%);
-  --auth-gradient-3: hsl(214 52% 25%);
+  --auth-gradient-1: hsl(224 76% 42%);
+  --auth-gradient-2: hsl(221 83% 53%);
+  --auth-gradient-3: hsl(199 89% 42%);
 }
 
 /* 
@@ -5135,9 +5135,7 @@
       var(--border)
     );
     display: flex;
-    width: max-content;
-    min-width: 17.5rem;
-    max-width: min(86vw, 28rem);
+    width: auto;
     align-items: center;
     gap: 0.75rem;
     border-width: var(--border-width-1);

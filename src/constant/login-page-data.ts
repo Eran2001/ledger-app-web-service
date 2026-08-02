@@ -15,34 +15,34 @@ interface LoginHeroStat {
 
 export const loginHeroStats: LoginHeroStat[] = [
   {
-    label: "Sessions today",
-    value: "1,284",
+    label: "Active sales",
+    value: "248",
   },
   {
-    label: "Completion rate",
+    label: "Collected this month",
+    value: "LKR 1.2M",
+  },
+  {
+    label: "On-time payments",
     value: "96.8%",
-  },
-  {
-    label: "Webhook health",
-    value: "99.9%",
   },
 ];
 
 export const loginHeroFeatures: LoginHeroFeature[] = [
   {
     icon: Icon.ShieldCheck,
-    title: "Verification Sessions",
-    copy: "Review KYC status, resubmissions, and customer verification outcomes in real time.",
+    title: "Stay on top of collections",
+    copy: "See every sale, installment, and upcoming payment in one clear workspace.",
   },
   {
     icon: Icon.Workflow,
-    title: "Workflow Control",
-    copy: "Configure tenant validation flows for documents, liveness, face match, and business checks.",
+    title: "Follow up with confidence",
+    copy: "Prioritize overdue customers and keep payment reminders moving.",
   },
 ];
 
 export const loginHeroSignal = {
   icon: Icon.BarChart3,
-  label: "Live verification volume",
+  label: "Monthly collection growth",
   value: "+18.4%",
 };

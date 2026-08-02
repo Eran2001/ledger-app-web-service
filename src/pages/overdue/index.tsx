@@ -1,43 +1,22 @@
-import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { differenceInDays } from "date-fns";
-import { Bell, Download, Eye, Search, Send } from "lucide-react";
 import * as Icon from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Notification } from "@/components/ui/custom-toast";
-import { InitialsAvatar } from "@/components/ui/initials-avatar";
-import {
-  Grid,
-  GridItem,
-  GridItemHeader,
-  GridItemBody,
-  GridEmpty,
-} from "@/components/ui/grid";
-import { customerById, customers } from "@/constant/customer-data";
+import { SearchField } from "@/components/ui/search-field";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { customerById } from "@/constant/customer-data";
 import { productById } from "@/constant/product-data";
 import { installmentSchedules, saleById } from "@/constant/sale-data";
 import { useWidth } from "@/hooks/use-width";
-import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 
+import { OverdueGrid } from "./components/overdue-grid";
 import { OverdueStatCard } from "./components/overdue-stat-card";
+import { OverdueTable } from "./components/overdue-table";
+import type { OverdueRow } from "./components/overdue-list-types";
 
 const TABS = ["All", "1-30 days", "31-60 days", "60+ days"] as const;
 type Tab = (typeof TABS)[number];
-
-interface OverdueRow {
-  scheduleId: string;
-  saleId: string;
-  customerId: string;
-  customerName: string;
-  customerPhone: string;
-  productName: string;
-  dueDate: string;
-  daysOverdue: number;
-  expectedAmount: number;
-}
 
 function buildOverdueRows(): OverdueRow[] {
   const today = new Date();
@@ -62,19 +41,12 @@ function buildOverdueRows(): OverdueRow[] {
     .sort((a, b) => b.daysOverdue - a.daysOverdue);
 }
 
-function severityFor(days: number) {
-  if (days > 60) return { text: "text-danger", row: "bg-overdue-row" };
-  if (days > 30) return { text: "text-warning-role", row: "" };
-  return { text: "text-warning-role", row: "" };
-}
-
 const Overdue = () => {
   const { width, breakpoints } = useWidth();
   const isMaxLg = width < breakpoints.lg;
   const allRows = useMemo(buildOverdueRows, []);
   const [tab, setTab] = useState<Tab>("All");
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
     return allRows.filter((r) => {
@@ -95,35 +67,12 @@ const Overdue = () => {
     });
   }, [allRows, tab, query]);
 
-  const allSelected =
-    filtered.length > 0 && filtered.every((r) => selected.has(r.scheduleId));
-
-  function toggle(id: string) {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }
-  function toggleAll() {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (allSelected) {
-        filtered.forEach((r) => next.delete(r.scheduleId));
-      } else {
-        filtered.forEach((r) => next.add(r.scheduleId));
-      }
-      return next;
-    });
-  }
-
   const overdueCustomersCount = new Set(allRows.map((r) => r.customerId)).size;
   const totalOverdue = allRows.reduce((sum, r) => sum + r.expectedAmount, 0);
   const longest = allRows[0];
 
   return (
-    <div className="space-y-6 pb-32">
+    <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <OverdueStatCard
           label="Overdue Customers"
@@ -152,263 +101,46 @@ const Overdue = () => {
         />
       </div>
 
-      <div className="flex items-center gap-1 surface-tab-list p-1 tab-rounded w-fit">
-        {TABS.map((t) => {
-          const active = tab === t;
-          return (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTab(t)}
-              data-state={active ? "active" : "inactive"}
-              className={`tabs-trigger px-3 py-1.5 tab-rounded ${
-                active ? "surface-card text-main shadow-sm" : ""
-              }`}
-            >
-              {t}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="flex items-center gap-3">
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-faint" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search customer or product..."
-            className="pl-9"
-          />
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 py-6">
+        <SearchField
+          value={query}
+          onChange={setQuery}
+          placeholder="Search customer or product…"
+          containerClassName="w-full lg:flex-1 md:min-w-40 md:max-w-xs lg:min-w-60 lg:max-w-sm"
+        />
+        <div className="flex flex-col xs:flex-row xs:items-center items-start gap-3 w-full min-w-0 lg:w-auto">
+          <Tabs
+            value={tab}
+            onValueChange={(value) => setTab(value as Tab)}
+            className="w-full xs:w-auto"
+          >
+            <TabsList>
+              {TABS.map((value) => (
+                <TabsTrigger key={value} value={value}>
+                  {value}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
         </div>
-        <Button variant="outline" className="gap-2 bg-transparent">
-          <Download className="h-4 w-4" />
-          Export
-        </Button>
       </div>
 
       {isMaxLg ? (
-        filtered.length === 0 ? (
-          <Grid>
-            <GridEmpty
-              icon={Search}
-              title="No overdue payments"
-              description="No overdue payments in this range."
-            />
-          </Grid>
-        ) : (
-          <Grid>
-            {filtered.map((r) => {
-              const sev = severityFor(r.daysOverdue);
-              const checked = selected.has(r.scheduleId);
-              return (
-                <GridItem key={r.scheduleId} border shadow className={sev.row}>
-                  <GridItemHeader>
-                    <div className="flex min-w-0 flex-1 items-center gap-3">
-                      <Checkbox
-                        checked={checked}
-                        onCheckedChange={() => toggle(r.scheduleId)}
-                        aria-label={`Select ${r.customerName}`}
-                      />
-                      <InitialsAvatar name={r.customerName} />
-                      <div className="min-w-0">
-                        <p className="table-title-text truncate">
-                          {r.customerName}
-                        </p>
-                        <p className="t-label-sm text-faint font-mono">
-                          {r.customerPhone}
-                        </p>
-                      </div>
-                    </div>
-                  </GridItemHeader>
-                  <GridItemBody>
-                    <span className="t-label-md text-faint">Product</span>
-                    <span className="table-text">{r.productName}</span>
-                    <span className="t-label-md text-faint">Due Date</span>
-                    <span className="table-text">{formatDate(r.dueDate)}</span>
-                    <span className="t-label-md text-faint">Days Overdue</span>
-                    <span className={`fw-black ${sev.text}`}>
-                      {r.daysOverdue} days
-                    </span>
-                    <span className="t-label-md text-faint">Expected</span>
-                    <span className="table-title-text fw-bold">
-                      {formatCurrency(r.expectedAmount)}
-                    </span>
-                  </GridItemBody>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      className="flex-1"
-                      onClick={() =>
-                        Notification.success(
-                          `Reminder sent to ${r.customerName}`,
-                        )
-                      }
-                    >
-                      <Bell />
-                      Remind
-                    </Button>
-                    <Button variant="ghost" className="flex-1" asChild>
-                      <Link to="/sales/$id" params={{ id: r.saleId }}>
-                        <Eye />
-                        View
-                      </Link>
-                    </Button>
-                  </div>
-                </GridItem>
-              );
-            })}
-          </Grid>
-        )
+        <OverdueGrid
+          rows={filtered}
+          onRemind={(customerName) =>
+            Notification.success(`Reminder sent to ${customerName}`)
+          }
+        />
       ) : (
-        <div className="card-base overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="table-header px-4 py-3 w-10">
-                    <Checkbox
-                      checked={allSelected}
-                      onCheckedChange={toggleAll}
-                      aria-label="Select all"
-                    />
-                  </th>
-                  <th className="table-header text-left px-4 py-3">Customer</th>
-                  <th className="table-header text-left px-4 py-3">Product</th>
-                  <th className="table-header text-left px-4 py-3">Due Date</th>
-                  <th className="table-header text-left px-4 py-3">
-                    Days Overdue
-                  </th>
-                  <th className="table-header text-left px-4 py-3">Expected</th>
-                  <th className="table-header text-right px-4 py-3">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={7}
-                      className="px-4 py-12 text-center text-faint t-body-md"
-                    >
-                      No overdue payments in this range.
-                    </td>
-                  </tr>
-                ) : (
-                  filtered.map((r) => {
-                    const sev = severityFor(r.daysOverdue);
-                    const checked = selected.has(r.scheduleId);
-                    return (
-                      <tr
-                        key={r.scheduleId}
-                        className={`border-t ${sev.row}`}
-                        style={{ borderColor: "var(--border)" }}
-                      >
-                        <td className="px-4 py-3">
-                          <Checkbox
-                            checked={checked}
-                            onCheckedChange={() => toggle(r.scheduleId)}
-                            aria-label={`Select ${r.customerName}`}
-                          />
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-3">
-                            <InitialsAvatar name={r.customerName} />
-                            <div className="min-w-0">
-                              <p className="table-title-text truncate">
-                                {r.customerName}
-                              </p>
-                              <p className="t-label-sm text-faint font-mono">
-                                {r.customerPhone}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-text">{r.productName}</span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-text">
-                            {formatDate(r.dueDate)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className={`fw-black ${sev.text}`}>
-                            {r.daysOverdue} days
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="table-title-text fw-bold">
-                            {formatCurrency(r.expectedAmount)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-1 justify-end">
-                            <Button
-                              variant="outline"
-                              onClick={() =>
-                                Notification.success(
-                                  `Reminder sent to ${r.customerName}`,
-                                )
-                              }
-                            >
-                              <Bell />
-                              Remind
-                            </Button>
-                            <Button variant="ghost">
-                              <Link to="/sales/$id" params={{ id: r.saleId }}>
-                                <Eye />
-                                View
-                              </Link>
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <OverdueTable
+          rows={filtered}
+          onRemind={(customerName) =>
+            Notification.success(`Reminder sent to ${customerName}`)
+          }
+        />
       )}
-
-      {selected.size > 0 ? (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-4">
-          <div className="app-sidebar modal-rounded shadow-2xl px-4 py-3 flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="circle-rounded surface-brand h-8 w-8 flex items-center justify-center">
-                <span className="t-body-md-bold text-inverse">
-                  {selected.size}
-                </span>
-              </div>
-              <span className="t-body-md-bold app-sidebar-text">
-                {selected.size} {selected.size === 1 ? "Customer" : "Customers"}{" "}
-                selected for reminders
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="link" onClick={() => setSelected(new Set())}>
-                Cancel
-              </Button>
-              <Button
-                onClick={() => {
-                  Notification.success(
-                    `WhatsApp reminders sent to ${selected.size} customers`,
-                  );
-                  setSelected(new Set());
-                }}
-              >
-                <Send />
-                Send WhatsApp Reminders
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
-      {/* Customer count for the count summary uses customers length only when needed */}
-      <span className="sr-only">{customers.length} customers in system</span>
-    </div>
+    </>
   );
 };
 

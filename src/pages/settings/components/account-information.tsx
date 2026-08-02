@@ -1,103 +1,106 @@
 import { useState } from "react";
-import { Save, Trash2 } from "lucide-react";
+
+import * as Icon from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { FileDropzone } from "@/components/ui/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { InitialsAvatar } from "@/components/ui/initials-avatar";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Notification } from "@/components/ui/custom-toast";
 
 import { useAuthStore } from "@/stores/auth-store";
+import { useBusinessStore } from "@/stores/business-store";
 
-export const AccountInformation = () => {
-  const user = useAuthStore((s) => s.user);
-
+export function AccountInformation() {
+  const user = useAuthStore((state) => state.user);
+  const updateUser = useAuthStore((state) => state.updateUser);
+  const setLogoUrl = useBusinessStore((state) => state.setLogoUrl);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
   const [form, setForm] = useState({
     name: user?.name ?? "Kamal Silva",
     email: user?.email ?? "kamal@silvatraders.lk",
-    phone: "+94 77 123 4567",
+    phone: user?.phone ?? "+94 77 123 4567",
   });
 
-  function save(e: React.FormEvent) {
-    e.preventDefault();
-    Notification.success("Profile updated");
+  function handleLogoChange(file: File | null) {
+    setLogoFile(file);
+    if (!file) {
+      setLogoUrl(null);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => setLogoUrl(reader.result as string);
+    reader.readAsDataURL(file);
+  }
+
+  function save(event: React.FormEvent) {
+    event.preventDefault();
+    if (user) updateUser({ ...user, ...form });
+    Notification.success("Profile updated successfully");
   }
 
   return (
-    <div className="space-y-6">
-      <div className="card-base p-6 flex items-center gap-5">
-        <InitialsAvatar name={form.name} />
-        <div className="min-w-0 flex-1">
-          <h1 className="t-title-xl text-main">{form.name}</h1>
-          <div className="mt-2 flex items-center gap-2 flex-wrap">
-            <span className="pill-indigo t-label-md-bold px-2.5 py-0.5 global-rounded">
-              {user?.role ?? "ADMIN"}
-            </span>
-            <span className="t-body-md text-soft font-mono">{form.email}</span>
-          </div>
-        </div>
+    <form onSubmit={save} className="card-base p-6">
+      <div className="mb-6">
+        <h2 className="t-title-lg text-main">Account Information</h2>
+        <p className="t-label-md text-soft">
+          Manage your profile and sidebar logo.
+        </p>
       </div>
 
-      <form onSubmit={save} className="card-base p-6">
-        <h2 className="t-title-lg text-main mb-1">Account Details</h2>
-        <p className="t-label-md text-soft mb-6">
-          Your basic profile information.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+        <FileDropzone
+          file={logoFile}
+          icon={Icon.ImagePlus}
+          hint="Upload your sidebar logo."
+          accept="image/*"
+          onFileSelect={handleLogoChange}
+          border
+          className="w-full sm:max-w-70"
+        />
+
+        <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name">Full name</Label>
             <Input
               id="name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(event) => setForm({ ...form, name: event.target.value })}
+              required
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" value={form.email} disabled />
+            <Label htmlFor="role">Role</Label>
+            <Input id="role" value={user?.role ?? "ADMIN"} disabled />
           </div>
-          <div className="space-y-2 sm:col-span-2">
-            <Label htmlFor="phone">Phone</Label>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
             <Input
+              id="email"
+              type="email"
+              value={form.email}
+              onChange={(event) => setForm({ ...form, email: event.target.value })}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="phone">Phone number</Label>
+            <PhoneInput
               id="phone"
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(value) => setForm({ ...form, phone: value ?? "" })}
+              className="w-full"
             />
           </div>
         </div>
-        <div className="mt-6 flex justify-end">
-          <Button
-            type="submit"
-            className="surface-brand text-inverse surface-brand-strong-hover gap-2"
-          >
-            <Save className="h-4 w-4" />
-            Save Profile
-          </Button>
-        </div>
-      </form>
+      </div>
 
-      <div
-        className="card-base p-6"
-        style={{
-          borderColor:
-            "color-mix(in srgb, var(--destructive) 30%, transparent)",
-        }}
-      >
-        <h2 className="t-title-lg text-danger mb-1">Danger Zone</h2>
-        <p className="t-label-md text-soft mb-4">
-          Deleting your account is permanent and cannot be undone.
-        </p>
-        <Button
-          variant="outline"
-          onClick={() =>
-            Notification.error("Account deletion is disabled in this demo")
-          }
-          className="text-danger gap-2"
-          style={{ borderColor: "var(--destructive)" }}
-        >
-          <Trash2 className="h-4 w-4" />
-          Delete Account
+      <div className="mt-6 flex justify-end">
+        <Button type="submit" className="surface-brand text-inverse surface-brand-strong-hover">
+          <Icon.Save /> Save Profile
         </Button>
       </div>
-    </div>
+    </form>
   );
-};
+}
